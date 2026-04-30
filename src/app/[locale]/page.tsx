@@ -276,9 +276,9 @@ function Metrics({ locale }: { locale: SiteLocale }) {
       </p>
       <div className="grid gap-12 md:grid-cols-3">
         {[
-          { value: "200+", label: t("events") },
+          { value: "780K+", label: t("prints") },
           { value: "7", label: t("countries") },
-          { value: "50K+", label: t("prints") },
+          { value: "200+", label: t("events") },
         ].map((metric) => (
           <div
             key={metric.label}
