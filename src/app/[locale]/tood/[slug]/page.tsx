@@ -2,53 +2,54 @@ import { setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { PageShell } from "@/components/layout/PageShell";
+import {
+  getNextProject,
+  getProject,
+  projects,
+  text,
+  type PlaceholderProject,
+  type ProjectMetric,
+  type SiteLocale,
+} from "@/lib/site-content";
 
-// Placeholder — will read from MDX in /content/work/{slug}.mdx (Phase 4)
-const PROJECTS: Record<
-  string,
-  { client: string; event: string; year: string; service: string; brief: string; awards?: string[] }
-> = {
-  laulupidu: {
-    client: "Postimees",
-    event: "Laulupidu",
-    year: "2024",
-    service: "PortrAI fotoboks",
-    brief:
-      "[Placeholder brief — awaiting copy from task E1 BRIEF.txt] Laulupidu is one of Estonia's largest and most iconic cultural events. PortrAI delivered an AI photo booth experience that captured the spirit of the festival.",
+const DEFAULT_METRICS: ProjectMetric[] = [
+  {
+    value: "TBD",
+    label: {
+      en: "Primary KPI",
+      et: "Peamine KPI",
+    },
   },
-  "von-fock": {
-    client: "Von Fock",
-    event: "Brand activation",
-    year: "2024",
-    service: "Erilahendus",
-    brief:
-      "[Placeholder brief — awaiting copy from task E1 BRIEF.txt] Award-winning brand activation campaign for Von Fock featuring custom AI portrait styles tailored to the brand identity.",
-    awards: ["Booth Mastermind Awards 2024 — Best AI Photo Solution"],
+  {
+    value: "TBD",
+    label: {
+      en: "Guest-flow target",
+      et: "Külalisteekonna siht",
+    },
   },
-  melt: {
-    client: "MELT",
-    event: "Innovation forum",
-    year: "2024",
-    service: "Messilahendus",
-    brief:
-      "[Placeholder brief — awaiting copy from task E1 BRIEF.txt] Two distinct AI photo booth installations at Tallinn's MELT innovation forum.",
+  {
+    value: "TBD",
+    label: {
+      en: "Follow-up value",
+      et: "Järelkasutuse väärtus",
+    },
   },
-};
+];
 
 export function generateStaticParams() {
-  return Object.keys(PROJECTS).flatMap((slug) =>
-    ["et", "en"].map((locale) => ({ locale, slug })),
+  return projects.flatMap((project) =>
+    ["et", "en"].map((locale) => ({ locale, slug: project.slug })),
   );
 }
 
 export default async function CaseStudyPage({
   params,
 }: {
-  params: Promise<{ locale: "et" | "en"; slug: string }>;
+  params: Promise<{ locale: SiteLocale; slug: string }>;
 }) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
-  const project = PROJECTS[slug];
+  const project = getProject(slug);
 
   if (!project) {
     return (
@@ -61,7 +62,7 @@ export default async function CaseStudyPage({
             className="mt-4 font-medium"
             style={{ fontSize: "var(--text-display-md)" }}
           >
-            Project not found.
+            {locale === "en" ? "Project not found." : "Projekti ei leitud."}
           </h1>
         </section>
       </PageShell>
@@ -70,19 +71,22 @@ export default async function CaseStudyPage({
 
   return (
     <PageShell>
-      <CaseStudyHero project={project} />
-      <Brief brief={project.brief} />
-      <Gallery />
-      <PullQuote />
-      <NextProject />
+      <CaseStudyHero locale={locale} project={project} />
+      <Narrative locale={locale} project={project} />
+      <Results locale={locale} project={project} />
+      <Gallery locale={locale} project={project} />
+      <PullQuote locale={locale} project={project} />
+      <NextProject locale={locale} slug={project.slug} />
     </PageShell>
   );
 }
 
 function CaseStudyHero({
+  locale,
   project,
 }: {
-  project: (typeof PROJECTS)[string];
+  locale: SiteLocale;
+  project: PlaceholderProject;
 }) {
   const t = useTranslations("caseStudy");
 
@@ -95,10 +99,10 @@ function CaseStudyHero({
         ← {t("back")}
       </Link>
 
-      <div className="mb-12 grid gap-12 md:grid-cols-[2fr_1fr]">
+      <div className="mb-12 grid gap-12 lg:grid-cols-[minmax(0,1.5fr)_360px]">
         <div className="flex flex-col gap-6">
           <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-brand-accent)]">
-            {project.event}
+            {project.countryCode} - {project.city} - {project.year}
           </p>
           <h1
             className="font-medium leading-none tracking-tight"
@@ -106,33 +110,46 @@ function CaseStudyHero({
           >
             {project.client}
           </h1>
+          <p
+            className="max-w-3xl text-[color:var(--color-text-secondary)]"
+            style={{ fontSize: "var(--text-body-lg)" }}
+          >
+            {text(locale, project.summary)}
+          </p>
         </div>
 
-        <dl className="grid grid-cols-2 gap-6 self-end font-mono text-xs uppercase tracking-wider md:grid-cols-1">
+        <dl className="grid grid-cols-2 gap-6 self-end rounded-2xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] p-6 font-mono text-xs uppercase tracking-wider md:grid-cols-1">
           <Meta label={t("client")} value={project.client} />
-          <Meta label={t("event")} value={project.event} />
+          <Meta label={t("event")} value={text(locale, project.event)} />
           <Meta label={t("year")} value={project.year} />
-          <Meta label={t("service")} value={project.service} />
+          <Meta label={t("service")} value={text(locale, project.service)} />
         </dl>
       </div>
 
-      {/* Hero image placeholder */}
-      <div className="aspect-[16/9] overflow-hidden rounded-md border border-dashed border-[color:var(--color-stroke-medium)] bg-[color:var(--color-surface-raised)]">
-        <div className="flex h-full items-center justify-center">
-          <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-tertiary)]">
-            Hero image — {project.client}
-          </p>
+      <div className="aspect-[16/9] overflow-hidden rounded-2xl border border-dashed border-[color:var(--color-stroke-medium)] bg-[radial-gradient(circle_at_top,_rgba(121,72,255,0.2),_transparent_60%),linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01))]">
+        <div className="flex h-full flex-col justify-between p-6">
+          <div className="self-start rounded-full border border-[color:var(--color-stroke-medium)] px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-[color:var(--color-text-secondary)]">
+            {text(locale, project.service)}
+          </div>
+          <div className="space-y-3">
+            <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-tertiary)]">
+              {text(locale, project.galleryLabel)}
+            </p>
+            <p className="max-w-xl text-sm text-[color:var(--color-text-secondary)]">
+              {text(locale, project.brief)}
+            </p>
+          </div>
         </div>
       </div>
 
-      {project.awards && (
+      {project.awards && project.awards.length > 0 && (
         <div className="mt-8 flex flex-wrap gap-3">
-          {project.awards.map((a, i) => (
+          {project.awards.map((award) => (
             <p
-              key={i}
+              key={award.en}
               className="rounded-full border border-[color:var(--color-brand-primary)]/40 bg-[color:var(--color-brand-primary)]/10 px-4 py-2 font-mono text-xs uppercase tracking-wider text-[color:var(--color-brand-accent)]"
             >
-              ★ {a}
+              {text(locale, award)}
             </p>
           ))}
         </div>
@@ -150,30 +167,150 @@ function Meta({ label, value }: { label: string; value: string }) {
   );
 }
 
-function Brief({ brief }: { brief: string }) {
+function Narrative({
+  locale,
+  project,
+}: {
+  locale: SiteLocale;
+  project: PlaceholderProject;
+}) {
+  const headings =
+    locale === "en"
+      ? { brief: "Brief", challenge: "Challenge", solution: "Solution" }
+      : { brief: "Brief", challenge: "Väljakutse", solution: "Lahendus" };
+
   return (
     <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
-      <div className="grid gap-8 md:grid-cols-[300px_1fr]">
-        <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)]">
-          (01) — Brief
-        </p>
-        <p
-          className="max-w-3xl leading-relaxed"
-          style={{ fontSize: "var(--text-body-lg)" }}
-        >
-          {brief}
-        </p>
+      <div className="grid gap-6 xl:grid-cols-3">
+        <NarrativeCard
+          title={headings.brief}
+          body={text(locale, project.brief)}
+        />
+        <NarrativeCard
+          title={headings.challenge}
+          body={text(locale, project.challenge)}
+        />
+        <NarrativeCard
+          title={headings.solution}
+          body={text(locale, project.solution)}
+        />
       </div>
     </section>
   );
 }
 
-function Gallery() {
+function NarrativeCard({ title, body }: { title: string; body: string }) {
+  return (
+    <article className="rounded-2xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] p-6">
+      <p className="mb-4 font-mono text-xs uppercase tracking-wider text-[color:var(--color-brand-accent)]">
+        {title}
+      </p>
+      <p className="text-[color:var(--color-text-secondary)]">{body}</p>
+    </article>
+  );
+}
+
+function Results({
+  locale,
+  project,
+}: {
+  locale: SiteLocale;
+  project: PlaceholderProject;
+}) {
+  const metrics = project.metrics.length > 0 ? project.metrics : DEFAULT_METRICS;
+  const labels =
+    locale === "en"
+      ? { metrics: "(01) Results framework", deliverables: "Deliverables", outcomes: "What this page should eventually prove" }
+      : { metrics: "(01) Tulemusteraamistik", deliverables: "Deliverables", outcomes: "Mida see leht peaks lõpuks tõestama" };
+
   return (
     <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
-      <div className="mb-8 grid gap-8 md:grid-cols-[300px_1fr]">
+      <p className="mb-10 font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)]">
+        {labels.metrics}
+      </p>
+
+      <div className="grid gap-6 lg:grid-cols-3">
+        {metrics.map((metric) => (
+          <div
+            key={metric.label.en}
+            className="rounded-2xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] p-6"
+          >
+            <p
+              className="mb-2 font-mono leading-none"
+              style={{ fontSize: "var(--text-display-md)" }}
+            >
+              {metric.value}
+            </p>
+            <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)]">
+              {text(locale, metric.label)}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-12 grid gap-8 xl:grid-cols-2">
+        <div>
+          <p className="mb-4 font-mono text-xs uppercase tracking-wider text-[color:var(--color-brand-accent)]">
+            {labels.deliverables}
+          </p>
+          <ul className="space-y-3">
+            {project.deliverables.map((item) => (
+              <li
+                key={item.en}
+                className="flex items-start gap-3 text-[color:var(--color-text-secondary)]"
+              >
+                <span className="mt-1 font-mono text-xs text-[color:var(--color-brand-accent)]">
+                  ↳
+                </span>
+                <span>{text(locale, item)}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <p className="mb-4 font-mono text-xs uppercase tracking-wider text-[color:var(--color-brand-accent)]">
+            {labels.outcomes}
+          </p>
+          <ul className="space-y-3">
+            {project.outcomes.map((item) => (
+              <li
+                key={item.en}
+                className="flex items-start gap-3 text-[color:var(--color-text-secondary)]"
+              >
+                <span className="mt-1 font-mono text-xs text-[color:var(--color-brand-accent)]">
+                  ↳
+                </span>
+                <span>{text(locale, item)}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Gallery({
+  locale,
+  project,
+}: {
+  locale: SiteLocale;
+  project: PlaceholderProject;
+}) {
+  const title =
+    locale === "en"
+      ? "(02) Gallery scaffold"
+      : "(02) Galerii struktuur";
+
+  return (
+    <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+      <div className="mb-8 flex items-center justify-between gap-6">
         <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)]">
-          (02) — Gallery
+          {title}
+        </p>
+        <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-tertiary)]">
+          {text(locale, project.galleryLabel)}
         </p>
       </div>
 
@@ -185,13 +322,13 @@ function Gallery() {
           { col: "md:col-span-4", aspect: "aspect-[3/4]" },
           { col: "md:col-span-4", aspect: "aspect-[3/4]" },
           { col: "md:col-span-12", aspect: "aspect-[2/1]" },
-        ].map((cell, i) => (
+        ].map((cell, index) => (
           <div
-            key={i}
-            className={`${cell.col} ${cell.aspect} flex items-center justify-center rounded-md border border-dashed border-[color:var(--color-stroke-medium)] bg-[color:var(--color-surface-raised)]`}
+            key={index}
+            className={`${cell.col} ${cell.aspect} flex items-end justify-start rounded-2xl border border-dashed border-[color:var(--color-stroke-medium)] bg-[radial-gradient(circle_at_top,_rgba(121,72,255,0.14),_transparent_55%),linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01))] p-4`}
           >
             <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-tertiary)]">
-              Image {String(i + 1).padStart(2, "0")}
+              {project.client} - slot {String(index + 1).padStart(2, "0")}
             </p>
           </div>
         ))}
@@ -200,22 +337,34 @@ function Gallery() {
   );
 }
 
-function PullQuote() {
+function PullQuote({
+  locale,
+  project,
+}: {
+  locale: SiteLocale;
+  project: PlaceholderProject;
+}) {
+  if (!project.quote) return null;
+
   return (
     <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-32 md:px-12">
       <div className="grid gap-8 md:grid-cols-[300px_1fr]">
         <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)]">
-          (03) — Quote
+          {locale === "en" ? "(03) Quote slot" : "(03) Tsitaadiplokk"}
         </p>
         <figure className="flex flex-col gap-6">
+          <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-brand-accent)]">
+            {text(locale, project.quote.status)}
+          </p>
           <blockquote
             className="max-w-4xl font-medium leading-tight tracking-tight"
             style={{ fontSize: "var(--text-display-md)" }}
           >
-            "[Placeholder client quote — awaiting from task E3]"
+            "{text(locale, project.quote.quote)}"
           </blockquote>
           <figcaption className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)]">
-            — [Client name], [Role]
+            - {project.quote.name}, {text(locale, project.quote.role)}
+            {project.quote.company ? `, ${project.quote.company}` : ""}
           </figcaption>
         </figure>
       </div>
@@ -223,13 +372,23 @@ function PullQuote() {
   );
 }
 
-function NextProject() {
+function NextProject({
+  locale,
+  slug,
+}: {
+  locale: SiteLocale;
+  slug: string;
+}) {
   const t = useTranslations("caseStudy");
+  const next = getNextProject(slug);
+
+  if (!next) return null;
+
   return (
     <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
       <Link
-        href="/tood"
-        className="group flex items-baseline justify-between"
+        href={`/tood/${next.slug}`}
+        className="group flex items-baseline justify-between gap-6"
       >
         <span className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)] group-hover:text-white">
           {t("next")}
@@ -238,9 +397,12 @@ function NextProject() {
           className="font-medium leading-tight tracking-tight transition-colors group-hover:text-[color:var(--color-brand-accent)]"
           style={{ fontSize: "var(--text-display-md)" }}
         >
-          [Next] →
+          {next.client} →
         </span>
       </Link>
+      <p className="mt-3 text-sm text-[color:var(--color-text-secondary)]">
+        {text(locale, next.event)}
+      </p>
     </section>
   );
 }

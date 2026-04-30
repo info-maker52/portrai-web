@@ -8,14 +8,12 @@ type Item = {
 };
 
 const ITEMS: Item[] = [
-  { client: "Postimees", category: "Festival" },
-  { client: "Von Fock", category: "Brand activation" },
-  { client: "MELT", category: "Innovation forum" },
-  { client: "Project [04]", category: "Wedding" },
-  { client: "Project [05]", category: "Trade show" },
-  { client: "Project [06]", category: "Corporate" },
-  { client: "Project [07]", category: "Wedding" },
-  { client: "Project [08]", category: "Festival" },
+  { client: "Postimees", category: "Laulupidu — 103K piltidega" },
+  { client: "ERR / Von Fock", category: "Kampaania — 681K pilti" },
+  { client: "Tallinna Strateegiakeskus", category: "MELT innovatsioonifoorum" },
+  { client: "Swedbank", category: "Startup Day — Unistused" },
+  { client: "Telia", category: "Rohekusimustik" },
+  { client: "OIXIO / EBS", category: "AI õppenõustaja" },
 ];
 
 /**
