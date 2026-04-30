@@ -11,23 +11,135 @@
     "awards": "Auhinnad",
     "blog": "Blogi",
     "contact": "Kontakt",
-    "switchLanguage": "EN"
-  },
-  "hero": {
-    "headline": "Liiguta hiirt.",
-    "headlineLine2": "Vaata, mis juhtub.",
-    "leadIn": "PortrAI on AI fotoboks, mis muudab iga külalise unikaalseks kunstiteoseks.",
-    "cta": "Broneeri PortrAI",
-    "ctaSecondary": "Vaata töid"
+    "switchLanguage": "EN",
+    "primary": "Broneeri"
   },
   "intro": {
     "enterWithSound": "Sisene heliga",
     "enterWithoutSound": "Sisene ilma helita",
     "loading": "Laadin"
   },
+  "home": {
+    "section": {
+      "tagline": "AI fotoboks",
+      "showcase": "(02) Tööd",
+      "awards": "(03) Auhinnad",
+      "metrics": "(04) Numbrid",
+      "international": "(05) Maailmas",
+      "testimonials": "(06) Klientide hinnangud",
+      "faq": "(07) Korduvad küsimused",
+      "cta": "(08) Broneeri"
+    },
+    "hero": {
+      "headline": "Liiguta hiirt.",
+      "headlineLine2": "Vaata, mis juhtub.",
+      "leadIn": "PortrAI on AI fotoboks, mis muudab iga külalise unikaalseks kunstiteoseks.",
+      "cta": "Broneeri PortrAI",
+      "ctaSecondary": "Vaata töid"
+    },
+    "showcase": {
+      "title": "Hiljutised tööd",
+      "viewAll": "Kõik tööd"
+    },
+    "awards": {
+      "title": "Auhinnatud",
+      "subtitle": "Esimene Balti riikidest võitnud Booth Mastermind Awardsi Las Vegases — kahes kategoorias.",
+      "best_ai": "Parim AI fotolahendus",
+      "best_newcomer": "Parim uustulnuk fotoboksi maailmas"
+    },
+    "metrics": {
+      "events": "Üritust",
+      "countries": "Riiki",
+      "prints": "Pilti loodud"
+    },
+    "international": {
+      "title": "Töötame kogu maailmas",
+      "subtitle": "Lisaks Eestile oleme PortrAI lahendusi pakkunud Soomes, Saksamaal, Lätis, Poolas, Belgias ja USAs. Konsulteerime ka rahvusvahelisi fotoboksi ettevõtteid."
+    },
+    "testimonials": {
+      "title": "Mida kliendid ütlevad"
+    },
+    "cta": {
+      "title": "Loome midagi erilist.",
+      "subtitle": "Räägi meile oma üritusest. Vastame 24 tunni jooksul.",
+      "button": "Võta ühendust"
+    }
+  },
+  "services": {
+    "title": "Teenused",
+    "tagline": "Kolm võimalust ühenduse loomiseks",
+    "intro": "Olgu see siis pulm, firmapidu või rahvusvaheline mess — meil on selleks õige lahendus.",
+    "items": {
+      "booth": {
+        "title": "PortrAI fotoboks",
+        "summary": "Klassikaline AI fotoboks üritustele. Külalised valivad teema, AI loob unikaalse pildi, prinditakse kohapeal.",
+        "features": ["5+ stiilivalikut", "Kohapealne print", "QR-kood telefonile", "Brändi kohandus"]
+      },
+      "fairs": {
+        "title": "Messilahendused",
+        "summary": "Brändistatud fotoboksi-kogemused messidele ja konverentsidele. Suunatud kõrgele külastajatevoolule.",
+        "features": ["Bränditud raamid", "Kiire fotovoolu", "Andmete kogumine", "Sotsiaalmeedia jagamine"]
+      },
+      "custom": {
+        "title": "Erilahendused",
+        "summary": "Täiesti kohandatud kontseptsioonid premium-üritustele. Töötame kontseptsioonist teostuseni.",
+        "features": ["Unikaalne stiil", "Kohandatud teema", "Premium materjalid", "Konsulteerimine"]
+      }
+    }
+  },
+  "work": {
+    "title": "Tööd",
+    "tagline": "Iga üritus, üks lugu",
+    "filters": {
+      "all": "Kõik",
+      "wedding": "Pulm",
+      "corporate": "Firmaüritus",
+      "fair": "Mess",
+      "festival": "Festival"
+    }
+  },
+  "caseStudy": {
+    "client": "Klient",
+    "event": "Üritus",
+    "year": "Aasta",
+    "service": "Teenus",
+    "next": "Järgmine projekt",
+    "back": "Tagasi tööde nimekirja"
+  },
+  "contact": {
+    "title": "Räägime",
+    "tagline": "Vasta paari küsimusele — me saadame pakkumise tagasi 24 tunni jooksul.",
+    "form": {
+      "name": "Sinu nimi",
+      "email": "E-posti aadress",
+      "phone": "Telefon",
+      "eventType": "Ürituse tüüp",
+      "eventDate": "Kuupäev",
+      "eventLocation": "Asukoht",
+      "guestCount": "Külaliste arv",
+      "message": "Räägi meile oma üritusest",
+      "submit": "Saada pakkumise päring",
+      "success": "Aitäh! Vastame 24 tunni jooksul.",
+      "error": "Midagi läks valesti. Proovi uuesti."
+    },
+    "details": {
+      "email": "info@portrai.ee",
+      "phone": "+372 5663 9304",
+      "hours": "E-R 09:00 — 18:00"
+    }
+  },
+  "blog": {
+    "title": "Blogi",
+    "tagline": "Mõtteid AI fotoboksi maailmast",
+    "readMore": "Loe edasi",
+    "back": "Tagasi blogisse",
+    "publishedOn": "Avaldatud"
+  },
   "footer": {
     "rights": "Kõik õigused kaitstud.",
     "contact": "Võta ühendust",
-    "social": "Sotsiaalmeedia"
+    "social": "Sotsiaalmeedia",
+    "company": "PortrAI OÜ",
+    "address": "Tallinn, Eesti"
   }
 }

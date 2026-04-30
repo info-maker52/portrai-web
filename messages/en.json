@@ -11,23 +11,135 @@
     "awards": "Awards",
     "blog": "Blog",
     "contact": "Contact",
-    "switchLanguage": "ET"
-  },
-  "hero": {
-    "headline": "Move your cursor.",
-    "headlineLine2": "See what happens.",
-    "leadIn": "PortrAI is an AI photo booth that turns every guest into a one-of-a-kind work of art.",
-    "cta": "Book PortrAI",
-    "ctaSecondary": "See our work"
+    "switchLanguage": "ET",
+    "primary": "Book"
   },
   "intro": {
     "enterWithSound": "Enter with sound",
     "enterWithoutSound": "Enter without sound",
     "loading": "Loading"
   },
+  "home": {
+    "section": {
+      "tagline": "AI photo booth",
+      "showcase": "(02) Work",
+      "awards": "(03) Awards",
+      "metrics": "(04) Numbers",
+      "international": "(05) Worldwide",
+      "testimonials": "(06) Testimonials",
+      "faq": "(07) FAQ",
+      "cta": "(08) Book"
+    },
+    "hero": {
+      "headline": "Move your cursor.",
+      "headlineLine2": "See what happens.",
+      "leadIn": "PortrAI is an AI photo booth that turns every guest into a one-of-a-kind work of art.",
+      "cta": "Book PortrAI",
+      "ctaSecondary": "See our work"
+    },
+    "showcase": {
+      "title": "Recent work",
+      "viewAll": "All projects"
+    },
+    "awards": {
+      "title": "Award-winning",
+      "subtitle": "First in the Baltics to win Booth Mastermind Awards in Las Vegas — in two categories.",
+      "best_ai": "Best AI photo solution",
+      "best_newcomer": "Best newcomer in the photo booth world"
+    },
+    "metrics": {
+      "events": "Events",
+      "countries": "Countries",
+      "prints": "Photos created"
+    },
+    "international": {
+      "title": "We work worldwide",
+      "subtitle": "Beyond Estonia, we've delivered PortrAI in Finland, Germany, Latvia, Poland, Belgium and the USA. We also consult international photo booth operators."
+    },
+    "testimonials": {
+      "title": "What clients say"
+    },
+    "cta": {
+      "title": "Let's create something special.",
+      "subtitle": "Tell us about your event. We respond within 24 hours.",
+      "button": "Get in touch"
+    }
+  },
+  "services": {
+    "title": "Services",
+    "tagline": "Three ways to connect",
+    "intro": "Wedding, corporate event, or international trade show — there's a right solution for each.",
+    "items": {
+      "booth": {
+        "title": "PortrAI photo booth",
+        "summary": "The classic AI photo booth for events. Guests pick a style, AI creates a unique portrait, prints on the spot.",
+        "features": ["5+ style options", "On-site printing", "QR code to phone", "Brand customisation"]
+      },
+      "fairs": {
+        "title": "Trade show solutions",
+        "summary": "Branded photo booth experiences for trade shows and conferences. Built for high visitor flow.",
+        "features": ["Branded frames", "High throughput", "Lead capture", "Social media sharing"]
+      },
+      "custom": {
+        "title": "Custom solutions",
+        "summary": "Fully bespoke concepts for premium events. We work from concept to delivery.",
+        "features": ["Unique style", "Custom theming", "Premium materials", "Consulting"]
+      }
+    }
+  },
+  "work": {
+    "title": "Work",
+    "tagline": "Every event, one story",
+    "filters": {
+      "all": "All",
+      "wedding": "Wedding",
+      "corporate": "Corporate",
+      "fair": "Trade show",
+      "festival": "Festival"
+    }
+  },
+  "caseStudy": {
+    "client": "Client",
+    "event": "Event",
+    "year": "Year",
+    "service": "Service",
+    "next": "Next project",
+    "back": "Back to all work"
+  },
+  "contact": {
+    "title": "Let's talk",
+    "tagline": "Answer a few questions — we'll send a quote back within 24 hours.",
+    "form": {
+      "name": "Your name",
+      "email": "Email",
+      "phone": "Phone",
+      "eventType": "Event type",
+      "eventDate": "Date",
+      "eventLocation": "Location",
+      "guestCount": "Guest count",
+      "message": "Tell us about your event",
+      "submit": "Send quote request",
+      "success": "Thanks! We respond within 24 hours.",
+      "error": "Something went wrong. Try again."
+    },
+    "details": {
+      "email": "info@portrai.ee",
+      "phone": "+372 5663 9304",
+      "hours": "Mon-Fri 09:00 — 18:00"
+    }
+  },
+  "blog": {
+    "title": "Blog",
+    "tagline": "Thoughts from the AI photo booth world",
+    "readMore": "Read more",
+    "back": "Back to blog",
+    "publishedOn": "Published"
+  },
   "footer": {
     "rights": "All rights reserved.",
     "contact": "Get in touch",
-    "social": "Social"
+    "social": "Social",
+    "company": "PortrAI OÜ",
+    "address": "Tallinn, Estonia"
   }
 }
