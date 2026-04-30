@@ -2,6 +2,10 @@ import { setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { PageShell } from "@/components/layout/PageShell";
+import { CursorRevealHero } from "@/components/hero/CursorRevealHero";
+import { MagneticButton } from "@/components/motion/MagneticButton";
+import { Reveal } from "@/components/motion/Reveal";
+import { ShowcaseMarquee } from "@/components/showcase/ShowcaseMarquee";
 
 export default async function HomePage({
   params,
@@ -40,13 +44,9 @@ function Hero() {
         (01) — {tSection("tagline")}
       </p>
 
-      {/* Cursor-reveal portrait placeholder — replaced in Phase 5 with WebGL */}
-      <div className="absolute right-6 top-1/2 hidden -translate-y-1/2 md:right-12 md:block">
-        <div className="flex h-[480px] w-[360px] items-center justify-center rounded-md border border-dashed border-[color:var(--color-stroke-medium)] bg-[color:var(--color-surface-raised)]">
-          <p className="text-center font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-tertiary)]">
-            Cursor-reveal<br />portrait shader<br />[Phase 5]
-          </p>
-        </div>
+      {/* Cursor-reveal hero shader — Direction B centerpiece. */}
+      <div className="pointer-events-auto absolute right-6 top-1/2 hidden h-[480px] w-[360px] -translate-y-1/2 md:right-12 md:block">
+        <CursorRevealHero />
       </div>
 
       <h1
@@ -68,18 +68,22 @@ function Hero() {
       </p>
 
       <div className="flex flex-wrap gap-4">
-        <Link
-          href="/kontakt"
-          className="rounded-md bg-[color:var(--color-brand-primary)] px-6 py-3 font-medium text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-medium)]"
-        >
-          {t("cta")}
-        </Link>
-        <Link
-          href="/tood"
-          className="rounded-md border border-[color:var(--color-stroke-medium)] bg-transparent px-6 py-3 font-medium text-white transition-colors duration-200 hover:bg-[color:var(--color-surface-raised)]"
-        >
-          {t("ctaSecondary")}
-        </Link>
+        <MagneticButton>
+          <Link
+            href="/kontakt"
+            className="inline-block rounded-md bg-[color:var(--color-brand-primary)] px-6 py-3 font-medium text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-medium)]"
+          >
+            {t("cta")}
+          </Link>
+        </MagneticButton>
+        <MagneticButton strength={8}>
+          <Link
+            href="/tood"
+            className="inline-block rounded-md border border-[color:var(--color-stroke-medium)] bg-transparent px-6 py-3 font-medium text-white transition-colors duration-200 hover:bg-[color:var(--color-surface-raised)]"
+          >
+            {t("ctaSecondary")}
+          </Link>
+        </MagneticButton>
       </div>
 
       <p className="mt-8 hidden font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-tertiary)] md:block">
@@ -118,21 +122,7 @@ function ShowcaseReel() {
         {t("showcase.title")}
       </h2>
 
-      {/* Marquee placeholder — Phase 5 turns this into an infinite loop */}
-      <div className="overflow-hidden">
-        <div className="flex gap-6 px-6 md:px-12">
-          {[1, 2, 3, 4, 5].map((i) => (
-            <div
-              key={i}
-              className="flex aspect-[3/4] w-[280px] flex-shrink-0 items-center justify-center rounded-md border border-dashed border-[color:var(--color-stroke-medium)] bg-[color:var(--color-surface-raised)] md:w-[360px]"
-            >
-              <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-tertiary)]">
-                Project {String(i).padStart(2, "0")}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
+      <ShowcaseMarquee />
     </section>
   );
 }

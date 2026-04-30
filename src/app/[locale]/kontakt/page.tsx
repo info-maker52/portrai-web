@@ -1,6 +1,7 @@
 import { setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import { PageShell } from "@/components/layout/PageShell";
+import { BookingForm } from "@/components/booking/BookingForm";
 
 export default async function ContactPage({
   params,
@@ -12,7 +13,7 @@ export default async function ContactPage({
   return (
     <PageShell>
       <Hero />
-      <Form />
+      <FormSection />
     </PageShell>
   );
 }
@@ -40,8 +41,7 @@ function Hero() {
   );
 }
 
-function Form() {
-  const t = useTranslations("contact.form");
+function FormSection() {
   const tDetails = useTranslations("contact.details");
 
   return (
@@ -71,84 +71,8 @@ function Form() {
           </div>
         </aside>
 
-        {/* Form (real submission lands in Phase 4) */}
-        <form
-          className="flex flex-col gap-8"
-          action="/api/booking"
-          method="POST"
-        >
-          <Field name="name" label={t("name")} type="text" required />
-          <Field name="email" label={t("email")} type="email" required />
-          <Field name="phone" label={t("phone")} type="tel" />
-          <div className="grid gap-8 md:grid-cols-2">
-            <Field name="eventType" label={t("eventType")} type="text" />
-            <Field name="eventDate" label={t("eventDate")} type="date" />
-          </div>
-          <div className="grid gap-8 md:grid-cols-2">
-            <Field name="eventLocation" label={t("eventLocation")} type="text" />
-            <Field name="guestCount" label={t("guestCount")} type="number" />
-          </div>
-          <FieldArea name="message" label={t("message")} />
-
-          <button
-            type="submit"
-            disabled
-            className="self-start rounded-md bg-[color:var(--color-brand-primary)] px-8 py-4 font-medium text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-medium)] disabled:cursor-not-allowed disabled:opacity-60"
-            style={{ fontSize: "var(--text-body-lg)" }}
-          >
-            {t("submit")} → <span className="ml-2 font-mono text-xs uppercase">[Phase 4]</span>
-          </button>
-
-          <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-tertiary)]">
-            Form posts to /api/booking → Gmail SMTP. Wired up in Phase 4
-            once Reijo provides the App Password.
-          </p>
-        </form>
+        <BookingForm />
       </div>
     </section>
-  );
-}
-
-function Field({
-  name,
-  label,
-  type,
-  required,
-}: {
-  name: string;
-  label: string;
-  type: string;
-  required?: boolean;
-}) {
-  return (
-    <label className="flex flex-col gap-3">
-      <span className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)]">
-        {label}
-        {required && (
-          <span className="ml-1 text-[color:var(--color-brand-accent)]">*</span>
-        )}
-      </span>
-      <input
-        type={type}
-        name={name}
-        required={required}
-        className="border-b border-[color:var(--color-stroke-medium)] bg-transparent px-0 py-3 text-lg transition-colors duration-200 focus:border-[color:var(--color-brand-primary)] focus:outline-none"
-      />
-    </label>
-  );
-}
-
-function FieldArea({ name, label }: { name: string; label: string }) {
-  return (
-    <label className="flex flex-col gap-3">
-      <span className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)]">
-        {label}
-      </span>
-      <textarea
-        name={name}
-        rows={5}
-        className="border-b border-[color:var(--color-stroke-medium)] bg-transparent px-0 py-3 text-lg transition-colors duration-200 focus:border-[color:var(--color-brand-primary)] focus:outline-none"
-      />
-    </label>
   );
 }
