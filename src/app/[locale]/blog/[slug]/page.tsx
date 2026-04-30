@@ -1,40 +1,125 @@
-import { setRequestLocale } from "next-intl/server";
-import { useTranslations } from "next-intl";
+import { setRequestLocale, getTranslations } from "next-intl/server";
+import { notFound } from "next/navigation";
+import Image from "next/image";
+import { MDXRemote } from "next-mdx-remote/rsc";
 import { Link } from "@/i18n/navigation";
 import { PageShell } from "@/components/layout/PageShell";
+import { getAllBlogSlugs, getBlogPost } from "@/lib/blog";
+import type { Metadata } from "next";
 
-// Placeholder — Phase 7 reads MDX from src/content/blog/{slug}.mdx
-const POSTS: Record<string, { title: string; date: string; excerpt: string }> = {
-  "why-an-ai-photobooth-is-the-perfect-addition-to-your-company-summer-gatherings":
-    {
-      title:
-        "Why an AI photobooth is the perfect addition to your company summer gatherings",
-      date: "2024-06-12",
-      excerpt: "[Placeholder excerpt — content lands in task H1]",
-    },
-  "halloween-party-coming-up-but-no-pumpkins-in-sight": {
-    title: "Halloween party coming up but no pumpkins in sight",
-    date: "2024-10-01",
-    excerpt: "[Placeholder excerpt — content lands in task H1]",
-  },
-  "how-ai-makes-event-photos-more-memorable": {
-    title: "How AI makes event photos more memorable",
-    date: "2024-09-15",
-    excerpt: "[Placeholder excerpt — content lands in task H1]",
-  },
-  "the-next-level-of-photo-booths-how-ai-makes-your-event-unforgettable-1": {
-    title:
-      "The next level of photo booths: how AI makes your event unforgettable",
-    date: "2024-04-20",
-    excerpt: "[Placeholder excerpt — content lands in task H1]",
-  },
-};
-
-export function generateStaticParams() {
-  return Object.keys(POSTS).flatMap((slug) =>
+export async function generateStaticParams() {
+  const slugs = await getAllBlogSlugs();
+  return slugs.flatMap((slug) =>
     ["et", "en"].map((locale) => ({ locale, slug })),
   );
 }
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: "et" | "en"; slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getBlogPost(slug);
+  if (!post) return {};
+  return {
+    title: post.title,
+    description: post.excerpt,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      type: "article",
+      publishedTime: post.date,
+      images: post.coverImage ? [{ url: post.coverImage }] : undefined,
+    },
+  };
+}
+
+const mdxComponents = {
+  h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h1
+      className="mt-12 font-medium leading-tight tracking-tight"
+      style={{ fontSize: "var(--text-display-md)" }}
+      {...props}
+    />
+  ),
+  h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h2
+      className="mt-12 font-medium leading-tight tracking-tight"
+      style={{ fontSize: "var(--text-headline)" }}
+      {...props}
+    />
+  ),
+  h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h3
+      className="mt-8 font-medium leading-tight tracking-tight"
+      style={{ fontSize: "var(--text-title)" }}
+      {...props}
+    />
+  ),
+  p: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
+    <p
+      className="mt-6 leading-relaxed text-[color:var(--color-text-primary)]"
+      style={{ fontSize: "var(--text-body-lg)" }}
+      {...props}
+    />
+  ),
+  ul: (props: React.HTMLAttributes<HTMLUListElement>) => (
+    <ul className="mt-6 flex flex-col gap-3 pl-0" {...props} />
+  ),
+  li: (props: React.HTMLAttributes<HTMLLIElement>) => (
+    <li
+      className="flex items-start gap-3 leading-relaxed text-[color:var(--color-text-primary)]"
+      style={{ fontSize: "var(--text-body)" }}
+    >
+      <span className="mt-1 font-mono text-xs text-[color:var(--color-brand-accent)]">
+        ↳
+      </span>
+      <span>{props.children}</span>
+    </li>
+  ),
+  a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+    <a
+      className="text-[color:var(--color-brand-accent)] underline-offset-4 hover:underline"
+      {...props}
+    />
+  ),
+  strong: (props: React.HTMLAttributes<HTMLElement>) => (
+    <strong className="font-medium text-white" {...props} />
+  ),
+  blockquote: (props: React.HTMLAttributes<HTMLQuoteElement>) => (
+    <blockquote
+      className="my-8 border-l-2 border-[color:var(--color-brand-primary)] pl-6 italic text-[color:var(--color-text-secondary)]"
+      {...props}
+    />
+  ),
+  img: ({ src, alt }: React.ImgHTMLAttributes<HTMLImageElement>) => {
+    const url = typeof src === "string" ? src : "";
+    return (
+      <span className="mt-12 block">
+        {/* Use a regular img tag for remote Wix CDN URLs (already in next.config
+            remotePatterns), fall back to next/image for local /public paths. */}
+        {url.startsWith("/") ? (
+          <Image
+            src={url}
+            alt={alt ?? ""}
+            width={1200}
+            height={800}
+            className="rounded-md"
+          />
+        ) : (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={url}
+            alt={alt ?? ""}
+            className="rounded-md"
+            loading="lazy"
+          />
+        )}
+      </span>
+    );
+  },
+};
 
 export default async function BlogPostPage({
   params,
@@ -43,101 +128,49 @@ export default async function BlogPostPage({
 }) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
-  const post = POSTS[slug];
 
-  if (!post) {
-    return (
-      <PageShell>
-        <section className="px-6 py-32 md:px-12">
-          <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-tertiary)]">
-            404
-          </p>
-          <h1
-            className="mt-4 font-medium"
-            style={{ fontSize: "var(--text-display-md)" }}
-          >
-            Post not found.
-          </h1>
-        </section>
-      </PageShell>
-    );
-  }
+  const post = await getBlogPost(slug);
+  if (!post) notFound();
+
+  const t = await getTranslations({ locale, namespace: "blog" });
 
   return (
     <PageShell>
-      <Hero post={post} />
-      <Body />
-    </PageShell>
-  );
-}
-
-function Hero({ post }: { post: { title: string; date: string; excerpt: string } }) {
-  const t = useTranslations("blog");
-
-  return (
-    <section className="border-b border-[color:var(--color-stroke-subtle)] px-6 pb-16 pt-20 md:px-12 md:pt-32">
-      <Link
-        href="/blog"
-        className="mb-12 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)] transition-colors hover:text-white"
-      >
-        ← {t("back")}
-      </Link>
-
-      <p className="mb-6 font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)]">
-        {t("publishedOn")} {post.date}
-      </p>
-      <h1
-        className="max-w-4xl font-medium leading-tight tracking-tight"
-        style={{ fontSize: "var(--text-display-lg)" }}
-      >
-        {post.title}
-      </h1>
-
-      {/* Cover image placeholder */}
-      <div className="mt-12 aspect-[16/9] overflow-hidden rounded-md border border-dashed border-[color:var(--color-stroke-medium)] bg-[color:var(--color-surface-raised)]">
-        <div className="flex h-full items-center justify-center">
-          <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-tertiary)]">
-            Cover image — task H1
-          </p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Body() {
-  return (
-    <article className="mx-auto max-w-2xl px-6 py-20 md:px-0">
-      <div className="prose prose-invert flex flex-col gap-6 text-[color:var(--color-text-primary)]">
-        <p style={{ fontSize: "var(--text-body-lg)" }}>
-          [Placeholder body — Phase 7 wires this up to render MDX from
-          <code className="mx-2 rounded bg-[color:var(--color-surface-raised)] px-2 py-1 font-mono text-xs">
-            src/content/blog/[slug].mdx
-          </code>
-          using next-mdx-remote. Codex task H1 will scrape the existing 4 Wix
-          posts and produce the MDX files.]
-        </p>
-        <h2
-          className="font-medium tracking-tight"
-          style={{ fontSize: "var(--text-headline)" }}
+      <section className="border-b border-[color:var(--color-stroke-subtle)] px-6 pb-16 pt-20 md:px-12 md:pt-32">
+        <Link
+          href="/blog"
+          className="mb-12 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)] transition-colors hover:text-white"
         >
-          Sample heading
-        </h2>
-        <p>
-          Body copy renders here at <code>--text-body</code> with{" "}
-          <code>--text-body--line-height: 1.6</code>.
+          ← {t("back")}
+        </Link>
+
+        <p className="mb-6 font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)]">
+          {t("publishedOn")} {post.date}
         </p>
-        <p>
-          Inline links use the brand accent colour:{" "}
-          <a
-            href="#"
-            className="text-[color:var(--color-brand-accent)] underline-offset-4 hover:underline"
-          >
-            example link
-          </a>
-          .
-        </p>
-      </div>
-    </article>
+        <h1
+          className="max-w-4xl font-medium leading-tight tracking-tight"
+          style={{ fontSize: "var(--text-display-lg)" }}
+        >
+          {post.title}
+        </h1>
+
+        {post.coverImage && (
+          <div className="mt-12 overflow-hidden rounded-md">
+            <Image
+              src={post.coverImage}
+              alt={post.title}
+              width={1600}
+              height={900}
+              className="h-auto w-full object-cover"
+              priority
+            />
+          </div>
+        )}
+      </section>
+
+      <article className="mx-auto max-w-2xl px-6 py-20 md:px-0">
+        <MDXRemote source={post.body} components={mdxComponents} />
+      </article>
+    </PageShell>
   );
 }

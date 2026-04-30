@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { routing } from "@/i18n/routing";
 import { MotionProviders } from "@/components/motion/MotionProviders";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { localBusinessSchema, organizationSchema } from "@/lib/seo";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -55,6 +57,8 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider locale={locale}>
+      <JsonLd data={organizationSchema} />
+      <JsonLd data={localBusinessSchema} />
       <MotionProviders />
       {children}
     </NextIntlClientProvider>

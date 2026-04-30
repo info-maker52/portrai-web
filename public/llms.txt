@@ -1,0 +1,35 @@
+# PortrAI
+
+> AI photo booth for events. Headquartered in Tallinn, Estonia. Award-winning (Booth Mastermind Awards Las Vegas 2024 — Best AI Photo Solution + Best Newcomer). Operates in EE, FI, DE, LV, PL, BE, US.
+
+## Services
+- AI photo booth for weddings, corporate events, and trade shows
+- Custom-themed AI portrait generation (acrylic, watercolour, pencil, cartoon, street-art styles)
+- Branded experience design for trade shows ("messilahendused")
+- Custom premium event solutions ("erilahendused")
+- International consulting for photo booth operators
+
+## Key facts
+- Founded in Estonia
+- First Baltic company to win Booth Mastermind Awards in Las Vegas (2024, two categories)
+- Notable projects: Laulupidu (Postimees), Von Fock brand activation, MELT Innovation Forum
+- Proprietary software (not generic face-swap)
+- Instant on-site printing + QR code delivery
+
+## Contact
+- Email: info@portrai.ee
+- Phone: +372 5663 9304
+- Website: https://portrai.ee
+- Staging during migration: https://portrai.cloud
+
+## Pages
+- /                     — Home
+- /teenused             — Services (booth, trade shows, custom)
+- /tood                 — Portfolio of past events
+- /tood/[slug]          — Individual case studies
+- /blog                 — Blog
+- /kontakt              — Contact / booking form
+
+## Languages
+- Estonian (default, /)
+- English (/en)

@@ -6,6 +6,7 @@ import { CursorRevealHero } from "@/components/hero/CursorRevealHero";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import { Reveal } from "@/components/motion/Reveal";
 import { ShowcaseMarquee } from "@/components/showcase/ShowcaseMarquee";
+import { WorldMap } from "@/components/world/WorldMap";
 
 export default async function HomePage({
   params,
@@ -305,11 +306,8 @@ function International() {
         {t("subtitle")}
       </p>
 
-      {/* World map placeholder — Phase 5 replaces with SVG + pulsing dots */}
-      <div className="mb-8 flex aspect-[16/7] items-center justify-center rounded-md border border-dashed border-[color:var(--color-stroke-medium)] bg-[color:var(--color-surface-raised)]">
-        <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-tertiary)]">
-          World map with pulsing project dots [Phase 5]
-        </p>
+      <div className="mb-8">
+        <WorldMap />
       </div>
 
       <div className="flex flex-wrap gap-3">
