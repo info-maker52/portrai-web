@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "siteName": "PortrAI",
+    "tagline": "Award-winning AI photo booth",
+    "description": "AI photo booth for events in Estonia and across Europe. Weddings, corporate events, trade shows. Award-winning experience that turns every guest into a one-of-a-kind portrait."
+  },
+  "nav": {
+    "home": "Home",
+    "work": "Work",
+    "services": "Services",
+    "awards": "Awards",
+    "blog": "Blog",
+    "contact": "Contact",
+    "switchLanguage": "ET"
+  },
+  "hero": {
+    "headline": "Move your cursor.",
+    "headlineLine2": "See what happens.",
+    "leadIn": "PortrAI is an AI photo booth that turns every guest into a one-of-a-kind work of art.",
+    "cta": "Book PortrAI",
+    "ctaSecondary": "See our work"
+  },
+  "intro": {
+    "enterWithSound": "Enter with sound",
+    "enterWithoutSound": "Enter without sound",
+    "loading": "Loading"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "contact": "Get in touch",
+    "social": "Social"
+  }
+}

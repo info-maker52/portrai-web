@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "siteName": "PortrAI",
+    "tagline": "AI fotoboks, mis võidab auhindu",
+    "description": "AI fotoboks Eesti üritustele. Pulm, firmapidu, mess. Auhinnatud lahendus, mis muudab iga külalise unikaalseks portreeks."
+  },
+  "nav": {
+    "home": "Avaleht",
+    "work": "Tööd",
+    "services": "Teenused",
+    "awards": "Auhinnad",
+    "blog": "Blogi",
+    "contact": "Kontakt",
+    "switchLanguage": "EN"
+  },
+  "hero": {
+    "headline": "Liiguta hiirt.",
+    "headlineLine2": "Vaata, mis juhtub.",
+    "leadIn": "PortrAI on AI fotoboks, mis muudab iga külalise unikaalseks kunstiteoseks.",
+    "cta": "Broneeri PortrAI",
+    "ctaSecondary": "Vaata töid"
+  },
+  "intro": {
+    "enterWithSound": "Sisene heliga",
+    "enterWithoutSound": "Sisene ilma helita",
+    "loading": "Laadin"
+  },
+  "footer": {
+    "rights": "Kõik õigused kaitstud.",
+    "contact": "Võta ühendust",
+    "social": "Sotsiaalmeedia"
+  }
+}
