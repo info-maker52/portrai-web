@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useLocale, useTranslations } from "next-intl";
-import { CursorRevealHero } from "@/components/hero/CursorRevealHero";
+import { IntroScene } from "@/components/intro/IntroScene";
 
 const STORAGE_KEY = "portrai-intro-seen";
 const SHOW_AGAIN_AFTER_MS = 12 * 60 * 60 * 1000;
@@ -98,10 +98,7 @@ export function IntroOverlay() {
           }}
         >
           <div className="absolute inset-0">
-            <CursorRevealHero
-              showChrome={false}
-              className="h-full !rounded-none !border-0 !shadow-none"
-            />
+            <IntroScene className="h-full !rounded-none !border-0 !shadow-none" />
           </div>
           <div
             aria-hidden
@@ -116,22 +113,22 @@ export function IntroOverlay() {
             className="pointer-events-none absolute inset-0 opacity-[0.06]"
             style={{
               backgroundImage:
-                "linear-gradient(rgba(55,32,58,0.14) 1px, transparent 1px), linear-gradient(90deg, rgba(55,32,58,0.14) 1px, transparent 1px)",
+                "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
               backgroundPosition: "center center",
               backgroundSize: "clamp(32px, 3vw, 54px) clamp(32px, 3vw, 54px)",
             }}
           />
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-x-[8%] top-[14%] h-px bg-gradient-to-r from-transparent via-[rgba(55,32,58,0.16)] to-transparent"
+            className="pointer-events-none absolute inset-x-[8%] top-[14%] h-px bg-gradient-to-r from-transparent via-white/15 to-transparent"
           />
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-x-[8%] bottom-[18%] h-px bg-gradient-to-r from-transparent via-[rgba(55,32,58,0.16)] to-transparent"
+            className="pointer-events-none absolute inset-x-[8%] bottom-[18%] h-px bg-gradient-to-r from-transparent via-white/15 to-transparent"
           />
 
           <motion.p
-            className="pointer-events-none absolute left-6 top-6 font-mono text-xs uppercase tracking-[0.22em] text-[rgba(55,32,58,0.42)] md:left-12 md:top-10"
+            className="pointer-events-none absolute left-6 top-6 font-mono text-xs uppercase tracking-[0.22em] text-white/45 md:left-12 md:top-10"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: fastFade ? 0 : 0.5, duration: 0.35 }}
@@ -143,7 +140,7 @@ export function IntroOverlay() {
             {letters.map((letter, index) => (
               <motion.span
                 key={`${letter}-${index}`}
-                className="font-mono text-[clamp(1.1rem,2vw,1.75rem)] uppercase tracking-[0.35em] text-[rgba(35,24,38,0.62)]"
+                className="font-mono text-[clamp(1.1rem,2vw,1.75rem)] uppercase tracking-[0.35em] text-white/65"
                 initial={{ opacity: 0, x: -18 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{
@@ -169,7 +166,7 @@ export function IntroOverlay() {
               }}
             >
               <motion.h1
-                className="font-mono uppercase text-[clamp(2.5rem,8vw,6rem)] leading-none text-[rgba(24,17,31,0.9)]"
+                className="font-mono uppercase text-[clamp(2.5rem,8vw,6rem)] leading-none text-white"
                 initial={
                   fastFade
                     ? { opacity: 1, letterSpacing: "0.22em" }
@@ -185,7 +182,7 @@ export function IntroOverlay() {
               </motion.h1>
 
               <motion.p
-                className="max-w-xl text-balance text-sm uppercase tracking-[0.28em] text-[rgba(55,32,58,0.52)] md:text-base"
+                className="max-w-xl text-balance text-sm uppercase tracking-[0.28em] text-white/55 md:text-base"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{
@@ -211,20 +208,20 @@ export function IntroOverlay() {
                 <button
                   type="button"
                   onClick={dismiss}
-                  className="group flex items-center justify-center gap-3 rounded-full border border-[rgba(36,24,40,0.14)] bg-[rgba(24,17,31,0.9)] px-6 py-3 font-mono text-xs uppercase tracking-[0.18em] text-white transition-all duration-200 hover:bg-[rgba(41,29,57,0.94)] hover:shadow-[0_20px_40px_rgba(58,33,91,0.18)]"
+                  className="group flex items-center justify-center gap-3 rounded-full border border-[color:var(--color-brand-primary)]/40 bg-[color:var(--color-brand-primary)] px-7 py-3.5 font-mono text-xs uppercase tracking-[0.18em] text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-medium)]"
                 >
                   <span className="block h-2 w-2 rounded-full bg-[color:var(--color-brand-accent)] transition-transform group-hover:scale-125" />
                   {copy.buttonLabel} {"->"}
                 </button>
               </div>
 
-              <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-[rgba(55,32,58,0.44)]">
+              <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/45">
                 * {copy.hint}
               </p>
             </motion.div>
 
             <motion.p
-              className="pointer-events-none absolute bottom-6 right-6 font-mono text-xs uppercase tracking-[0.22em] text-[rgba(55,32,58,0.36)] md:bottom-10 md:right-12"
+              className="pointer-events-none absolute bottom-6 right-6 font-mono text-xs uppercase tracking-[0.22em] text-white/40 md:bottom-10 md:right-12"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: fastFade ? 0 : 1.25, duration: 0.35 }}

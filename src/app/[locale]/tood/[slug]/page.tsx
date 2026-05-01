@@ -1,40 +1,21 @@
+import Image from "next/image";
 import { setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { PageShell } from "@/components/layout/PageShell";
+import { ProjectCoverImage } from "@/components/work/ProjectCoverImage";
+import {
+  getProjectGalleryMedia,
+  type ProjectGalleryMediaItem,
+} from "@/lib/project-media";
 import {
   getNextProject,
   getProject,
   projects,
   text,
   type PlaceholderProject,
-  type ProjectMetric,
   type SiteLocale,
 } from "@/lib/site-content";
-
-const DEFAULT_METRICS: ProjectMetric[] = [
-  {
-    value: "TBD",
-    label: {
-      en: "Primary KPI",
-      et: "Peamine KPI",
-    },
-  },
-  {
-    value: "TBD",
-    label: {
-      en: "Guest-flow target",
-      et: "Kulalisteekonna siht",
-    },
-  },
-  {
-    value: "TBD",
-    label: {
-      en: "Follow-up value",
-      et: "Jarelkasutuse vaartus",
-    },
-  },
-];
 
 export function generateStaticParams() {
   return projects.flatMap((project) =>
@@ -42,7 +23,7 @@ export function generateStaticParams() {
   );
 }
 
-export default async function CaseStudyPage({
+export default async function ProjectPage({
   params,
 }: {
   params: Promise<{ locale: SiteLocale; slug: string }>;
@@ -71,17 +52,15 @@ export default async function CaseStudyPage({
 
   return (
     <PageShell>
-      <CaseStudyHero locale={locale} project={project} />
-      <Narrative locale={locale} project={project} />
-      <Results locale={locale} project={project} />
-      <Gallery locale={locale} project={project} />
-      <PullQuote locale={locale} project={project} />
+      <ProjectHero locale={locale} project={project} />
+      <ProjectSnapshot locale={locale} project={project} />
+      <ProjectGallery locale={locale} project={project} />
       <NextProject locale={locale} slug={project.slug} />
     </PageShell>
   );
 }
 
-function CaseStudyHero({
+function ProjectHero({
   locale,
   project,
 }: {
@@ -94,18 +73,18 @@ function CaseStudyHero({
     <section className="px-6 pb-12 pt-20 md:px-12 md:pt-32">
       <Link
         href="/tood"
-        className="mb-12 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)] transition-colors hover:text-white"
+        className="mb-10 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)] transition-colors hover:text-white"
       >
         {"<-"} {t("back")}
       </Link>
 
-      <div className="mb-12 grid gap-12 lg:grid-cols-[minmax(0,1.5fr)_360px]">
-        <div className="flex flex-col gap-6">
-          <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-brand-accent)]">
-            {project.countryCode} - {project.city} - {project.year}
+      <div className="mb-10 grid gap-10 xl:grid-cols-[minmax(0,1.2fr)_320px]">
+        <div className="space-y-5">
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-[color:var(--color-brand-accent)]">
+            {project.city} - {project.countryCode} - {project.year}
           </p>
           <h1
-            className="font-medium leading-none tracking-tight"
+            className="max-w-5xl font-medium leading-none tracking-tight"
             style={{ fontSize: "var(--text-display-xl)" }}
           >
             {project.client}
@@ -116,267 +95,299 @@ function CaseStudyHero({
           >
             {text(locale, project.summary)}
           </p>
+          {project.awards && project.awards.length > 0 ? (
+            <div className="flex flex-wrap gap-3 pt-2">
+              {project.awards.map((award) => (
+                <span
+                  key={award.en}
+                  className="rounded-full border border-[color:var(--color-brand-primary)]/35 bg-[color:var(--color-brand-primary)]/10 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.16em] text-[color:var(--color-brand-accent)]"
+                >
+                  {text(locale, award)}
+                </span>
+              ))}
+            </div>
+          ) : null}
         </div>
 
-        <dl className="grid grid-cols-2 gap-6 self-end rounded-2xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] p-6 font-mono text-xs uppercase tracking-wider md:grid-cols-1">
-          <Meta label={t("client")} value={project.client} />
-          <Meta label={t("event")} value={text(locale, project.event)} />
-          <Meta label={t("year")} value={project.year} />
-          <Meta label={t("service")} value={text(locale, project.service)} />
-        </dl>
+        <div className="grid gap-4 self-end rounded-2xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] p-5">
+          <Fact
+            label={locale === "en" ? "Event" : "Uritus"}
+            value={text(locale, project.event)}
+          />
+          <Fact
+            label={locale === "en" ? "Service" : "Teenus"}
+            value={text(locale, project.service)}
+          />
+          <Fact
+            label={locale === "en" ? "Location" : "Asukoht"}
+            value={`${project.city}, ${project.countryCode}`}
+          />
+          <Fact
+            label={locale === "en" ? "Year" : "Aasta"}
+            value={project.year}
+          />
+        </div>
       </div>
 
-      <div className="aspect-[16/9] overflow-hidden rounded-2xl border border-dashed border-[color:var(--color-stroke-medium)] bg-[radial-gradient(circle_at_top,_rgba(121,72,255,0.2),_transparent_60%),linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01))]">
-        <div className="flex h-full flex-col justify-between p-6">
-          <div className="self-start rounded-full border border-[color:var(--color-stroke-medium)] px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-[color:var(--color-text-secondary)]">
+      <ProjectCoverImage
+        className="aspect-[16/9] rounded-[28px] border border-[color:var(--color-stroke-subtle)]"
+        imageClassName="scale-[1.01]"
+        locale={locale}
+        priority
+        project={project}
+        sizes="100vw"
+      >
+        <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 md:p-7">
+          <div className="rounded-full border border-white/14 bg-black/28 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.18em] text-white/76 backdrop-blur-sm">
             {text(locale, project.service)}
           </div>
-          <div className="space-y-3">
-            <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-tertiary)]">
-              {text(locale, project.galleryLabel)}
-            </p>
-            <p className="max-w-xl text-sm text-[color:var(--color-text-secondary)]">
-              {text(locale, project.brief)}
-            </p>
+          <div className="max-w-xl rounded-2xl border border-white/10 bg-[rgba(2,9,30,0.46)] px-4 py-3 text-right text-xs leading-5 text-white/72 backdrop-blur-sm md:text-sm">
+            {text(locale, project.galleryLabel)}
           </div>
         </div>
-      </div>
-
-      {project.awards && project.awards.length > 0 && (
-        <div className="mt-8 flex flex-wrap gap-3">
-          {project.awards.map((award) => (
-            <p
-              key={award.en}
-              className="rounded-full border border-[color:var(--color-brand-primary)]/40 bg-[color:var(--color-brand-primary)]/10 px-4 py-2 font-mono text-xs uppercase tracking-wider text-[color:var(--color-brand-accent)]"
-            >
-              {text(locale, award)}
-            </p>
-          ))}
-        </div>
-      )}
+      </ProjectCoverImage>
     </section>
   );
 }
 
-function Meta({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex flex-col gap-1">
-      <dt className="text-[color:var(--color-text-tertiary)]">{label}</dt>
-      <dd className="text-white">{value}</dd>
-    </div>
-  );
-}
-
-function Narrative({
+function ProjectSnapshot({
   locale,
   project,
 }: {
   locale: SiteLocale;
   project: PlaceholderProject;
 }) {
-  const headings =
-    locale === "en"
-      ? { brief: "Brief", challenge: "Challenge", solution: "Solution" }
-      : { brief: "Brief", challenge: "Valjakutse", solution: "Lahendus" };
-
-  return (
-    <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
-      <div className="grid gap-6 xl:grid-cols-3">
-        <NarrativeCard
-          title={headings.brief}
-          body={text(locale, project.brief)}
-        />
-        <NarrativeCard
-          title={headings.challenge}
-          body={text(locale, project.challenge)}
-        />
-        <NarrativeCard
-          title={headings.solution}
-          body={text(locale, project.solution)}
-        />
-      </div>
-    </section>
-  );
-}
-
-function NarrativeCard({ title, body }: { title: string; body: string }) {
-  return (
-    <article className="rounded-2xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] p-6">
-      <p className="mb-4 font-mono text-xs uppercase tracking-wider text-[color:var(--color-brand-accent)]">
-        {title}
-      </p>
-      <p className="text-[color:var(--color-text-secondary)]">{body}</p>
-    </article>
-  );
-}
-
-function Results({
-  locale,
-  project,
-}: {
-  locale: SiteLocale;
-  project: PlaceholderProject;
-}) {
-  const metrics = project.metrics.length > 0 ? project.metrics : DEFAULT_METRICS;
   const labels =
     locale === "en"
       ? {
-          metrics: "(01) Results framework",
-          deliverables: "Deliverables",
-          outcomes: "What this page should eventually prove",
+          snapshot: "Project snapshot",
+          built: "What went into it",
+          worked: "Why it landed",
+          metrics: "Selected signals",
         }
       : {
-          metrics: "(01) Tulemusteraamistik",
-          deliverables: "Deliverables",
-          outcomes: "Mida see leht peaks lopuks toestama",
+          snapshot: "Projekti ulevaade",
+          built: "Mis selle sisse laks",
+          worked: "Miks see toimis",
+          metrics: "Valitud signaalid",
         };
 
   return (
     <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
-      <p className="mb-10 font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)]">
-        {labels.metrics}
-      </p>
-
-      <div className="grid gap-6 lg:grid-cols-3">
-        {metrics.map((metric) => (
-          <div
-            key={metric.label.en}
-            className="rounded-2xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] p-6"
-          >
-            <p
-              className="mb-2 font-mono leading-none"
-              style={{ fontSize: "var(--text-display-md)" }}
-            >
-              {metric.value}
+      <div className="grid gap-8 xl:grid-cols-[minmax(0,1.08fr)_420px]">
+        <div className="space-y-8">
+          <div className="space-y-4">
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-[color:var(--color-text-secondary)]">
+              {labels.snapshot}
             </p>
-            <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)]">
-              {text(locale, metric.label)}
+            <p
+              className="max-w-4xl font-medium leading-tight text-white"
+              style={{ fontSize: "clamp(1.4rem, 2vw, 2rem)" }}
+            >
+              {text(locale, project.brief)}
+            </p>
+            <p className="max-w-3xl text-sm leading-7 text-[color:var(--color-text-secondary)] md:text-base">
+              {text(locale, project.solution)}
             </p>
           </div>
-        ))}
-      </div>
 
-      <div className="mt-12 grid gap-8 xl:grid-cols-2">
-        <div>
-          <p className="mb-4 font-mono text-xs uppercase tracking-wider text-[color:var(--color-brand-accent)]">
-            {labels.deliverables}
-          </p>
-          <ul className="space-y-3">
-            {project.deliverables.map((item) => (
-              <li
-                key={item.en}
-                className="flex items-start gap-3 text-[color:var(--color-text-secondary)]"
-              >
-                <span className="mt-1 font-mono text-xs text-[color:var(--color-brand-accent)]">
-                  {"->"}
-                </span>
-                <span>{text(locale, item)}</span>
-              </li>
-            ))}
-          </ul>
+          {project.metrics.length > 0 ? (
+            <div className="space-y-4">
+              <p className="font-mono text-xs uppercase tracking-[0.18em] text-[color:var(--color-brand-accent)]">
+                {labels.metrics}
+              </p>
+              <div className="grid gap-4 sm:grid-cols-3">
+                {project.metrics.map((metric) => (
+                  <article
+                    key={metric.label.en}
+                    className="rounded-2xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] p-5"
+                  >
+                    <p
+                      className="font-mono leading-none text-white"
+                      style={{ fontSize: "var(--text-display-sm)" }}
+                    >
+                      {metric.value}
+                    </p>
+                    <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.16em] text-[color:var(--color-text-secondary)]">
+                      {text(locale, metric.label)}
+                    </p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          ) : null}
         </div>
 
-        <div>
-          <p className="mb-4 font-mono text-xs uppercase tracking-wider text-[color:var(--color-brand-accent)]">
-            {labels.outcomes}
-          </p>
-          <ul className="space-y-3">
-            {project.outcomes.map((item) => (
-              <li
-                key={item.en}
-                className="flex items-start gap-3 text-[color:var(--color-text-secondary)]"
-              >
-                <span className="mt-1 font-mono text-xs text-[color:var(--color-brand-accent)]">
-                  {"->"}
-                </span>
-                <span>{text(locale, item)}</span>
-              </li>
-            ))}
-          </ul>
+        <div className="grid gap-4">
+          <DetailCard
+            title={labels.built}
+            items={project.deliverables.map((item) => text(locale, item))}
+          />
+          <DetailCard
+            title={labels.worked}
+            items={project.outcomes.map((item) => text(locale, item))}
+          />
         </div>
       </div>
     </section>
   );
 }
 
-function Gallery({
+function ProjectGallery({
   locale,
   project,
 }: {
   locale: SiteLocale;
   project: PlaceholderProject;
 }) {
-  const title =
+  const galleryMedia = getProjectGalleryMedia(project.slug);
+  const labels =
     locale === "en"
-      ? "(02) Gallery scaffold"
-      : "(02) Galerii struktuur";
+      ? {
+          visuals: "Selected visuals",
+          context: "Context",
+          focus: "Creative direction",
+          notes: "Project notes",
+        }
+      : {
+          visuals: "Valitud visuaalid",
+          context: "Kontekst",
+          focus: "Loovsuund",
+          notes: "Projektimarkmed",
+        };
+
+  const contextItems = [
+    text(locale, project.event),
+    `${project.city}, ${project.countryCode}`,
+    project.year,
+  ];
+  const focusItems = [text(locale, project.service), text(locale, project.challenge)];
+  const noteItems =
+    project.awards && project.awards.length > 0
+      ? project.awards.map((award) => text(locale, award))
+      : [text(locale, project.galleryLabel)];
 
   return (
     <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
-      <div className="mb-8 flex items-center justify-between gap-6">
-        <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)]">
-          {title}
+      <div className="mb-8 space-y-3">
+        <p className="font-mono text-xs uppercase tracking-[0.18em] text-[color:var(--color-text-secondary)]">
+          {labels.visuals}
         </p>
-        <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-tertiary)]">
-          {text(locale, project.galleryLabel)}
+        <p className="max-w-3xl text-sm leading-7 text-[color:var(--color-text-secondary)] md:text-base">
+          {galleryMedia
+            ? text(locale, galleryMedia.description)
+            : text(locale, project.summary)}
         </p>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-12">
-        {[
-          { col: "md:col-span-8", aspect: "aspect-[3/2]" },
-          { col: "md:col-span-4", aspect: "aspect-[3/4]" },
-          { col: "md:col-span-4", aspect: "aspect-[3/4]" },
-          { col: "md:col-span-4", aspect: "aspect-[3/4]" },
-          { col: "md:col-span-4", aspect: "aspect-[3/4]" },
-          { col: "md:col-span-12", aspect: "aspect-[2/1]" },
-        ].map((cell, index) => (
-          <div
-            key={index}
-            className={`${cell.col} ${cell.aspect} flex items-end justify-start rounded-2xl border border-dashed border-[color:var(--color-stroke-medium)] bg-[radial-gradient(circle_at_top,_rgba(121,72,255,0.14),_transparent_55%),linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01))] p-4`}
-          >
-            <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-tertiary)]">
-              {project.client} - slot {String(index + 1).padStart(2, "0")}
-            </p>
+      {galleryMedia ? (
+        <div className="grid gap-4 lg:grid-cols-12">
+          <GalleryTile
+            className="aspect-[4/5] rounded-[24px] border border-[color:var(--color-stroke-subtle)] lg:col-span-5"
+            item={galleryMedia.items[0]}
+            locale={locale}
+            priority
+            sizes="(max-width: 1024px) 100vw, 40vw"
+          />
+          <div className="grid gap-4 sm:grid-cols-2 lg:col-span-7">
+            {galleryMedia.items.slice(1).map((item) => (
+              <GalleryTile
+                key={item.src}
+                className="aspect-[4/3] rounded-[24px] border border-[color:var(--color-stroke-subtle)]"
+                item={item}
+                locale={locale}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 24vw"
+              />
+            ))}
           </div>
-        ))}
+        </div>
+      ) : (
+        <ProjectCoverImage
+          className="aspect-[16/9] rounded-[24px] border border-[color:var(--color-stroke-subtle)]"
+          imageClassName="scale-[1.02]"
+          locale={locale}
+          project={project}
+          sizes="100vw"
+        />
+      )}
+
+      <div className="mt-4 grid gap-4 md:grid-cols-3">
+        <DetailCard title={labels.context} items={contextItems} />
+        <DetailCard title={labels.focus} items={focusItems} />
+        <DetailCard title={labels.notes} items={noteItems} />
       </div>
     </section>
   );
 }
 
-function PullQuote({
-  locale,
-  project,
-}: {
-  locale: SiteLocale;
-  project: PlaceholderProject;
-}) {
-  if (!project.quote) return null;
-
+function Fact({ label, value }: { label: string; value: string }) {
   return (
-    <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-32 md:px-12">
-      <div className="grid gap-8 md:grid-cols-[300px_1fr]">
-        <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)]">
-          {locale === "en" ? "(03) Quote slot" : "(03) Tsitaadiplokk"}
-        </p>
-        <figure className="flex flex-col gap-6">
-          <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-brand-accent)]">
-            {text(locale, project.quote.status)}
-          </p>
-          <blockquote
-            className="max-w-4xl font-medium leading-tight tracking-tight"
-            style={{ fontSize: "var(--text-display-md)" }}
+    <div className="border-b border-[color:var(--color-stroke-subtle)] pb-4 last:border-b-0 last:pb-0">
+      <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-[color:var(--color-text-tertiary)]">
+        {label}
+      </p>
+      <p className="mt-2 text-sm leading-6 text-white">{value}</p>
+    </div>
+  );
+}
+
+function DetailCard({
+  items,
+  title,
+}: {
+  items: string[];
+  title: string;
+}) {
+  return (
+    <article className="rounded-2xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] p-6">
+      <p className="mb-4 font-mono text-xs uppercase tracking-[0.18em] text-[color:var(--color-brand-accent)]">
+        {title}
+      </p>
+      <ul className="space-y-3">
+        {items.map((item) => (
+          <li
+            key={item}
+            className="flex items-start gap-3 text-sm leading-6 text-[color:var(--color-text-secondary)]"
           >
-            "{text(locale, project.quote.quote)}"
-          </blockquote>
-          <figcaption className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)]">
-            - {project.quote.name}, {text(locale, project.quote.role)}
-            {project.quote.company ? `, ${project.quote.company}` : ""}
-          </figcaption>
-        </figure>
-      </div>
-    </section>
+            <span className="mt-1 font-mono text-xs text-[color:var(--color-brand-accent)]">
+              {"->"}
+            </span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </article>
+  );
+}
+
+function GalleryTile({
+  className,
+  item,
+  locale,
+  priority,
+  sizes,
+}: {
+  className?: string;
+  item: ProjectGalleryMediaItem;
+  locale: SiteLocale;
+  priority?: boolean;
+  sizes: string;
+}) {
+  return (
+    <div
+      className={`relative overflow-hidden bg-[color:var(--color-surface-base)] ${className ?? ""}`}
+    >
+      <Image
+        alt={text(locale, item.alt)}
+        className="object-cover transition-transform duration-700 ease-out hover:scale-[1.03]"
+        fill
+        priority={priority}
+        sizes={sizes}
+        src={item.src}
+        style={item.objectPosition ? { objectPosition: item.objectPosition } : undefined}
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-[rgba(2,9,30,0.1)] via-transparent to-transparent" />
+    </div>
   );
 }
 
@@ -396,21 +407,23 @@ function NextProject({
     <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
       <Link
         href={`/tood/${next.slug}`}
-        className="group flex items-baseline justify-between gap-6"
+        className="group flex flex-col gap-3 md:flex-row md:items-end md:justify-between"
       >
-        <span className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)] group-hover:text-white">
-          {t("next")}
-        </span>
-        <span
-          className="font-medium leading-tight tracking-tight transition-colors group-hover:text-[color:var(--color-brand-accent)]"
-          style={{ fontSize: "var(--text-display-md)" }}
-        >
-          {next.client} {"->"}
-        </span>
+        <div className="space-y-2">
+          <span className="font-mono text-xs uppercase tracking-[0.18em] text-[color:var(--color-text-secondary)] group-hover:text-white">
+            {t("next")}
+          </span>
+          <p
+            className="font-medium leading-tight tracking-tight transition-colors group-hover:text-[color:var(--color-brand-accent)]"
+            style={{ fontSize: "var(--text-display-md)" }}
+          >
+            {next.client}
+          </p>
+        </div>
+        <p className="max-w-md text-sm leading-6 text-[color:var(--color-text-secondary)] md:text-right">
+          {text(locale, next.event)}
+        </p>
       </Link>
-      <p className="mt-3 text-sm text-[color:var(--color-text-secondary)]">
-        {text(locale, next.event)}
-      </p>
     </section>
   );
 }

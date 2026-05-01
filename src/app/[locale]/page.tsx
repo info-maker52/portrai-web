@@ -6,6 +6,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { CursorRevealHero } from "@/components/hero/CursorRevealHero";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import { ShowcaseMarquee } from "@/components/showcase/ShowcaseMarquee";
+import { ProjectCoverImage } from "@/components/work/ProjectCoverImage";
 import { WorldMap } from "@/components/world/WorldMap";
 import {
   faqSeeds,
@@ -293,7 +294,7 @@ function ShowcaseReel({ locale }: { locale: SiteLocale }) {
         {t("showcase.title")}
       </h2>
 
-      <ShowcaseMarquee />
+      <ShowcaseMarquee locale={locale} />
     </section>
   );
 }
@@ -489,10 +490,16 @@ function FeaturedWork({ locale }: { locale: SiteLocale }) {
             href={`/tood/${project.slug}`}
             className="group flex h-full flex-col gap-5 rounded-2xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] p-5 transition-all duration-300 hover:border-[color:var(--color-brand-primary)]/40 hover:shadow-[var(--glow-soft)]"
           >
-            <div className="aspect-[4/5] overflow-hidden rounded-xl border border-dashed border-[color:var(--color-stroke-medium)] bg-[radial-gradient(circle_at_top,_rgba(121,72,255,0.18),_transparent_55%),linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01))]">
-              <div className="flex h-full flex-col justify-between p-5">
+            <ProjectCoverImage
+              className="aspect-[4/5] rounded-xl"
+              imageClassName="group-hover:scale-[1.04]"
+              locale={locale}
+              project={project}
+              sizes="(max-width: 1280px) 50vw, 33vw"
+            >
+              <div className="absolute inset-0 flex flex-col justify-between p-5">
                 <div className="flex items-center justify-between gap-4">
-                  <span className="rounded-full border border-[color:var(--color-stroke-medium)] px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-[color:var(--color-text-secondary)]">
+                  <span className="rounded-full border border-white/16 bg-black/28 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.18em] text-white/76 backdrop-blur-sm">
                     {project.countryCode} - {project.year}
                   </span>
                   <span className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-brand-accent)]">
@@ -500,15 +507,15 @@ function FeaturedWork({ locale }: { locale: SiteLocale }) {
                   </span>
                 </div>
                 <div className="space-y-3">
-                  <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-tertiary)]">
+                  <p className="font-mono text-xs uppercase tracking-wider text-white/62">
                     {text(locale, project.galleryLabel)}
                   </p>
-                  <p className="text-sm text-[color:var(--color-text-secondary)]">
+                  <p className="max-w-[24ch] text-sm leading-6 text-white/80">
                     {text(locale, project.summary)}
                   </p>
                 </div>
               </div>
-            </div>
+            </ProjectCoverImage>
 
             <div className="space-y-2">
               <div className="flex items-baseline justify-between gap-4">

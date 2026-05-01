@@ -700,14 +700,14 @@ export const projects: PlaceholderProject[] = [
         et: "Selge koht kestlikkuse teemal rääkimiseks ilma loengulikkuseta.",
       },
       {
-        en: "A good candidate for a premium custom-solution case study once visuals arrive.",
-        et: "Hea kandidaat premium-erilahenduse case-study'ks, kui visuaalid kohale jõuavad.",
+        en: "A premium custom-solution case study now backed by sourced archive visuals.",
+        et: "Premium-erilahenduse case-study, mida toetavad nüüd allikast toodud arhiivivisuaalid.",
       },
     ],
     metrics: [],
     galleryLabel: {
-      en: "Custom-solution slots reserved for final Telia visuals",
-      et: "Erilahenduse slotid on reserveeritud Telia lõppvisuaalidele",
+      en: "WordPress-sourced Telia visuals now seeded into the proof structure",
+      et: "WordPressist toodud Telia visuaalid on nüüd proofi struktuuri sisse toodud",
     },
   },
   {
@@ -771,8 +771,8 @@ export const projects: PlaceholderProject[] = [
     ],
     metrics: [],
     galleryLabel: {
-      en: "Prompt-led gallery structure waiting for Swedbank assets",
-      et: "Promptipõhine galerii ootab Swedbanki faile",
+      en: "WordPress-sourced Swedbank portraits and prompt outcomes are now in place",
+      et: "WordPressist toodud Swedbanki portreed ja promptitulemused on nüüd paigas",
     },
   },
   {

@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { ProjectCoverImage } from "@/components/work/ProjectCoverImage";
 import {
   projects,
   text,
@@ -32,8 +33,8 @@ export function WorkIndexClient({ locale }: { locale: SiteLocale }) {
 
   const intro =
     locale === "en"
-      ? "Structured with seeded case-study copy, placeholder gallery slots, and category filters so the overall work architecture can be reviewed before final assets arrive."
-      : "Leht on struktureeritud seemendatud case-study copy, placeholder-galeriide ja toimivate filtritega, et kogu toode arhitektuuri saaks hinnata enne loplike failide saabumist.";
+      ? "The work index now uses source-backed cover imagery, seeded case-study copy, and category filters so the portfolio can be judged as a real system before the final galleries arrive."
+      : "Toode indeks kasutab nuud allikapohiseid kattepilte, seemendatud case-study copy't ja toimivaid filtreid, et portfooliot saaks hinnata paris susteemina enne loplike galeriide saabumist.";
 
   return (
     <>
@@ -101,21 +102,27 @@ function ProjectCard({
         </p>
       </div>
 
-      <div className="aspect-[4/5] overflow-hidden rounded-xl border border-dashed border-[color:var(--color-stroke-medium)] bg-[radial-gradient(circle_at_top,_rgba(121,72,255,0.18),_transparent_55%),linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01))]">
-        <div className="flex h-full flex-col justify-between p-5">
-          <div className="self-start rounded-full border border-[color:var(--color-stroke-medium)] bg-black/20 px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-[color:var(--color-text-secondary)]">
+      <ProjectCoverImage
+        className="aspect-[4/5] rounded-xl"
+        imageClassName="group-hover:scale-[1.04]"
+        locale={locale}
+        project={project}
+        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+      >
+        <div className="absolute inset-0 flex flex-col justify-between p-5">
+          <div className="self-start rounded-full border border-white/16 bg-black/28 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.18em] text-white/76 backdrop-blur-sm">
             {text(locale, project.service)}
           </div>
           <div className="space-y-2">
-            <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-tertiary)]">
+            <p className="font-mono text-xs uppercase tracking-wider text-white/62">
               {text(locale, project.galleryLabel)}
             </p>
-            <p className="text-sm text-[color:var(--color-text-secondary)]">
+            <p className="max-w-[24ch] text-sm leading-6 text-white/80">
               {text(locale, project.summary)}
             </p>
           </div>
         </div>
-      </div>
+      </ProjectCoverImage>
 
       <div className="space-y-2">
         <div className="flex items-baseline justify-between gap-4">
