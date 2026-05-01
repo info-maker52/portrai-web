@@ -4,9 +4,17 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useLocale, useTranslations } from "next-intl";
 import { IntroScene } from "@/components/intro/IntroScene";
+import { SplineScene } from "@/components/intro/SplineScene";
 
 const STORAGE_KEY = "portrai-intro-seen";
 const SHOW_AGAIN_AFTER_MS = 12 * 60 * 60 * 1000;
+
+/**
+ * If `NEXT_PUBLIC_SPLINE_SCENE_URL` is set at build time, the intro shows
+ * the Spline scene at that URL. Otherwise it falls back to the hand-coded
+ * Three.js IntroScene. See .env.example for instructions on getting a URL.
+ */
+const SPLINE_SCENE_URL = process.env.NEXT_PUBLIC_SPLINE_SCENE_URL;
 
 const OVERLAY_COPY = {
   en: {
@@ -98,7 +106,14 @@ export function IntroOverlay() {
           }}
         >
           <div className="absolute inset-0">
-            <IntroScene className="h-full !rounded-none !border-0 !shadow-none" />
+            {SPLINE_SCENE_URL ? (
+              <SplineScene
+                sceneUrl={SPLINE_SCENE_URL}
+                className="h-full"
+              />
+            ) : (
+              <IntroScene className="h-full !rounded-none !border-0 !shadow-none" />
+            )}
           </div>
           <div
             aria-hidden

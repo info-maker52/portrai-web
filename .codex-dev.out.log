@@ -232,3 +232,12 @@
  GET /en/tood/swedbank-unistused?skip-intro=1 200 in 134ms (next.js: 76ms, proxy.ts: 10ms, generate-params: 4ms, application-code: 48ms)
 ✓ Compiled in 53ms
  GET /en/tood/swedbank-unistused?skip-intro=1 200 in 161ms (next.js: 90ms, proxy.ts: 11ms, generate-params: 4ms, application-code: 59ms)
+ GET /en/tood/swedbank-unistused?skip-intro=1 200 in 199ms (next.js: 9ms, proxy.ts: 2ms, generate-params: 4ms, application-code: 188ms)
+✓ Compiled in 39ms
+ GET /en/tood/swedbank-unistused?skip-intro=1 200 in 147ms (next.js: 88ms, proxy.ts: 11ms, generate-params: 4ms, application-code: 48ms)
+✓ Compiled in 1415ms
+ GET /en/tood/swedbank-unistused?skip-intro=1 200 in 307ms (next.js: 255ms, proxy.ts: 10ms, generate-params: 18µs, application-code: 41ms)
+ GET /en/tood/swedbank-unistused?skip-intro=1 200 in 600ms (next.js: 369ms, proxy.ts: 3ms, generate-params: 4ms, application-code: 228ms)
+ GET /en/tood/swedbank-unistused?skip-intro=1 200 in 76ms (next.js: 8ms, proxy.ts: 2ms, generate-params: 4ms, application-code: 66ms)
+ GET /en/tood?skip-intro=1 200 in 288ms (next.js: 86ms, proxy.ts: 3ms, generate-params: 3ms, application-code: 199ms)
+ GET /en?skip-intro=1 200 in 479ms (next.js: 118ms, proxy.ts: 2ms, generate-params: 6ms, application-code: 358ms)
