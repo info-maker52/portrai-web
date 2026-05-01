@@ -22,6 +22,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = await getBlogPost(slug);
   if (!post) return {};
+
   return {
     title: post.title,
     description: post.excerpt,
@@ -73,7 +74,7 @@ const mdxComponents = {
       style={{ fontSize: "var(--text-body)" }}
     >
       <span className="mt-1 font-mono text-xs text-[color:var(--color-brand-accent)]">
-        ↳
+        {"->"}
       </span>
       <span>{props.children}</span>
     </li>
@@ -95,10 +96,9 @@ const mdxComponents = {
   ),
   img: ({ src, alt }: React.ImgHTMLAttributes<HTMLImageElement>) => {
     const url = typeof src === "string" ? src : "";
+
     return (
       <span className="mt-12 block">
-        {/* Use a regular img tag for remote Wix CDN URLs (already in next.config
-            remotePatterns), fall back to next/image for local /public paths. */}
         {url.startsWith("/") ? (
           <Image
             src={url}
@@ -141,7 +141,7 @@ export default async function BlogPostPage({
           href="/blog"
           className="mb-12 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)] transition-colors hover:text-white"
         >
-          ← {t("back")}
+          {"<-"} {t("back")}
         </Link>
 
         <p className="mb-6 font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)]">
@@ -166,11 +166,39 @@ export default async function BlogPostPage({
             />
           </div>
         )}
+
+        <div className="mt-8 max-w-2xl rounded-2xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] p-6">
+          <p className="mb-3 font-mono text-xs uppercase tracking-wider text-[color:var(--color-brand-accent)]">
+            {locale === "en" ? "Imported article" : "Imporditud artikkel"}
+          </p>
+          <p className="text-sm leading-7 text-[color:var(--color-text-secondary)]">
+            {locale === "en"
+              ? "The article body is already live. Custom intros, related-post modules, and conversion blocks can be layered in later without changing the reading layout below."
+              : "Artikli sisu on juba live'is. Kohandatud sissejuhatused, seotud postituste moodulid ja konversiooniplokid saab hiljem juurde kihistada ilma allolevat lugemisvaadet muutmata."}
+          </p>
+        </div>
       </section>
 
       <article className="mx-auto max-w-2xl px-6 py-20 md:px-0">
         <MDXRemote source={post.body} components={mdxComponents} />
       </article>
+
+      <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-16 md:px-12">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <Link
+            href="/blog"
+            className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)] transition-colors hover:text-white"
+          >
+            {"<-"} {t("back")}
+          </Link>
+          <Link
+            href="/kontakt"
+            className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)] transition-colors hover:text-white"
+          >
+            {locale === "en" ? "Start a project" : "Alusta projekti"} {"->"}
+          </Link>
+        </div>
+      </section>
     </PageShell>
   );
 }

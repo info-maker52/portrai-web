@@ -2,9 +2,12 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://portrai-web.vercel.app";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin", "latin-ext"], // latin-ext covers ä, ö, õ, ü
+  subsets: ["latin", "latin-ext"],
   display: "swap",
 });
 
@@ -15,16 +18,17 @@ const geistMono = Geist_Mono({
 });
 
 /**
- * Root layout — only wraps with <html> and font variables.
+ * Root layout: only wraps with <html> and font variables.
  * Per-locale metadata + <NextIntlClientProvider> live in `app/[locale]/layout.tsx`.
  */
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "PortrAI",
-    template: "%s — PortrAI",
+    template: "%s - PortrAI",
   },
   description:
-    "AI fotoboks Eesti üritustele. Pulm, firmapidu, mess. Auhinnatud lahendus, mis muudab iga külalise unikaalseks portreeks.",
+    "AI photo booth for events in Estonia. Weddings, corporate events, and trade shows with award-winning guest portraits.",
 };
 
 export default function RootLayout({

@@ -33,7 +33,7 @@ export function WorkIndexClient({ locale }: { locale: SiteLocale }) {
   const intro =
     locale === "en"
       ? "Structured with seeded case-study copy, placeholder gallery slots, and category filters so the overall work architecture can be reviewed before final assets arrive."
-      : "Leht on struktureeritud seemendatud case-study copy, placeholder-galeriide ja toimivate filtritega, et kogu tööde arhitektuuri saaks hinnata enne lõplike failide saabumist.";
+      : "Leht on struktureeritud seemendatud case-study copy, placeholder-galeriide ja toimivate filtritega, et kogu toode arhitektuuri saaks hinnata enne loplike failide saabumist.";
 
   return (
     <>
@@ -141,7 +141,7 @@ function ProjectCard({
             className="flex items-start gap-3 text-sm text-[color:var(--color-text-secondary)]"
           >
             <span className="mt-1 font-mono text-xs text-[color:var(--color-brand-accent)]">
-              ↳
+              {"->"}
             </span>
             <span>{text(locale, item)}</span>
           </li>

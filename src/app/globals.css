@@ -154,20 +154,6 @@
       scroll-behavior: auto !important;
     }
   }
-
-  /* Hide native cursor on desktop pointer devices — the custom Cursor
-     component takes over (mix-blend-difference styling).
-     Inputs/textareas keep their native I-beam since `cursor: none` is
-     overridden by user-agent styles for those. */
-  @media (pointer: fine) and (prefers-reduced-motion: no-preference) {
-    html,
-    body,
-    a,
-    button,
-    [role="button"] {
-      cursor: none;
-    }
-  }
 }
 
 /* ==========================================================================

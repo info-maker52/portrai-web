@@ -21,7 +21,7 @@ export async function generateMetadata({
 
   const t = await getTranslations({ locale, namespace: "meta" });
   return {
-    title: { default: t("siteName"), template: `%s — ${t("siteName")}` },
+    title: { default: t("siteName"), template: `%s - ${t("siteName")}` },
     description: t("description"),
     openGraph: {
       title: t("tagline"),
@@ -52,7 +52,6 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  // Enable static rendering for this locale.
   setRequestLocale(locale);
 
   return (

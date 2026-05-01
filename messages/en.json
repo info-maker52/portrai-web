@@ -15,6 +15,7 @@
     "primary": "Book"
   },
   "intro": {
+    "enter": "Enter site",
     "enterWithSound": "Enter with sound",
     "enterWithoutSound": "Enter without sound",
     "loading": "Loading"
@@ -31,9 +32,9 @@
       "cta": "(08) Book"
     },
     "hero": {
-      "headline": "Move your cursor.",
-      "headlineLine2": "See what happens.",
-      "leadIn": "PortrAI is an AI photo booth that turns every guest into a one-of-a-kind work of art.",
+      "headline": "Enter the portrait world.",
+      "headlineLine2": "Move the scene.",
+      "leadIn": "PortrAI turns the first viewport into an installation: a live AI portrait environment for launches, booths and event floors.",
       "cta": "Book PortrAI",
       "ctaSecondary": "See our work"
     },

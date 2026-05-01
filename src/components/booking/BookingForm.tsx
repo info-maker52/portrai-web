@@ -49,8 +49,8 @@ const FORM_COPY: Record<"et" | "en", LocaleCopy> = {
     sent: "Saadetud",
     sendAnother: "Saada uus",
     messageHint:
-      "Vabamas vormis vastused on okei. Lõpliku kontseptsiooni saame hiljem koos paika lihvida.",
-    selectEventType: "Vali ürituse tüüp",
+      "Vabamas vormis vastused on okei. Lopliku kontseptsiooni saame hiljem koos paika lihvida.",
+    selectEventType: "Vali urituse tuup",
     placeholders: {
       name: "Reijo Pullai",
       email: "tere@ettevote.ee",
@@ -58,13 +58,13 @@ const FORM_COPY: Record<"et" | "en", LocaleCopy> = {
       eventLocation: "Tallinn, Tartu, Helsinki...",
       guestCount: "120",
       message:
-        "Mis tüüpi sündmusega on tegu, millist tunnet tahad luua ja mida külalised pärast jagada võiksid?",
+        "Mis tuupi sundmusega on tegu, millist tunnet tahad luua ja mida kulalised parast jagada voiksid?",
     },
     eventTypeOptions: [
-      { value: "corporate", label: "Firmaüritus" },
+      { value: "corporate", label: "Firmauritus" },
       { value: "trade-show", label: "Mess / konverents" },
-      { value: "festival", label: "Festival / avalik sündmus" },
-      { value: "wedding", label: "Pulm / privaatne sündmus" },
+      { value: "festival", label: "Festival / avalik sundmus" },
+      { value: "wedding", label: "Pulm / privaatne sundmus" },
       { value: "custom", label: "Erilahendus" },
     ],
   },
@@ -117,7 +117,7 @@ export function BookingForm() {
           onClick={() => setStatus("idle")}
           className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)] underline-offset-4 hover:text-white hover:underline"
         >
-          {copy.sendAnother} →
+          {copy.sendAnother} {"->"}
         </button>
       </div>
     );
@@ -212,7 +212,7 @@ export function BookingForm() {
         className="self-start rounded-md bg-[color:var(--color-brand-primary)] px-8 py-4 font-medium text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-medium)] disabled:cursor-not-allowed disabled:opacity-60"
         style={{ fontSize: "var(--text-body-lg)" }}
       >
-        {submitting ? "..." : `${t("submit")} →`}
+        {submitting ? "..." : `${t("submit")} ->`}
       </button>
     </form>
   );

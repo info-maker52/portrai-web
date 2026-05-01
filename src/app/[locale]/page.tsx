@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
@@ -43,6 +44,15 @@ const HOME_COPY: Record<
     faqTitle: string;
     faqSubtitle: string;
     metricsIntro: string;
+    heroMeta: [string, string, string];
+    heroStage: {
+      activeLabel: string;
+      footerLabel: string;
+      holdHint: string;
+      idleLabel: string;
+      stageTags: [string, string, string];
+      topLabel: string;
+    };
   }
 > = {
   en: {
@@ -73,6 +83,15 @@ const HOME_COPY: Record<
       "These are draft-ready FAQ blocks so spacing, accordion rhythm, and scan-ability can be judged before the final wording is approved.",
     metricsIntro:
       "The numbers are still high-level, but the structure around them is now stable enough to support future proof points and campaign-level results.",
+    heroMeta: ["Tallinn", "AI portrait installation", "Events / Booths / Launches"],
+    heroStage: {
+      activeLabel: "Scene tracking",
+      footerLabel: "AI portraits / live capture / branded moments",
+      holdHint: "Move to tilt the scene",
+      idleLabel: "Pointer reactive",
+      stageTags: ["Spatial scene", "Soft light", "Live presence"],
+      topLabel: "Immersive stage",
+    },
   },
   et: {
     sectionTags: {
@@ -81,11 +100,11 @@ const HOME_COPY: Record<
       awards: "(03) Tunnustus",
       metrics: "(04) Mastaap",
       partners: "(05) Partnerisein",
-      process: "(06) Töövoog",
+      process: "(06) Toovoog",
       featured: "(07) Case-study struktuur",
       international: "(08) Haare",
-      testimonials: "(09) Tõestus",
-      faq: "(10) Küsimused",
+      testimonials: "(09) Toestus",
+      faq: "(10) Kusimused",
       cta: "(11) Broneeri",
     },
     partnerTitle: "Valitud nimed enne, lihvitud logod hiljem.",
@@ -102,6 +121,15 @@ const HOME_COPY: Record<
       "Need on draft-valmis FAQ plokid, et hinnata spacing'ut, akordioni rütmi ja skaneeritavust enne lõpliku sõnastuse kinnitamist.",
     metricsIntro:
       "Numbrid on veel kõrgel tasemel, kuid neid ümbritsev struktuur on nüüd piisavalt stabiilne, et sinna hiljem proof point'e ja kampaaniatulemusi lisada.",
+    heroMeta: ["Tallinn", "AI portree installatsioon", "Yritused / Boothid / Launchid"],
+    heroStage: {
+      activeLabel: "Stseen jalgib kursorit",
+      footerLabel: "AI portreed / live capture / brand moments",
+      holdHint: "Liiguta hiirt, et stseen kalduks",
+      idleLabel: "Kursori suhtes reageeriv",
+      stageTags: ["Ruumiline stseen", "Pehme valgus", "Live kohalolu"],
+      topLabel: "Immersive stage",
+    },
   },
 };
 
@@ -131,59 +159,114 @@ export default async function HomePage({
 
 function Hero({ locale }: { locale: SiteLocale }) {
   const t = useTranslations("home.hero");
-  const tMeta = useTranslations("meta");
+  const heroContent =
+    locale === "en"
+      ? {
+          accent: "Built for real crowds.",
+          cards: [
+            {
+              body: "From branded prompt design to print-ready output, the production flow is built for real event traffic.",
+              label: "Live setup",
+            },
+            {
+              body: "Guests step in, pick a style, generate a portrait and leave with a shareable branded memory.",
+              label: "Guest experience",
+            },
+            {
+              body: "The spectacle now lives on the entry screen. The site itself can stay focused on proof, cases and booking.",
+              label: "What comes next",
+            },
+          ],
+          headline: "AI portraits that make the booth the event.",
+          lead: "PortrAI creates branded portrait moments for launches, booths and event floors, with live capture, instant delivery and print-ready output.",
+        }
+      : {
+          accent: "Loodud paris rahvavoogudele.",
+          cards: [
+            {
+              body: "Alates branditud prompti disainist kuni print-ready valjundini on kogu tootmisvoog loodud paris yrituskoormusele.",
+              label: "Live setup",
+            },
+            {
+              body: "Kulaline astub sisse, valib stiili, genereerib portree ja lahkub jagatava branditud malestusega.",
+              label: "Guest experience",
+            },
+            {
+              body: "Spektaakel elab nyyd sissepääsu ekraanil. Sait ise saab keskenduda proofile, case'idele ja broneerimisele.",
+              label: "What comes next",
+            },
+          ],
+          headline: "AI portreed, mis teevad boothist kogu yrituse tombekeskuse.",
+          lead: "PortrAI loob branditud portreehetki launchidele, boothidele ja yrituste flooridele koos live capture'i, kiire jagamise ja print-ready valjundiga.",
+        };
 
   return (
-    <section className="relative flex min-h-[80vh] flex-col items-start justify-center gap-8 px-6 py-24 md:min-h-[88vh] md:px-12">
-      <SectionTag>{HOME_COPY[locale].sectionTags.hero}</SectionTag>
+    <section className="relative isolate overflow-hidden border-b border-[color:var(--color-stroke-subtle)] px-4 pb-18 pt-6 md:px-8 lg:px-12">
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10"
+        style={{
+          background:
+            "radial-gradient(circle at 20% 24%, rgba(121,72,255,0.14), transparent 18%), radial-gradient(circle at 78% 18%, rgba(255,162,255,0.1), transparent 18%), linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0) 26%)",
+        }}
+      />
 
-      <div className="pointer-events-auto absolute right-6 top-1/2 hidden h-[480px] w-[360px] -translate-y-1/2 md:right-12 md:block">
-        <CursorRevealHero
-          baseTexture="/images/hero/portrait-base.png"
-          revealTexture="/images/hero/portrait-reveal.png"
-        />
-      </div>
+      <div className="mx-auto grid max-w-[1600px] gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.58fr)] lg:items-end">
+        <div className="flex min-h-[72vh] flex-col justify-end gap-6 pb-10 lg:min-h-[84vh] lg:pb-14">
+          <SectionTag>{HOME_COPY[locale].sectionTags.hero}</SectionTag>
 
-      <h1
-        className="max-w-4xl font-medium leading-none tracking-tight"
-        style={{ fontSize: "var(--text-display-xl)" }}
-      >
-        {t("headline")}
-        <br />
-        <span className="bg-gradient-to-r from-[color:var(--color-brand-primary)] via-[color:var(--color-brand-secondary)] to-[color:var(--color-brand-accent)] bg-clip-text text-transparent">
-          {t("headlineLine2")}
-        </span>
-      </h1>
-
-      <p
-        className="max-w-xl text-[color:var(--color-text-secondary)]"
-        style={{ fontSize: "var(--text-body-lg)" }}
-      >
-        {t("leadIn")}
-      </p>
-
-      <div className="flex flex-wrap gap-4">
-        <MagneticButton>
-          <Link
-            href="/kontakt"
-            className="inline-block rounded-md bg-[color:var(--color-brand-primary)] px-6 py-3 font-medium text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-medium)]"
+          <h1
+            className="max-w-5xl font-medium leading-none tracking-tight"
+            style={{ fontSize: "var(--text-display-xl)" }}
           >
-            {t("cta")}
-          </Link>
-        </MagneticButton>
-        <MagneticButton strength={8}>
-          <Link
-            href="/tood"
-            className="inline-block rounded-md border border-[color:var(--color-stroke-medium)] bg-transparent px-6 py-3 font-medium text-white transition-colors duration-200 hover:bg-[color:var(--color-surface-raised)]"
-          >
-            {t("ctaSecondary")}
-          </Link>
-        </MagneticButton>
-      </div>
+            {heroContent.headline}
+            <br />
+            <span className="bg-gradient-to-r from-[color:var(--color-brand-primary)] via-[color:var(--color-brand-secondary)] to-[color:var(--color-brand-accent)] bg-clip-text text-transparent">
+              {heroContent.accent}
+            </span>
+          </h1>
 
-      <p className="mt-8 hidden font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-tertiary)] md:block">
-        {tMeta("tagline")}
-      </p>
+          <p
+            className="max-w-2xl text-[color:var(--color-text-secondary)]"
+            style={{ fontSize: "var(--text-body-lg)" }}
+          >
+            {heroContent.lead}
+          </p>
+
+          <div className="flex flex-wrap gap-4">
+            <MagneticButton>
+              <Link
+                href="/kontakt"
+                className="inline-block rounded-full bg-[color:var(--color-brand-primary)] px-6 py-3 font-medium text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-medium)]"
+              >
+                {t("cta")}
+              </Link>
+            </MagneticButton>
+            <MagneticButton strength={8}>
+              <Link
+                href="/tood"
+                className="inline-block rounded-full border border-[color:var(--color-stroke-medium)] bg-transparent px-6 py-3 font-medium text-white transition-colors duration-200 hover:bg-[color:var(--color-surface-raised)]"
+              >
+                {t("ctaSecondary")}
+              </Link>
+            </MagneticButton>
+          </div>
+
+          <div className="flex flex-wrap gap-x-5 gap-y-2 pt-4 font-mono text-[11px] uppercase tracking-[0.24em] text-[color:var(--color-text-tertiary)]">
+            {HOME_COPY[locale].heroMeta.map((item) => (
+              <span key={item}>{item}</span>
+            ))}
+          </div>
+        </div>
+
+        {/* Cursor-reveal hero — Direction B centerpiece. */}
+        <div className="relative h-[60vh] min-h-[420px] self-center overflow-hidden rounded-2xl lg:h-[78vh]">
+          <CursorRevealHero
+            baseTexture="/images/hero/portrait-base.png"
+            revealTexture="/images/hero/portrait-reveal.png"
+          />
+        </div>
+      </div>
     </section>
   );
 }
@@ -199,7 +282,7 @@ function ShowcaseReel({ locale }: { locale: SiteLocale }) {
           href="/tood"
           className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)] underline-offset-4 transition-all hover:text-white hover:underline"
         >
-          {t("showcase.viewAll")} →
+          {t("showcase.viewAll")} {"->"}
         </Link>
       </div>
 
@@ -276,9 +359,9 @@ function Metrics({ locale }: { locale: SiteLocale }) {
       </p>
       <div className="grid gap-12 md:grid-cols-3">
         {[
-          { value: "780K+", label: t("prints") },
-          { value: "7", label: t("countries") },
           { value: "200+", label: t("events") },
+          { value: "7", label: t("countries") },
+          { value: "50K+", label: t("prints") },
         ].map((metric) => (
           <div
             key={metric.label}
@@ -451,7 +534,7 @@ function FeaturedWork({ locale }: { locale: SiteLocale }) {
                   className="flex items-start gap-3 text-sm text-[color:var(--color-text-secondary)]"
                 >
                   <span className="mt-1 font-mono text-xs text-[color:var(--color-brand-accent)]">
-                    ↳
+                    {"->"}
                   </span>
                   <span>{text(locale, item)}</span>
                 </li>
@@ -620,7 +703,7 @@ function CallToAction({ locale }: { locale: SiteLocale }) {
           className="rounded-md bg-[color:var(--color-brand-primary)] px-8 py-4 font-medium text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-strong)]"
           style={{ fontSize: "var(--text-body-lg)" }}
         >
-          {t("button")} →
+          {t("button")} {"->"}
         </Link>
       </div>
     </section>
@@ -631,7 +714,7 @@ function SectionTag({
   children,
   className,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }) {
   return (

@@ -24,14 +24,14 @@ const DEFAULT_METRICS: ProjectMetric[] = [
     value: "TBD",
     label: {
       en: "Guest-flow target",
-      et: "Külalisteekonna siht",
+      et: "Kulalisteekonna siht",
     },
   },
   {
     value: "TBD",
     label: {
       en: "Follow-up value",
-      et: "Järelkasutuse väärtus",
+      et: "Jarelkasutuse vaartus",
     },
   },
 ];
@@ -96,7 +96,7 @@ function CaseStudyHero({
         href="/tood"
         className="mb-12 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)] transition-colors hover:text-white"
       >
-        ← {t("back")}
+        {"<-"} {t("back")}
       </Link>
 
       <div className="mb-12 grid gap-12 lg:grid-cols-[minmax(0,1.5fr)_360px]">
@@ -177,7 +177,7 @@ function Narrative({
   const headings =
     locale === "en"
       ? { brief: "Brief", challenge: "Challenge", solution: "Solution" }
-      : { brief: "Brief", challenge: "Väljakutse", solution: "Lahendus" };
+      : { brief: "Brief", challenge: "Valjakutse", solution: "Lahendus" };
 
   return (
     <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
@@ -220,8 +220,16 @@ function Results({
   const metrics = project.metrics.length > 0 ? project.metrics : DEFAULT_METRICS;
   const labels =
     locale === "en"
-      ? { metrics: "(01) Results framework", deliverables: "Deliverables", outcomes: "What this page should eventually prove" }
-      : { metrics: "(01) Tulemusteraamistik", deliverables: "Deliverables", outcomes: "Mida see leht peaks lõpuks tõestama" };
+      ? {
+          metrics: "(01) Results framework",
+          deliverables: "Deliverables",
+          outcomes: "What this page should eventually prove",
+        }
+      : {
+          metrics: "(01) Tulemusteraamistik",
+          deliverables: "Deliverables",
+          outcomes: "Mida see leht peaks lopuks toestama",
+        };
 
   return (
     <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
@@ -260,7 +268,7 @@ function Results({
                 className="flex items-start gap-3 text-[color:var(--color-text-secondary)]"
               >
                 <span className="mt-1 font-mono text-xs text-[color:var(--color-brand-accent)]">
-                  ↳
+                  {"->"}
                 </span>
                 <span>{text(locale, item)}</span>
               </li>
@@ -279,7 +287,7 @@ function Results({
                 className="flex items-start gap-3 text-[color:var(--color-text-secondary)]"
               >
                 <span className="mt-1 font-mono text-xs text-[color:var(--color-brand-accent)]">
-                  ↳
+                  {"->"}
                 </span>
                 <span>{text(locale, item)}</span>
               </li>
@@ -397,7 +405,7 @@ function NextProject({
           className="font-medium leading-tight tracking-tight transition-colors group-hover:text-[color:var(--color-brand-accent)]"
           style={{ fontSize: "var(--text-display-md)" }}
         >
-          {next.client} →
+          {next.client} {"->"}
         </span>
       </Link>
       <p className="mt-3 text-sm text-[color:var(--color-text-secondary)]">

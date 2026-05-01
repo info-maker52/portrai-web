@@ -1,0 +1,14 @@
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[browser] Uncaught ReferenceError: showHint is not defined
+    at CursorRevealHero (src/components/hero/CursorRevealHero.tsx:277:8)
+    at IntroOverlay (src/components/intro/IntroOverlay.tsx:101:13)
+    at MotionProviders (src/components/motion/MotionProviders.tsx:14:7)
+    at LocaleLayout (src\app\[locale]\layout.tsx:61:7)
+  275 |         />
+  276 |       )}
+> 277 |       {showHint && (
+      |        ^
+  278 |         <div className="pointer-events-none absolute bottom-3 left-3 flex items-center ga...
+  279 |           <span className="block h-1.5 w-1.5 rounded-full bg-[color:var(--color-brand-acc...
+  280 |           Move cursor
+⚠ Fast Refresh had to perform a full reload due to a runtime error.

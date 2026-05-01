@@ -54,7 +54,7 @@ export function SiteFooter() {
             rel="noopener noreferrer"
             className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
           >
-            Instagram ↗
+            Instagram {"->"}
           </a>
           <a
             href="https://www.facebook.com/portrai.ee"
@@ -62,14 +62,14 @@ export function SiteFooter() {
             rel="noopener noreferrer"
             className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
           >
-            Facebook ↗
+            Facebook {"->"}
           </a>
         </div>
       </div>
 
-      <div className="mt-12 flex items-center justify-between border-t border-[color:var(--color-stroke-subtle)] pt-6">
+      <div className="mt-12 flex flex-col gap-3 border-t border-[color:var(--color-stroke-subtle)] pt-6 md:flex-row md:items-center md:justify-between">
         <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-tertiary)]">
-          © 2026 PortrAI — {tFooter("rights")}
+          Copyright 2026 PortrAI - {tFooter("rights")}
         </p>
         <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-tertiary)]">
           v0.1

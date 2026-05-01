@@ -1,0 +1,56 @@
+
+> portrai-web@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.4 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.85:3000
+✓ Ready in 296ms
+
+ GET /en 200 in 949ms (next.js: 503ms, proxy.ts: 59ms, generate-params: 260ms, application-code: 386ms)
+ GET /en 200 in 99ms (next.js: 9ms, proxy.ts: 5ms, generate-params: 4ms, application-code: 85ms)
+ GET /en 200 in 117ms (next.js: 8ms, proxy.ts: 2ms, generate-params: 5ms, application-code: 107ms)
+ GET /en 200 in 106ms (next.js: 8ms, proxy.ts: 3ms, generate-params: 4ms, application-code: 95ms)
+ GET /en 200 in 120ms (next.js: 8ms, proxy.ts: 3ms, generate-params: 4ms, application-code: 109ms)
+ GET /en 200 in 106ms (next.js: 8ms, proxy.ts: 4ms, generate-params: 4ms, application-code: 93ms)
+✓ Compiled in 48ms
+ GET /en 200 in 228ms (next.js: 125ms, proxy.ts: 2ms, generate-params: 25µs, application-code: 100ms)
+ GET /en 200 in 270ms (next.js: 66ms, proxy.ts: 37ms, generate-params: 4ms, application-code: 167ms)
+ GET /en 200 in 59ms (next.js: 4ms, proxy.ts: 5ms, generate-params: 29µs, application-code: 50ms)
+✓ Compiled in 56ms
+ GET /en 200 in 275ms (next.js: 145ms, proxy.ts: 18ms, generate-params: 27µs, application-code: 112ms)
+ GET /en 200 in 278ms (next.js: 77ms, proxy.ts: 17ms, generate-params: 5ms, application-code: 184ms)
+ GET /en 200 in 69ms (next.js: 6ms, proxy.ts: 4ms, generate-params: 24µs, application-code: 60ms)
+✓ Compiled in 53ms
+ GET /en 200 in 272ms (next.js: 78ms, proxy.ts: 15ms, generate-params: 5ms, application-code: 179ms)
+ GET /en 200 in 257ms (next.js: 135ms, proxy.ts: 4ms, generate-params: 16µs, application-code: 119ms)
+ GET /en 200 in 82ms (next.js: 6ms, proxy.ts: 3ms, generate-params: 21µs, application-code: 72ms)
+ GET /en 200 in 229ms (next.js: 16ms, proxy.ts: 4ms, generate-params: 7ms, application-code: 209ms)
+ GET /en 200 in 96ms (next.js: 8ms, proxy.ts: 3ms, generate-params: 4ms, application-code: 86ms)
+ GET /en/tood 200 in 300ms (next.js: 276ms, proxy.ts: 3ms, generate-params: 257ms, application-code: 21ms)
+ GET /en 200 in 92ms (next.js: 8ms, proxy.ts: 2ms, generate-params: 3ms, application-code: 82ms)
+ GET /en 200 in 94ms (next.js: 7ms, proxy.ts: 3ms, generate-params: 4ms, application-code: 84ms)
+ GET /en 200 in 106ms (next.js: 8ms, proxy.ts: 3ms, generate-params: 5ms, application-code: 95ms)
+ GET /en 200 in 94ms (next.js: 7ms, proxy.ts: 3ms, generate-params: 4ms, application-code: 84ms)
+ GET /en 200 in 95ms (next.js: 8ms, proxy.ts: 3ms, generate-params: 4ms, application-code: 85ms)
+ GET /en 200 in 96ms (next.js: 8ms, proxy.ts: 2ms, generate-params: 4ms, application-code: 86ms)
+ GET /en 200 in 87ms (next.js: 7ms, proxy.ts: 3ms, generate-params: 3ms, application-code: 77ms)
+✓ Compiled in 145ms
+ GET /en 200 in 353ms (next.js: 297ms, proxy.ts: 3ms, generate-params: 20µs, application-code: 53ms)
+ GET /en 200 in 414ms (next.js: 92ms, proxy.ts: 47ms, generate-params: 4ms, application-code: 274ms)
+✓ Compiled in 33ms
+ GET /en 200 in 146ms (next.js: 68ms, proxy.ts: 14ms, generate-params: 6ms, application-code: 64ms)
+✓ Compiled in 33ms
+ GET /en 200 in 301ms (next.js: 75ms, proxy.ts: 12ms, generate-params: 5ms, application-code: 214ms)
+✓ Compiled in 166ms
+ GET /en 200 in 323ms (next.js: 93ms, proxy.ts: 14ms, generate-params: 4ms, application-code: 216ms)
+ GET /en 200 in 320ms (next.js: 136ms, proxy.ts: 9ms, generate-params: 13µs, application-code: 175ms)
+✓ Compiled in 34ms
+ GET /en 200 in 219ms (next.js: 78ms, proxy.ts: 11ms, generate-params: 6ms, application-code: 131ms)
+ GET /en 200 in 70ms (next.js: 5ms, proxy.ts: 2ms, generate-params: 21µs, application-code: 63ms)
+✓ Compiled in 74ms
+ GET /en 200 in 316ms (next.js: 61ms, proxy.ts: 13ms, generate-params: 5ms, application-code: 242ms)
+ GET /en 200 in 189ms (next.js: 4ms, proxy.ts: 2ms, generate-params: 15µs, application-code: 183ms)
+ GET /en 200 in 145ms (next.js: 82ms, proxy.ts: 4ms, generate-params: 20µs, application-code: 60ms)
+ GET /en 200 in 147ms (next.js: 48ms, proxy.ts: 4ms, generate-params: 19µs, application-code: 96ms)
+ GET /en 200 in 149ms (next.js: 13ms, proxy.ts: 4ms, generate-params: 22µs, application-code: 132ms)
