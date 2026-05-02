@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { getLocale } from "next-intl/server";
 import "./globals.css";
 
 const siteUrl =
@@ -23,8 +22,13 @@ const geistMono = Geist_Mono({
  * NextIntlClientProvider, and motion providers all live in
  * `app/[locale]/layout.tsx`.
  *
- * `template` is intentionally NOT set here — that's the [locale] layout's
+ * `template` intentionally NOT set here — that's the [locale] layout's
  * job, otherwise Next.js double-wraps the home title into "PortrAI - PortrAI".
+ *
+ * `lang="et"` is the static default (ET is the default locale). The
+ * [locale] layout overrides this client-side via a tiny inline script
+ * for /en/* paths, so screen readers and a11y tools see the right
+ * language without forcing dynamic rendering on every route.
  */
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -33,17 +37,14 @@ export const metadata: Metadata = {
     "AI photo booth for events in Estonia. Weddings, corporate events, and trade shows with award-winning guest portraits.",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // Dynamic per-locale lang attribute — fixes WCAG language identification.
-  const locale = await getLocale();
-
   return (
     <html
-      lang={locale}
+      lang="et"
       className={`${geistSans.variable} ${geistMono.variable}`}
       suppressHydrationWarning
     >

@@ -51,6 +51,14 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider locale={locale}>
+      {/* Sets <html lang> client-side without forcing dynamic rendering on
+          every route. Static SSG wins — and a11y tools see the right lang
+          immediately after hydration. */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `document.documentElement.lang=${JSON.stringify(locale)};`,
+        }}
+      />
       <JsonLd data={organizationSchema} />
       <JsonLd data={localBusinessSchema} />
       <MotionProviders />
