@@ -21,19 +21,20 @@ const BLOG_PAGE_COPY = {
     empty: "No posts yet.",
   },
   et: {
-    heroTag: "(03) Blogi struktuur",
+    // [ET DRAFT — needs your native pass]
+    heroTag: "(03) Ajakiri",
     heroIntro:
-      "Artiklid on juba live'is, kuid see leht on nuud raamitud nii, et saaksime testida editorial-rutmi, teemagruppide loogikat ja tulevasi konversiooniplokke enne lopliku blogistrateegia copy valmimist.",
-    notesTag: "Praegune seis",
-    importedTitle: "Imporditud artiklid jaavad nahtavale.",
+      "Mõtted, ürituste märkmed, eksperimendid ja praktilised õppetunnid PortrAI maailmast.",
+    notesTag: "Mida siit leiad",
+    importedTitle: "Päris postitused alates avalehest.",
     importedBody:
-      "Wixist toodud postitused jaavad sisukihiks, et lugemisflow'd saaks hinnata paris pealkirjade, kuupaevade ja kokkuvotete pealt, mitte dummy-kaartidega.",
-    plannedTitle: "Umber olevad moodulid on veel placeholderid.",
+      "Esimesed artiklid on PortrAI varasema saidi pealt — arhiiv algab päris materjaliga, mitte täidisega.",
+    plannedTitle: "Kuhu see sektsioon liigub.",
     plannedBody:
-      "Teemablokid, uudiskirjaelemendid ja editorial-CTA-d saab hiljem juurde kihistada ilma pohiloendi struktuuri muutmata.",
-    bucketLabel: "Planeeritud sisusuunad",
-    buckets: ["Case study'd", "Uritusemarkmed", "Prompti ja kontseptsiooni katsed"],
-    listTag: "(04) Artiklite indeks",
+      "Aja jooksul tuleb juurde kliendilugusid, ürituste kogemusi, prompt-disaini ja praktilisi soovitusi brändidele.",
+    bucketLabel: "Teemad",
+    buckets: ["Kliendilood", "Üritused", "Prompt ja kontseptsioon"],
+    listTag: "(04) Artiklite nimekiri",
     empty: "Postitusi veel ei ole.",
   },
 } as const;

@@ -1,13 +1,32 @@
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 
+/**
+ * Site footer.
+ *
+ * 4 columns on desktop:
+ *   1. Brand + legal
+ *   2. Contact
+ *   3. Sitemap (work / marketing / events / blog)
+ *   4. Social
+ *
+ * Sitemap column uses locale-aware hrefs:
+ *   - ET: /turundus, /peod
+ *   - EN: /marketing, /events
+ */
 export function SiteFooter() {
   const tFooter = useTranslations("footer");
   const tContact = useTranslations("contact.details");
+  const tNav = useTranslations("nav");
+  const locale = (useLocale() as "et" | "en") ?? "et";
+
+  const marketingHref = locale === "en" ? "/marketing" : "/turundus";
+  const eventsHref = locale === "en" ? "/events" : "/peod";
+  const sitemapLabel = locale === "en" ? "Site" : "Leht";
 
   return (
     <footer className="mt-32 border-t border-[color:var(--color-stroke-subtle)] px-6 pb-8 pt-16 md:px-12">
-      <div className="grid gap-12 md:grid-cols-3">
+      <div className="grid gap-12 md:grid-cols-4">
         <div className="flex flex-col gap-2">
           <Link
             href="/"
@@ -46,6 +65,42 @@ export function SiteFooter() {
 
         <div className="flex flex-col gap-3">
           <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)]">
+            {sitemapLabel}
+          </p>
+          <Link
+            href="/tood"
+            className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
+          >
+            {tNav("work")}
+          </Link>
+          <Link
+            href={marketingHref}
+            className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
+          >
+            {tNav("marketing")}
+          </Link>
+          <Link
+            href={eventsHref}
+            className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
+          >
+            {tNav("events")}
+          </Link>
+          <Link
+            href="/blog"
+            className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
+          >
+            {tNav("blog")}
+          </Link>
+          <Link
+            href="/kontakt"
+            className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
+          >
+            {tNav("contact")}
+          </Link>
+        </div>
+
+        <div className="flex flex-col gap-3">
+          <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)]">
             {tFooter("social")}
           </p>
           <a
@@ -54,7 +109,7 @@ export function SiteFooter() {
             rel="noopener noreferrer"
             className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
           >
-            Instagram {"->"}
+            Instagram →
           </a>
           <a
             href="https://www.facebook.com/portrai.ee"
@@ -62,14 +117,14 @@ export function SiteFooter() {
             rel="noopener noreferrer"
             className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
           >
-            Facebook {"->"}
+            Facebook →
           </a>
         </div>
       </div>
 
       <div className="mt-12 flex flex-col gap-3 border-t border-[color:var(--color-stroke-subtle)] pt-6 md:flex-row md:items-center md:justify-between">
         <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-tertiary)]">
-          Copyright 2026 PortrAI - {tFooter("rights")}
+          © 2026 PortrAI · {tFooter("rights")}
         </p>
       </div>
     </footer>

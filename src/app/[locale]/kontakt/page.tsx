@@ -26,12 +26,13 @@ const CONTACT_COPY: Record<
       "Tell us what you are planning and we will come back with the format that fits.",
   },
   et: {
+    // [ET DRAFT — needs your native pass]
     direct: "Otsene kontakt",
     planning: "Kasulikud sisendid",
     planningIntro:
-      "Sul ei pea veel valmis briefi olema. Need on lihtsalt sisendid, mis aitavad õigel kontseptsioonil kiiremini välja joonistuda.",
+      "Põhjalik brief pole vajalik. Need on sisendid, mis aitavad meil õige formaadi kiiremini paika panna.",
     formIntro:
-      "See draft-vorm on juba üles ehitatud lõpliku flow jaoks, seega on ka placeholder-vastused kasulikud tiheduse ja hierarhia hindamiseks.",
+      "Räägi meile, mida planeerid, ja vastame sobiva formaadiga.",
   },
 };
 

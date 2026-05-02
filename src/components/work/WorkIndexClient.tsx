@@ -1,40 +1,59 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { ProjectCoverImage } from "@/components/work/ProjectCoverImage";
 import {
   projects,
   text,
   type PlaceholderProject,
-  type ProjectCategory,
   type SiteLocale,
 } from "@/lib/site-content";
 
-type FilterKey = "all" | ProjectCategory;
+/**
+ * Track filter for /tood — aligns with the two-path IA: ALL · MARKETING · EVENTS.
+ *
+ * The map below classifies each project. Marketing = lead-gen / brand
+ * activation / campaign. Events = engagement-led, fun-event activations.
+ * MELT is the only events-side case in the current portfolio; the rest
+ * are marketing campaigns (Postimees, Von Fock, Telia, Swedbank, OIXIO).
+ */
+type Track = "marketing" | "events";
+
+const PROJECT_TRACK: Record<string, Track> = {
+  "von-fock": "marketing",
+  "laulupidu-postimees": "marketing",
+  "telia-rohekusimustik": "marketing",
+  "swedbank-unistused": "marketing",
+  "oixio-ebs-ai-oppenoustaja": "marketing",
+  melt: "events",
+};
+
+type FilterKey = "all" | Track;
 
 export function WorkIndexClient({ locale }: { locale: SiteLocale }) {
-  const t = useTranslations("work.filters");
   const [active, setActive] = useState<FilterKey>("all");
 
+  const labels =
+    locale === "en"
+      ? { all: "All", marketing: "Marketing", events: "Events" }
+      : { all: "Kõik", marketing: "Turundus", events: "Peod" };
+
   const filters: Array<{ key: FilterKey; label: string }> = [
-    { key: "all", label: t("all") },
-    { key: "wedding", label: t("wedding") },
-    { key: "corporate", label: t("corporate") },
-    { key: "fair", label: t("fair") },
-    { key: "festival", label: t("festival") },
+    { key: "all", label: labels.all },
+    { key: "marketing", label: labels.marketing },
+    { key: "events", label: labels.events },
   ];
 
   const visibleProjects = useMemo(() => {
     if (active === "all") return projects;
-    return projects.filter((project) => project.category === active);
+    return projects.filter((p) => PROJECT_TRACK[p.slug] === active);
   }, [active]);
 
   const intro =
     locale === "en"
-      ? "A selection of launches, conferences, trade-fair activations, and hybrid formats built around branded AI portraits."
-      : "Valik lansseerimisi, konverentse, messiaktivatsioone ja hübriidformaate, mis on ehitatud bränditud AI-portreede ümber.";
+      ? "A selection of launches, conferences, trade-fair activations, and event installations — built around branded AI portraits."
+      : "Valik lansseerimisi, konverentse, messiaktivatsioone ja ürituste installatsioone — kõik ehitatud bränditud AI-portreede ümber.";
 
   return (
     <>
@@ -48,8 +67,9 @@ export function WorkIndexClient({ locale }: { locale: SiteLocale }) {
             const count =
               filter.key === "all"
                 ? projects.length
-                : projects.filter((project) => project.category === filter.key)
-                    .length;
+                : projects.filter(
+                    (p) => PROJECT_TRACK[p.slug] === filter.key,
+                  ).length;
 
             return (
               <button
@@ -57,7 +77,7 @@ export function WorkIndexClient({ locale }: { locale: SiteLocale }) {
                 type="button"
                 onClick={() => setActive(filter.key)}
                 className={
-                  "rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-wider transition-all " +
+                  "rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-[0.18em] transition-all " +
                   (active === filter.key
                     ? "border-[color:var(--color-brand-primary)] bg-[color:var(--color-brand-primary)] text-white"
                     : "border-[color:var(--color-stroke-medium)] text-[color:var(--color-text-secondary)] hover:border-[color:var(--color-stroke-strong)] hover:text-white")
@@ -148,7 +168,7 @@ function ProjectCard({
             className="flex items-start gap-3 text-sm text-[color:var(--color-text-secondary)]"
           >
             <span className="mt-1 font-mono text-xs text-[color:var(--color-brand-accent)]">
-              {"->"}
+              ↳
             </span>
             <span>{text(locale, item)}</span>
           </li>

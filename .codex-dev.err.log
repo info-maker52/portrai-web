@@ -816,3 +816,139 @@
   841 | ...lassName="max-w-3xl font-medium leading-tight tracking-tight" {
   digest: '1153826017'
 }
+[browser] Error: MISSING_MESSAGE: Could not resolve `nav.marketing` in messages for locale `en`.
+    at SiteHeader (src/components/layout/SiteHeader.tsx:33:49)
+    at Set.forEach (<anonymous>)
+    at PageShell (src\components\layout\PageShell.tsx:11:7)
+    at HomePage (src\app\[locale]\page.tsx:145:5)
+  31 |   const navItems: Array<{ href: NavHref; number: string; label: string }> = [
+  32 |     { href: "/tood", number: "01", label: t("work") },
+> 33 |     { href: marketingHref, number: "02", label: t("marketing") },
+     |                                                 ^
+  34 |     { href: eventsHref, number: "03", label: t("events") },
+  35 |     { href: "/kontakt", number: "04", label: t("contact") },
+  36 |   ]; (src/components/layout/SiteHeader.tsx:33:49)
+[browser] Error: MISSING_MESSAGE: Could not resolve `nav.events` in messages for locale `en`.
+    at SiteHeader (src/components/layout/SiteHeader.tsx:34:46)
+    at Set.forEach (<anonymous>)
+    at PageShell (src\components\layout\PageShell.tsx:11:7)
+    at HomePage (src\app\[locale]\page.tsx:145:5)
+  32 |     { href: "/tood", number: "01", label: t("work") },
+  33 |     { href: marketingHref, number: "02", label: t("marketing") },
+> 34 |     { href: eventsHref, number: "03", label: t("events") },
+     |                                              ^
+  35 |     { href: "/kontakt", number: "04", label: t("contact") },
+  36 |   ];
+  37 | (src/components/layout/SiteHeader.tsx:34:46)
+[browser] Error: MISSING_MESSAGE: Could not resolve `nav.marketing` in messages for locale `en`.
+    at SiteHeader (src/components/layout/SiteHeader.tsx:33:49)
+    at Set.forEach (<anonymous>)
+    at PageShell (src\components\layout\PageShell.tsx:11:7)
+    at HomePage (src\app\[locale]\page.tsx:145:5)
+  31 |   const navItems: Array<{ href: NavHref; number: string; label: string }> = [
+  32 |     { href: "/tood", number: "01", label: t("work") },
+> 33 |     { href: marketingHref, number: "02", label: t("marketing") },
+     |                                                 ^
+  34 |     { href: eventsHref, number: "03", label: t("events") },
+  35 |     { href: "/kontakt", number: "04", label: t("contact") },
+  36 |   ]; (src/components/layout/SiteHeader.tsx:33:49)
+[browser] Error: MISSING_MESSAGE: Could not resolve `nav.events` in messages for locale `en`.
+    at SiteHeader (src/components/layout/SiteHeader.tsx:34:46)
+    at Set.forEach (<anonymous>)
+    at PageShell (src\components\layout\PageShell.tsx:11:7)
+    at HomePage (src\app\[locale]\page.tsx:145:5)
+  32 |     { href: "/tood", number: "01", label: t("work") },
+  33 |     { href: marketingHref, number: "02", label: t("marketing") },
+> 34 |     { href: eventsHref, number: "03", label: t("events") },
+     |                                              ^
+  35 |     { href: "/kontakt", number: "04", label: t("contact") },
+  36 |   ];
+  37 | (src/components/layout/SiteHeader.tsx:34:46)
+[browser] Error: MISSING_MESSAGE: Could not resolve `nav.marketing` in messages for locale `en`.
+    at SiteHeader (src/components/layout/SiteHeader.tsx:33:49)
+    at PageShell (src\components\layout\PageShell.tsx:11:7)
+    at HomePage (src\app\[locale]\page.tsx:154:5)
+  31 |   const navItems: Array<{ href: NavHref; number: string; label: string }> = [
+  32 |     { href: "/tood", number: "01", label: t("work") },
+> 33 |     { href: marketingHref, number: "02", label: t("marketing") },
+     |                                                 ^
+  34 |     { href: eventsHref, number: "03", label: t("events") },
+  35 |     { href: "/kontakt", number: "04", label: t("contact") },
+  36 |   ]; (src/components/layout/SiteHeader.tsx:33:49)
+[browser] Error: MISSING_MESSAGE: Could not resolve `nav.events` in messages for locale `en`.
+    at SiteHeader (src/components/layout/SiteHeader.tsx:34:46)
+    at PageShell (src\components\layout\PageShell.tsx:11:7)
+    at HomePage (src\app\[locale]\page.tsx:154:5)
+  32 |     { href: "/tood", number: "01", label: t("work") },
+  33 |     { href: marketingHref, number: "02", label: t("marketing") },
+> 34 |     { href: eventsHref, number: "03", label: t("events") },
+     |                                              ^
+  35 |     { href: "/kontakt", number: "04", label: t("contact") },
+  36 |   ];
+  37 | (src/components/layout/SiteHeader.tsx:34:46)
+[browser] Error: MISSING_MESSAGE: Could not resolve `nav.marketing` in messages for locale `en`.
+    at SiteHeader (src/components/layout/SiteHeader.tsx:33:49)
+    at PageShell (src\components\layout\PageShell.tsx:11:7)
+    at HomePage (src\app\[locale]\page.tsx:154:5)
+  31 |   const navItems: Array<{ href: NavHref; number: string; label: string }> = [
+  32 |     { href: "/tood", number: "01", label: t("work") },
+> 33 |     { href: marketingHref, number: "02", label: t("marketing") },
+     |                                                 ^
+  34 |     { href: eventsHref, number: "03", label: t("events") },
+  35 |     { href: "/kontakt", number: "04", label: t("contact") },
+  36 |   ]; (src/components/layout/SiteHeader.tsx:33:49)
+[browser] Error: MISSING_MESSAGE: Could not resolve `nav.events` in messages for locale `en`.
+    at SiteHeader (src/components/layout/SiteHeader.tsx:34:46)
+    at PageShell (src\components\layout\PageShell.tsx:11:7)
+    at HomePage (src\app\[locale]\page.tsx:154:5)
+  32 |     { href: "/tood", number: "01", label: t("work") },
+  33 |     { href: marketingHref, number: "02", label: t("marketing") },
+> 34 |     { href: eventsHref, number: "03", label: t("events") },
+     |                                              ^
+  35 |     { href: "/kontakt", number: "04", label: t("contact") },
+  36 |   ];
+  37 | (src/components/layout/SiteHeader.tsx:34:46)
+[browser] Error: MISSING_MESSAGE: Could not resolve `nav.marketing` in messages for locale `en`.
+    at SiteHeader (src/components/layout/SiteHeader.tsx:33:49)
+    at PageShell (src\components\layout\PageShell.tsx:11:7)
+    at HomePage (src\app\[locale]\page.tsx:154:5)
+  31 |   const navItems: Array<{ href: NavHref; number: string; label: string }> = [
+  32 |     { href: "/tood", number: "01", label: t("work") },
+> 33 |     { href: marketingHref, number: "02", label: t("marketing") },
+     |                                                 ^
+  34 |     { href: eventsHref, number: "03", label: t("events") },
+  35 |     { href: "/kontakt", number: "04", label: t("contact") },
+  36 |   ]; (src/components/layout/SiteHeader.tsx:33:49)
+[browser] Error: MISSING_MESSAGE: Could not resolve `nav.events` in messages for locale `en`.
+    at SiteHeader (src/components/layout/SiteHeader.tsx:34:46)
+    at PageShell (src\components\layout\PageShell.tsx:11:7)
+    at HomePage (src\app\[locale]\page.tsx:154:5)
+  32 |     { href: "/tood", number: "01", label: t("work") },
+  33 |     { href: marketingHref, number: "02", label: t("marketing") },
+> 34 |     { href: eventsHref, number: "03", label: t("events") },
+     |                                              ^
+  35 |     { href: "/kontakt", number: "04", label: t("contact") },
+  36 |   ];
+  37 | (src/components/layout/SiteHeader.tsx:34:46)
+[browser] Error: MISSING_MESSAGE: Could not resolve `nav.marketing` in messages for locale `en`.
+    at SiteHeader (src/components/layout/SiteHeader.tsx:33:49)
+    at PageShell (src\components\layout\PageShell.tsx:11:7)
+    at HomePage (src\app\[locale]\page.tsx:154:5)
+  31 |   const navItems: Array<{ href: NavHref; number: string; label: string }> = [
+  32 |     { href: "/tood", number: "01", label: t("work") },
+> 33 |     { href: marketingHref, number: "02", label: t("marketing") },
+     |                                                 ^
+  34 |     { href: eventsHref, number: "03", label: t("events") },
+  35 |     { href: "/kontakt", number: "04", label: t("contact") },
+  36 |   ]; (src/components/layout/SiteHeader.tsx:33:49)
+[browser] Error: MISSING_MESSAGE: Could not resolve `nav.events` in messages for locale `en`.
+    at SiteHeader (src/components/layout/SiteHeader.tsx:34:46)
+    at PageShell (src\components\layout\PageShell.tsx:11:7)
+    at HomePage (src\app\[locale]\page.tsx:154:5)
+  32 |     { href: "/tood", number: "01", label: t("work") },
+  33 |     { href: marketingHref, number: "02", label: t("marketing") },
+> 34 |     { href: eventsHref, number: "03", label: t("events") },
+     |                                              ^
+  35 |     { href: "/kontakt", number: "04", label: t("contact") },
+  36 |   ];
+  37 | (src/components/layout/SiteHeader.tsx:34:46)
