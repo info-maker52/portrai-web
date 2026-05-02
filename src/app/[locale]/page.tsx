@@ -84,9 +84,9 @@ const COPY = {
   et: {
     // [ET DRAFT — needs your native pass]
     heroEyebrow: "(01) AI fotoboks",
-    heroHeadline: "AI fotoboks, mis muudab sinu ürituse vestlusteemaks.",
+    heroHeadline: "AI fotoboks, millest külalised räägivad veel kuid hiljem.",
     heroSub:
-      "Auhinnatud Las Vegases. Kasutusel ERR-is, Postimehes, Telias, Swedbankis — ja sajal firmapeol.",
+      "Auhinnatud Las Vegases. Kasutusel ERR-is, Postimehes, Telias ja Swedbankis — lisaks sadadel firmapidudel ja eraüritustel.",
     heroPathMarketing: "Brändidele ja turundusele",
     heroPathEvents: "Firmapidudele ja eraüritustele",
 

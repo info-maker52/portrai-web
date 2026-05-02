@@ -887,3 +887,9 @@
  GET /en 200 in 126ms (next.js: 57ms, proxy.ts: 12ms, generate-params: 4ms, application-code: 57ms)
  GET /en 200 in 137ms (next.js: 58ms, proxy.ts: 11ms, generate-params: 4ms, application-code: 67ms)
  GET /en 200 in 126ms (next.js: 88ms, proxy.ts: 1809µs, generate-params: 91µs, application-code: 37ms)
+✓ Compiled in 68ms
+✓ Compiled in 35ms
+ GET /en 200 in 261ms (next.js: 131ms, proxy.ts: 16ms, generate-params: 14µs, application-code: 114ms)
+ GET /en 200 in 263ms (next.js: 99ms, proxy.ts: 14ms, generate-params: 5ms, application-code: 151ms)
+ GET /en 200 in 71ms (next.js: 7ms, proxy.ts: 3ms, generate-params: 15µs, application-code: 61ms)
+ GET /en 200 in 71ms (next.js: 31ms, proxy.ts: 3ms, generate-params: 14µs, application-code: 37ms)

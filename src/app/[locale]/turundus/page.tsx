@@ -3,6 +3,7 @@ import { Link } from "@/i18n/navigation";
 import { PageShell } from "@/components/layout/PageShell";
 import { ProjectCoverImage } from "@/components/work/ProjectCoverImage";
 import { CalendlyFrame } from "@/components/booking/CalendlyFrame";
+import { FaqAccordion } from "@/components/faq/FaqAccordion";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import {
   getProject,
@@ -96,7 +97,32 @@ const COPY = {
       },
     ],
 
-    ctaEyebrow: "(07) Talk to us",
+    faqEyebrow: "(07) Frequently asked",
+    faqTitle: "Things marketing teams ask us first.",
+    faq: [
+      {
+        q: "How do you make the leads usable for our CRM?",
+        a: "Every guest opts in via a GDPR-clean consent flow. We export the lead list as CSV with timestamps and consent records, ready to drop into HubSpot, Salesforce, or any standard CRM.",
+      },
+      {
+        q: "How GDPR-compliant is the experience?",
+        a: "Fully. Consent is collected per guest, stored with timestamp, and never shared without explicit opt-in. We can adapt the wording of consent text to match your privacy policy.",
+      },
+      {
+        q: "Can the booth carry our brand 100%?",
+        a: "Yes. The on-screen interface, the prompt, the QR landing page, the email confirmation, and the printed output all use your colours, typeface, and voice. Every touch-point is designed.",
+      },
+      {
+        q: "How fast can it run when the queue is busy?",
+        a: "Each guest experience runs in 30–60 seconds end-to-end. At peak we've delivered 200+ portraits per hour with a single booth.",
+      },
+      {
+        q: "What metrics do you provide after the campaign?",
+        a: "A reporting deck covering: total participation, opt-in rate, sharing rate, geographic spread, time-of-day distribution, and a curated highlight gallery. Plus the lead list.",
+      },
+    ],
+
+    ctaEyebrow: "(08) Talk to us",
     ctaTitle: "Tell us about the campaign.",
     ctaBody: "We'll send a concept direction and a budget range within 48 hours.",
     ctaCalendly: "Book a 15-min discovery call",
@@ -169,7 +195,32 @@ const COPY = {
       },
     ],
 
-    ctaEyebrow: "(07) Räägi meiega",
+    faqEyebrow: "(07) Korduvad küsimused",
+    faqTitle: "Mida turundusmeeskonnad kõige sagedamini küsivad.",
+    faq: [
+      {
+        q: "Kuidas saab leadid meie CRM-i?",
+        a: "Iga külaline annab GDPR-kohase nõusoleku. Ekspordime leadide nimekirja CSV-failina koos ajatempli ja nõusoleku kinnitusega — saab kohe HubSpotti, Salesforce'i või muusse CRM-i lisada.",
+      },
+      {
+        q: "Kas kogemus on GDPR-iga vastavuses?",
+        a: "Täielikult. Nõusolek küsitakse iga külalise käest, salvestatakse koos ajatempliga ja midagi ei jagata ilma selge nõusolekuta. Vajadusel kohandame nõusoleku teksti teie privaatsuspoliitikaga.",
+      },
+      {
+        q: "Kas boks saab olla 100% bränditud?",
+        a: "Jah. Ekraanil olev liides, prompt, QR-leht, kinnituskiri ja prinditud pilt — kõik teie värvides, kirjatüübis ja hääles. Iga puutepunkt on disainitud.",
+      },
+      {
+        q: "Kui kiiresti saab boks tippkoormusel töötada?",
+        a: "Üks külalisekogemus võtab 30–60 sekundit. Tippkoormusel oleme ühe boksiga teinud 200+ portreed tunnis.",
+      },
+      {
+        q: "Mida raporteerite pärast kampaaniat?",
+        a: "Aruanne, mis sisaldab: osavõtt kokku, nõusoleku määr, jagamiste arv, geograafiline jaotus, kasutus ajalises lõikes ja kuratoorne pildigalerii. Pluss leadide nimekiri.",
+      },
+    ],
+
+    ctaEyebrow: "(08) Räägi meiega",
     ctaTitle: "Räägi meile kampaaniast.",
     ctaBody: "Saadame kontseptsiooni-suuna ja eelarvevahemiku 48 tunni jooksul.",
     ctaCalendly: "Broneeri 15-min tutvumiskõne",
@@ -374,6 +425,24 @@ export default async function MarketingPage({
               </p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+        <div className="grid gap-12 md:grid-cols-[300px_1fr]">
+          <div>
+            <p className="mb-4 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
+              {copy.faqEyebrow}
+            </p>
+            <h2
+              className="font-medium leading-tight tracking-tight"
+              style={{ fontSize: "var(--text-display-md)" }}
+            >
+              {copy.faqTitle}
+            </h2>
+          </div>
+          <FaqAccordion items={[...copy.faq]} />
         </div>
       </section>
 

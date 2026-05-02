@@ -2,6 +2,7 @@ import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { PageShell } from "@/components/layout/PageShell";
 import { ProjectCoverImage } from "@/components/work/ProjectCoverImage";
+import { FaqAccordion } from "@/components/faq/FaqAccordion";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import {
   getProject,
@@ -99,6 +100,31 @@ const COPY = {
       },
     ],
 
+    faqEyebrow: "(08) Frequently asked",
+    faqTitle: "Things organisers ask us first.",
+    faq: [
+      {
+        q: "What themes are available?",
+        a: "Estonia's largest catalog — 30+ pre-made themes covering retro, sci-fi, painted portraits, neon, fairytale, and many more. We can also build a fully custom theme for your event in 2-3 weeks.",
+      },
+      {
+        q: "How much space and setup time do you need?",
+        a: "About 2x2 metres and one regular power outlet. Setup takes ~45 minutes; we arrive 90 minutes before the event starts so the venue is calm before guests arrive.",
+      },
+      {
+        q: "Do guests get both prints and digital photos?",
+        a: "Yes — both. Every photo prints on-site within seconds, and every guest also gets a QR code that delivers their photos straight to their phone.",
+      },
+      {
+        q: "My event has a specific concept — can you build the booth around it?",
+        a: "Yes. We come from a marketing and concept background, so we approach the booth as part of the show, not an add-on. Tell us the theme and we'll design the visuals, prompts, and on-screen flow to match.",
+      },
+      {
+        q: "Is there always someone on-site running it?",
+        a: "Always. Our host welcomes guests, keeps the queue smooth, helps people pose, and keeps the energy up. The booth feels staffed and intentional, not like an unattended kiosk.",
+      },
+    ],
+
     ctaTitle: "Let's make your event the one people talk about.",
     ctaBody: "Tell us the date and the vibe. We'll send a quote within 24 hours.",
     ctaButton: "Book PortrAI",
@@ -176,6 +202,31 @@ const COPY = {
         n: "04",
         title: "Kõik pildid, kohe",
         body: "Igaüks lahkub oma piltidega. Lisaks jagatud galerii-link järgmiseks hommikuks.",
+      },
+    ],
+
+    faqEyebrow: "(08) Korduvad küsimused",
+    faqTitle: "Mida korraldajad kõige sagedamini küsivad.",
+    faq: [
+      {
+        q: "Millised teemad on saadaval?",
+        a: "Eesti suurim kataloog — üle 30 valmis teema, alates retrost ja sci-fi'st kuni maalitud portreede, neoonini ja muinasjutuni. Saame ka 2–3 nädalaga ehitada teie üritusele kohandatud teema.",
+      },
+      {
+        q: "Kui palju ruumi ja setupiks aega vajate?",
+        a: "Umbes 2x2 meetrit ja üks tavaline pistik. Setup võtab ~45 minutit; saabume 90 minutit enne ürituse algust, et venue oleks rahulik enne külaliste saabumist.",
+      },
+      {
+        q: "Kas külalised saavad nii printe kui ka digitaalseid pilte?",
+        a: "Jah — mõlemat. Iga pilt prinditakse kohapeal sekunditega, lisaks saab iga külaline QR-koodi, mis annab pildid otse tema telefoni.",
+      },
+      {
+        q: "Meie üritusel on kindel kontseptsioon — kas saate boksi sellele kujundada?",
+        a: "Jah. Tuleme turundus- ja kontseptsiooni-taustast, seega lähenemine on, et boks on osa etendusest, mitte lisategevus. Räägi meile teema ja kujundame visuaalid, promptid ja ekraanivoo selle järgi.",
+      },
+      {
+        q: "Kas alati on keegi kohapeal, kes boksi haldab?",
+        a: "Alati. Meie host tervitab külalisi, hoiab järjekorra sujuva, aitab inimestel poseerida ja hoiab energia üleval. Boks on mehitatud, mitte tühi kiosk.",
       },
     ],
 
@@ -374,6 +425,24 @@ export default async function EventsPage({
               </p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+        <div className="grid gap-12 md:grid-cols-[300px_1fr]">
+          <div>
+            <p className="mb-4 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
+              {copy.faqEyebrow}
+            </p>
+            <h2
+              className="font-medium leading-tight tracking-tight"
+              style={{ fontSize: "var(--text-display-md)" }}
+            >
+              {copy.faqTitle}
+            </h2>
+          </div>
+          <FaqAccordion items={[...copy.faq]} />
         </div>
       </section>
 
