@@ -4,6 +4,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { ProjectCoverImage } from "@/components/work/ProjectCoverImage";
 import { FaqAccordion } from "@/components/faq/FaqAccordion";
 import { MagneticButton } from "@/components/motion/MagneticButton";
+import { ThemeGallery } from "@/components/themes/ThemeGallery";
 import {
   getProject,
   testimonialSeeds,
@@ -71,7 +72,13 @@ const COPY = {
     ],
 
     quoteEyebrow: "(05) What organisers say",
-    workEyebrow: "(06) Recent events",
+
+    themesEyebrow: "(06) Theme catalog",
+    themesTitle: "A glimpse of the largest theme library in Estonia.",
+    themesBody:
+      "Each style is a starting point — we tune the prompts, frames, and on-screen flow to match your event. Custom themes available in 2-3 weeks.",
+
+    workEyebrow: "(07) Recent events",
     workTitle: "A few events we've made memorable.",
     moreWork:
       "More events join this page as we publish them. In the meantime, see all our work →",
@@ -176,7 +183,13 @@ const COPY = {
     ],
 
     quoteEyebrow: "(05) Mida korraldajad ütlevad",
-    workEyebrow: "(06) Hiljutised üritused",
+
+    themesEyebrow: "(06) Teemakogum",
+    themesTitle: "Pilguheit Eesti suurimasse teemakogumusse.",
+    themesBody:
+      "Iga stiil on lähtepunkt — kohandame promptid, raamid ja ekraanivoo teie ürituse järgi. Kohandatud teema valmib 2–3 nädalaga.",
+
+    workEyebrow: "(07) Hiljutised üritused",
     workTitle: "Mõned üritused, mida oleme meeldejäävaks teinud.",
     moreWork:
       "Lisame siia üritusi sedamööda kuidas avaldame. Vahepeal vaata kõiki töid →",
@@ -349,6 +362,30 @@ export default async function EventsPage({
             {text(locale, aivar.role)}
           </figcaption>
         </figure>
+      </section>
+
+      {/* Theme gallery */}
+      <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+        <div className="mb-12 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
+          <div>
+            <p className="mb-4 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
+              {copy.themesEyebrow}
+            </p>
+            <h2
+              className="font-medium leading-tight tracking-tight"
+              style={{ fontSize: "var(--text-display-md)" }}
+            >
+              {copy.themesTitle}
+            </h2>
+          </div>
+          <p
+            className="self-end max-w-xl text-[color:var(--color-text-secondary)]"
+            style={{ fontSize: "var(--text-body-lg)" }}
+          >
+            {copy.themesBody}
+          </p>
+        </div>
+        <ThemeGallery />
       </section>
 
       {/* Selected events */}

@@ -893,3 +893,5 @@
  GET /en 200 in 263ms (next.js: 99ms, proxy.ts: 14ms, generate-params: 5ms, application-code: 151ms)
  GET /en 200 in 71ms (next.js: 7ms, proxy.ts: 3ms, generate-params: 15µs, application-code: 61ms)
  GET /en 200 in 71ms (next.js: 31ms, proxy.ts: 3ms, generate-params: 14µs, application-code: 37ms)
+ GET /en 200 in 289ms (next.js: 8ms, proxy.ts: 2ms, generate-params: 5ms, application-code: 278ms)
+✓ Compiled in 78ms
