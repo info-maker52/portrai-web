@@ -1,13 +1,5 @@
 import { setRequestLocale } from "next-intl/server";
-
-/**
- * Design token preview page.
- * Renders every colour, type style, spacing, radius, motion, glow.
- * Sign-off gate for Stage 2.
- *
- * Visit at /design (ET) or /en/design (EN).
- * In production, this should be hidden behind a query param or env flag.
- */
+import { notFound } from "next/navigation";
 export default async function DesignPage({
   params,
 }: {
@@ -15,6 +7,11 @@ export default async function DesignPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+
+  if (process.env.SHOW_DESIGN_SHEET !== "true") {
+    notFound();
+  }
+
   return <DesignSheet />;
 }
 

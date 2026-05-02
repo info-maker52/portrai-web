@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
 import { setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
@@ -19,6 +20,9 @@ type ServiceTrack = {
   outputs: LocalizedText[];
   inputs: LocalizedText[];
   galleryLabel: LocalizedText;
+  mediaAlt: LocalizedText;
+  mediaSrc: string;
+  mediaPosition?: string;
 };
 
 const SERVICE_PAGE_COPY: Record<
@@ -41,18 +45,18 @@ const SERVICE_PAGE_COPY: Record<
   en: {
     heroTag: "(02) Service structure",
     heroIntro:
-      "This page is now shaped around the actual offer formats, with placeholder copy, seeded outputs, and client-input prompts in place before the final sales wording is locked.",
+      "PortrAI can be booked as a fast event booth, a wider campaign activation, or a custom concept built around your brand.",
     matrixTag: "(03) Offer formats",
-    matrixTitle: "Three service tracks, each with its own page logic.",
+    matrixTitle: "Choose the format that fits the job.",
     matrixIntro:
-      "Instead of one generic services list, the structure now shows how the conversation changes between a classic booth, a hybrid event format, and a custom branded activation.",
+      "Some clients need a high-throughput booth. Others need a branded story, lead capture, or a web layer around the event. These are the three ways we usually package the work.",
     fitLabel: "Best fit",
     outputsLabel: "Typical outputs",
     inputsLabel: "Inputs we will need",
     planningTag: "(04) Shared planning inputs",
-    planningTitle: "What we need no matter which format you choose.",
+    planningTitle: "What we ask before we build.",
     planningIntro:
-      "These prompts are already stable enough to guide both the placeholder form and the later discovery process.",
+      "A short brief is enough to start. These are the details that help us recommend the right setup quickly.",
     ctaTag: "(05) Next step",
   },
   et: {
@@ -79,34 +83,34 @@ const SERVICE_TRACKS: ServiceTrack[] = [
     key: "booth",
     number: "01",
     title: {
-      en: "Classic AI photo booth",
+      en: "Event booth",
       et: "Klassikaline AI fotoboks",
     },
     summary: {
-      en: "The fastest route when you want guests to step in, generate a portrait, share it instantly, and keep the queue moving.",
+      en: "The fastest route when you want guests to step in, generate a portrait, and keep the queue moving without losing the premium feel.",
       et: "Koige kiirem tee siis, kui soovid, et kulaline astuks sisse, genereeriks portree, jagaks selle kohe ja liiguks sujuvalt edasi.",
     },
     fit: {
-      en: "Weddings, private celebrations, gala dinners, and branded hospitality moments where elegance matters more than a complex story mechanic.",
+      en: "Launches, weddings, gala dinners, hospitality events, and branded guest experiences where a smooth live flow matters most.",
       et: "Pulmad, privaatsed tahistamised, galad ja branditud kulaliskogemused, kus elegants on olulisem kui keerukas looskeem.",
     },
     outputs: [
       {
-        en: "Styled AI portraits with instant digital delivery",
+        en: "Branded AI portraits with instant digital delivery",
         et: "Stiliseeritud AI-portreed koos kohese digitaalse valjastusega",
       },
       {
-        en: "Optional on-site print flow and gallery export",
+        en: "Optional prints, QR delivery, and gallery export",
         et: "Soovi korral kohapealne print ja galerii eksport",
       },
       {
-        en: "A clean, premium booth rhythm with minimal briefing overhead",
+        en: "A clean on-site setup that guests understand immediately",
         et: "Puhas ja premium boksirutm minimaalse ettevalmistusega",
       },
     ],
     inputs: [
       {
-        en: "Event date, venue, guest count, and preferred visual mood",
+        en: "Event date, venue, guest count, and the kind of atmosphere you want the booth to create",
         et: "Sundmuse kuupaev, venue, kulaliste arv ja eelistatud visuaalne meeleolu",
       },
       {
@@ -115,63 +119,75 @@ const SERVICE_TRACKS: ServiceTrack[] = [
       },
     ],
     galleryLabel: {
-      en: "Portrait booth placeholder slots for final event imagery",
+      en: "Instant portraits, prints, and a smooth queue",
       et: "Portreeboksi placeholder-slotid ootavad loplikku uritusmaterjali",
     },
+    mediaAlt: {
+      en: "Guests receiving branded AI portraits at a live event booth",
+      et: "Kulalised branditud AI-portreedega live-boksis",
+    },
+    mediaSrc: "/images/work/swedbank-unistused/gallery-02.jpg",
+    mediaPosition: "50% 22%",
   },
   {
     key: "hybrid",
     number: "02",
     title: {
-      en: "Hybrid event format",
+      en: "Campaign activation",
       et: "Hubriidne urituseformaat",
     },
     summary: {
-      en: "Built for trade shows, festivals, and launches where the physical setup should also echo online before, during, or after the event.",
+      en: "Built for launches, festivals, and trade fairs where the event should keep working online before, during, or after the live date.",
       et: "Meldud messidele, festivalidele ja lansseerimistele, kus kohapealne setup peaks elama ka veebis enne, ajal voi parast sundmust.",
     },
     fit: {
-      en: "Trade shows, large public activations, partner events, and culture formats where a booth alone would leave too much reach on the table.",
+      en: "Trade shows, public activations, partner events, and campaign moments where a booth alone would leave too much reach on the table.",
       et: "Messid, suured avalikud aktivatsioonid, partneruritused ja kultuuriformaadid, kus ainult kohapealne boks jataks liiga palju haaret kasutamata.",
     },
     outputs: [
       {
-        en: "On-site queue plus parallel web participation",
+        en: "On-site guest flow with an online layer around the event",
         et: "Kohapealne jarjekord koos paralleelse veebiosalusega",
       },
       {
-        en: "Campaign-ready image delivery with broader lead capture",
+        en: "Campaign-ready image delivery with broader sharing and lead capture",
         et: "Kampaaniakolbulik pildiedastus laiema lead-capture voimekusega",
       },
       {
-        en: "A stronger case-study shape for sponsors, media, or partners",
+        en: "A format that keeps the activation useful beyond the venue itself",
         et: "Tugevam case-study kuju sponsorite, meedia voi partnerite jaoks",
       },
     ],
     inputs: [
       {
-        en: "Traffic expectations, event duration, and whether the web layer should launch before the live date",
+        en: "Traffic expectations, event duration, and whether the online layer should launch before the live date",
         et: "Liiklusootus, urituse kestus ja kas veebikiht peaks avanema enne live-kuupaeva",
       },
       {
-        en: "Brand, campaign, or region logic that should shape the outputs",
+        en: "Brand, campaign, or audience logic that should shape the outputs",
         et: "Brandi-, kampaania- voi piirkonnaloogika, mis peaks valjundit suunama",
       },
     ],
     galleryLabel: {
-      en: "Hybrid campaign storyboard waiting for final venue and web assets",
+      en: "One event idea, extended into sharing and web reach",
       et: "Hubriidkampaania storyboard ootab venue ja veebi loplikke faile",
     },
+    mediaAlt: {
+      en: "Campaign portrait visual from a web-connected launch activation",
+      et: "Veebiga seotud lansseerimisaktivatsiooni kampaaniavisuaal",
+    },
+    mediaSrc: "/images/work/von-fock-cover.jpg",
+    mediaPosition: "50% 36%",
   },
   {
     key: "custom",
     number: "03",
     title: {
-      en: "Custom branded activation",
+      en: "Custom interactive concept",
       et: "Kohandatud brandiaktivatsioon",
     },
     summary: {
-      en: "The format for quizzes, character matching, dream prompts, study-advisor flows, or anything where the image is only one part of the idea.",
+      en: "The right format when a portrait alone is not enough and the real idea lives in questions, prompts, matching, or personalised output.",
       et: "Formaat viktoriinideks, karakterisobituseks, unistusepromptideks, oppenoustaja loogikaks voi milleks tahes, kus pilt on ainult osa kogu ideest.",
     },
     fit: {
@@ -180,32 +196,37 @@ const SERVICE_TRACKS: ServiceTrack[] = [
     },
     outputs: [
       {
-        en: "Questionnaire-led or prompt-led guest journey",
+        en: "Question-led or prompt-led guest journey",
         et: "Kusimustiku- voi promptipohine kulalisteekond",
       },
       {
-        en: "Brand-specific output rules, moderation logic, and follow-up hooks",
+        en: "Brand-specific output rules, moderation, and follow-up hooks",
         et: "Brandipohised valjundireeglid, moderatsiooniloogika ja jareltegevuse konksud",
       },
       {
-        en: "A stronger strategic story than a generic booth can offer",
+        en: "A more distinctive brand story than a generic booth can offer",
         et: "Tugevam strateegiline lugu kui uldine fotoboks suudaks pakkuda",
       },
     ],
     inputs: [
       {
-        en: "The campaign objective, the desired guest decision, and any custom data capture requirements",
+        en: "The campaign objective, the guest decision you want to trigger, and any custom data capture requirements",
         et: "Kampaaniaeesmark, soovitud kulalise otsus ja koik kohandatud andmekogumise vajadused",
       },
       {
-        en: "Rough prompt direction, brand restrictions, and post-event use cases",
+        en: "Prompt direction, brand restrictions, and what should happen after the event",
         et: "Esialgne promptisuund, brandipiirangud ja uritusejargsed kasutusjuhud",
       },
     ],
     galleryLabel: {
-      en: "Custom activation frames waiting for final art direction",
+      en: "Questions, logic, and brand-shaped outcomes",
       et: "Kohandatud aktivatsiooni raamistik ootab loplikku art directionit",
     },
+    mediaAlt: {
+      en: "Custom interactive activation visual with brand-specific worldbuilding",
+      et: "Kohandatud interaktiivse aktivatsiooni visuaal brandipohise maailmaga",
+    },
+    mediaSrc: "/images/work/telia-rohekusimustik/gallery-03.jpg",
   },
 ];
 
@@ -315,12 +336,21 @@ function ServiceMatrix({ locale }: { locale: SiteLocale }) {
                 />
               </div>
 
-              <div className="aspect-[4/5] overflow-hidden rounded-2xl border border-dashed border-[color:var(--color-stroke-medium)] bg-[radial-gradient(circle_at_top,_rgba(121,72,255,0.18),_transparent_58%),linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01))]">
-                <div className="flex h-full flex-col justify-between p-5">
-                  <div className="self-start rounded-full border border-[color:var(--color-stroke-medium)] px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-[color:var(--color-text-secondary)]">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-base)]">
+                <Image
+                  alt={text(locale, track.mediaAlt)}
+                  className="object-cover"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 320px"
+                  src={track.mediaSrc}
+                  style={track.mediaPosition ? { objectPosition: track.mediaPosition } : undefined}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[rgba(2,9,30,0.72)] via-[rgba(2,9,30,0.16)] to-transparent" />
+                <div className="absolute inset-0 flex h-full flex-col justify-between p-5">
+                  <div className="self-start rounded-full border border-white/16 bg-black/28 px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-white/76 backdrop-blur-sm">
                     {text(locale, track.title)}
                   </div>
-                  <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-tertiary)]">
+                  <p className="font-mono text-xs uppercase tracking-wider text-white/72">
                     {text(locale, track.galleryLabel)}
                   </p>
                 </div>

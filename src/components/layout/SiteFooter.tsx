@@ -71,9 +71,6 @@ export function SiteFooter() {
         <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-tertiary)]">
           Copyright 2026 PortrAI - {tFooter("rights")}
         </p>
-        <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-tertiary)]">
-          v0.1
-        </p>
       </div>
     </footer>
   );

@@ -4,7 +4,16 @@ import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 
-type NavHref = "/" | "/tood" | "/teenused" | "/blog" | "/kontakt";
+type NavHref =
+  | "/"
+  | "/tood"
+  | "/turundus"
+  | "/peod"
+  | "/marketing"
+  | "/events"
+  | "/teenused"
+  | "/blog"
+  | "/kontakt";
 
 export function SiteHeader() {
   const t = useTranslations("nav");
@@ -14,10 +23,15 @@ export function SiteHeader() {
 
   const nextLocale = locale === "et" ? "en" : "et";
   const menuLabel = menuOpen ? (locale === "en" ? "Close" : "Sulge") : "Menu";
+
+  // Path labels are locale-aware: /turundus + /peod in ET, /marketing + /events in EN.
+  const marketingHref: NavHref = locale === "en" ? "/marketing" : "/turundus";
+  const eventsHref: NavHref = locale === "en" ? "/events" : "/peod";
+
   const navItems: Array<{ href: NavHref; number: string; label: string }> = [
     { href: "/tood", number: "01", label: t("work") },
-    { href: "/teenused", number: "02", label: t("services") },
-    { href: "/blog", number: "03", label: t("blog") },
+    { href: marketingHref, number: "02", label: t("marketing") },
+    { href: eventsHref, number: "03", label: t("events") },
     { href: "/kontakt", number: "04", label: t("contact") },
   ];
 

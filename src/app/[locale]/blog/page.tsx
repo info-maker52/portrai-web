@@ -5,18 +5,18 @@ import { getAllBlogPosts } from "@/lib/blog";
 
 const BLOG_PAGE_COPY = {
   en: {
-    heroTag: "(03) Editorial structure",
+    heroTag: "(03) Journal",
     heroIntro:
-      "The articles are already live, but this page is now framed to test editorial rhythm, topic clustering, and future conversion blocks before final blog strategy copy is written.",
-    notesTag: "Current structure",
-    importedTitle: "Imported articles stay visible.",
+      "Ideas, event notes, experiments, and practical lessons from the world around PortrAI.",
+    notesTag: "What you will find here",
+    importedTitle: "Real posts from the original site.",
     importedBody:
-      "The Wix-source posts remain the live content layer, so the reading flow can be judged against real titles, dates, and excerpts instead of dummy cards.",
-    plannedTitle: "The surrounding modules are still placeholders.",
+      "The first articles were imported from the original PortrAI site, so the archive already starts with real material instead of filler.",
+    plannedTitle: "Where this section is heading.",
     plannedBody:
-      "Topic buckets, newsletter blocks, and editorial CTAs can be layered in later without changing the core listing structure.",
-    bucketLabel: "Planned content lanes",
-    buckets: ["Case studies", "Event notes", "Prompt and concept experiments"],
+      "Over time, this becomes a mix of client stories, event learnings, prompt design, and practical guidance for brands planning activations.",
+    bucketLabel: "Topics",
+    buckets: ["Client stories", "Event learnings", "Prompt and concept notes"],
     listTag: "(04) Article index",
     empty: "No posts yet.",
   },

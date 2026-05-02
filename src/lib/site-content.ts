@@ -93,7 +93,7 @@ export const processSteps: ProcessStep[] = [
       et: "Brief ja ürituse eesmärk",
     },
     body: {
-      en: "We define the audience, brand tone, throughput expectations, and what guests should want to share afterwards.",
+      en: "We map the audience, venue, guest volume, and what success should look like before anything is produced.",
       et: "Paneme paika sihtgrupi, brändi tonaalsuse, oodatava läbilaske ning selle, mida külalised peaksid hiljem jagada tahtma.",
     },
   },
@@ -104,8 +104,8 @@ export const processSteps: ProcessStep[] = [
       et: "Visuaalne kontseptsioon ja prompt-loogika",
     },
     body: {
-      en: "Frames, themes, branded overlays, custom questionnaires, and draft prompt directions all get shaped before production assets arrive.",
-      et: "Raamid, teemad, brändikihid, küsimustikud ja promptide suund pannakse paika enne lõplike tootmisfailide saabumist.",
+      en: "We design the visual direction, prompt logic, branded details, and the guest flow that will hold up in a live setting.",
+      et: "Raamid, teemad, brändikihid ja võimalik küsimustikuloogika pannakse paika enne, kui live-lahendus tootmisse läheb.",
     },
   },
   {
@@ -115,7 +115,7 @@ export const processSteps: ProcessStep[] = [
       et: "Live-aktivatsioon",
     },
     body: {
-      en: "The booth can run on-site, online, or as a hybrid setup with instant generation, QR delivery, printouts, and lead capture.",
+      en: "We run the experience on-site, online, or both, with instant image generation, delivery, printing, and optional lead capture.",
       et: "Lahendus võib töötada kohapeal, veebis või hübriidina koos kohese genereerimise, QR-jagamise, printide ja kontaktikorjega.",
     },
   },
@@ -126,8 +126,8 @@ export const processSteps: ProcessStep[] = [
       et: "Järeltegevused ja kampaaniakasutus",
     },
     body: {
-      en: "Exports, follow-up emails, gallery curation, and case-study framing can all be prepared even before the final copy is approved.",
-      et: "Ekspordid, järelkirjad, galerii kureerimine ja case-study raamistik saab valmis teha juba enne lõpliku copy kinnitamist.",
+      en: "After the event, we package the exports, galleries, follow-up assets, and any leads so the activation keeps working after the queue is gone.",
+      et: "Pärast üritust saame kokku panna ekspordid, highlight-galeriid, järelmeilid ja tugevamad hetked edasiseks kampaaniakasutuseks.",
     },
   },
 ];
@@ -193,6 +193,23 @@ export const internationalStops: InternationalStop[] = [
 
 export const testimonialSeeds: TestimonialSeed[] = [
   {
+    id: "aivar-kuusk",
+    name: "Aivar Kuusk",
+    company: "Kuusk Events",
+    role: {
+      en: "Event organiser",
+      et: "Ürituste korraldaja",
+    },
+    quote: {
+      en: "In all my 20 years of organising events, this is the most impactful photo booth experience I have encountered.",
+      et: "Kogu oma 20-aastase ürituste korraldamise kogemuse jooksul on see kõige mõjuvam fotoboksi-elamus, mida olen kohanud.",
+    },
+    status: {
+      en: "Client feedback from Kuusk Events",
+      et: "Klienditagasiside Kuusk Eventsilt",
+    },
+  },
+  {
     id: "eve-karner",
     name: "Eve Kärner",
     company: "Tallinna Strateegiakeskus",
@@ -205,8 +222,8 @@ export const testimonialSeeds: TestimonialSeed[] = [
       et: "PortrAI fotoboks oli tõeline tähelepanu magnet MELT innovatsioonifoorumi demoalal, meelitades külastajaid ligi hommikust õhtuni. Koostöö PortrAI meeskonnaga oli soe, siiras ja läbimõeldult ette valmistatud.",
     },
     status: {
-      en: "Source-backed quote, publish confirmation pending",
-      et: "Allikapõhine tsitaat, avaldamise kinnitus ootel",
+      en: "Client feedback from MELT",
+      et: "Klienditagasiside MELTilt",
     },
   },
   {
@@ -222,8 +239,8 @@ export const testimonialSeeds: TestimonialSeed[] = [
       et: "Kogu see süsteem ja idee oli mega suur hitt. Inimesed siiani räägivad ja jagavad seda sotsiaalmeedias.",
     },
     status: {
-      en: "Deck quote, permission still to be confirmed",
-      et: "Esitlusest võetud tsitaat, luba veel kinnitamata",
+      en: "Client feedback from Technopol",
+      et: "Klienditagasiside Technopolilt",
     },
   },
   {
@@ -239,8 +256,8 @@ export const testimonialSeeds: TestimonialSeed[] = [
       et: "Meie boks oli väga silmatorkav ning see lahendus läks inimestele väga korda.",
     },
     status: {
-      en: "Deck quote, permission still to be confirmed",
-      et: "Esitlusest võetud tsitaat, luba veel kinnitamata",
+      en: "Client feedback from EBS",
+      et: "Klienditagasiside EBSilt",
     },
   },
   {
@@ -255,8 +272,8 @@ export const testimonialSeeds: TestimonialSeed[] = [
       et: "Meie ala oli vist kogu Startup Day kõige külastatum ala.",
     },
     status: {
-      en: "Short deck quote, needs full context",
-      et: "Lühike tsitaat esitlusest, vajab täiendavat konteksti",
+      en: "Client feedback from Startup Day",
+      et: "Klienditagasiside Startup Daylt",
     },
   },
 ];
@@ -268,8 +285,8 @@ export const faqSeeds: FaqSeed[] = [
       et: "Kuidas AI fotoboks live-üritusel töötab?",
     },
     answer: {
-      en: "This draft answer block is here to define rhythm and layout. Final copy can explain the guest flow from capture to generation, print, and share in plain language.",
-      et: "See vastuseplokk on praegu rütmi ja paigutuse jaoks. Lõplik copy saab siin lihtsalt lahti seletada külalise teekonna pildist genereerimise, printimise ja jagamiseni.",
+      en: "Guests take a portrait, trigger or choose the visual direction, and receive a branded result within seconds. Depending on the setup, that can be printed on-site, shared by QR, or sent digitally afterwards.",
+      et: "Külaline teeb portree, käivitab või valib visuaalse suuna ning saab bränditud tulemuse kätte sekunditega. Sõltuvalt lahendusest saab selle printida kohapeal, jagada QR-iga või saata hiljem digitaalselt.",
     },
   },
   {
@@ -278,8 +295,8 @@ export const faqSeeds: FaqSeed[] = [
       et: "Kas kogemus saab sobituda meie brändi, kampaania või sündmuskohaga?",
     },
     answer: {
-      en: "Yes. The structure already assumes branded frames, overlays, questionnaires, themed prompts, and campaign-specific outputs.",
-      et: "Jah. Struktuur eeldab juba bränditud raame, kihte, küsimustikke, teemastatud prompte ja kampaaniapõhiseid väljundeid.",
+      en: "Yes. We can tailor the prompts, visual worlds, overlays, copy, questionnaire logic, and delivery flow to match a specific launch, campaign, or venue.",
+      et: "Jah. Saame kohandada promptid, visuaalmaailmad, kihid, sõnumid, küsimustikuloogika ja väljundi voolu konkreetse lansseerimise, kampaania või toimumiskoha järgi.",
     },
   },
   {
@@ -288,8 +305,8 @@ export const faqSeeds: FaqSeed[] = [
       et: "Kas külalised saavad pildid nii digitaalselt kui ka paberil?",
     },
     answer: {
-      en: "This placeholder answer reserves space for QR delivery, email follow-up, gallery links, and optional on-site printouts.",
-      et: "See placeholder-vastus jätab ruumi QR-jagamisele, järelmeilidele, galeriilinkidele ja soovi korral kohapealsele printimisele.",
+      en: "Yes. Images can be shared by QR, email, or gallery link, and the same setup can include instant prints when the event calls for them.",
+      et: "Jah. Pilte saab jagada QR-i, e-posti või galeriilingi kaudu ning sama setup saab vajadusel sisaldada ka koheseid printe.",
     },
   },
   {
@@ -298,8 +315,8 @@ export const faqSeeds: FaqSeed[] = [
       et: "Kui palju ruumi, aega ja meeskonda setup vajab?",
     },
     answer: {
-      en: "Use this block later for setup times, footprint requirements, power, internet, staffing expectations, and guest-throughput ranges.",
-      et: "Selles plokis saab hiljem kirjeldada setup'i ajakulu, vajalikku pinda, elektrit, internetti, meeskonna vajadust ja külaliste läbilaske vahemikke.",
+      en: "That depends on the format, but we map the footprint, setup time, power, internet, and staffing needs before production so the flow works on the day.",
+      et: "See sõltub formaadist, kuid kaardistame enne tootmist ruumivajaduse, ülespaneku aja, elektri, interneti ja meeskonna vajaduse, et kõik toimiks ürituse päeval sujuvalt.",
     },
   },
   {
@@ -308,8 +325,8 @@ export const faqSeeds: FaqSeed[] = [
       et: "Kas saate teha kohandatud küsimustiku või aktivatsiooni loogika?",
     },
     answer: {
-      en: "Absolutely. The current structure already makes room for quiz-led concepts, character matching, study-advisor flows, and lead-generation mechanics.",
-      et: "Jah. Praegune struktuur teeb ruumi küsimustikupõhistele kontseptsioonidele, karakteri sobitamisele, õppenõustaja loogikale ja lead-generation mehaanikatele.",
+      en: "Absolutely. We build custom flows for things like style choices, branched questions, lead capture, and campaign-specific recommendations.",
+      et: "Jah. Loome kohandatud vooge stiilivalikute, hargnevate küsimuste, kontaktikorje ja kampaaniapõhiste soovituste jaoks.",
     },
   },
   {
@@ -318,8 +335,8 @@ export const faqSeeds: FaqSeed[] = [
       et: "Mis juhtub pärast üritust?",
     },
     answer: {
-      en: "This answer area can later cover asset export, reporting, highlight galleries, retargeting use, and case-study packaging.",
-      et: "See vastuseala saab hiljem katta failide üleandmise, raporti, highlight-galeriid, retargeting'u kasutuse ja case-study pakendamise.",
+      en: "After the event, we can hand over exports, highlight galleries, follow-up assets, and reporting so the activation keeps working beyond the venue.",
+      et: "Pärast üritust saame üle anda ekspordid, highlight-galeriid, järeltegevuste materjalid ja raporti, et aktivatsioon töötaks edasi ka väljaspool venue'd.",
     },
   },
 ];
@@ -341,7 +358,7 @@ export const planningPrompts: PlanningPrompt[] = [
       et: "Aktivatsiooni eesmärk",
     },
     body: {
-      en: "Lead capture, social sharing, premium hospitality, or branded wow-factor all lead to slightly different flows.",
+      en: "Tell us whether the priority is reach, sharing, lead capture, premium hospitality, or something else entirely.",
       et: "Lead capture, sotsiaalmeedia jagamine, premium-külaliskogemus või puhas wow-efekt viivad kõik veidi erineva lahenduseni.",
     },
   },
@@ -357,11 +374,11 @@ export const planningPrompts: PlanningPrompt[] = [
   },
   {
     label: {
-      en: "Output expectations",
+      en: "Outputs and follow-up",
       et: "Väljundi ootused",
     },
     body: {
-      en: "Tell us whether you need prints, QR delivery, email follow-up, a web widget, or a full hybrid experience.",
+      en: "Tell us whether you need prints, QR delivery, follow-up email, a web layer, or a broader campaign package.",
       et: "Kirjelda, kas vajad printe, QR-jagamist, järelmeile, veebiwidget'it või täis hübriidkogemust.",
     },
   },
@@ -380,50 +397,50 @@ export const projects: PlaceholderProject[] = [
     city: "Tallinn",
     countryCode: "EE",
     service: {
-      en: "Interactive web activation",
+      en: "Web-based campaign activation",
       et: "Interaktiivne veebiaktivatsioon",
     },
     summary: {
-      en: "A source-backed flagship case study about turning passive viewers into active participants through character-based AI portraits.",
-      et: "Allikapõhine lipulaev-case, kus passiivsed vaatajad muudeti karakteripõhiste AI-portreede abil aktiivseteks osalejateks.",
+      en: "An interactive portrait campaign that placed viewers inside the world of the series and turned launch interest into sharing.",
+      et: "Kampaaniaaktivatsioon, mis lasi vaatajatel astuda sarja maailma ja jagada tulemust omaenda karakteriportreena.",
     },
     brief: {
-      en: "Promote the new TV series, create social buzz, and drive viewership by letting people see themselves inside the Von Fock world.",
+      en: "Launch season two with something more participatory than a trailer or a static key visual.",
       et: "Tutvustada uut telesarja, tekitada sotsiaalset kõlapinda ja kasvatada vaatajanumbreid, lastes inimestel end Von Focki maailmas näha.",
     },
     challenge: {
-      en: "Traditional campaign assets would not create the same personal connection as a self-insert, instantly shareable portrait mechanic.",
+      en: "The campaign needed reach, speed, and a reason for people to share their result immediately.",
       et: "Tavalised kampaaniamaterjalid ei oleks loonud sama isiklikku sidet kui end loosse asetav ja kohe jagatav portreemehaanika.",
     },
     solution: {
-      en: "PortrAI embedded a one-week virtual booth into the client's article and website. Guests uploaded a selfie, chose one of four character directions, and generated a branded output worth sharing.",
+      en: "PortrAI embedded a week-long portrait experience into the publisher's site. Visitors uploaded a selfie, chose a character route, and received a shareable image styled for the series world.",
       et: "PortrAI paigaldas nädalaks virtuaalse fotoboksi kliendi artiklisse ja veebilehele. Külaline laadis üles selfie, valis neljast karakterisuunast ühe ja genereeris jagamist vääriva väljundi.",
     },
     deliverables: [
       {
-        en: "Custom character logic with four visual routes",
+        en: "Character routes and prompt design for the series world",
         et: "Kohandatud karakteriloogika nelja visuaalse suunaga",
       },
       {
-        en: "Embedded web widget on the client's own platform",
+        en: "Embedded web experience on the publisher's own platform",
         et: "Kliendi enda platvormile paigaldatud veebiwidget",
       },
       {
-        en: "One-click share flow for fast viral spread",
+        en: "Simple share flow built for fast social spread",
         et: "Ühe klõpsu jagamisflow kiire viirusliku leviku jaoks",
       },
     ],
     outcomes: [
       {
-        en: "The product itself became the campaign.",
+        en: "The activation itself became the campaign asset.",
         et: "Toode ise muutus kampaaniaks.",
       },
       {
-        en: "Users became part of the story instead of only seeing the trailer.",
+        en: "Fans could place themselves inside the story instead of only watching from the outside.",
         et: "Kasutajad said loo osaks, mitte ei näinud ainult treilerit.",
       },
       {
-        en: "The interaction format created organic social reach instead of forced ad repetition.",
+        en: "The format created organic sharing around the launch instead of relying only on repeated ad exposure.",
         et: "Interaktsioonivorm lõi orgaanilist sotsiaalset levikut, mitte lihtsalt korduvat reklaaminäitamist.",
       },
     ],
@@ -463,8 +480,8 @@ export const projects: PlaceholderProject[] = [
       },
     },
     galleryLabel: {
-      en: "Seeded image slots waiting for final assets",
-      et: "Pildislotid ootavad lõplikke faile",
+      en: "Series-inspired portraits and launch visuals",
+      et: "Karakterisuunad ja lansseerimisvisuaalid",
     },
   },
   {
@@ -479,46 +496,46 @@ export const projects: PlaceholderProject[] = [
     city: "Tallinn",
     countryCode: "EE",
     service: {
-      en: "Hybrid booth + web booster",
+      en: "On-site booth + online participation",
       et: "Hübriidlahendus: boks + veebibooster",
     },
     summary: {
-      en: "A large cultural-event format that blends on-site printing with a nationwide digital participation layer.",
+      en: "A Song Festival activation that combined live photo booths, instant prints, and a web version so the experience could travel beyond the venue.",
       et: "Suur kultuurisündmuse formaat, mis ühendab kohapealse printimise ja üle-eestilise digitaalse osaluskihi.",
     },
     brief: {
-      en: "Help people try on the folk-dance outfits of their own region and turn the largest cultural event in Estonia into a shareable branded-photo moment.",
+      en: "Create a portrait experience around regional folk costumes and make it accessible both on-site and online.",
       et: "Anda inimestele võimalus proovida oma piirkonna rahvarõivaid ja muuta Eesti suurim kultuurisündmus jagatavaks bränditud fotokogemuseks.",
     },
     challenge: {
-      en: "The activation needed to serve both on-site queues and everyone who could not or did not want to wait in line.",
+      en: "The activation had to work for large queues at the festival while still reaching people following the event elsewhere.",
       et: "Aktivatsioon pidi teenindama nii kohapealseid järjekordi kui ka kõiki, kes ei soovinud või ei saanud järjekorras oodata.",
     },
     solution: {
-      en: "Two physical booths with four printers were paired with a week-long virtual booth on the client's website, expanding the event beyond the venue itself.",
+      en: "PortrAI ran two physical booths with multiple printers and paired them with a week-long online version on Postimees, extending the experience far beyond the festival grounds.",
       et: "Kaks füüsilist boksi nelja printeriga ühendati nädal aega kestva virtuaalse boksiga kliendi veebis, mis viis kogemuse sündmuspaigast kaugemale.",
     },
     deliverables: [
       {
-        en: "Two on-site booths with print outputs",
+        en: "Two on-site booths with live print output",
         et: "Kaks kohapealset boksi koos printidega",
       },
       {
-        en: "Virtual booth embedded on the client website",
+        en: "Online portrait experience embedded on Postimees",
         et: "Kliendi veebilehele paigaldatud virtuaalne boks",
       },
       {
-        en: "Region-based outfit logic and instant digital sharing",
+        en: "Regional costume logic with instant digital sharing",
         et: "Piirkonnapõhine rõivaloogika ja kohene digitaalne jagamine",
       },
     ],
     outcomes: [
       {
-        en: "The digital layer kept the campaign useful even beyond the physical queue.",
+        en: "The queue at the venue was only part of the total reach.",
         et: "Digitaalne kiht hoidis kampaania väärtuslikuna ka väljaspool füüsilist järjekorda.",
       },
       {
-        en: "The format created a stronger lead-generation engine than a booth alone could manage.",
+        en: "The online layer kept the activation active throughout the week.",
         et: "Formaat lõi tugevama lead-generation mootori kui ainult kohapealne boks suudaks.",
       },
       {
@@ -562,8 +579,8 @@ export const projects: PlaceholderProject[] = [
       },
     },
     galleryLabel: {
-      en: "Hybrid booth gallery structure ready for event assets",
-      et: "Hübriidboksigalerii struktuur ootab sündmuse faile",
+      en: "Festival portraits, prints, and online participation",
+      et: "Hübriidne printimis- ja jagamisformaat",
     },
   },
   {
@@ -582,46 +599,46 @@ export const projects: PlaceholderProject[] = [
       et: "Kohapealne AI-fotoboksi kogemus",
     },
     summary: {
-      en: "A high-footfall event activation where the booth worked as both entertainment and a conversation magnet for the surrounding stand.",
+      en: "A high-traffic demo-area activation designed to stop people, create a queue, and give the event floor a focal point.",
       et: "Suure läbilaskega sündmuse aktivatsioon, kus boks töötas korraga nii meelelahutuse kui ka ümbritseva ala tähelepanumagnetina.",
     },
     brief: {
-      en: "Design an activation strong enough to hold attention all day on a busy demo floor and still feel premium, warm, and relevant to the conference context.",
+      en: "Build a booth that could pull attention all day without feeling gimmicky or off-brand.",
       et: "Luua aktivatsioon, mis hoiaks tähelepanu terve päeva tiheda demoala keskel ning mõjuks samal ajal premium'i, sooja ja konverentsi teemaga sobivana.",
     },
     challenge: {
-      en: "The booth had to stand out in a crowded event environment without becoming visually noisy or disconnected from the forum brand.",
+      en: "The setup had to stand out in a busy conference environment and still feel polished enough for a premium event.",
       et: "Boks pidi eristuma tihedas sündmusekeskkonnas, muutumata visuaalselt lärmakaks või foorumi brändist eraldiseisvaks.",
     },
     solution: {
-      en: "PortrAI structured two visual directions for the activation and used the booth as a crowd-building anchor, with a guest flow built for long operating hours.",
+      en: "PortrAI shaped the visual direction for the forum, tuned the guest flow for long operating hours, and used the booth as an anchor for the surrounding area.",
       et: "PortrAI struktureeris aktivatsioonile kaks visuaalset suunda ja kasutas boksi rahva kogujana, mille külalisteekond oli ehitatud pikkadeks tööpäevadeks.",
     },
     deliverables: [
       {
-        en: "AI booth concept adapted to conference positioning",
+        en: "Event-specific AI booth direction for the demo area",
         et: "Konverentsi positsioneerimisega sobitatud AI-boksi kontseptsioon",
       },
       {
-        en: "Two creative booth modes for one event context",
+        en: "Guest flow planned for continuous use across the day",
         et: "Kaks loovsuunda ühe sündmuse kontekstis",
       },
       {
-        en: "Prepared production and guest-flow planning",
+        en: "Branded portrait outputs worth sharing from the floor",
         et: "Läbimõeldud tootmine ja külalisteekonna planeerimine",
       },
     ],
     outcomes: [
       {
-        en: "The installation attracted guests continuously from morning to evening.",
+        en: "The booth kept attracting guests from morning to evening.",
         et: "Installatsioon tõi külalisi ligi hommikust õhtuni.",
       },
       {
-        en: "The booth became a focal point instead of just an add-on activity.",
+        en: "It became a focal point instead of just another side activity.",
         et: "Boksist sai keskpunkt, mitte lihtsalt lisategevus.",
       },
       {
-        en: "The collaboration quality itself is strong enough to support a homepage testimonial.",
+        en: "The activation gave MELT a memorable demo-area presence people talked about afterwards.",
         et: "Koostöö kvaliteet oli piisavalt tugev, et sellest sündis avalehele sobiv klienditsitaat.",
       },
     ],
@@ -639,10 +656,10 @@ export const projects: PlaceholderProject[] = [
         label: { en: "Homepage testimonial source", et: "Avalehe tsitaadi allikas" },
       },
     ],
-    quote: testimonialSeeds[0],
+    quote: testimonialSeeds[1],
     galleryLabel: {
-      en: "Demo-floor gallery scaffold waiting for MELT assets",
-      et: "Demoala galerii ootab MELTi faile",
+      en: "Demo-floor portraits and live event energy",
+      et: "Konverentsiala portreed ja tähelepanu tõmbav kohalolu",
     },
   },
   {
@@ -657,23 +674,23 @@ export const projects: PlaceholderProject[] = [
     city: "Tallinn",
     countryCode: "EE",
     service: {
-      en: "Custom questionnaire-led activation",
+      en: "Questionnaire-based brand activation",
       et: "Kohandatud küsimustikupõhine aktivatsioon",
     },
     summary: {
-      en: "A concept seed for a brand-specific AI experience where a short questionnaire changes the resulting visual world.",
-      et: "Kontseptsiooniseeme brändipõhisele AI-kogemusele, kus lühike küsimustik muudab lõplikku visuaalset maailma.",
+      en: "A Telia experience where a short sustainability quiz changed the visual world each guest stepped into.",
+      et: "Brändipõhine AI-kogemus, kus lühike kestlikkuse küsimustik muudab lõplikku visuaalset maailma.",
     },
     brief: {
-      en: "Create an activation aligned with sustainability and future-thinking rather than a generic fun-photo mechanic.",
+      en: "Translate sustainability and future-thinking into an activation that felt branded, intelligent, and easy to try.",
       et: "Luua aktivatsioon, mis toetab kestlikkuse ja tulevikumõtlemise sõnumit, mitte lihtsalt üldist lõbusat fotolahendust.",
     },
     challenge: {
-      en: "The concept needed to feel intelligent and thematic without slowing the guest journey too much.",
+      en: "The interaction had to feel meaningful without slowing the queue or turning the experience into a lecture.",
       et: "Kontseptsioon pidi tunduma sisukas ja teemaga seotud, aeglustamata samal ajal külalisteekonda liigselt.",
     },
     solution: {
-      en: "PortrAI framed the experience as a five-question sustainability score that routes guests into dystopian, utopian, or in-between future scenes.",
+      en: "Guests answered five short questions and were routed into different future scenarios, all art-directed inside Telia's visual world.",
       et: "PortrAI raamistas kogemuse viieküsimuselise keskkonnateadlikkuse skoorina, mis suunab külalised düstoopilistesse, utoopilistesse või vahepealsetesse tulevikustseenidesse.",
     },
     deliverables: [
@@ -692,22 +709,22 @@ export const projects: PlaceholderProject[] = [
     ],
     outcomes: [
       {
-        en: "A stronger brand narrative than a single static booth theme would provide.",
+        en: "It gave Telia a clearer story than a single static booth theme would.",
         et: "Tugevam brändinarratiiv kui üks staatiline boksiteema suudaks anda.",
       },
       {
-        en: "A clear place to discuss sustainability without falling into lecture mode.",
+        en: "It opened conversation around sustainability without becoming heavy-handed.",
         et: "Selge koht kestlikkuse teemal rääkimiseks ilma loengulikkuseta.",
       },
       {
-        en: "A premium custom-solution case study now backed by sourced archive visuals.",
-        et: "Premium-erilahenduse case-study, mida toetavad nüüd allikast toodud arhiivivisuaalid.",
+        en: "It created a reusable premium format for showrooms and employer-branding activations.",
+        et: "Paindlik premium-formaat tulevaste showroom'i ja tööandjabrändi aktivatsioonide jaoks.",
       },
     ],
     metrics: [],
     galleryLabel: {
-      en: "WordPress-sourced Telia visuals now seeded into the proof structure",
-      et: "WordPressist toodud Telia visuaalid on nüüd proofi struktuuri sisse toodud",
+      en: "Telia portraits shaped by the sustainability quiz",
+      et: "Küsimustikupõhised visuaalid Telia lillas maailmas",
     },
   },
   {
@@ -722,57 +739,57 @@ export const projects: PlaceholderProject[] = [
     city: "Tartu",
     countryCode: "EE",
     service: {
-      en: "Prompt-based branded concept",
+      en: "Branded dream-prompt activation",
       et: "Promptipõhine bränditud kontseptsioon",
     },
     summary: {
-      en: "A concept seed for a booth where written dreams become personalized AI visuals in Swedbank's own brand universe.",
-      et: "Kontseptsiooniseeme boksile, kus kirjutatud unistused muutuvad personaliseeritud AI-visuaalideks Swedbanki enda brändimaailmas.",
+      en: "A Startup Day concept where guests typed their dream and received a branded AI portrait shaped by that prompt.",
+      et: "Boksikontseptsioon, kus kirjutatud unistused muutuvad personaliseeritud AI-visuaalideks Swedbanki enda brändimaailmas.",
     },
     brief: {
-      en: "Tie the booth to aspiration and future-thinking instead of a generic portrait outcome.",
+      en: "Make the booth feel personal, aspirational, and unmistakably Swedbank rather than simply decorative.",
       et: "Siduda boks unistuste ja tulevikumõtlemisega, mitte lihtsalt üldise portreetulemusega.",
     },
     challenge: {
-      en: "The experience needed creative freedom without drifting into unsafe or off-brand prompt outputs.",
+      en: "The concept needed open-ended guest input without drifting into unsafe or off-brand results.",
       et: "Kogemus vajas loomingulist vabadust, ilma et promptid triiviksid sobimatu või brändivälise tulemuse suunas.",
     },
     solution: {
-      en: "Guests typed what they dream about, the system generated a unique image in Swedbank colours, and a moderation layer filtered out inappropriate prompt inputs.",
+      en: "Guests wrote what they dream about, the system generated a matching image in Swedbank's visual language, and moderation kept the output brand-safe.",
       et: "Külalised kirjutasid, millest nad unistavad, süsteem lõi Swedbanki värvides unikaalse pildi ning moderatsioonikiht filtreeris sobimatud promptid välja.",
     },
     deliverables: [
       {
-        en: "Dream-input interaction model",
+        en: "Dream-input interaction flow",
         et: "Unistuse sisestamise interaktsioonimudel",
       },
       {
-        en: "Brand-safe prompt filtering",
+        en: "Brand-safe prompt moderation",
         et: "Bränditurvaline promptide filtreerimine",
       },
       {
-        en: "Swedbank-colour visual output system",
+        en: "Swedbank visual system for the final outputs",
         et: "Swedbanki värvidele toetuv visuaalväljundi süsteem",
       },
     ],
     outcomes: [
       {
-        en: "A more personal emotional hook than a style-picker alone.",
+        en: "It gave the booth a more personal hook than a simple style picker.",
         et: "Isiklikum emotsionaalne konks kui lihtsalt stiilivalik.",
       },
       {
-        en: "A clear reason for guests to write, reflect, and share.",
+        en: "It gave guests a clear reason to stop, reflect, and share.",
         et: "Selge põhjus, miks külaline kirjutab, mõtleb ja jagab.",
       },
       {
-        en: "A useful premium-use-case template for future finance or employer-branding projects.",
+        en: "It created a strong concept for future finance and employer-branding activations.",
         et: "Kasulik premium-use-case'i mall tulevastele finants- või tööandjabrändi projektidele.",
       },
     ],
     metrics: [],
     galleryLabel: {
-      en: "WordPress-sourced Swedbank portraits and prompt outcomes are now in place",
-      et: "WordPressist toodud Swedbanki portreed ja promptitulemused on nüüd paigas",
+      en: "Dream-led portraits in Swedbank's visual world",
+      et: "Promptipõhised portreed bränditud tulevikutöö stiilis",
     },
   },
   {
@@ -787,23 +804,23 @@ export const projects: PlaceholderProject[] = [
     city: "Tallinn",
     countryCode: "EE",
     service: {
-      en: "Interactive questionnaire + follow-up email",
+      en: "Quiz and follow-up flow",
       et: "Interaktiivne küsimustik + järelmeil",
     },
     summary: {
-      en: "A lead-generation concept where AI helps match visitors to the right study programme and carries the recommendation into follow-up email.",
+      en: "A study-advisor activation that used AI to match visitors with the right programme and continue the conversation after the event.",
       et: "Lead-generation kontseptsioon, kus AI aitab külastaja sobiva õppekavani ja viib soovituse ka järelmeili sisse.",
     },
     brief: {
-      en: "Introduce six study programmes in a way that feels personal, useful, and instantly memorable on a busy event floor.",
+      en: "Present six study programmes in a way that felt personal, useful, and memorable on a busy event floor.",
       et: "Tutvustada kuut õppekava viisil, mis mõjuks tihedal üritusalal isikliku, kasuliku ja koheselt meeldejäävana.",
     },
     challenge: {
-      en: "The booth needed to do more than entertain. It had to actively move people toward the correct next step.",
+      en: "The booth needed to do more than entertain. It had to guide people toward a relevant next step.",
       et: "Boks pidi tegema enamat kui lihtsalt lõbustama. See pidi aktiivselt aitama inimest õige järgmise sammuni.",
     },
     solution: {
-      en: "Guests answered six questions, AI matched them to an EBS study path, and the visual output plus follow-up email both reflected that recommendation.",
+      en: "Visitors answered six questions, AI matched them to an EBS study path, and the recommendation carried through both the image output and the follow-up email.",
       et: "Külalised vastasid kuuele küsimusele, AI sobitas nad EBSi õppesuunaga ning nii visuaalne väljund kui ka järelmeil peegeldasid seda soovitust.",
     },
     deliverables: [
@@ -822,31 +839,31 @@ export const projects: PlaceholderProject[] = [
     ],
     outcomes: [
       {
-        en: "A better bridge from event curiosity to meaningful lead nurture.",
+        en: "It created a stronger bridge from event curiosity to real enquiry.",
         et: "Parem sild üritusepõhisest huvist sisuka lead nurture'ini.",
       },
       {
-        en: "More educational relevance than a simple style-based booth interaction.",
+        en: "It felt more useful and relevant than a simple style-based photo interaction.",
         et: "Rohkem sisulist hariduslikku relevantsust kui lihtsal stiilipõhisel boksikogemusel.",
       },
       {
-        en: "A useful structure template for future quiz-driven brand activations.",
+        en: "It created a repeatable structure for education and quiz-led activations.",
         et: "Kasulik struktuurimall tulevastele küsimustikupõhistele brändiaktivatsioonidele.",
       },
     ],
     metrics: [],
-    quote: testimonialSeeds[2],
+    quote: testimonialSeeds[3],
     galleryLabel: {
-      en: "Qualification-flow gallery waiting for final event assets",
-      et: "Kvalifitseerimisflow galerii ootab lõplikke ürituse faile",
+      en: "Quiz flow and personalised study-match outputs",
+      et: "Küsimustikuvool ja õppesobivuse väljundid",
     },
   },
 ];
 
 export const featuredProjectSlugs = [
   "von-fock",
-  "laulupidu-postimees",
-  "melt",
+  "telia-rohekusimustik",
+  "swedbank-unistused",
 ];
 
 export const projectsBySlug = Object.fromEntries(

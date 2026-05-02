@@ -2,9 +2,11 @@ import type { LocalizedText } from "@/lib/site-content";
 
 export type ProjectCoverMedia = {
   alt: LocalizedText;
+  kind?: "abstract" | "image";
   mode?: "cover" | "contain";
   objectPosition?: string;
-  src: string;
+  src?: string;
+  theme?: "festival";
 };
 
 export type ProjectGalleryMediaItem = {
@@ -24,8 +26,8 @@ const PROJECT_COVER_MEDIA: Record<string, ProjectCoverMedia> = {
       en: "Portrait from the Song Festival hybrid activation",
       et: "Portree Laulupeo hubriidaktivatsioonilt",
     },
-    objectPosition: "50% 32%",
-    src: "/images/work/laulupidu-postimees-cover.jpg",
+    kind: "abstract",
+    theme: "festival",
   },
   melt: {
     alt: {
@@ -53,11 +55,11 @@ const PROJECT_COVER_MEDIA: Record<string, ProjectCoverMedia> = {
   },
   "telia-rohekusimustik": {
     alt: {
-      en: "Telia sustainability activation visual system",
-      et: "Telia kestlikkuse aktivatsiooni visuaalsusteem",
+      en: "Telia team portrait framed by a purple portal",
+      et: "Telia tiimiportree lilla portaali raamistikus",
     },
-    mode: "contain",
-    src: "/images/work/telia-rohekusimustik-cover.jpg",
+    objectPosition: "50% 18%",
+    src: "/images/work/telia-rohekusimustik/gallery-01.jpg",
   },
   "von-fock": {
     alt: {
@@ -80,8 +82,8 @@ const FALLBACK_COVER_MEDIA: ProjectCoverMedia = {
 const PROJECT_GALLERY_MEDIA: Record<string, ProjectGalleryMedia> = {
   "swedbank-unistused": {
     description: {
-      en: "These sourced Swedbank outcomes make the prompt-led concept tangible: branded group portraits, close-up interactions, and premium future-work scenes from the original archive.",
-      et: "Need Swedbanki arhiivist toodud visuaalid teevad promptipohise kontseptsiooni kaegakatsutavaks: branditud grupiportreed, lahiinteraktsioonid ja premium-taseme tulevikustseenid.",
+      en: "A mix of branded group portraits, close-up interactions, and future-work scenes showing how the dream-input concept translates into visual output.",
+      et: "Segu bränditud grupiportreedest, lähivaadetest ja tulevikustseenidest, mis näitab, kuidas unistuse sisend muutub visuaalseks väljundiks.",
     },
     items: [
       {
@@ -117,8 +119,8 @@ const PROJECT_GALLERY_MEDIA: Record<string, ProjectGalleryMedia> = {
   },
   "telia-rohekusimustik": {
     description: {
-      en: "These sourced Telia visuals show the range behind the questionnaire-led concept: live-action portraits, branded team shots, and more speculative future branches from the original archive.",
-      et: "Need Telia arhiivist toodud visuaalid naitavad kusimustikupohise kontseptsiooni ulatust: live-action portreed, branditud grupikaadrid ja spekulatiivsemad tulevikuharud.",
+      en: "These visuals show how the questionnaire-led setup can move from clean branded portraits to more speculative future branches without losing the Telia palette.",
+      et: "Need visuaalid näitavad, kuidas küsimustikupõhine lahendus liigub puhastest brändiportreedest spekulatiivsemate tulevikusuundadeni, ilma Telia tonaalsust kaotamata.",
     },
     items: [
       {

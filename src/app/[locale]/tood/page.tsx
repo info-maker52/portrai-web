@@ -7,7 +7,7 @@ import { type SiteLocale } from "@/lib/site-content";
 const HERO_COPY: Record<SiteLocale, { intro: string }> = {
   en: {
     intro:
-      "The work index is now seeded with real project types, source-backed summaries, and filter logic so the portfolio can be judged as a system before final imagery is dropped in.",
+      "A selection of launches, cultural events, conferences, and branded activations built around AI portraits people actually want to keep.",
   },
   et: {
     intro:

@@ -1,0 +1,408 @@
+import { setRequestLocale } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
+import { PageShell } from "@/components/layout/PageShell";
+import { ProjectCoverImage } from "@/components/work/ProjectCoverImage";
+import { CalendlyFrame } from "@/components/booking/CalendlyFrame";
+import { MagneticButton } from "@/components/motion/MagneticButton";
+import {
+  getProject,
+  text,
+  type SiteLocale,
+} from "@/lib/site-content";
+
+/**
+ * Marketing-events path: /turundus (ET) and /marketing (EN alias).
+ *
+ * Position: PortrAI as a creative partner for brand activations, not a
+ * photo-booth rental. Lead-gen + branded UGC + GDPR + branded touch-points.
+ *
+ * NOTE: Estonian copy is DRAFT and needs Reijo's native pass.
+ * EN copy is the canonical reference.
+ */
+
+const FEATURED_SLUGS = [
+  "von-fock",
+  "laulupidu-postimees",
+  "telia-rohekusimustik",
+  "swedbank-unistused",
+  "oixio-ebs-ai-oppenoustaja",
+];
+
+const COPY = {
+  en: {
+    eyebrow: "(02) For brands & marketing teams",
+    headline: "Brand activation that's actually measurable.",
+    subhead:
+      "Leads, shareable UGC, and campaign memories — all GDPR-clean, in your design language, on your team's timeline.",
+    primaryCta: "Book a 15-min strategy call",
+    secondaryCta: "See the Postimees case",
+
+    diffEyebrow: "(03) How we're different",
+    diffTitle: "We come from a marketing background.",
+    diffLead:
+      "We don't rent you a machine. We solve the campaign problem behind the booth — and that shows up in every screen, email and dataset.",
+    differentiators: [
+      {
+        title: "Brand on every touch-point",
+        body: "The interface, the on-screen prompt, the QR landing, the follow-up email — all in your colours, your typeface, your voice.",
+      },
+      {
+        title: "Lead capture, GDPR-clean",
+        body: "Opt-in flow per guest, exported as a clean lead list with consent timestamps. Plug into your CRM the next morning.",
+      },
+      {
+        title: "Fast on the floor",
+        body: "Throughput tuned for real event traffic. A guest steps in, a portrait is generated, and they leave with something to share — in seconds.",
+      },
+      {
+        title: "Process you can hand to your team",
+        body: "We've ran activations for ERR, Postimees, Telia, Swedbank and OIXIO. We bring the playbook so your team doesn't have to invent it.",
+      },
+    ],
+
+    proofEyebrow: "(04) Real campaign results",
+    proofTitle: "These numbers came from real activations, not pitches.",
+    metrics: [
+      { value: "681K", label: "Images generated · Von Fock (ERR)" },
+      { value: "103K", label: "Images + 23K opt-ins · Laulupidu (Postimees)" },
+      { value: "+10%", label: "Episode-2 viewership lift · ERR Von Fock" },
+      { value: "215K", label: "Article views · Von Fock launch piece" },
+    ],
+
+    workEyebrow: "(05) Selected work",
+    workTitle: "A few campaigns we've shipped.",
+
+    processEyebrow: "(06) How we work",
+    processSteps: [
+      {
+        n: "01",
+        title: "Brief",
+        body: "Audience, brand, KPIs, what guests should want to share afterwards.",
+      },
+      {
+        n: "02",
+        title: "Branded concept",
+        body: "Visual direction, prompt logic, GDPR flow, branded touch-points.",
+      },
+      {
+        n: "03",
+        title: "Live activation",
+        body: "On-site, online, or hybrid. Throughput tested, energy held.",
+      },
+      {
+        n: "04",
+        title: "Data + campaign export",
+        body: "Lead list, gallery, highlight reel, case-study assets.",
+      },
+    ],
+
+    ctaEyebrow: "(07) Talk to us",
+    ctaTitle: "Tell us about the campaign.",
+    ctaBody: "We'll send a concept direction and a budget range within 48 hours.",
+    ctaCalendly: "Book a 15-min discovery call",
+  },
+  et: {
+    // [ET DRAFT — needs your pass]
+    eyebrow: "(02) Brändidele ja turundusmeeskondadele",
+    headline: "Brändi-aktivatsioon, mida saab tegelikult mõõta.",
+    subhead:
+      "Leadid, jagatav UGC ja kampaania-mälestused — kõik GDPR-iga, sinu disainikeeles, sinu meeskonna ajagraafikus.",
+    primaryCta: "Broneeri 15-min strateegiakõne",
+    secondaryCta: "Vaata Postimehe juhtumit",
+
+    diffEyebrow: "(03) Mille poolest erineme",
+    diffTitle: "Tuleme turundustaustast.",
+    diffLead:
+      "Me ei rendi sulle masinat. Me lahendame kampaania-probleemi, mis on boksi taga — ja see paistab välja igal ekraanil, igas e-kirjas ja igas andmestikus.",
+    differentiators: [
+      {
+        title: "Bränd igal puutepunktil",
+        body: "Liides, ekraani-prompt, QR-leht, järelpost — kõik sinu värvides, sinu kirjatüübis, sinu hääles.",
+      },
+      {
+        title: "Leadide kogumine, GDPR-iga",
+        body: "Vabatahtlik nõusolek iga külalise jaoks, eksporditav puhas leadide nimekiri koos ajatempliga. Hommikul CRM-i.",
+      },
+      {
+        title: "Kiire kohapeal",
+        body: "Läbilask on häälestatud päris ürituseliikluse jaoks. Külaline tuleb, pilt valmib, jagatakse — sekunditega.",
+      },
+      {
+        title: "Protsess, mille saad oma meeskonnale üle anda",
+        body: "Oleme teinud aktivatsioone ERR-ile, Postimehele, Teliale, Swedbankile ja OIXIO-le. Toome kaasa playbook'i, mida sinu meeskonnal pole vaja leiutada.",
+      },
+    ],
+
+    proofEyebrow: "(04) Päris kampaania-tulemused",
+    proofTitle: "Need numbrid tulid päris aktivatsioonidest, mitte slaididelt.",
+    metrics: [
+      { value: "681K", label: "Pilti genereeritud · Von Fock (ERR)" },
+      { value: "103K", label: "Pilti + 23K registreerimist · Laulupidu (Postimees)" },
+      { value: "+10%", label: "2. seeria vaatajakasv · ERR Von Fock" },
+      { value: "215K", label: "Artikli vaatamist · Von Focki lansseerimine" },
+    ],
+
+    workEyebrow: "(05) Valitud tööd",
+    workTitle: "Mõned kampaaniad, mille oleme teinud.",
+
+    processEyebrow: "(06) Kuidas me töötame",
+    processSteps: [
+      {
+        n: "01",
+        title: "Brief",
+        body: "Sihtgrupp, bränd, KPI-d, mida külalised peaksid pärast jagada tahtma.",
+      },
+      {
+        n: "02",
+        title: "Bränditud kontseptsioon",
+        body: "Visuaalne suund, promptiloogika, GDPR-voog, bränditud puutepunktid.",
+      },
+      {
+        n: "03",
+        title: "Live-aktivatsioon",
+        body: "Kohapeal, veebis või hübriidina. Läbilask testitud, energia üleval.",
+      },
+      {
+        n: "04",
+        title: "Andmed + kampaania-eksport",
+        body: "Leadide nimekiri, galerii, highlight-video, case-study materjalid.",
+      },
+    ],
+
+    ctaEyebrow: "(07) Räägi meiega",
+    ctaTitle: "Räägi meile kampaaniast.",
+    ctaBody: "Saadame kontseptsiooni-suuna ja eelarvevahemiku 48 tunni jooksul.",
+    ctaCalendly: "Broneeri 15-min tutvumiskõne",
+  },
+} as const;
+
+export default async function MarketingPage({
+  params,
+}: {
+  params: Promise<{ locale: SiteLocale }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const copy = COPY[locale];
+  const projects = FEATURED_SLUGS.map((slug) => getProject(slug)).filter(
+    (p): p is NonNullable<ReturnType<typeof getProject>> => p !== null,
+  );
+
+  return (
+    <PageShell>
+      {/* Hero */}
+      <section className="px-6 pb-12 pt-20 md:px-12 md:pt-32">
+        <p className="mb-6 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
+          {copy.eyebrow}
+        </p>
+        <h1
+          className="mb-6 max-w-4xl font-medium leading-[1.05] tracking-tight"
+          style={{ fontSize: "var(--text-display-xl)" }}
+        >
+          {copy.headline}
+        </h1>
+        <p
+          className="mb-10 max-w-2xl text-[color:var(--color-text-secondary)]"
+          style={{ fontSize: "var(--text-body-lg)" }}
+        >
+          {copy.subhead}
+        </p>
+        <div className="flex flex-wrap gap-4">
+          <MagneticButton>
+            <Link
+              href="/kontakt"
+              className="inline-block rounded-full bg-[color:var(--color-brand-primary)] px-6 py-3 font-medium text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-medium)]"
+            >
+              {copy.primaryCta} →
+            </Link>
+          </MagneticButton>
+          <Link
+            href={`/tood/${FEATURED_SLUGS[1]}`}
+            className="inline-block rounded-full border border-[color:var(--color-stroke-medium)] bg-transparent px-6 py-3 font-medium text-white transition-colors duration-200 hover:bg-[color:var(--color-surface-raised)]"
+          >
+            {copy.secondaryCta} →
+          </Link>
+        </div>
+      </section>
+
+      {/* Differentiators */}
+      <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+        <div className="mb-12 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
+          <div>
+            <p className="mb-4 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
+              {copy.diffEyebrow}
+            </p>
+            <h2
+              className="font-medium leading-tight tracking-tight"
+              style={{ fontSize: "var(--text-display-md)" }}
+            >
+              {copy.diffTitle}
+            </h2>
+          </div>
+          <p
+            className="self-end max-w-2xl text-[color:var(--color-text-secondary)]"
+            style={{ fontSize: "var(--text-body-lg)" }}
+          >
+            {copy.diffLead}
+          </p>
+        </div>
+        <div className="grid gap-6 md:grid-cols-2">
+          {copy.differentiators.map((d, i) => (
+            <article
+              key={i}
+              className="flex flex-col gap-3 rounded-2xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] p-6"
+            >
+              <p className="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-brand-accent)]">
+                0{i + 1}
+              </p>
+              <h3
+                className="font-medium leading-tight"
+                style={{ fontSize: "var(--text-title)" }}
+              >
+                {d.title}
+              </h3>
+              <p className="text-[color:var(--color-text-secondary)]">{d.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* Real campaign metrics */}
+      <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+        <p className="mb-4 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
+          {copy.proofEyebrow}
+        </p>
+        <h2
+          className="mb-12 max-w-3xl font-medium leading-tight tracking-tight"
+          style={{ fontSize: "var(--text-display-md)" }}
+        >
+          {copy.proofTitle}
+        </h2>
+        <div
+          className="grid gap-8"
+          style={{ gridTemplateColumns: `repeat(auto-fit, minmax(220px, 1fr))` }}
+        >
+          {copy.metrics.map((m, i) => (
+            <div
+              key={i}
+              className="flex flex-col gap-2 border-l border-[color:var(--color-brand-primary)] pl-6"
+            >
+              <p
+                className="font-mono font-medium tabular-nums leading-none"
+                style={{ fontSize: "var(--text-display-md)" }}
+              >
+                {m.value}
+              </p>
+              <p className="text-sm text-[color:var(--color-text-secondary)]">
+                {m.label}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Selected work */}
+      <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+        <div className="mb-10 flex items-end justify-between gap-6">
+          <div>
+            <p className="mb-4 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
+              {copy.workEyebrow}
+            </p>
+            <h2
+              className="font-medium leading-tight tracking-tight"
+              style={{ fontSize: "var(--text-display-md)" }}
+            >
+              {copy.workTitle}
+            </h2>
+          </div>
+          <Link
+            href="/tood"
+            className="hidden font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)] underline-offset-4 transition-colors hover:text-white hover:underline md:inline-block"
+          >
+            {locale === "en" ? "All work" : "Kõik tööd"} →
+          </Link>
+        </div>
+        <div className="grid gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project) => (
+            <Link
+              key={project.slug}
+              href={`/tood/${project.slug}`}
+              className="group flex flex-col gap-3"
+            >
+              <ProjectCoverImage
+                className="aspect-[4/5] rounded-2xl"
+                imageClassName="group-hover:scale-[1.03]"
+                locale={locale}
+                overlayClassName="bg-gradient-to-t from-[rgba(2,9,30,0.78)] via-transparent to-transparent"
+                project={project}
+                sizes="(max-width: 768px) 100vw, 33vw"
+              />
+              <div className="flex items-baseline justify-between">
+                <p className="font-medium">{project.client}</p>
+                <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-tertiary)]">
+                  {project.year}
+                </p>
+              </div>
+              <p className="text-sm text-[color:var(--color-text-secondary)]">
+                {text(locale, project.event)}
+              </p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Process */}
+      <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+        <p className="mb-12 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
+          {copy.processEyebrow}
+        </p>
+        <div className="grid gap-6 md:grid-cols-4">
+          {copy.processSteps.map((s) => (
+            <div key={s.n} className="flex flex-col gap-3">
+              <p className="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-brand-accent)]">
+                {s.n}
+              </p>
+              <h3
+                className="font-medium leading-tight"
+                style={{ fontSize: "var(--text-title)" }}
+              >
+                {s.title}
+              </h3>
+              <p className="text-sm text-[color:var(--color-text-secondary)]">
+                {s.body}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA + Calendly placeholder */}
+      <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-32 md:px-12">
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(360px,0.8fr)]">
+          <div className="flex flex-col gap-6">
+            <p className="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
+              {copy.ctaEyebrow}
+            </p>
+            <h2
+              className="max-w-3xl font-medium leading-tight tracking-tight"
+              style={{ fontSize: "var(--text-display-lg)" }}
+            >
+              {copy.ctaTitle}
+            </h2>
+            <p
+              className="max-w-xl text-[color:var(--color-text-secondary)]"
+              style={{ fontSize: "var(--text-body-lg)" }}
+            >
+              {copy.ctaBody}
+            </p>
+          </div>
+          <CalendlyFrame
+            fallbackCta={copy.ctaCalendly}
+            fallbackHref="/kontakt"
+          />
+        </div>
+      </section>
+    </PageShell>
+  );
+}

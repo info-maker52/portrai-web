@@ -33,8 +33,8 @@ export function WorkIndexClient({ locale }: { locale: SiteLocale }) {
 
   const intro =
     locale === "en"
-      ? "The work index now uses source-backed cover imagery, seeded case-study copy, and category filters so the portfolio can be judged as a real system before the final galleries arrive."
-      : "Toode indeks kasutab nuud allikapohiseid kattepilte, seemendatud case-study copy't ja toimivaid filtreid, et portfooliot saaks hinnata paris susteemina enne loplike galeriide saabumist.";
+      ? "A selection of launches, conferences, trade-fair activations, and hybrid formats built around branded AI portraits."
+      : "Valik lansseerimisi, konverentse, messiaktivatsioone ja hübriidformaate, mis on ehitatud bränditud AI-portreede ümber.";
 
   return (
     <>

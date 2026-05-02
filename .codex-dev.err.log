@@ -375,3 +375,444 @@
   697 | ...lassName="max-w-3xl font-medium leading-tight tracking-tight" {
   digest: '781856234'
 }
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at PartnerWall (src\app\[locale]\page.tsx:390:55)
+  388 | ...
+  389 | ...n className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+> 390 | ...ionTag className="mb-6">{HOME_COPY[locale].sectionTags.partners}</SectionTag>
+      |                                               ^
+  391 | ...className="grid gap-10 md:grid-cols-[320px_1fr]">
+  392 | ...v className="space-y-4">
+  393 | ...h2 {
+  digest: '35300607'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at Process (src\app\[locale]\page.tsx:422:55)
+  420 | ...
+  421 | ...n className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+> 422 | ...ionTag className="mb-6">{HOME_COPY[locale].sectionTags.process}</SectionTag>
+      |                                               ^
+  423 | ...className="mb-12 max-w-3xl space-y-4">
+  424 | ...
+  425 | ...lassName="font-medium leading-tight tracking-tight" {
+  digest: '2506914790'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at FeaturedWork (src\app\[locale]\page.tsx:471:40)
+  469 |     <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:...
+  470 |       <div className="mb-12 max-w-3xl space-y-4">
+> 471 |         <SectionTag>{HOME_COPY[locale].sectionTags.featured}</SectionTag>
+      |                                        ^
+  472 |         <h2
+  473 |           className="font-medium leading-tight tracking-tight"
+  474 |           style={{ fontSize: "var(--text-display-lg)" }} {
+  digest: '2075554652'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at Testimonials (src\app\[locale]\page.tsx:605:55)
+  603 | ...
+  604 | ...n className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+> 605 | ...ionTag className="mb-6">{HOME_COPY[locale].sectionTags.testimonials}</SectionTag>
+      |                                               ^
+  606 | ...
+  607 | ...ssName="mb-12 max-w-3xl font-medium leading-tight tracking-tight"
+  608 | ...le={{ fontSize: "var(--text-display-md)" }} {
+  digest: '3182702689'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at FAQ (src\app\[locale]\page.tsx:650:40)
+  648 |     <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:...
+  649 |       <div className="mb-12 max-w-3xl space-y-4">
+> 650 |         <SectionTag>{HOME_COPY[locale].sectionTags.faq}</SectionTag>
+      |                                        ^
+  651 |         <h2
+  652 |           className="font-medium leading-tight tracking-tight"
+  653 |           style={{ fontSize: "var(--text-display-md)" }} {
+  digest: '2130183793'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at Hero (src\app\[locale]\page.tsx:217:42)
+  215 |       <div className="mx-auto grid max-w-[1600px] gap-10 lg:grid-cols-[minmax(0,1fr)_minm...
+  216 |         <div className="flex min-h-[72vh] flex-col justify-end gap-6 pb-10 lg:min-h-[84vh...
+> 217 |           <SectionTag>{HOME_COPY[locale].sectionTags.hero}</SectionTag>
+      |                                          ^
+  218 |
+  219 |           <h1
+  220 |             className="max-w-5xl font-medium leading-none tracking-tight" {
+  digest: '4149098551'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at ShowcaseReel (src\app\[locale]\page.tsx:281:40)
+  279 |     <section className="border-t border-[color:var(--color-stroke-subtle)] py-20">
+  280 |       <div className="mb-8 flex items-center justify-between px-6 md:px-12">
+> 281 |         <SectionTag>{HOME_COPY[locale].sectionTags.showcase}</SectionTag>
+      |                                        ^
+  282 |         <Link
+  283 |           href="/tood"
+  284 |           className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-t... {
+  digest: '1778865260'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at Awards (src\app\[locale]\page.tsx:307:55)
+  305 | ...
+  306 | ...n className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+> 307 | ...ionTag className="mb-6">{HOME_COPY[locale].sectionTags.awards}</SectionTag>
+      |                                               ^
+  308 | ...
+  309 | ...ssName="mb-4 max-w-3xl font-medium leading-tight tracking-tight"
+  310 | ...le={{ fontSize: "var(--text-display-lg)" }} {
+  digest: '1929855422'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at Metrics (src\app\[locale]\page.tsx:354:55)
+  352 | ...
+  353 | ...n className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+> 354 | ...ionTag className="mb-6">{HOME_COPY[locale].sectionTags.metrics}</SectionTag>
+      |                                               ^
+  355 | ...
+  356 | ...ssName="mb-12 max-w-3xl text-[color:var(--color-text-secondary)]"
+  357 | ...le={{ fontSize: "var(--text-body-lg)" }} {
+  digest: '489107004'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at International (src\app\[locale]\page.tsx:562:55)
+  560 | ...
+  561 | ...n className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+> 562 | ...ionTag className="mb-6">{HOME_COPY[locale].sectionTags.international}</SectionTag>
+      |                                               ^
+  563 | ...
+  564 | ...ssName="mb-4 max-w-3xl font-medium leading-tight tracking-tight"
+  565 | ...le={{ fontSize: "var(--text-display-lg)" }} {
+  digest: '211732176'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at CallToAction (src\app\[locale]\page.tsx:694:55)
+  692 | ...
+  693 | ...n className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-32 md:px-12">
+> 694 | ...ionTag className="mb-6">{HOME_COPY[locale].sectionTags.cta}</SectionTag>
+      |                                               ^
+  695 | ...className="flex flex-col items-start gap-8">
+  696 | ...
+  697 | ...lassName="max-w-3xl font-medium leading-tight tracking-tight" {
+  digest: '781856234'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at PartnerWall (src\app\[locale]\page.tsx:390:55)
+  388 | ...
+  389 | ...n className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+> 390 | ...ionTag className="mb-6">{HOME_COPY[locale].sectionTags.partners}</SectionTag>
+      |                                               ^
+  391 | ...className="grid gap-10 md:grid-cols-[320px_1fr]">
+  392 | ...v className="space-y-4">
+  393 | ...h2 {
+  digest: '1586249941'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at Process (src\app\[locale]\page.tsx:422:55)
+  420 | ...
+  421 | ...n className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+> 422 | ...ionTag className="mb-6">{HOME_COPY[locale].sectionTags.process}</SectionTag>
+      |                                               ^
+  423 | ...className="mb-12 max-w-3xl space-y-4">
+  424 | ...
+  425 | ...lassName="font-medium leading-tight tracking-tight" {
+  digest: '2198640485'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at FeaturedWork (src\app\[locale]\page.tsx:471:40)
+  469 |     <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:...
+  470 |       <div className="mb-12 max-w-3xl space-y-4">
+> 471 |         <SectionTag>{HOME_COPY[locale].sectionTags.featured}</SectionTag>
+      |                                        ^
+  472 |         <h2
+  473 |           className="font-medium leading-tight tracking-tight"
+  474 |           style={{ fontSize: "var(--text-display-lg)" }} {
+  digest: '3850747381'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at Testimonials (src\app\[locale]\page.tsx:605:55)
+  603 | ...
+  604 | ...n className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+> 605 | ...ionTag className="mb-6">{HOME_COPY[locale].sectionTags.testimonials}</SectionTag>
+      |                                               ^
+  606 | ...
+  607 | ...ssName="mb-12 max-w-3xl font-medium leading-tight tracking-tight"
+  608 | ...le={{ fontSize: "var(--text-display-md)" }} {
+  digest: '820516425'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at FAQ (src\app\[locale]\page.tsx:650:40)
+  648 |     <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:...
+  649 |       <div className="mb-12 max-w-3xl space-y-4">
+> 650 |         <SectionTag>{HOME_COPY[locale].sectionTags.faq}</SectionTag>
+      |                                        ^
+  651 |         <h2
+  652 |           className="font-medium leading-tight tracking-tight"
+  653 |           style={{ fontSize: "var(--text-display-md)" }} {
+  digest: '773734745'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at Hero (src\app\[locale]\page.tsx:217:42)
+  215 |       <div className="mx-auto grid max-w-[1600px] gap-10 lg:grid-cols-[minmax(0,1fr)_minm...
+  216 |         <div className="flex min-h-[72vh] flex-col justify-end gap-6 pb-10 lg:min-h-[84vh...
+> 217 |           <SectionTag>{HOME_COPY[locale].sectionTags.hero}</SectionTag>
+      |                                          ^
+  218 |
+  219 |           <h1
+  220 |             className="max-w-5xl font-medium leading-none tracking-tight" {
+  digest: '4076260112'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at ShowcaseReel (src\app\[locale]\page.tsx:281:40)
+  279 |     <section className="border-t border-[color:var(--color-stroke-subtle)] py-20">
+  280 |       <div className="mb-8 flex items-center justify-between px-6 md:px-12">
+> 281 |         <SectionTag>{HOME_COPY[locale].sectionTags.showcase}</SectionTag>
+      |                                        ^
+  282 |         <Link
+  283 |           href="/tood"
+  284 |           className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-t... {
+  digest: '4185774157'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at Awards (src\app\[locale]\page.tsx:307:55)
+  305 | ...
+  306 | ...n className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+> 307 | ...ionTag className="mb-6">{HOME_COPY[locale].sectionTags.awards}</SectionTag>
+      |                                               ^
+  308 | ...
+  309 | ...ssName="mb-4 max-w-3xl font-medium leading-tight tracking-tight"
+  310 | ...le={{ fontSize: "var(--text-display-lg)" }} {
+  digest: '3987478258'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at Metrics (src\app\[locale]\page.tsx:354:55)
+  352 | ...
+  353 | ...n className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+> 354 | ...ionTag className="mb-6">{HOME_COPY[locale].sectionTags.metrics}</SectionTag>
+      |                                               ^
+  355 | ...
+  356 | ...ssName="mb-12 max-w-3xl text-[color:var(--color-text-secondary)]"
+  357 | ...le={{ fontSize: "var(--text-body-lg)" }} {
+  digest: '1325077305'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at International (src\app\[locale]\page.tsx:562:55)
+  560 | ...
+  561 | ...n className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+> 562 | ...ionTag className="mb-6">{HOME_COPY[locale].sectionTags.international}</SectionTag>
+      |                                               ^
+  563 | ...
+  564 | ...ssName="mb-4 max-w-3xl font-medium leading-tight tracking-tight"
+  565 | ...le={{ fontSize: "var(--text-display-lg)" }} {
+  digest: '2234335670'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at CallToAction (src\app\[locale]\page.tsx:694:55)
+  692 | ...
+  693 | ...n className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-32 md:px-12">
+> 694 | ...ionTag className="mb-6">{HOME_COPY[locale].sectionTags.cta}</SectionTag>
+      |                                               ^
+  695 | ...className="flex flex-col items-start gap-8">
+  696 | ...
+  697 | ...lassName="max-w-3xl font-medium leading-tight tracking-tight" {
+  digest: '1654871492'
+}
+⨯ ReferenceError: CursorRevealHero is not defined
+    at Hero (src\app\[locale]\page.tsx:265:12)
+  263 |         {/* Cursor-reveal hero — Direction B centerpiece. */}
+  264 |         <div className="relative h-[60vh] min-h-[420px] self-center overflow-hidden round...
+> 265 |           <CursorRevealHero
+      |            ^
+  266 |             baseTexture="/images/hero/portrait-base.png"
+  267 |             revealTexture="/images/hero/portrait-reveal.png"
+  268 |           /> {
+  digest: '2100048434'
+}
+⨯ ReferenceError: CursorRevealHero is not defined
+    at Hero (src\app\[locale]\page.tsx:265:12)
+  263 |         {/* Cursor-reveal hero — Direction B centerpiece. */}
+  264 |         <div className="relative h-[60vh] min-h-[420px] self-center overflow-hidden round...
+> 265 |           <CursorRevealHero
+      |            ^
+  266 |             baseTexture="/images/hero/portrait-base.png"
+  267 |             revealTexture="/images/hero/portrait-reveal.png"
+  268 |           /> {
+  digest: '2100048434'
+}
+⨯ ReferenceError: CursorRevealHero is not defined
+    at Hero (src\app\[locale]\page.tsx:265:12)
+  263 |         {/* Cursor-reveal hero — Direction B centerpiece. */}
+  264 |         <div className="relative h-[60vh] min-h-[420px] self-center overflow-hidden round...
+> 265 |           <CursorRevealHero
+      |            ^
+  266 |             baseTexture="/images/hero/portrait-base.png"
+  267 |             revealTexture="/images/hero/portrait-reveal.png"
+  268 |           /> {
+  digest: '2100048434'
+}
+⨯ ReferenceError: CursorRevealHero is not defined
+    at Hero (src\app\[locale]\page.tsx:265:12)
+  263 |         {/* Cursor-reveal hero — Direction B centerpiece. */}
+  264 |         <div className="relative h-[60vh] min-h-[420px] self-center overflow-hidden round...
+> 265 |           <CursorRevealHero
+      |            ^
+  266 |             baseTexture="/images/hero/portrait-base.png"
+  267 |             revealTexture="/images/hero/portrait-reveal.png"
+  268 |           /> {
+  digest: '2100048434'
+}
+⨯ ReferenceError: CursorRevealHero is not defined
+    at Hero (src\app\[locale]\page.tsx:265:12)
+  263 |         {/* Cursor-reveal hero — Direction B centerpiece. */}
+  264 |         <div className="relative h-[60vh] min-h-[420px] self-center overflow-hidden round...
+> 265 |           <CursorRevealHero
+      |            ^
+  266 |             baseTexture="/images/hero/portrait-base.png"
+  267 |             revealTexture="/images/hero/portrait-reveal.png"
+  268 |           /> {
+  digest: '2100048434'
+}
+⨯ ReferenceError: CursorRevealHero is not defined
+    at Hero (src\app\[locale]\page.tsx:265:12)
+  263 |         {/* Cursor-reveal hero — Direction B centerpiece. */}
+  264 |         <div className="relative h-[60vh] min-h-[420px] self-center overflow-hidden round...
+> 265 |           <CursorRevealHero
+      |            ^
+  266 |             baseTexture="/images/hero/portrait-base.png"
+  267 |             revealTexture="/images/hero/portrait-reveal.png"
+  268 |           /> {
+  digest: '2100048434'
+}
+⨯ ReferenceError: HeroEvidenceWall is not defined
+    at Hero (src\app\[locale]\page.tsx:265:12)
+  263 |         {/* Cursor-reveal hero — Direction B centerpiece. */}
+  264 |         <div className="relative h-[60vh] min-h-[420px] self-center overflow-hidden round...
+> 265 |           <HeroEvidenceWall locale={locale} />
+      |            ^
+  266 |         </div>
+  267 |       </div>
+  268 |     </section> {
+  digest: '1316559346'
+}
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at PartnerWall (src\app\[locale]\page.tsx:534:55)
+  532 | ...
+  533 | ...n className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+> 534 | ...ionTag className="mb-6">{HOME_COPY[locale].sectionTags.partners}</SectionTag>
+      |                                               ^
+  535 | ...className="grid gap-10 md:grid-cols-[320px_1fr]">
+  536 | ...v className="space-y-4">
+  537 | ...h2 {
+  digest: '2615954452'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at Process (src\app\[locale]\page.tsx:566:55)
+  564 | ...
+  565 | ...n className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+> 566 | ...ionTag className="mb-6">{HOME_COPY[locale].sectionTags.process}</SectionTag>
+      |                                               ^
+  567 | ...className="mb-12 max-w-3xl space-y-4">
+  568 | ...
+  569 | ...lassName="font-medium leading-tight tracking-tight" {
+  digest: '3456318694'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at FeaturedWork (src\app\[locale]\page.tsx:615:40)
+  613 |     <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:...
+  614 |       <div className="mb-12 max-w-3xl space-y-4">
+> 615 |         <SectionTag>{HOME_COPY[locale].sectionTags.featured}</SectionTag>
+      |                                        ^
+  616 |         <h2
+  617 |           className="font-medium leading-tight tracking-tight"
+  618 |           style={{ fontSize: "var(--text-display-lg)" }} {
+  digest: '3846751093'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at Testimonials (src\app\[locale]\page.tsx:749:55)
+  747 | ...
+  748 | ...n className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+> 749 | ...ionTag className="mb-6">{HOME_COPY[locale].sectionTags.testimonials}</SectionTag>
+      |                                               ^
+  750 | ...
+  751 | ...ssName="mb-12 max-w-3xl font-medium leading-tight tracking-tight"
+  752 | ...le={{ fontSize: "var(--text-display-md)" }} {
+  digest: '475458435'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at FAQ (src\app\[locale]\page.tsx:794:40)
+  792 |     <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:...
+  793 |       <div className="mb-12 max-w-3xl space-y-4">
+> 794 |         <SectionTag>{HOME_COPY[locale].sectionTags.faq}</SectionTag>
+      |                                        ^
+  795 |         <h2
+  796 |           className="font-medium leading-tight tracking-tight"
+  797 |           style={{ fontSize: "var(--text-display-md)" }} {
+  digest: '294982226'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at Hero (src\app\[locale]\page.tsx:217:42)
+  215 |       <div className="mx-auto grid max-w-[1600px] gap-10 lg:grid-cols-[minmax(0,1fr)_minm...
+  216 |         <div className="flex min-h-[72vh] flex-col justify-end gap-6 pb-10 lg:min-h-[84vh...
+> 217 |           <SectionTag>{HOME_COPY[locale].sectionTags.hero}</SectionTag>
+      |                                          ^
+  218 |
+  219 |           <h1
+  220 |             className="max-w-5xl font-medium leading-none tracking-tight" {
+  digest: '1451042931'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at ShowcaseReel (src\app\[locale]\page.tsx:425:40)
+  423 |     <section className="border-t border-[color:var(--color-stroke-subtle)] py-20">
+  424 |       <div className="mb-8 flex items-center justify-between px-6 md:px-12">
+> 425 |         <SectionTag>{HOME_COPY[locale].sectionTags.showcase}</SectionTag>
+      |                                        ^
+  426 |         <Link
+  427 |           href="/tood"
+  428 |           className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-t... {
+  digest: '2998686721'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at Awards (src\app\[locale]\page.tsx:451:55)
+  449 | ...
+  450 | ...n className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+> 451 | ...ionTag className="mb-6">{HOME_COPY[locale].sectionTags.awards}</SectionTag>
+      |                                               ^
+  452 | ...
+  453 | ...ssName="mb-4 max-w-3xl font-medium leading-tight tracking-tight"
+  454 | ...le={{ fontSize: "var(--text-display-lg)" }} {
+  digest: '3571431739'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at Metrics (src\app\[locale]\page.tsx:498:55)
+  496 | ...
+  497 | ...n className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+> 498 | ...ionTag className="mb-6">{HOME_COPY[locale].sectionTags.metrics}</SectionTag>
+      |                                               ^
+  499 | ...
+  500 | ...ssName="mb-12 max-w-3xl text-[color:var(--color-text-secondary)]"
+  501 | ...le={{ fontSize: "var(--text-body-lg)" }} {
+  digest: '2836508181'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at International (src\app\[locale]\page.tsx:706:55)
+  704 | ...
+  705 | ...n className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+> 706 | ...ionTag className="mb-6">{HOME_COPY[locale].sectionTags.international}</SectionTag>
+      |                                               ^
+  707 | ...
+  708 | ...ssName="mb-4 max-w-3xl font-medium leading-tight tracking-tight"
+  709 | ...le={{ fontSize: "var(--text-display-lg)" }} {
+  digest: '3876897919'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'sectionTags')
+    at CallToAction (src\app\[locale]\page.tsx:838:55)
+  836 | ...
+  837 | ...n className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-32 md:px-12">
+> 838 | ...ionTag className="mb-6">{HOME_COPY[locale].sectionTags.cta}</SectionTag>
+      |                                               ^
+  839 | ...className="flex flex-col items-start gap-8">
+  840 | ...
+  841 | ...lassName="max-w-3xl font-medium leading-tight tracking-tight" {
+  digest: '1153826017'
+}

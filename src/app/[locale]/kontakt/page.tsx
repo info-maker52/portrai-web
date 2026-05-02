@@ -19,11 +19,11 @@ const CONTACT_COPY: Record<
 > = {
   en: {
     direct: "Direct contact",
-    planning: "Useful inputs",
+    planning: "What helps us quote faster",
     planningIntro:
-      "You do not need a finished brief yet. These are simply the inputs that help the right concept emerge faster.",
+      "A rough idea is enough. If you know the date, location, guest count, and brand direction, we can shape the right setup from there.",
     formIntro:
-      "This draft form is already structured for the final flow, so even placeholder answers are useful for judging density and hierarchy.",
+      "Tell us what you are planning and we will come back with the format that fits.",
   },
   et: {
     direct: "Otsene kontakt",
@@ -44,18 +44,18 @@ export default async function ContactPage({
   setRequestLocale(locale);
   return (
     <PageShell>
-      <Hero />
+      <Hero locale={locale} />
       <FormSection locale={locale} />
     </PageShell>
   );
 }
 
-function Hero() {
+function Hero({ locale }: { locale: SiteLocale }) {
   const t = useTranslations("contact");
   return (
     <section className="px-6 pb-12 pt-20 md:px-12 md:pt-32">
       <p className="mb-6 font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)]">
-        (04) - Kontakt
+        {locale === "en" ? "(04) - Contact" : "(04) - Kontakt"}
       </p>
       <h1
         className="mb-6 max-w-4xl font-medium leading-none tracking-tight"
@@ -127,7 +127,7 @@ function FormSection({ locale }: { locale: SiteLocale }) {
         <div className="space-y-8">
           <div className="rounded-2xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] p-6">
             <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-brand-accent)]">
-              {locale === "en" ? "Draft form" : "Draft-vorm"}
+                {locale === "en" ? "Tell us about the event" : "Ragi meile uritusest"}
             </p>
             <p className="mt-3 max-w-2xl text-sm leading-7 text-[color:var(--color-text-secondary)]">
               {copy.formIntro}

@@ -160,10 +160,10 @@ function ProjectSnapshot({
   const labels =
     locale === "en"
       ? {
-          snapshot: "Project snapshot",
-          built: "What went into it",
-          worked: "Why it landed",
-          metrics: "Selected signals",
+          snapshot: "Overview",
+          built: "Included",
+          worked: "What it delivered",
+          metrics: "Key numbers",
         }
       : {
           snapshot: "Projekti ulevaade",
@@ -244,10 +244,10 @@ function ProjectGallery({
   const labels =
     locale === "en"
       ? {
-          visuals: "Selected visuals",
-          context: "Context",
-          focus: "Creative direction",
-          notes: "Project notes",
+          visuals: "Gallery",
+          context: "At a glance",
+          focus: "Concept and setup",
+          notes: "Highlights",
         }
       : {
           visuals: "Valitud visuaalid",
@@ -261,7 +261,7 @@ function ProjectGallery({
     `${project.city}, ${project.countryCode}`,
     project.year,
   ];
-  const focusItems = [text(locale, project.service), text(locale, project.challenge)];
+  const focusItems = [text(locale, project.service), text(locale, project.solution)];
   const noteItems =
     project.awards && project.awards.length > 0
       ? project.awards.map((award) => text(locale, award))
