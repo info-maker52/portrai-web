@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { PageShell } from "@/components/layout/PageShell";
@@ -24,6 +25,34 @@ import {
  */
 
 const FEATURED_SLUGS = ["melt"];
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: SiteLocale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const enMeta = {
+    title: "AI photo booth for company parties & private events",
+    description:
+      "Estonia's largest theme catalog, live gallery on the screen, interactive themes, on-site host. The booth your guests will talk about for weeks.",
+  };
+  const etMeta = {
+    title: "AI fotoboks firmapidudele ja eraüritustele",
+    description:
+      "Eesti suurim teemakogum, live-galerii ekraanil, interaktiivsed teemad ja kohapealne host. Boks, millest külalised räägivad veel kuid hiljem.",
+  };
+  const meta = locale === "en" ? enMeta : etMeta;
+  return {
+    title: meta.title,
+    description: meta.description,
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      type: "website",
+    },
+  };
+}
 
 const COPY = {
   en: {

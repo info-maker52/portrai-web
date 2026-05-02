@@ -30,13 +30,8 @@ export async function generateMetadata({
       locale: locale === "et" ? "et_EE" : "en_US",
       siteName: t("siteName"),
     },
-    alternates: {
-      canonical: locale === "et" ? "/" : "/en",
-      languages: {
-        et: "/",
-        en: "/en",
-      },
-    },
+    // No `alternates` here — that would cascade canonical: "/" onto every
+    // child route. Per-page metadata sets canonical/hreflang where useful.
   };
 }
 

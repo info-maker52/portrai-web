@@ -107,17 +107,19 @@ export function SiteFooter() {
             href="https://www.instagram.com/portrai.ee"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="PortrAI on Instagram (opens in new tab)"
             className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
           >
-            Instagram →
+            Instagram <span aria-hidden>→</span>
           </a>
           <a
             href="https://www.facebook.com/portrai.ee"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="PortrAI on Facebook (opens in new tab)"
             className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
           >
-            Facebook →
+            Facebook <span aria-hidden>→</span>
           </a>
         </div>
       </div>

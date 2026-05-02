@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { PageShell } from "@/components/layout/PageShell";
@@ -137,6 +138,34 @@ const COPY = {
     ctaButton: "Broneeri PortrAI",
   },
 } as const;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: SiteLocale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const enMeta = {
+    title: "PortrAI · AI photo booth for events and brands",
+    description:
+      "Award-winning AI photo booth. Two paths: brand activations with measurable lead generation, or fun events with Estonia's largest theme catalog and on-site host.",
+  };
+  const etMeta = {
+    title: "PortrAI · AI fotoboks üritustele ja brändidele",
+    description:
+      "Auhinnatud AI fotoboks. Kaks rada: brändi-aktivatsioonid mõõdetava lead-genereerimisega, või lõbusad üritused Eesti suurima teemakogumiga ja kohapealse hostiga.",
+  };
+  const meta = locale === "en" ? enMeta : etMeta;
+  return {
+    title: meta.title,
+    description: meta.description,
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      type: "website",
+    },
+  };
+}
 
 export default async function HomePage({
   params,

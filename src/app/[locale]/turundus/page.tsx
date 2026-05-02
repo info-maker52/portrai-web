@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { PageShell } from "@/components/layout/PageShell";
@@ -28,6 +29,34 @@ const FEATURED_SLUGS = [
   "swedbank-unistused",
   "oixio-ebs-ai-oppenoustaja",
 ];
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: SiteLocale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const enMeta = {
+    title: "AI photo booth for marketing teams",
+    description:
+      "Lead generation, branded UGC, and GDPR-clean campaign data — built by a team with a marketing background. Real campaign metrics from ERR, Postimees, Telia, and Swedbank.",
+  };
+  const etMeta = {
+    title: "AI fotoboks turundusmeeskondadele",
+    description:
+      "Lead-genereerimine, jagatav UGC ja GDPR-kohased kampaaniaandmed — ehitatud meeskonna poolt, kes tuleb turundustaustast. Päris kampaaniatulemused ERR-ist, Postimehest, Teliast ja Swedbankist.",
+  };
+  const meta = locale === "en" ? enMeta : etMeta;
+  return {
+    title: meta.title,
+    description: meta.description,
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      type: "website",
+    },
+  };
+}
 
 const COPY = {
   en: {
