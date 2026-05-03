@@ -3,8 +3,10 @@ import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { PageShell } from "@/components/layout/PageShell";
 import { ProjectCoverImage } from "@/components/work/ProjectCoverImage";
+import Image from "next/image";
 import { CalendlyFrame } from "@/components/booking/CalendlyFrame";
 import { FaqAccordion } from "@/components/faq/FaqAccordion";
+import { ImagePlaceholder } from "@/components/media/ImagePlaceholder";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import {
   getProject,
@@ -269,40 +271,80 @@ export default async function MarketingPage({
     (p): p is NonNullable<ReturnType<typeof getProject>> => p !== null,
   );
 
+  // Image specs — locale-independent. Each differentiator + process step
+  // gets a description of what visual eventually goes there.
+  const diffImages = [
+    "Branded UI mockup: PortrAI booth screen in client's brand colours and typeface",
+    "Lead dashboard mockup: GDPR consent flow with timestamps and CRM-ready CSV export",
+    "Action shot: guest at booth, photo generating, queue moving smoothly behind them",
+    "Workshop photo: PortrAI team handing off the playbook to a marketing team",
+  ];
+
+  const processImages = [
+    "Client brief workshop — marketing team and PortrAI mapping campaign goals",
+    "Concept mockups + prompt-direction sketches in brand colours",
+    "Live booth running at a corporate event with full queue",
+    "Reporting dashboard with campaign metrics and lead export CSV",
+  ];
+
   return (
     <PageShell>
-      {/* Hero */}
+      {/* Hero — two-column with hero image */}
       <section className="px-6 pb-12 pt-20 md:px-12 md:pt-32">
-        <p className="mb-6 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
-          {copy.eyebrow}
-        </p>
-        <h1
-          className="mb-6 max-w-4xl font-medium leading-[1.05] tracking-tight"
-          style={{ fontSize: "var(--text-display-xl)" }}
-        >
-          {copy.headline}
-        </h1>
-        <p
-          className="mb-10 max-w-2xl text-[color:var(--color-text-secondary)]"
-          style={{ fontSize: "var(--text-body-lg)" }}
-        >
-          {copy.subhead}
-        </p>
-        <div className="flex flex-wrap gap-4">
-          <MagneticButton>
-            <Link
-              href="/kontakt"
-              className="inline-block rounded-full bg-[color:var(--color-brand-primary)] px-6 py-3 font-medium text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-medium)]"
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-end">
+          <div>
+            <p className="mb-6 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
+              {copy.eyebrow}
+            </p>
+            <h1
+              className="mb-6 max-w-4xl font-medium leading-[1.05] tracking-tight"
+              style={{ fontSize: "var(--text-display-xl)" }}
             >
-              {copy.primaryCta} →
-            </Link>
-          </MagneticButton>
-          <Link
-            href={`/tood/${FEATURED_SLUGS[1]}`}
-            className="inline-block rounded-full border border-[color:var(--color-stroke-medium)] bg-transparent px-6 py-3 font-medium text-white transition-colors duration-200 hover:bg-[color:var(--color-surface-raised)]"
-          >
-            {copy.secondaryCta} →
-          </Link>
+              {copy.headline}
+            </h1>
+            <p
+              className="mb-10 max-w-2xl text-[color:var(--color-text-secondary)]"
+              style={{ fontSize: "var(--text-body-lg)" }}
+            >
+              {copy.subhead}
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <MagneticButton>
+                <Link
+                  href="/kontakt"
+                  className="inline-block rounded-full bg-[color:var(--color-brand-primary)] px-6 py-3 font-medium text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-medium)]"
+                >
+                  {copy.primaryCta} →
+                </Link>
+              </MagneticButton>
+              <Link
+                href={`/tood/${FEATURED_SLUGS[1]}`}
+                className="inline-block rounded-full border border-[color:var(--color-stroke-medium)] bg-transparent px-6 py-3 font-medium text-white transition-colors duration-200 hover:bg-[color:var(--color-surface-raised)]"
+              >
+                {copy.secondaryCta} →
+              </Link>
+            </div>
+          </div>
+
+          {/* Hero image — interactive booth in action */}
+          <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-[color:var(--color-stroke-subtle)]">
+            <Image
+              src="/images/site/interactive-booth.png"
+              alt={
+                locale === "en"
+                  ? "PortrAI interactive booth screen mid-experience at a brand activation"
+                  : "PortrAI interaktiivse boksi ekraan brändi-aktivatsiooni keskel"
+              }
+              fill
+              sizes="(max-width: 1024px) 100vw, 40vw"
+              className="object-cover"
+              priority
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[rgba(2,9,30,0.55)] via-transparent to-transparent" />
+            <div className="pointer-events-none absolute bottom-4 left-4 rounded-full border border-white/25 bg-black/35 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.3em] text-white/85 backdrop-blur-sm">
+              ◆ Live activation
+            </div>
+          </div>
         </div>
       </section>
 
@@ -331,18 +373,26 @@ export default async function MarketingPage({
           {copy.differentiators.map((d, i) => (
             <article
               key={i}
-              className="flex flex-col gap-3 rounded-2xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] p-6"
+              className="flex flex-col overflow-hidden rounded-2xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)]"
             >
-              <p className="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-brand-accent)]">
-                0{i + 1}
-              </p>
-              <h3
-                className="font-medium leading-tight"
-                style={{ fontSize: "var(--text-title)" }}
-              >
-                {d.title}
-              </h3>
-              <p className="text-[color:var(--color-text-secondary)]">{d.body}</p>
+              <ImagePlaceholder
+                description={diffImages[i] ?? "Supporting visual for this differentiator"}
+                className="aspect-[16/9]"
+              />
+              <div className="flex flex-col gap-3 p-6">
+                <p className="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-brand-accent)]">
+                  0{i + 1}
+                </p>
+                <h3
+                  className="font-medium leading-tight"
+                  style={{ fontSize: "var(--text-title)" }}
+                >
+                  {d.title}
+                </h3>
+                <p className="text-[color:var(--color-text-secondary)]">
+                  {d.body}
+                </p>
+              </div>
             </article>
           ))}
         </div>
@@ -438,8 +488,13 @@ export default async function MarketingPage({
           {copy.processEyebrow}
         </p>
         <div className="grid gap-6 md:grid-cols-4">
-          {copy.processSteps.map((s) => (
-            <div key={s.n} className="flex flex-col gap-3">
+          {copy.processSteps.map((s, i) => (
+            <div key={s.n} className="flex flex-col gap-4">
+              <ImagePlaceholder
+                description={processImages[i] ?? "Step illustration"}
+                className="aspect-square"
+                showTag={false}
+              />
               <p className="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-brand-accent)]">
                 {s.n}
               </p>

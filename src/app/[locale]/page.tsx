@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { PageShell } from "@/components/layout/PageShell";
@@ -261,6 +262,12 @@ export default async function HomePage({
             body={copy.marketingCardBody}
             stat={copy.marketingCardStat}
             cta={copy.marketingCardCta}
+            image="/images/work/von-fock-cover.jpg"
+            imageAlt={
+              locale === "en"
+                ? "Von Fock AI portrait — campaign for ERR"
+                : "Von Focki AI portree — kampaania ERR-ile"
+            }
           />
           <PathCard
             href={eventsHref}
@@ -269,6 +276,12 @@ export default async function HomePage({
             body={copy.eventsCardBody}
             stat={copy.eventsCardStat}
             cta={copy.eventsCardCta}
+            image="/images/work/melt-cover.png"
+            imageAlt={
+              locale === "en"
+                ? "PortrAI booth at MELT innovation forum"
+                : "PortrAI boks MELT innovatsioonifoorumil"
+            }
           />
         </div>
       </section>
@@ -295,37 +308,61 @@ export default async function HomePage({
         <ShowcaseMarquee locale={locale} />
       </section>
 
-      {/* 4 — Awards strip */}
+      {/* 4 — Awards strip with real Las Vegas photo */}
       <section className="border-b border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
-        <p className="mb-4 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
-          {copy.awardsEyebrow}
-        </p>
-        <h2
-          className="mb-4 max-w-3xl font-medium leading-tight tracking-tight"
-          style={{ fontSize: "var(--text-display-lg)" }}
-        >
-          {copy.awardsTitle}
-        </h2>
-        <p
-          className="mb-10 max-w-2xl text-[color:var(--color-text-secondary)]"
-          style={{ fontSize: "var(--text-body-lg)" }}
-        >
-          {copy.awardsBody}
-        </p>
-        <div className="grid gap-4 md:grid-cols-2">
-          {copy.awardsBadges.map((badge, i) => (
-            <div
-              key={i}
-              className="flex items-center gap-4 rounded-2xl border border-[color:var(--color-brand-primary)]/30 bg-[color:var(--color-brand-primary)]/5 p-6"
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-center">
+          <div>
+            <p className="mb-4 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
+              {copy.awardsEyebrow}
+            </p>
+            <h2
+              className="mb-4 max-w-3xl font-medium leading-tight tracking-tight"
+              style={{ fontSize: "var(--text-display-lg)" }}
             >
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[color:var(--color-brand-primary)]/15 font-mono text-lg text-[color:var(--color-brand-accent)]">
-                ★
-              </span>
-              <p className="font-mono text-xs uppercase tracking-[0.18em] text-white">
-                {badge}
+              {copy.awardsTitle}
+            </h2>
+            <p
+              className="mb-10 max-w-xl text-[color:var(--color-text-secondary)]"
+              style={{ fontSize: "var(--text-body-lg)" }}
+            >
+              {copy.awardsBody}
+            </p>
+            <div className="grid gap-4">
+              {copy.awardsBadges.map((badge, i) => (
+                <div
+                  key={i}
+                  className="flex items-center gap-4 rounded-2xl border border-[color:var(--color-brand-primary)]/30 bg-[color:var(--color-brand-primary)]/5 p-6"
+                >
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[color:var(--color-brand-primary)]/15 font-mono text-lg text-[color:var(--color-brand-accent)]">
+                    ★
+                  </span>
+                  <p className="font-mono text-xs uppercase tracking-[0.18em] text-white">
+                    {badge}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Real Las Vegas award photo */}
+          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)]">
+            <Image
+              src="/images/awards/booth-mastermind-las-vegas.jpg"
+              alt={
+                locale === "en"
+                  ? "PortrAI receiving the Booth Mastermind Award in Las Vegas"
+                  : "PortrAI võtab vastu Booth Mastermind Awardi Las Vegases"
+              }
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+            />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-[rgba(2,9,30,0.85)] via-[rgba(2,9,30,0.18)] to-transparent p-6">
+              <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/85">
+                ★ Las Vegas · 2025
               </p>
             </div>
-          ))}
+          </div>
         </div>
       </section>
 
@@ -411,6 +448,8 @@ function PathCard({
   body,
   stat,
   cta,
+  image,
+  imageAlt,
 }: {
   href: "/turundus" | "/peod" | "/marketing" | "/events";
   eyebrow: string;
@@ -418,12 +457,26 @@ function PathCard({
   body: string;
   stat: string;
   cta: string;
+  image: string;
+  imageAlt: string;
 }) {
   return (
     <Link
       href={href}
-      className="group flex flex-col gap-6 rounded-3xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] p-8 transition-all duration-300 hover:border-[color:var(--color-brand-primary)]/40 hover:shadow-[var(--glow-medium)] md:p-10"
+      className="group relative flex flex-col gap-6 overflow-hidden rounded-3xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] p-8 transition-all duration-300 hover:border-[color:var(--color-brand-primary)]/40 hover:shadow-[var(--glow-medium)] md:p-10"
     >
+      {/* Background image with strong dark gradient so text stays legible */}
+      <div className="absolute inset-0 -z-10">
+        <Image
+          src={image}
+          alt={imageAlt}
+          fill
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          className="object-cover opacity-40 transition-all duration-500 group-hover:scale-[1.04] group-hover:opacity-55"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[rgba(2,9,30,0.85)] via-[rgba(2,9,30,0.78)] to-[rgba(2,9,30,0.65)]" />
+      </div>
+
       <p className="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-brand-accent)]">
         {eyebrow}
       </p>
@@ -439,7 +492,7 @@ function PathCard({
       >
         {body}
       </p>
-      <p className="rounded-xl border border-[color:var(--color-brand-primary)]/20 bg-[color:var(--color-brand-primary)]/10 p-4 font-mono text-xs uppercase tracking-[0.18em] text-white">
+      <p className="rounded-xl border border-[color:var(--color-brand-primary)]/30 bg-[color:var(--color-brand-primary)]/15 p-4 font-mono text-xs uppercase tracking-[0.18em] text-white backdrop-blur-sm">
         {stat}
       </p>
       <span className="mt-auto inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.22em] text-white transition-colors group-hover:text-[color:var(--color-brand-accent)]">
