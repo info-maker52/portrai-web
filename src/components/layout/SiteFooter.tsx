@@ -86,6 +86,12 @@ export function SiteFooter() {
             {tNav("events")}
           </Link>
           <Link
+            href="/fotopeegel"
+            className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
+          >
+            Fotopeegel
+          </Link>
+          <Link
             href="/blog"
             className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
           >

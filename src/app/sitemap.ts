@@ -11,7 +11,15 @@ import { routing } from "@/i18n/routing";
  */
 
 // Top-level static pages (relative paths, locale prefix added below).
-const STATIC_PATHS = ["", "/teenused", "/tood", "/blog", "/kontakt"];
+const STATIC_PATHS = [
+  "",
+  "/turundus",
+  "/peod",
+  "/fotopeegel",
+  "/tood",
+  "/blog",
+  "/kontakt",
+];
 
 // Hardcoded case study slugs until real MDX-driven case studies land.
 const CASE_STUDY_SLUGS = ["laulupidu", "von-fock", "melt"];

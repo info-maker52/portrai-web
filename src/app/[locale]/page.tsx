@@ -29,11 +29,11 @@ import { type SiteLocale } from "@/lib/site-content";
 
 const COPY = {
   en: {
-    heroEyebrow: "(01) AI photo booth",
+    heroEyebrow: "(01) PortrAI · AI photobooth & fotopeegel",
     heroHeadline:
-      "AI photo booth that makes your event the talk of the room.",
+      "AI photobooth that makes your event the talk of the room.",
     heroSub:
-      "Award-winning in Las Vegas. Trusted by ERR, Postimees, Telia, Swedbank — and a hundred company parties.",
+      "PortrAI is Estonia's award-winning AI photobooth — plus classic fotoboks and fotopeegel for events that want both. Trusted by ERR, Postimees, Telia, Swedbank, and over a hundred company parties.",
     heroPathMarketing: "For brands & marketing",
     heroPathEvents: "For company parties & events",
 
@@ -85,10 +85,11 @@ const COPY = {
   },
   et: {
     // [ET DRAFT — needs your native pass]
-    heroEyebrow: "(01) AI fotoboks",
-    heroHeadline: "AI fotoboks, millest külalised räägivad veel kuid hiljem.",
+    heroEyebrow: "(01) PortrAI · AI photobooth ja fotopeegel",
+    heroHeadline:
+      "AI photobooth, millest külalised räägivad veel kuid hiljem.",
     heroSub:
-      "Auhinnatud Las Vegases. Kasutusel ERR-is, Postimehes, Telias ja Swedbankis — lisaks sadadel firmapidudel ja eraüritustel.",
+      "PortrAI on Eesti auhinnatud AI photobooth — lisaks klassikaline fotoboks ja fotopeegel üritustele, kes soovivad mõlemat. Kasutusel ERR-is, Postimehes, Telias ja Swedbankis — lisaks sadadel firmapidudel ja eraüritustel.",
     heroPathMarketing: "Brändidele ja turundusele",
     heroPathEvents: "Firmapidudele ja eraüritustele",
 
@@ -147,14 +148,17 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const enMeta = {
-    title: "PortrAI · AI photo booth for events and brands",
+    title:
+      "PortrAI · AI photobooth, fotoboks & fotopeegel rental in Estonia",
     description:
-      "Award-winning AI photo booth. Two paths: brand activations with measurable lead generation, or fun events with Estonia's largest theme catalog and on-site host.",
+      "Award-winning AI photobooth, classic fotoboks and fotopeegel (mirror booth) rental in Tallinn and across Estonia. Two paths: brand activations with measurable lead generation, or fun events with the country's largest theme catalog. Booth Mastermind Awards Las Vegas 2025.",
   };
   const etMeta = {
-    title: "PortrAI · AI fotoboks üritustele ja brändidele",
+    // [ET DRAFT — needs your native pass]
+    title:
+      "PortrAI · AI photobooth, fotoboksi ja fotopeegli rent Eestis",
     description:
-      "Auhinnatud AI fotoboks. Kaks rada: brändi-aktivatsioonid mõõdetava lead-genereerimisega, või lõbusad üritused Eesti suurima teemakogumiga ja kohapealse hostiga.",
+      "Auhinnatud AI photobooth ja fotoboks Tallinnas ja üle Eesti — koos klassikalise fotoboksi ja fotopeegliga. Kaks rada: brändi-aktivatsioonid mõõdetava lead-genereerimisega või lõbusad üritused Eesti suurima teemakogumiga. Booth Mastermind Awards Las Vegas 2025.",
   };
   const meta = locale === "en" ? enMeta : etMeta;
   return {
