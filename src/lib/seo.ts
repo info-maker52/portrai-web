@@ -9,7 +9,21 @@ import type { Metadata } from "next";
  */
 
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://portrai.cloud";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://portrai-web.vercel.app";
+
+export function localizedSitePath(
+  locale: "et" | "en",
+  pathname: string,
+): string {
+  const normalizedPath =
+    pathname === "" ? "/" : pathname.startsWith("/") ? pathname : `/${pathname}`;
+
+  if (locale === "et") {
+    return normalizedPath;
+  }
+
+  return normalizedPath === "/" ? "/en" : `/en${normalizedPath}`;
+}
 
 /* -------------------------------------------------------------------------- */
 /* Metadata builders                                                            */
@@ -21,11 +35,27 @@ export function buildPageMetadata(input: {
   path: string;
   locale: "et" | "en";
   ogImage?: string;
+  type?: "website" | "article";
+  publishedTime?: string;
 }): Metadata {
-  const { title, description, path, locale, ogImage } = input;
-  const url = `${SITE_URL}${path}`;
+  const {
+    title,
+    description,
+    path,
+    locale,
+    ogImage,
+    type = "website",
+    publishedTime,
+  } = input;
+  const normalizedPath = path === "" ? "/" : path;
+  const url = `${SITE_URL}${normalizedPath}`;
   const enPath = path.startsWith("/en") ? path : `/en${path}`;
   const etPath = path.replace(/^\/en/, "") || "/";
+  const resolvedOgImage = ogImage
+    ? ogImage.startsWith("http")
+      ? ogImage
+      : `${SITE_URL}${ogImage}`
+    : undefined;
 
   return {
     title,
@@ -35,16 +65,17 @@ export function buildPageMetadata(input: {
       title,
       description,
       url,
-      type: "website",
+      type,
       locale: locale === "et" ? "et_EE" : "en_US",
       siteName: "PortrAI",
-      images: ogImage ? [ogImage] : undefined,
+      publishedTime,
+      images: resolvedOgImage ? [resolvedOgImage] : undefined,
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: ogImage ? [ogImage] : undefined,
+      images: resolvedOgImage ? [resolvedOgImage] : undefined,
     },
     alternates: {
       canonical: url,

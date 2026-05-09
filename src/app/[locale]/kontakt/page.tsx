@@ -1,8 +1,10 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import { PageShell } from "@/components/layout/PageShell";
 import { BookingForm } from "@/components/booking/BookingForm";
+import { buildPageMetadata, localizedSitePath } from "@/lib/seo";
 import {
   planningPrompts,
   text,
@@ -36,6 +38,28 @@ const CONTACT_COPY: Record<
       "Räägi meile, mida planeerid, ja vastame sobiva formaadiga.",
   },
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: SiteLocale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+
+  return buildPageMetadata({
+    title:
+      locale === "en"
+        ? "Book PortrAI | AI photo booth rental in Estonia"
+        : "Broneeri PortrAI | AI fotoboksi rent Eestis",
+    description:
+      locale === "en"
+        ? "Contact PortrAI for AI photo booth, photobooth, fotoboks, and fotopeegel bookings in Estonia. Share your date, venue, and guest count to get the right setup."
+        : "Võta PortrAI-ga ühendust AI photoboothi, photoboothi, fotoboksi ja fotopeegli broneerimiseks Eestis. Jaga kuupäeva, venue'd ja külaliste arvu, et saaksime soovitada sobiva setupi.",
+    locale,
+    ogImage: "/images/site/portrait-detail.png",
+    path: localizedSitePath(locale, "/kontakt"),
+  });
+}
 
 export default async function ContactPage({
   params,

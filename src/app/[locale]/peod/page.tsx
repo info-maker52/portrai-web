@@ -6,7 +6,12 @@ import Image from "next/image";
 import { ProjectCoverImage } from "@/components/work/ProjectCoverImage";
 import { FaqAccordion } from "@/components/faq/FaqAccordion";
 import { ImagePlaceholder } from "@/components/media/ImagePlaceholder";
+import {
+  EditorialImageCard,
+  type EditorialImageAsset,
+} from "@/components/media/EditorialImageCard";
 import { MagneticButton } from "@/components/motion/MagneticButton";
+import { buildPageMetadata, localizedSitePath } from "@/lib/seo";
 import { ThemeGallery } from "@/components/themes/ThemeGallery";
 import {
   getProject,
@@ -34,26 +39,19 @@ export async function generateMetadata({
   params: Promise<{ locale: SiteLocale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const enMeta = {
-    title: "AI photo booth for company parties & private events",
+  return buildPageMetadata({
+    title:
+      locale === "en"
+        ? "AI photo booth for company parties and weddings | PortrAI"
+        : "AI fotoboks firmapeole ja pulma | PortrAI",
     description:
-      "Estonia's largest theme catalog, live gallery on the screen, interactive themes, on-site host. The booth your guests will talk about for weeks.",
-  };
-  const etMeta = {
-    title: "AI fotoboks firmapidudele ja eraüritustele",
-    description:
-      "Eesti suurim teemakogum, live-galerii ekraanil, interaktiivsed teemad ja kohapealne host. Boks, millest külalised räägivad veel kuid hiljem.",
-  };
-  const meta = locale === "en" ? enMeta : etMeta;
-  return {
-    title: meta.title,
-    description: meta.description,
-    openGraph: {
-      title: meta.title,
-      description: meta.description,
-      type: "website",
-    },
-  };
+      locale === "en"
+        ? "AI photo booth, fotoboks, and themed guest experiences for company parties, weddings, and private events in Estonia. Fast setup, live gallery, on-site host, and custom themes."
+        : "AI fotoboks, photobooth ja teemastatud külaliskogemus firmapidudele, pulmadele ja eraüritustele Eestis. Kiire setup, live-galerii, kohapealne host ja kohandatud teemad.",
+    locale,
+    ogImage: "/images/site/event-action.jpg",
+    path: localizedSitePath(locale, "/peod"),
+  });
 }
 
 const COPY = {
@@ -280,6 +278,128 @@ const COPY = {
   },
 } as const;
 
+const DIFFERENTIATOR_MEDIA: EditorialImageAsset[] = [
+  {
+    alt: {
+      en: "A spread of themed portrait outputs showing the range of PortrAI styles",
+      et: "Valik erinevaid PortrAI portreestiile ja teemade väljundeid",
+    },
+    badge: {
+      en: "30+ themes",
+      et: "30+ teemat",
+    },
+    src: "/images/site/portrait-detail.png",
+  },
+  {
+    alt: {
+      en: "PortrAI outputs and conference visuals displayed together at a live event",
+      et: "PortrAI väljundid ja konverentsivisuaalid koos live-üritusel",
+    },
+    badge: {
+      en: "Live gallery",
+      et: "Live-galerii",
+    },
+    objectPosition: "50% 50%",
+    src: "/images/site/event-action.jpg",
+  },
+  {
+    alt: {
+      en: "The PortrAI interface showing an interactive prompt-and-result flow",
+      et: "PortrAI liides interaktiivse prompti ja tulemuse vooga",
+    },
+    badge: {
+      en: "Interactive flow",
+      et: "Interaktiivne voog",
+    },
+    objectPosition: "55% 44%",
+    src: "/images/site/interactive-booth.png",
+  },
+  {
+    alt: {
+      en: "Guests using the PortrAI booth during a busy live event",
+      et: "Külalised PortrAI boksi kasutamas elavas ürituse hetkes",
+    },
+    badge: {
+      en: "Hosted on-site",
+      et: "Kohapeal juhitud",
+    },
+    objectPosition: "35% 55%",
+    src: "/images/site/event-action.jpg",
+  },
+  {
+    alt: {
+      en: "A themed portrait cover showing how one event concept can carry through the output",
+      et: "Teemaportree, mis näitab, kuidas ühe ürituse kontseptsioon jõuab väljundisse",
+    },
+    badge: {
+      en: "Theme matched",
+      et: "Teemaga seotud",
+    },
+    objectPosition: "50% 42%",
+    src: "/images/work/melt-cover.png",
+  },
+  {
+    alt: {
+      en: "A selection of outputs prepared for large-guest throughput",
+      et: "Väljundite valik, mis on sobitatud suure külastajamahu jaoks",
+    },
+    badge: {
+      en: "Fast at peak",
+      et: "Kiire tipul",
+    },
+    src: "/images/site/portrait-base.png",
+  },
+];
+
+const PROCESS_MEDIA: EditorialImageAsset[] = [
+  {
+    alt: {
+      en: "Output previews used while shaping the event direction",
+      et: "Väljundite eelvaated, mida kasutatakse ürituse suuna paika sättimiseks",
+    },
+    badge: {
+      en: "Brief",
+      et: "Brief",
+    },
+    src: "/images/site/portrait-base.png",
+  },
+  {
+    alt: {
+      en: "A broad set of style directions presented for choosing the event theme",
+      et: "Lai valik stiilisuundi, mille seast valida ürituse teema",
+    },
+    badge: {
+      en: "Theme pick",
+      et: "Teema valik",
+    },
+    src: "/images/site/portrait-detail.png",
+  },
+  {
+    alt: {
+      en: "PortrAI running live during an event setup and guest rush",
+      et: "PortrAI töötamas nii setupi ajal kui ka külaliste tipptunni hetkes",
+    },
+    badge: {
+      en: "Setup + host",
+      et: "Setup + host",
+    },
+    objectPosition: "50% 52%",
+    src: "/images/site/event-action.jpg",
+  },
+  {
+    alt: {
+      en: "Branded prompt and output flow ready for instant guest delivery",
+      et: "Bränditud prompti- ja väljundivoog, mis on valmis koheseks jagamiseks",
+    },
+    badge: {
+      en: "Instant delivery",
+      et: "Kohene jagamine",
+    },
+    objectPosition: "55% 44%",
+    src: "/images/site/interactive-booth.png",
+  },
+];
+
 export default async function EventsPage({
   params,
 }: {
@@ -400,9 +520,11 @@ export default async function EventsPage({
               key={i}
               className="flex flex-col overflow-hidden rounded-2xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)]"
             >
-              <ImagePlaceholder
-                description={diffImages[i] ?? "Supporting visual"}
+              <EditorialImageCard
+                asset={DIFFERENTIATOR_MEDIA[i] ?? DIFFERENTIATOR_MEDIA[0]}
                 className="aspect-[16/10]"
+                locale={locale}
+                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
               />
               <div className="flex flex-col gap-3 p-6">
                 <p className="text-2xl text-[color:var(--color-brand-accent)]">
@@ -536,10 +658,11 @@ export default async function EventsPage({
         <div className="grid gap-6 md:grid-cols-4">
           {copy.processSteps.map((s, i) => (
             <div key={s.n} className="flex flex-col gap-4">
-              <ImagePlaceholder
-                description={processImages[i] ?? "Step illustration"}
-                className="aspect-square"
-                showTag={false}
+              <EditorialImageCard
+                asset={PROCESS_MEDIA[i] ?? PROCESS_MEDIA[0]}
+                className="aspect-square rounded-2xl"
+                locale={locale}
+                sizes="(max-width: 768px) 100vw, 25vw"
               />
               <p className="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-brand-accent)]">
                 {s.n}

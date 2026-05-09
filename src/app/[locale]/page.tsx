@@ -7,6 +7,7 @@ import { CursorRevealHero } from "@/components/hero/CursorRevealHero";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import { ShowcaseMarquee } from "@/components/showcase/ShowcaseMarquee";
 import { WorldMap } from "@/components/world/WorldMap";
+import { buildPageMetadata, localizedSitePath } from "@/lib/seo";
 import { type SiteLocale } from "@/lib/site-content";
 
 /**
@@ -147,29 +148,19 @@ export async function generateMetadata({
   params: Promise<{ locale: SiteLocale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const enMeta = {
+  return buildPageMetadata({
     title:
-      "PortrAI · AI photobooth, fotoboks & fotopeegel rental in Estonia",
+      locale === "en"
+        ? "AI photo booth Estonia | PortrAI"
+        : "AI fotoboks Eestis | PortrAI",
     description:
-      "Award-winning AI photobooth, classic fotoboks and fotopeegel (mirror booth) rental in Tallinn and across Estonia. Two paths: brand activations with measurable lead generation, or fun events with the country's largest theme catalog. Booth Mastermind Awards Las Vegas 2025.",
-  };
-  const etMeta = {
-    // [ET DRAFT — needs your native pass]
-    title:
-      "PortrAI · AI photobooth, fotoboksi ja fotopeegli rent Eestis",
-    description:
-      "Auhinnatud AI photobooth ja fotoboks Tallinnas ja üle Eesti — koos klassikalise fotoboksi ja fotopeegliga. Kaks rada: brändi-aktivatsioonid mõõdetava lead-genereerimisega või lõbusad üritused Eesti suurima teemakogumiga. Booth Mastermind Awards Las Vegas 2025.",
-  };
-  const meta = locale === "en" ? enMeta : etMeta;
-  return {
-    title: meta.title,
-    description: meta.description,
-    openGraph: {
-      title: meta.title,
-      description: meta.description,
-      type: "website",
-    },
-  };
+      locale === "en"
+        ? "Award-winning AI photo booth, photobooth rental, fotoboks, and fotopeegel for events in Tallinn and across Estonia. Built for brand activations, company parties, weddings, and trade shows."
+        : "Auhinnatud AI fotoboks, photobooth, klassikaline fotoboks ja fotopeegel üritustele Tallinnas ja üle Eesti. Sobib brändiaktivatsioonidele, firmapidudele, pulmadele ja messidele.",
+    locale,
+    ogImage: "/images/site/interactive-booth.png",
+    path: localizedSitePath(locale, "/"),
+  });
 }
 
 export default async function HomePage({

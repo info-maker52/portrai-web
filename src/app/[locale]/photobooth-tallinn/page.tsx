@@ -5,6 +5,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { FaqAccordion } from "@/components/faq/FaqAccordion";
 import { ImagePlaceholder } from "@/components/media/ImagePlaceholder";
 import { MagneticButton } from "@/components/motion/MagneticButton";
+import { buildPageMetadata, localizedSitePath } from "@/lib/seo";
 import { type SiteLocale } from "@/lib/site-content";
 
 /**
@@ -23,27 +24,19 @@ export async function generateMetadata({
   params: Promise<{ locale: SiteLocale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const enMeta = {
-    title: "Photobooth rental Tallinn · PortrAI",
+  return buildPageMetadata({
+    title:
+      locale === "en"
+        ? "Photobooth rental Tallinn | AI photobooth and fotoboks | PortrAI"
+        : "Fotoboks rent Tallinnas | AI photobooth ja fotopeegel | PortrAI",
     description:
-      "AI photobooth, classic fotoboks and fotopeegel rental in Tallinn. Setup in under an hour, branded experience, instant prints + digital delivery. Award-winning team — Booth Mastermind Awards Las Vegas 2025.",
-  };
-  const etMeta = {
-    // [ET DRAFT — needs your native pass]
-    title: "Photobooth rent Tallinnas · PortrAI",
-    description:
-      "AI photobooth, klassikaline fotoboks ja fotopeegli rent Tallinnas. Setup alla tunni, bränditud kogemus, kohesed printid + digitaalne jagamine. Auhinnatud meeskond — Booth Mastermind Awards Las Vegas 2025.",
-  };
-  const meta = locale === "en" ? enMeta : etMeta;
-  return {
-    title: meta.title,
-    description: meta.description,
-    openGraph: {
-      title: meta.title,
-      description: meta.description,
-      type: "website",
-    },
-  };
+      locale === "en"
+        ? "Photobooth rental in Tallinn with AI photo booth, classic fotoboks, and fotopeegel options. Fast local setup, instant prints, digital delivery, and branded event flows."
+        : "Fotoboks rent Tallinnas koos AI photoboothi, klassikalise fotoboksi ja fotopeegli valikutega. Kiire kohalik setup, kohesed printid, digitaalne jagamine ja bränditud üritusevood.",
+    locale,
+    ogImage: "/images/site/event-action.jpg",
+    path: localizedSitePath(locale, "/photobooth-tallinn"),
+  });
 }
 
 const COPY = {

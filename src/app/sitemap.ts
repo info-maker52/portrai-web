@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { getAllBlogSlugs } from "@/lib/blog";
 import { SITE_URL } from "@/lib/seo";
 import { routing } from "@/i18n/routing";
+import { projects } from "@/lib/site-content";
 
 /**
  * Auto-generated sitemap covering ET + EN versions of every static route
@@ -23,8 +24,7 @@ const STATIC_PATHS = [
   "/kontakt",
 ];
 
-// Hardcoded case study slugs until real MDX-driven case studies land.
-const CASE_STUDY_SLUGS = ["laulupidu", "von-fock", "melt"];
+const CASE_STUDY_PATHS = projects.map((project) => `/tood/${project.slug}`);
 
 function localizedHref(locale: string, path: string) {
   if (locale === routing.defaultLocale) return `${SITE_URL}${path || "/"}`;
@@ -52,21 +52,32 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       });
     }
 
-    for (const slug of CASE_STUDY_SLUGS) {
+    for (const path of CASE_STUDY_PATHS) {
       entries.push({
-        url: localizedHref(locale, `/tood/${slug}`),
+        url: localizedHref(locale, path),
         lastModified: now,
         changeFrequency: "yearly",
         priority: 0.6,
+        alternates: {
+          languages: Object.fromEntries(
+            routing.locales.map((l) => [l, localizedHref(l, path)]),
+          ),
+        },
       });
     }
 
     for (const slug of blogSlugs) {
+      const path = `/blog/${slug}`;
       entries.push({
-        url: localizedHref(locale, `/blog/${slug}`),
+        url: localizedHref(locale, path),
         lastModified: now,
         changeFrequency: "yearly",
         priority: 0.5,
+        alternates: {
+          languages: Object.fromEntries(
+            routing.locales.map((l) => [l, localizedHref(l, path)]),
+          ),
+        },
       });
     }
   }

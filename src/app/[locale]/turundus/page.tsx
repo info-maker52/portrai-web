@@ -6,8 +6,12 @@ import { ProjectCoverImage } from "@/components/work/ProjectCoverImage";
 import Image from "next/image";
 import { CalendlyFrame } from "@/components/booking/CalendlyFrame";
 import { FaqAccordion } from "@/components/faq/FaqAccordion";
-import { ImagePlaceholder } from "@/components/media/ImagePlaceholder";
+import {
+  EditorialImageCard,
+  type EditorialImageAsset,
+} from "@/components/media/EditorialImageCard";
 import { MagneticButton } from "@/components/motion/MagneticButton";
+import { buildPageMetadata, localizedSitePath } from "@/lib/seo";
 import {
   getProject,
   text,
@@ -38,26 +42,19 @@ export async function generateMetadata({
   params: Promise<{ locale: SiteLocale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const enMeta = {
-    title: "AI photo booth for marketing teams",
+  return buildPageMetadata({
+    title:
+      locale === "en"
+        ? "AI photo booth for marketing teams | PortrAI"
+        : "AI fotoboks turundusmeeskondadele | PortrAI",
     description:
-      "Lead generation, branded UGC, and GDPR-clean campaign data — built by a team with a marketing background. Real campaign metrics from ERR, Postimees, Telia, and Swedbank.",
-  };
-  const etMeta = {
-    title: "AI fotoboks turundusmeeskondadele",
-    description:
-      "Lead-genereerimine, jagatav UGC ja GDPR-kohased kampaaniaandmed — ehitatud meeskonna poolt, kes tuleb turundustaustast. Päris kampaaniatulemused ERR-ist, Postimehest, Teliast ja Swedbankist.",
-  };
-  const meta = locale === "en" ? enMeta : etMeta;
-  return {
-    title: meta.title,
-    description: meta.description,
-    openGraph: {
-      title: meta.title,
-      description: meta.description,
-      type: "website",
-    },
-  };
+      locale === "en"
+        ? "AI photo booth activations for marketing teams in Estonia: branded UGC, GDPR-clean lead capture, trade-show engagement, and campaign-ready reporting."
+        : "AI fotoboksi aktivatsioonid turundusmeeskondadele Eestis: bränditud UGC, GDPR-kohane lead capture, messiaktivatsioonid ja kampaania järelraportid.",
+    locale,
+    ogImage: "/images/site/interactive-booth.png",
+    path: localizedSitePath(locale, "/turundus"),
+  });
 }
 
 const COPY = {
@@ -258,6 +255,103 @@ const COPY = {
   },
 } as const;
 
+const DIFFERENTIATOR_MEDIA: EditorialImageAsset[] = [
+  {
+    alt: {
+      en: "A branded PortrAI interface designed to match a campaign visual language",
+      et: "Bränditud PortrAI liides, mis järgib kampaania visuaalset keelt",
+    },
+    badge: {
+      en: "Brand system",
+      et: "Brändisüsteem",
+    },
+    objectPosition: "55% 44%",
+    src: "/images/site/interactive-booth.png",
+  },
+  {
+    alt: {
+      en: "A campaign flow showing how portraits move from input to branded output",
+      et: "Kampaaniavoog, mis näitab, kuidas portreed liiguvad sisendist bränditud väljundini",
+    },
+    badge: {
+      en: "Consent-ready flow",
+      et: "Nõusolekuga voog",
+    },
+    src: "/images/site/portrait-reveal.png",
+  },
+  {
+    alt: {
+      en: "Guests engaging with PortrAI during a high-traffic activation moment",
+      et: "Külalised PortrAI-ga suhtlemas suure liiklusega aktivatsiooni hetkel",
+    },
+    badge: {
+      en: "Fast on the floor",
+      et: "Kiire saalis",
+    },
+    objectPosition: "50% 52%",
+    src: "/images/site/event-action.jpg",
+  },
+  {
+    alt: {
+      en: "A branded Telia activation portrait showing campaign-ready output quality",
+      et: "Bränditud Telia aktivatsiooniportree, mis näitab kampaaniaks sobivat väljundikvaliteeti",
+    },
+    badge: {
+      en: "Proven process",
+      et: "Tõestatud protsess",
+    },
+    src: "/images/work/telia-rohekusimustik/gallery-01.jpg",
+  },
+];
+
+const PROCESS_MEDIA: EditorialImageAsset[] = [
+  {
+    alt: {
+      en: "A style board showing how raw portraits become campaign assets",
+      et: "Stiilitahvel, mis näitab, kuidas toorportreedest saavad kampaania varad",
+    },
+    badge: {
+      en: "Brief",
+      et: "Brief",
+    },
+    src: "/images/site/portrait-base.png",
+  },
+  {
+    alt: {
+      en: "A branded concept scene from the Telia questionnaire-led activation",
+      et: "Bränditud kontseptsioonistseen Telia küsimustikul põhinevast aktivatsioonist",
+    },
+    badge: {
+      en: "Concept",
+      et: "Kontseptsioon",
+    },
+    src: "/images/work/telia-rohekusimustik/gallery-03.jpg",
+  },
+  {
+    alt: {
+      en: "A live activation moment where the booth is running on the event floor",
+      et: "Live-aktivatsiooni hetk, kus boks töötab ürituse põrandal",
+    },
+    badge: {
+      en: "Activation",
+      et: "Aktivatsioon",
+    },
+    objectPosition: "50% 52%",
+    src: "/images/site/event-action.jpg",
+  },
+  {
+    alt: {
+      en: "A Swedbank campaign output used in the gallery and post-event export",
+      et: "Swedbanki kampaania väljund, mida kasutatakse galeriis ja järelmaterjalides",
+    },
+    badge: {
+      en: "Export",
+      et: "Eksport",
+    },
+    src: "/images/work/swedbank-unistused/gallery-01.jpg",
+  },
+];
+
 export default async function MarketingPage({
   params,
 }: {
@@ -375,9 +469,11 @@ export default async function MarketingPage({
               key={i}
               className="flex flex-col overflow-hidden rounded-2xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)]"
             >
-              <ImagePlaceholder
-                description={diffImages[i] ?? "Supporting visual for this differentiator"}
+              <EditorialImageCard
+                asset={DIFFERENTIATOR_MEDIA[i] ?? DIFFERENTIATOR_MEDIA[0]}
                 className="aspect-[16/9]"
+                locale={locale}
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
               <div className="flex flex-col gap-3 p-6">
                 <p className="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-brand-accent)]">
@@ -490,10 +586,11 @@ export default async function MarketingPage({
         <div className="grid gap-6 md:grid-cols-4">
           {copy.processSteps.map((s, i) => (
             <div key={s.n} className="flex flex-col gap-4">
-              <ImagePlaceholder
-                description={processImages[i] ?? "Step illustration"}
-                className="aspect-square"
-                showTag={false}
+              <EditorialImageCard
+                asset={PROCESS_MEDIA[i] ?? PROCESS_MEDIA[0]}
+                className="aspect-square rounded-2xl"
+                locale={locale}
+                sizes="(max-width: 768px) 100vw, 25vw"
               />
               <p className="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-brand-accent)]">
                 {s.n}

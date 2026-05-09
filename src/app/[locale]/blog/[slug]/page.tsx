@@ -6,6 +6,7 @@ import { Link } from "@/i18n/navigation";
 import { PageShell } from "@/components/layout/PageShell";
 import { getAllBlogSlugs, getBlogPost } from "@/lib/blog";
 import type { Metadata } from "next";
+import { buildPageMetadata, localizedSitePath } from "@/lib/seo";
 
 export async function generateStaticParams() {
   const slugs = await getAllBlogSlugs();
@@ -19,21 +20,19 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: "et" | "en"; slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const post = await getBlogPost(slug);
   if (!post) return {};
 
-  return {
+  return buildPageMetadata({
     title: post.title,
     description: post.excerpt,
-    openGraph: {
-      title: post.title,
-      description: post.excerpt,
-      type: "article",
-      publishedTime: post.date,
-      images: post.coverImage ? [{ url: post.coverImage }] : undefined,
-    },
-  };
+    locale,
+    ogImage: post.coverImage || undefined,
+    path: localizedSitePath(locale, `/blog/${slug}`),
+    type: "article",
+    publishedTime: post.date,
+  });
 }
 
 const mdxComponents = {

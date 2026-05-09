@@ -6,6 +6,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { FaqAccordion } from "@/components/faq/FaqAccordion";
 import { ImagePlaceholder } from "@/components/media/ImagePlaceholder";
 import { MagneticButton } from "@/components/motion/MagneticButton";
+import { buildPageMetadata, localizedSitePath } from "@/lib/seo";
 import { type SiteLocale } from "@/lib/site-content";
 
 /**
@@ -23,27 +24,19 @@ export async function generateMetadata({
   params: Promise<{ locale: SiteLocale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const enMeta = {
-    title: "Fotopeegel rental in Estonia · PortrAI",
+  return buildPageMetadata({
+    title:
+      locale === "en"
+        ? "Fotopeegel rental in Estonia | PortrAI"
+        : "Fotopeegli rent Eestis | PortrAI",
     description:
-      "Fotopeegel (mirror photobooth) rental for weddings, company parties, and events in Tallinn and across Estonia. Same booking team as PortrAI AI photobooth — pick the format that fits your event.",
-  };
-  const etMeta = {
-    // [ET DRAFT — needs your native pass]
-    title: "Fotopeegli rent Eestis · PortrAI",
-    description:
-      "Fotopeegli rent pulmadeks, firmapidudeks ja üritusteks Tallinnas ning üle Eesti. Sama meeskond, mis pakub AI photoboothi — vali oma üritusele sobivaim formaat.",
-  };
-  const meta = locale === "en" ? enMeta : etMeta;
-  return {
-    title: meta.title,
-    description: meta.description,
-    openGraph: {
-      title: meta.title,
-      description: meta.description,
-      type: "website",
-    },
-  };
+      locale === "en"
+        ? "Fotopeegel and mirror photobooth rental for weddings, gala dinners, and company events in Tallinn and across Estonia. Instant prints, digital delivery, and custom branded animations."
+        : "Fotopeegli rent pulmadeks, galaõhtuteks ja firmaüritusteks Tallinnas ning üle Eesti. Kohesed printid, digitaalne jagamine ja kohandatud brändi animatsioonid.",
+    locale,
+    ogImage: "/images/site/portrait-detail.png",
+    path: localizedSitePath(locale, "/fotopeegel"),
+  });
 }
 
 const COPY = {

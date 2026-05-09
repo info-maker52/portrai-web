@@ -5,6 +5,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { FaqAccordion } from "@/components/faq/FaqAccordion";
 import { ImagePlaceholder } from "@/components/media/ImagePlaceholder";
 import { MagneticButton } from "@/components/motion/MagneticButton";
+import { buildPageMetadata, localizedSitePath } from "@/lib/seo";
 import { type SiteLocale } from "@/lib/site-content";
 
 /**
@@ -27,27 +28,19 @@ export async function generateMetadata({
   params: Promise<{ locale: SiteLocale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const enMeta = {
-    title: "Trade show solutions · Messilahendused · PortrAI",
+  return buildPageMetadata({
+    title:
+      locale === "en"
+        ? "Trade show photo booth and messilahendused | PortrAI"
+        : "Messilahendused ja AI fotoboks messile | PortrAI",
     description:
-      "AI photobooth and branded photo experiences for trade shows and conferences. Lead capture, GDPR-clean data, branded touch-points. Built for high foot traffic. Used by ERR, Postimees, Telia, Swedbank.",
-  };
-  const etMeta = {
-    // [ET DRAFT — needs your native pass]
-    title: "Messilahendused · PortrAI",
-    description:
-      "AI photobooth ja bränditud foto-elamused messidele ja konverentsidele. Lead-kogumine, GDPR-iga puhtad andmed, bränditud puutepunktid. Loodud kõrgele jalakäijate liiklusele. Kasutusel ERR-is, Postimehes, Telias, Swedbankis.",
-  };
-  const meta = locale === "en" ? enMeta : etMeta;
-  return {
-    title: meta.title,
-    description: meta.description,
-    openGraph: {
-      title: meta.title,
-      description: meta.description,
-      type: "website",
-    },
-  };
+      locale === "en"
+        ? "Trade show and conference activation with AI photo booth lead capture, branded touch-points, and GDPR-clean data. Built for high foot traffic in Estonia and abroad."
+        : "Messilahendused ja AI fotoboks messidele ning konverentsidele: lead capture, bränditud puutepunktid ja GDPR-kohased andmed. Loodud suure külastajamahu jaoks Eestis ja välismaal.",
+    locale,
+    ogImage: "/images/site/interactive-booth.png",
+    path: localizedSitePath(locale, "/messilahendused"),
+  });
 }
 
 const COPY = {

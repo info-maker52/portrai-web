@@ -1,7 +1,9 @@
+import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { PageShell } from "@/components/layout/PageShell";
 import { getAllBlogPosts } from "@/lib/blog";
+import { buildPageMetadata, localizedSitePath } from "@/lib/seo";
 
 const BLOG_PAGE_COPY = {
   en: {
@@ -38,6 +40,28 @@ const BLOG_PAGE_COPY = {
     empty: "Postitusi veel ei ole.",
   },
 } as const;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: "et" | "en" }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+
+  return buildPageMetadata({
+    title:
+      locale === "en"
+        ? "AI photo booth ideas and event articles | PortrAI"
+        : "AI fotoboksi ideed ja artiklid | PortrAI",
+    description:
+      locale === "en"
+        ? "Articles about AI photo booths, event activations, branded guest experiences, and practical ideas for company events, weddings, and trade shows."
+        : "Artiklid AI fotoboksi, ürituste aktivatsioonide, bränditud külaliskogemuste ning praktiliste ideede kohta firmapidudele, pulmadele ja messidele.",
+    locale,
+    ogImage: "/images/blog/why-an-ai-photobooth-is-the-perfect-addition-to-your-company-summer-gatherings-cover.png",
+    path: localizedSitePath(locale, "/blog"),
+  });
+}
 
 export default async function BlogPage({
   params,

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
@@ -5,9 +6,11 @@ import { Link } from "@/i18n/navigation";
 import { PageShell } from "@/components/layout/PageShell";
 import { ProjectCoverImage } from "@/components/work/ProjectCoverImage";
 import {
+  getProjectCoverMedia,
   getProjectGalleryMedia,
   type ProjectGalleryMediaItem,
 } from "@/lib/project-media";
+import { buildPageMetadata, localizedSitePath } from "@/lib/seo";
 import {
   getNextProject,
   getProject,
@@ -21,6 +24,30 @@ export function generateStaticParams() {
   return projects.flatMap((project) =>
     ["et", "en"].map((locale) => ({ locale, slug: project.slug })),
   );
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: SiteLocale; slug: string }>;
+}): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const project = getProject(slug);
+
+  if (!project) {
+    return {};
+  }
+
+  const galleryImage = getProjectGalleryMedia(project.slug)?.items[0]?.src;
+  const coverImage = getProjectCoverMedia(project.slug).src;
+
+  return buildPageMetadata({
+    title: `${project.client} | ${text(locale, project.event)} | PortrAI`,
+    description: text(locale, project.summary),
+    locale,
+    ogImage: galleryImage ?? coverImage ?? "/images/site/interactive-booth.png",
+    path: localizedSitePath(locale, `/tood/${slug}`),
+  });
 }
 
 export default async function ProjectPage({
