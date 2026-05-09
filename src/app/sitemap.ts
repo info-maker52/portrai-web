@@ -16,6 +16,8 @@ const STATIC_PATHS = [
   "/turundus",
   "/peod",
   "/fotopeegel",
+  "/photobooth-tallinn",
+  "/messilahendused",
   "/tood",
   "/blog",
   "/kontakt",
