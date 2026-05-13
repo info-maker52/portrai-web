@@ -743,20 +743,20 @@ export const projects: PlaceholderProject[] = [
       et: "Promptipõhine bränditud kontseptsioon",
     },
     summary: {
-      en: "A Startup Day concept where guests typed their dream and received a branded AI portrait shaped by that prompt.",
-      et: "Boksikontseptsioon, kus kirjutatud unistused muutuvad personaliseeritud AI-visuaalideks Swedbanki enda brändimaailmas.",
+      en: "\"AI could change the world. Could it change you?\" — a Swedbank campaign concept where guests typed their dream and AI visualised them living in it. Positioned the bank as the partner that helps dreams come true.",
+      et: "„AI võib maailma muuta. Kas see võib muuta sind?\" — Swedbanki kampaania, kus külalised kirjutasid oma unistuse ning AI visualiseeris neid selles. Positsioneeris panga partnerina, kes aitab unistused täita.",
     },
     brief: {
-      en: "Make the booth feel personal, aspirational, and unmistakably Swedbank rather than simply decorative.",
-      et: "Siduda boks unistuste ja tulevikumõtlemisega, mitte lihtsalt üldise portreetulemusega.",
+      en: "Connect Swedbank to aspirational life moments — not financial products. The booth had to feel like a brand-message device, not a photo booth.",
+      et: "Sidu Swedbank inimeste suurte unistustega — mitte finantsproduktidega. Boks pidi tunduma brändi-sõnumi seadmena, mitte fotoboksina.",
     },
     challenge: {
-      en: "The concept needed open-ended guest input without drifting into unsafe or off-brand results.",
-      et: "Kogemus vajas loomingulist vabadust, ilma et promptid triiviksid sobimatu või brändivälise tulemuse suunas.",
+      en: "Open-ended guest prompts (a Porsche, a house by the sea, a café of their own) had to render fast, beautifully, and on-brand — without unsafe outputs.",
+      et: "Vabad külaliste promptid (Porsche, maja mere ääres, oma kohvik) pidid genereeruma kiirelt, ilusasti ja brändile vastavalt — ilma sobimatute väljunditeta.",
     },
     solution: {
-      en: "Guests wrote what they dream about, the system generated a matching image in Swedbank's visual language, and moderation kept the output brand-safe.",
-      et: "Külalised kirjutasid, millest nad unistavad, süsteem lõi Swedbanki värvides unikaalse pildi ning moderatsioonikiht filtreeris sobimatud promptid välja.",
+      en: "Three-step flow: pick female / male / group photo → describe your dream in keywords → AI visualises you in it in ~15 seconds. Swedbank visual system on every screen. Email or print the result.",
+      et: "Kolmeastmeline voog: vali naine / mees / grupifoto → kirjelda unistust märksõnadega → AI visualiseerib sind seal ~15 sekundiga. Swedbanki visuaal-süsteem igal ekraanil. Tulemuse saab e-postile või printida.",
     },
     deliverables: [
       {
@@ -856,6 +856,92 @@ export const projects: PlaceholderProject[] = [
     galleryLabel: {
       en: "Quiz flow and personalised study-match outputs",
       et: "Küsimustikuvool ja õppesobivuse väljundid",
+    },
+  },
+  {
+    slug: "synlab-elu",
+    client: "Synlab",
+    event: {
+      en: "\"Life as if at Synlab\" — employee-engagement concept",
+      et: "„Elu nagu Synlab'is\" — töötaja-kaasamise kontseptsioon",
+    },
+    // TODO Reijo: confirm year + agency credit (if any).
+    year: "2026",
+    category: "corporate",
+    city: "Tallinn",
+    countryCode: "EE",
+    service: {
+      en: "Branded AI activation with pre-made themes + interactive mode",
+      et: "Bränditud AI-aktivatsioon: valmis teemad + interaktiivne režiim",
+    },
+    summary: {
+      en: "An internal Synlab event experience that turned lab staff into characters living different versions of \"life at Synlab\" — past, present, future, festive. The most emotion-producing photo experience Aivar Kuusk had seen in 20 years of event work.",
+      et: "Synlabi sisemine ürituskogemus, kus laborite töötajad muutusid tegelasteks erinevates „elu Synlabis\" versioonides — minevik, olevik, tulevik, pidulik. Kõige rohkem emotsiooni tekitav fotokogemus, mida Aivar Kuusk oli 20 aasta jooksul näinud.",
+    },
+    brief: {
+      en: "Build internal culture around the Synlab brand through a moment of belonging — not just a fun photo. The output had to feel like the employees were part of the story Synlab tells about itself.",
+      et: "Ehitada Synlabi sisekultuur ümber ühe kuuluvuse-hetke — mitte lihtsalt lõbusa pildi. Tulemus pidi tunduma nii, nagu töötajad oleksid osa loost, mida Synlab enda kohta räägib.",
+    },
+    challenge: {
+      en: "An internal audience can spot generic AI output immediately. Themes had to feel hand-crafted for Synlab specifically — not a stock catalog.",
+      et: "Sisemine publik tabab kohe ära üldise AI väljundi. Teemad pidid tunduma käsitsi Synlabi jaoks tehtud — mitte stoki-kataloogina.",
+    },
+    solution: {
+      en: "Two flows on the same booth. Pre-made: Future medical lab, Space lab, Festive Synlab, Past lab. Interactive: pick a tone (humorous / cool / elegant) → write a keyword → output options like alien, superhero, or Barbie — at Synlab. Touch-screen selection of which results to print and email.",
+      et: "Kaks voogu samal boksil. Valmis teemad: tuleviku meditsiinilabor, kosmoselabor, pidulik Synlab, mineviku labor. Interaktiivne: vali toon (humoorikas / lahe / elegantne) → kirjuta märksõna → väljund-võimalused nagu tulnukas, superkangelane või Barbie — Synlabis. Puutetundlikul ekraanil valib töötaja, milliseid pilte printida ja e-postile saata.",
+    },
+    deliverables: [
+      {
+        en: "4 custom themes designed inside Synlab's brand language",
+        et: "4 kohandatud teemat Synlabi brändi keeles",
+      },
+      {
+        en: "\"My life at Synlab\" interactive flow with tone + keyword input",
+        et: "„Minu elu Synlab'is\" interaktiivne voog tooni ja märksõna valikuga",
+      },
+      {
+        en: "Touch-screen print + email selection per guest",
+        et: "Puutetundliku ekraani print + e-posti valik iga külalise jaoks",
+      },
+      {
+        en: "On-site host and 1–2 minute output turnaround",
+        et: "Kohapealne host ja 1–2-minutiline väljund-aeg",
+      },
+    ],
+    outcomes: [
+      {
+        en: "Recognised by event-industry veteran Aivar Kuusk as the most emotion-producing photo experience in 20 years.",
+        et: "Üritusturunduses 20 aastat töötanud Aivar Kuusk: kõige rohkem emotsiooni tekitav fotokogemus 20 aasta jooksul.",
+      },
+      {
+        en: "Employees engaged with both flows — pre-made and interactive — without operator hand-holding.",
+        et: "Töötajad kaasati mõlemasse voogu — valmis teemad ja interaktiivne — ilma operaatori juhendamiseta.",
+      },
+      {
+        en: "Established a reusable template for employer-branding events in regulated industries.",
+        et: "Lõi korduskasutatava malli reguleeritud sektorite tööandja-brändi üritustele.",
+      },
+    ],
+    metrics: [],
+    quote: {
+      quote: {
+        en: "The most emotion-producing photo booth experience I've seen in 20 years of event marketing.",
+        et: "Kõige rohkem emotsiooni tekitav fotoboksi-elamus, mida olen 20 aasta jooksul üritusturunduses näinud.",
+      },
+      name: "Aivar Kuusk",
+      role: {
+        en: "Founder, Kuusk Events",
+        et: "Asutaja, Kuusk Events",
+      },
+      company: "Kuusk Events",
+      status: {
+        en: "Permission to publish confirmed",
+        et: "Avaldamiseks luba kinnitatud",
+      },
+    },
+    galleryLabel: {
+      en: "Synlab themed portraits and the interactive flow",
+      et: "Synlabi temaatilised portreed ja interaktiivne voog",
     },
   },
 ];

@@ -19,10 +19,19 @@ const STATIC_PATHS = [
   "/fotopeegel",
   "/photobooth-tallinn",
   "/messilahendused",
+  "/hinnad",
+  "/kalkulaator",
+  "/stiilid",
+  "/broneeri",
+  "/pulma-fotoboks",
+  "/firmapidu-fotoboks",
   "/tood",
   "/blog",
   "/kontakt",
 ];
+
+// Standalone Russian-language pages (outside the next-intl routing).
+const RU_PATHS = ["/ru", "/ru/kontakty"];
 
 const CASE_STUDY_PATHS = projects.map((project) => `/tood/${project.slug}`);
 
@@ -80,6 +89,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         },
       });
     }
+  }
+
+  for (const path of RU_PATHS) {
+    entries.push({
+      url: `${SITE_URL}${path}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    });
   }
 
   return entries;

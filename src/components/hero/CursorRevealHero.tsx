@@ -267,19 +267,65 @@ export function CursorRevealHero({
           "radial-gradient(circle at 30% 40%, rgba(121, 72, 255, 0.45), transparent 60%), radial-gradient(circle at 70% 60%, rgba(255, 162, 255, 0.32), transparent 60%)",
       }}
     >
-      {shouldMount && (
+      {shouldMount ? (
         <canvas
           ref={canvasRef}
           className="block h-full w-full"
           aria-hidden
         />
+      ) : (
+        // Mobile / reduced-motion fallback: a stacked-image cross-fade.
+        // Auto-cycles between the base portrait and the AI-styled reveal
+        // every 3.5s so the centerpiece still tells the product story.
+        <MobileHeroFallback baseSrc={baseTexture} revealSrc={revealTexture} />
       )}
       {showChrome && (
         <div className="pointer-events-none absolute bottom-3 left-3 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-white/65">
           <span className="block h-1.5 w-1.5 rounded-full bg-[color:var(--color-brand-accent)]" />
-          Move cursor
+          <span className="hidden md:inline">Move cursor</span>
+          <span className="md:hidden">PortrAI · live demo</span>
         </div>
       )}
+    </div>
+  );
+}
+
+function MobileHeroFallback({
+  baseSrc,
+  revealSrc,
+}: {
+  baseSrc?: string;
+  revealSrc?: string;
+}) {
+  if (!baseSrc && !revealSrc) return null;
+  return (
+    <div className="absolute inset-0">
+      {baseSrc && (
+        <img
+          src={baseSrc}
+          alt=""
+          aria-hidden
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      )}
+      {revealSrc && (
+        <img
+          src={revealSrc}
+          alt=""
+          aria-hidden
+          className="absolute inset-0 h-full w-full object-cover [animation:portrai-hero-cycle_7s_ease-in-out_infinite]"
+        />
+      )}
+      <style>{`
+        @keyframes portrai-hero-cycle {
+          0%, 30% { opacity: 0; }
+          50%, 80% { opacity: 1; }
+          100% { opacity: 0; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          [class*="portrai-hero-cycle"] { animation: none !important; opacity: 1 !important; }
+        }
+      `}</style>
     </div>
   );
 }

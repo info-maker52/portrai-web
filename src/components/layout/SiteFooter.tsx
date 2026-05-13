@@ -1,3 +1,4 @@
+import NextLink from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 
@@ -92,6 +93,24 @@ export function SiteFooter() {
             Fotopeegel
           </Link>
           <Link
+            href="/stiilid"
+            className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
+          >
+            {locale === "en" ? "Styles" : "Stiilid"}
+          </Link>
+          <Link
+            href="/hinnad"
+            className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
+          >
+            {locale === "en" ? "Pricing" : "Hinnad"}
+          </Link>
+          <Link
+            href="/kalkulaator"
+            className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
+          >
+            {locale === "en" ? "Calculator" : "Kalkulaator"}
+          </Link>
+          <Link
             href="/blog"
             className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
           >
@@ -133,6 +152,19 @@ export function SiteFooter() {
       <div className="mt-12 flex flex-col gap-3 border-t border-[color:var(--color-stroke-subtle)] pt-6 md:flex-row md:items-center md:justify-between">
         <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-tertiary)]">
           © 2026 PortrAI · {tFooter("rights")}
+        </p>
+        <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-tertiary)]">
+          <Link href="/" locale="et" className="hover:text-white">
+            Eesti
+          </Link>{" · "}
+          <Link href="/" locale="en" className="hover:text-white">
+            English
+          </Link>
+          {" · "}
+          {/* Plain Next link — /ru lives outside next-intl routing */}
+          <NextLink href="/ru" className="hover:text-white">
+            Русский
+          </NextLink>
         </p>
       </div>
     </footer>

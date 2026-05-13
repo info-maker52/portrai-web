@@ -234,6 +234,114 @@ export function breadcrumbSchema(
 }
 
 /**
+ * Service schema — for landing pages that describe one service offering
+ * (e.g. /pulma-fotoboks, /firmapidu-fotoboks, /fotopeegel, /messilahendused).
+ *
+ * Pass a `priceRange` like "490–2490 €" to surface tier hints in SERPs.
+ */
+export function serviceSchema(input: {
+  name: string;
+  description: string;
+  url: string;
+  serviceType: string;
+  priceRange?: string;
+  image?: string;
+  areaServed?: string[];
+  audience?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: input.name,
+    description: input.description,
+    serviceType: input.serviceType,
+    url: input.url,
+    provider: {
+      "@type": "Organization",
+      name: "PortrAI",
+      url: SITE_URL,
+    },
+    areaServed: input.audience
+      ? input.audience
+      : input.areaServed ?? ["EE", "FI", "LV", "DE"],
+    image: input.image,
+    offers: input.priceRange
+      ? {
+          "@type": "Offer",
+          priceCurrency: "EUR",
+          priceRange: input.priceRange,
+        }
+      : undefined,
+  };
+}
+
+/**
+ * FAQPage schema — wrap any FAQ list to expose rich-result eligibility.
+ */
+export function faqSchema(
+  items: ReadonlyArray<{ q: string; a: string }>,
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.a,
+      },
+    })),
+  };
+}
+
+/**
+ * AggregateRating embedded into the LocalBusiness/Organization graph.
+ * Use only with real testimonial data — Google penalises fabricated rating
+ * stars. Replace `ratingValue` and `reviewCount` once Reijo confirms.
+ */
+export function aggregateRatingSchema(input: {
+  ratingValue: number;
+  reviewCount: number;
+  bestRating?: number;
+}) {
+  return {
+    "@type": "AggregateRating",
+    ratingValue: input.ratingValue,
+    reviewCount: input.reviewCount,
+    bestRating: input.bestRating ?? 5,
+  };
+}
+
+/**
+ * Product schema for AI style entries on /stiilid. The page itself is an
+ * ItemList; each style is a Product with its own offer reference.
+ */
+export function styleListSchema(items: Array<{
+  name: string;
+  description: string;
+  image: string;
+  url: string;
+}>) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "Product",
+        name: item.name,
+        description: item.description,
+        image: item.image,
+        url: item.url,
+        brand: { "@type": "Brand", name: "PortrAI" },
+      },
+    })),
+  };
+}
+
+/**
  * Serialize a schema.org object to a JSON string for inlining in
  * <script type="application/ld+json">. Use the JsonLd component in
  * `components/seo/JsonLd.tsx` to render it.

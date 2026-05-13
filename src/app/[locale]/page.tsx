@@ -8,7 +8,8 @@ import { MagneticButton } from "@/components/motion/MagneticButton";
 import { ShowcaseMarquee } from "@/components/showcase/ShowcaseMarquee";
 import { WorldMap } from "@/components/world/WorldMap";
 import { buildPageMetadata, localizedSitePath } from "@/lib/seo";
-import { type SiteLocale } from "@/lib/site-content";
+import { INTERNATIONAL_REACH, PARTNERSHIPS } from "@/lib/contact";
+import { type SiteLocale, text } from "@/lib/site-content";
 
 /**
  * Home is a hub. It does ONE thing: route the visitor to the path that
@@ -30,13 +31,32 @@ import { type SiteLocale } from "@/lib/site-content";
 
 const COPY = {
   en: {
-    heroEyebrow: "(01) PortrAI · AI photobooth & fotopeegel",
-    heroHeadline:
-      "AI photobooth that makes your event the talk of the room.",
+    heroEyebrow: "(01) PortrAI · AI photo experiences",
+    heroHeadline: "The hit of every event. Hands down.",
     heroSub:
-      "PortrAI is Estonia's award-winning AI photobooth — plus classic fotoboks and fotopeegel for events that want both. Trusted by ERR, Postimees, Telia, Swedbank, and over a hundred company parties.",
+      "PortrAI builds AI photo experiences that brands, agencies, and HR teams across Estonia book again and again. From quick branded booths to award-winning campaign concepts. Used by Swedbank, Telia, ERR, Postimees, Synlab — and at the European Innovation Council Summit.",
     heroPathMarketing: "For brands & marketing",
     heroPathEvents: "For company parties & events",
+
+    primerEyebrow: "(00) What we make",
+    primer: [
+      {
+        title: "Boks",
+        body: "AI photo booth at your event. Branded prints, on-site host, fast setup.",
+      },
+      {
+        title: "Branded",
+        body: "Full brand takeover — not just the start screen, the whole UI in your language.",
+      },
+      {
+        title: "Custom Activation",
+        body: "A campaign concept built around AI photo. The Swedbank / Synlab / Von Fock tier.",
+      },
+      {
+        title: "Virtual Widget",
+        body: "AI photo experience embedded on your site or microsite. Works without an event.",
+      },
+    ],
 
     pathsEyebrow: "(02) Two ways we work",
     pathsTitle: "Pick your path.",
@@ -61,18 +81,19 @@ const COPY = {
     showcaseAll: "All work",
 
     awardsEyebrow: "(04) Awards",
-    awardsTitle: "Award-winning.",
+    awardsTitle: "Award-winning, in the categories that matter to your buyer.",
     awardsBody:
-      "First in the Baltics to win Booth Mastermind Awards in Las Vegas — in two categories.",
+      "Estonian marketing-industry recognition first — then the international photo-booth jury. The work has been graded both ways.",
     awardsBadges: [
-      "Best AI photo solution · Booth Mastermind Awards",
-      "Best newcomer in the photo booth world · Booth Mastermind Awards",
+      "Pronksmuna · Postimees Laulupidu campaign",
+      "Most Innovative Marketing Campaign · Von Fock for ERR",
+      "Booth Mastermind Awards 2025 · Las Vegas · Best AI Photo Solution",
     ],
 
     reachEyebrow: "(05) Where we've delivered",
-    reachTitle: "Estonia is home. The work travels.",
+    reachTitle: "Estonia is home. The work has travelled.",
     reachBody:
-      "Beyond Estonia, PortrAI has been delivered in Finland, Germany, Latvia, Poland, Belgium and the USA.",
+      "PortrAI is the official photo-booth partner of the European Innovation Council Summit 2025–2026. Experiences also delivered in Finland, Germany, Latvia, Belgium, Poland and the USA.",
     reachMetrics: [
       { value: "780K+", label: "Photos generated across campaigns" },
       { value: "7", label: "Countries delivered in" },
@@ -86,13 +107,32 @@ const COPY = {
   },
   et: {
     // [ET DRAFT — needs your native pass]
-    heroEyebrow: "(01) PortrAI · AI photobooth ja fotopeegel",
-    heroHeadline:
-      "AI photobooth, millest külalised räägivad veel kuid hiljem.",
+    heroEyebrow: "(01) PortrAI · AI fotokogemused",
+    heroHeadline: "Täielik hitt. Ürituse populaarseim osa.",
     heroSub:
-      "PortrAI on Eesti auhinnatud AI photobooth — lisaks klassikaline fotoboks ja fotopeegel üritustele, kes soovivad mõlemat. Kasutusel ERR-is, Postimehes, Telias ja Swedbankis — lisaks sadadel firmapidudel ja eraüritustel.",
+      "PortrAI loob AI fotokogemusi, mida Eesti brändid, agentuurid ja HR-tiimid broneerivad ikka ja jälle. Kiirelt bränditud fotoboksist auhinnatud kampaania-kontseptsioonideni. Kasutusel Swedbankis, Telias, ERR-is, Postimehes, Synlabis — ning European Innovation Council Summit'il.",
     heroPathMarketing: "Brändidele ja turundusele",
     heroPathEvents: "Firmapidudele ja eraüritustele",
+
+    primerEyebrow: "(00) Mida me teeme",
+    primer: [
+      {
+        title: "Boks",
+        body: "AI fotoboks sinu üritusel. Bränditud prindid, kohapealne host, kiire setup.",
+      },
+      {
+        title: "Branded",
+        body: "Täielik brändi-ülevõtt — mitte ainult avaekraan, vaid kogu UI sinu keeles.",
+      },
+      {
+        title: "Custom Activation",
+        body: "Kampaania kontseptsioon ehitatud AI foto ümber. Swedbanki / Synlabi / Von Focki tase.",
+      },
+      {
+        title: "Virtual Widget",
+        body: "AI fotokogemus sinu saidil või mikrosaidil. Töötab ilma ürituseta.",
+      },
+    ],
 
     pathsEyebrow: "(02) Kahel viisil töötame",
     pathsTitle: "Vali oma rada.",
@@ -117,18 +157,19 @@ const COPY = {
     showcaseAll: "Kõik tööd",
 
     awardsEyebrow: "(04) Auhinnad",
-    awardsTitle: "Auhinnatud.",
+    awardsTitle: "Auhinnatud — kategooriates, mis sinu ostjale midagi ütlevad.",
     awardsBody:
-      "Esimene Balti riikidest võitnud Booth Mastermind Awardsi Las Vegases — kahes kategoorias.",
+      "Esmalt Eesti turunduselt, seejärel rahvusvaheliselt fotoboksi žüriilt. Töö on hinnatud mõlemast suunast.",
     awardsBadges: [
-      "Parim AI-fotolahendus · Booth Mastermind Awards",
-      "Parim uustulnuk fotoboksi maailmas · Booth Mastermind Awards",
+      "Pronksmuna · Postimehe Laulupeo kampaania",
+      "Aasta innovaatilisem turunduskampaania · Von Fock ERR-ile",
+      "Booth Mastermind Awards 2025 · Las Vegas · Parim AI fotolahendus",
     ],
 
     reachEyebrow: "(05) Kus oleme töötanud",
-    reachTitle: "Eesti on kodu. Töö rändab.",
+    reachTitle: "Eesti on kodu. Töö on rännanud.",
     reachBody:
-      "Peale Eesti oleme PortrAI lahendusi pakkunud Soomes, Saksamaal, Lätis, Poolas, Belgias ja USAs.",
+      "PortrAI on European Innovation Council Summit 2025–2026 ametlik fotoboksi partner. Kogemusi oleme pakkunud ka Soomes, Saksamaal, Lätis, Belgias, Poolas ja USAs.",
     reachMetrics: [
       { value: "780K+", label: "Pilti loodud kampaaniates" },
       { value: "7", label: "Riiki, kus oleme töötanud" },
@@ -152,7 +193,7 @@ export async function generateMetadata({
     title:
       locale === "en"
         ? "AI photo booth Estonia | PortrAI"
-        : "AI fotoboks Eestis | PortrAI",
+        : "AI fotoboks ja fotopeegel Eestis | PortrAI",
     description:
       locale === "en"
         ? "Award-winning AI photo booth, photobooth rental, fotoboks, and fotopeegel for events in Tallinn and across Estonia. Built for brand activations, company parties, weddings, and trade shows."
@@ -193,6 +234,12 @@ export default async function HomePage({
             <p className="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
               {copy.heroEyebrow}
             </p>
+            <p className="inline-flex w-fit items-center gap-2 rounded-full border border-[color:var(--color-brand-primary)]/40 bg-[color:var(--color-brand-primary)]/10 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--color-brand-accent)] backdrop-blur-sm">
+              <span aria-hidden>★</span>
+              {locale === "en"
+                ? "Pronksmuna · Most Innovative Campaign · Booth Mastermind Las Vegas"
+                : "Pronksmuna · Aasta innovaatilisem turunduskampaania · Booth Mastermind Las Vegas"}
+            </p>
             <h1
               className="max-w-5xl font-medium leading-[1.04] tracking-tight"
               style={{ fontSize: "var(--text-display-xl)" }}
@@ -232,6 +279,31 @@ export default async function HomePage({
               revealTexture="/images/hero/portrait-reveal.png"
             />
           </div>
+        </div>
+      </section>
+
+      {/* (00) Product primer — vocabulary buyers can use to ask for the right thing */}
+      <section className="border-b border-[color:var(--color-stroke-subtle)] px-6 py-16 md:px-12">
+        <p className="mb-10 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
+          {copy.primerEyebrow}
+        </p>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {copy.primer.map((p) => (
+            <div
+              key={p.title}
+              className="flex flex-col gap-3 border-l border-[color:var(--color-brand-primary)] pl-5"
+            >
+              <p
+                className="font-medium leading-tight"
+                style={{ fontSize: "var(--text-title)" }}
+              >
+                {p.title}
+              </p>
+              <p className="text-sm text-[color:var(--color-text-secondary)]">
+                {p.body}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -380,6 +452,31 @@ export default async function HomePage({
             >
               {copy.reachBody}
             </p>
+            <div className="mt-6 flex flex-col gap-4">
+              {PARTNERSHIPS.map((p) => (
+                <p
+                  key={p.id}
+                  className="inline-flex w-fit items-center gap-2 rounded-full border border-[color:var(--color-brand-primary)]/30 bg-[color:var(--color-brand-primary)]/8 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--color-brand-accent)]"
+                >
+                  <span aria-hidden>★</span>
+                  {text(locale, p.label)}
+                </p>
+              ))}
+              <p
+                className="flex flex-wrap items-center gap-2 text-lg"
+                aria-label={
+                  locale === "en"
+                    ? "Countries where PortrAI has delivered"
+                    : "Riigid, kus PortrAI on töötanud"
+                }
+              >
+                {INTERNATIONAL_REACH.map((c) => (
+                  <span key={c.code} title={c.code}>
+                    {c.flag}
+                  </span>
+                ))}
+              </p>
+            </div>
           </div>
           <div className="self-end">
             <WorldMap />

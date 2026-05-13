@@ -118,9 +118,9 @@ const COPY = {
     // [ET DRAFT — needs your native pass]
     eyebrow: "(02) PortrAI · Tallinn",
     headline:
-      "Photobooth rent Tallinnas — sama nädal, bränditud, auhinnatud.",
+      "Fotoboks Tallinnas — sama nädal, bränditud, auhinnatud.",
     subhead:
-      "PortrAI pakub AI photoboothi, klassikalist fotoboksi ja fotopeegelt üritustele üle Tallinna. Asume Tallinnas, seega setup saabub varakult, meeskond tunneb venue'sid ja kogemus on häälestatud enne külaliste saabumist.",
+      "PortrAI pakub AI fotoboksi, klassikalist photoboothi ja fotopeegelt üritustele üle Tallinna. Asume Tallinnas, seega setup saabub varakult, meeskond tunneb venue'sid ja kogemus on häälestatud enne külaliste saabumist.",
     primaryCta: "Broneeri PortrAI Tallinnas",
     secondaryCta: "Vaata, mida oleme teinud",
 

@@ -11,6 +11,8 @@ import {
   type EditorialImageAsset,
 } from "@/components/media/EditorialImageCard";
 import { MagneticButton } from "@/components/motion/MagneticButton";
+import { OutcomeMetrics } from "@/components/trust/OutcomeMetrics";
+import { TrustRow } from "@/components/trust/TrustRow";
 import { buildPageMetadata, localizedSitePath } from "@/lib/seo";
 import {
   getProject,
@@ -59,12 +61,66 @@ export async function generateMetadata({
 
 const COPY = {
   en: {
-    eyebrow: "(02) For brands & marketing teams",
-    headline: "Brand activation that's actually measurable.",
+    eyebrow: "(02) PortrAI Studio · for brands & marketing teams",
+    headline: "Brand activations, not booth rentals.",
     subhead:
-      "Leads, shareable UGC, and campaign memories — all GDPR-clean, in your design language, on your team's timeline.",
-    primaryCta: "Book a 15-min strategy call",
-    secondaryCta: "See the Postimees case",
+      "We build campaign concepts that use AI photo as the medium — for brands, agencies, and trade-show teams. Every project starts from a brief. Tech comes second. Swedbank, Synlab, Von Fock, Laulupidu — these are campaigns, not bookings.",
+    primaryCta: "Talk about your concept",
+    secondaryCta: "See the work",
+
+    productLinesEyebrow: "(02.1) What you can choose",
+    productLinesTitle: "Four shapes the same studio takes.",
+    productLines: [
+      {
+        title: "Boks",
+        body: "On-event AI photo booth with on-site host. Quickest to book, smallest commitment.",
+        priceLabel: "from €490",
+      },
+      {
+        title: "Branded",
+        body: "Full brand takeover — every screen, prompt, frame and email in your design language.",
+        priceLabel: "from €890",
+      },
+      {
+        title: "Custom Activation",
+        body: "A campaign concept built from a brief. Swedbank, Synlab, Von Fock tier.",
+        priceLabel: "By quote",
+      },
+      {
+        title: "Virtual Widget",
+        body: "AI photo experience embedded on your site or microsite. Runs without an event.",
+        priceLabel: "By quote",
+      },
+    ],
+
+    showcaseEyebrow: "(02.2) Campaigns we've shipped",
+    showcaseTitle: "Award territory.",
+    showcase: [
+      {
+        client: "Swedbank",
+        title: "What's your dream?",
+        body: "AI Photobooth campaign positioning Swedbank as the bank that helps dreams come true. Guests typed a dream — AI visualised them inside it.",
+        href: "/tood/swedbank-unistused",
+      },
+      {
+        client: "Synlab",
+        title: "Elu nagu Synlab'is",
+        body: "Employee-engagement concept turning lab staff into characters in past, present and future Synlab labs. \"The most emotion-producing photobooth experience in 20 years.\" — Aivar Kuusk.",
+        href: "/tood/synlab-elu",
+      },
+      {
+        client: "ERR · Von Fock",
+        title: "Most Innovative Marketing Campaign 2023",
+        body: "Virtual AI photo experience that turned audiences into Von Fock-era portraits. 681K images, +10% episode 2 viewership lift.",
+        href: "/tood/von-fock",
+      },
+      {
+        client: "Postimees · Laulupidu",
+        title: "Pronksmuna winner",
+        body: "Laulupidu engagement device for Postimees. 103K images, 23K opt-ins. The campaign asset lived on a Postimees microsite.",
+        href: "/tood/laulupidu-postimees",
+      },
+    ],
 
     diffEyebrow: "(03) How we're different",
     diffTitle: "We come from a marketing background.",
@@ -157,12 +213,66 @@ const COPY = {
   },
   et: {
     // [ET DRAFT — needs your pass]
-    eyebrow: "(02) Brändidele ja turundusmeeskondadele",
-    headline: "Brändi-aktivatsioon, mida saab tegelikult mõõta.",
+    eyebrow: "(02) PortrAI Studio · brändidele ja turundusele",
+    headline: "Brändi-aktivatsioonid, mitte boksi rent.",
     subhead:
-      "Leadid, jagatav UGC ja kampaania-mälestused — kõik GDPR-iga, sinu disainikeeles, sinu meeskonna ajagraafikus.",
-    primaryCta: "Broneeri 15-min strateegiakõne",
-    secondaryCta: "Vaata Postimehe juhtumit",
+      "Me ehitame kampaania-kontseptsioone, mis kasutavad AI fotot meediumina — brändidele, agentuuridele ja messimeeskondadele. Iga projekt algab briifist. Tehnoloogia tuleb pärast. Swedbank, Synlab, Von Fock, Laulupidu — need on kampaaniad, mitte broneeringud.",
+    primaryCta: "Räägi oma kontseptsioonist",
+    secondaryCta: "Vaata töid",
+
+    productLinesEyebrow: "(02.1) Mida saad valida",
+    productLinesTitle: "Neli kuju, milleks sama stuudio saab muutuda.",
+    productLines: [
+      {
+        title: "Boks",
+        body: "Kohapealne AI fotoboks koos hostiga. Kõige kiirem broneerida, väikseim pühendumus.",
+        priceLabel: "alates 490 €",
+      },
+      {
+        title: "Branded",
+        body: "Täielik brändi-ülevõtt — iga ekraan, prompt, raam ja e-kiri sinu disainikeeles.",
+        priceLabel: "alates 890 €",
+      },
+      {
+        title: "Custom Activation",
+        body: "Kampaania kontseptsioon ehitatud briifist alates. Swedbanki, Synlabi, Von Focki tase.",
+        priceLabel: "Pakkumise alusel",
+      },
+      {
+        title: "Virtual Widget",
+        body: "AI fotokogemus, mis on integreeritud sinu saidile või mikrosaidile. Töötab ilma ürituseta.",
+        priceLabel: "Pakkumise alusel",
+      },
+    ],
+
+    showcaseEyebrow: "(02.2) Tehtud kampaaniad",
+    showcaseTitle: "Auhinnatud territoorium.",
+    showcase: [
+      {
+        client: "Swedbank",
+        title: "Mis on sinu unistus?",
+        body: "AI Photobooth kampaania, mis positsioneerib Swedbanki pangana, kes aitab unistused täita. Külalised kirjutasid unistuse — AI visualiseeris neid selles.",
+        href: "/tood/swedbank-unistused",
+      },
+      {
+        client: "Synlab",
+        title: "Elu nagu Synlab'is",
+        body: "Töötaja-kaasamise kontseptsioon, mis muutis labori töötajad tegelasteks mineviku, oleviku ja tuleviku Synlabis. „Kõige rohkem emotsiooni tekitav fotoboksi-elamus 20 aasta jooksul.\" — Aivar Kuusk.",
+        href: "/tood/synlab-elu",
+      },
+      {
+        client: "ERR · Von Fock",
+        title: "Aasta innovaatilisem turunduskampaania 2023",
+        body: "Virtuaalne AI fotokogemus, mis muutis publiku Von Focki-aegseteks portreedeks. 681K pilti, +10% 2. saate vaadatavuse tõus.",
+        href: "/tood/von-fock",
+      },
+      {
+        client: "Postimees · Laulupidu",
+        title: "Pronksmuna võitja",
+        body: "Laulupeo-kaasamise lahendus Postimehele. 103K pilti, 23K opt-ini. Kampaania asset elas Postimehe mikrosaidil.",
+        href: "/tood/laulupidu-postimees",
+      },
+    ],
 
     diffEyebrow: "(03) Mille poolest erineme",
     diffTitle: "Tuleme turundustaustast.",
@@ -440,6 +550,95 @@ export default async function MarketingPage({
             </div>
           </div>
         </div>
+        <div className="mt-10">
+          <TrustRow locale={locale} />
+        </div>
+      </section>
+
+      {/* Product lines — vocabulary for what we can build */}
+      <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+        <div className="mb-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
+          <p className="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
+            {copy.productLinesEyebrow}
+          </p>
+          <h2
+            className="font-medium leading-tight tracking-tight"
+            style={{ fontSize: "var(--text-display-md)" }}
+          >
+            {copy.productLinesTitle}
+          </h2>
+        </div>
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {copy.productLines.map((line) => (
+            <article
+              key={line.title}
+              className="flex flex-col gap-3 rounded-2xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] p-6"
+            >
+              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--color-brand-accent)]">
+                {line.priceLabel}
+              </p>
+              <h3
+                className="font-medium leading-tight"
+                style={{ fontSize: "var(--text-title)" }}
+              >
+                {line.title}
+              </h3>
+              <p className="text-sm text-[color:var(--color-text-secondary)]">
+                {line.body}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* Showcase — the four headline campaigns */}
+      <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+        <div className="mb-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
+          <p className="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
+            {copy.showcaseEyebrow}
+          </p>
+          <h2
+            className="font-medium leading-tight tracking-tight"
+            style={{ fontSize: "var(--text-display-md)" }}
+          >
+            {copy.showcaseTitle}
+          </h2>
+        </div>
+        <div className="grid gap-6 md:grid-cols-2">
+          {copy.showcase.map((item) => (
+            <Link
+              key={item.client}
+              href={item.href as `/tood/${string}`}
+              className="group flex flex-col gap-4 rounded-3xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] p-8 transition-colors hover:border-[color:var(--color-brand-primary)]/40"
+            >
+              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--color-brand-accent)]">
+                {item.client}
+              </p>
+              <h3
+                className="font-medium leading-tight"
+                style={{ fontSize: "var(--text-title)" }}
+              >
+                {item.title}
+              </h3>
+              <p className="text-[color:var(--color-text-secondary)]">
+                {item.body}
+              </p>
+              <span className="mt-auto font-mono text-xs uppercase tracking-wider text-white transition-colors group-hover:text-[color:var(--color-brand-accent)]">
+                {locale === "en" ? "Read the case →" : "Loe juhtumit →"}
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Outcome metrics — Snapbar-style ROI block for B2B credibility */}
+      <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-16 md:px-12">
+        <p className="mb-10 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
+          {locale === "en"
+            ? "(03) Activation outcomes — typical ranges"
+            : "(03) Aktivatsiooni tulemused — tüüpiline vahemik"}
+        </p>
+        <OutcomeMetrics locale={locale} />
       </section>
 
       {/* Differentiators */}

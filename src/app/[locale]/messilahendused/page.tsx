@@ -5,6 +5,8 @@ import { PageShell } from "@/components/layout/PageShell";
 import { FaqAccordion } from "@/components/faq/FaqAccordion";
 import { ImagePlaceholder } from "@/components/media/ImagePlaceholder";
 import { MagneticButton } from "@/components/motion/MagneticButton";
+import { OutcomeMetrics } from "@/components/trust/OutcomeMetrics";
+import { TrustRow } from "@/components/trust/TrustRow";
 import { buildPageMetadata, localizedSitePath } from "@/lib/seo";
 import { type SiteLocale } from "@/lib/site-content";
 
@@ -266,6 +268,19 @@ export default async function MessilahendusedPage({
             className="aspect-[4/5] rounded-3xl"
           />
         </div>
+        <div className="mt-10">
+          <TrustRow locale={locale} />
+        </div>
+      </section>
+
+      {/* Outcome metrics — concrete trade-show ROI numbers */}
+      <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-16 md:px-12">
+        <p className="mb-10 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
+          {locale === "en"
+            ? "(03) Trade-show outcomes — typical ranges"
+            : "(03) Messi tulemused — tüüpiline vahemik"}
+        </p>
+        <OutcomeMetrics locale={locale} />
       </section>
 
       {/* Problem */}
