@@ -30,15 +30,15 @@ export async function generateMetadata({
 const COPY = {
   en: {
     eyebrow: "(01) Price calculator",
-    headline: "An indicative price in 30 seconds.",
+    headline: "An indicative number in 30 seconds.",
     subhead:
-      "Pick a package, choose distance, slide the guest count, toggle add-ons. The breakdown updates live.",
+      "Pick a tier, set the distance, slide the guests, toggle add-ons. The breakdown updates live. For the full pricing page and FAQ, see /pricing.",
   },
   et: {
     eyebrow: "(01) Hinnakalkulaator",
-    headline: "Indikatiivne hind 30 sekundiga.",
+    headline: "Indikatiivne number 30 sekundiga.",
     subhead:
-      "Vali pakett, vali kaugus, libista külaliste arv, lülita lisad. Hinnastruktuur uueneb kohe.",
+      "Vali tase, sea kaugus, libista külalisi, lülita lisad. Hinnastruktuur uueneb kohe. Terve hinnaleht ja KKK on /hinnad lehel.",
   },
 } as const;
 

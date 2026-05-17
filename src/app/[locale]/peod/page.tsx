@@ -1,37 +1,36 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { PageShell } from "@/components/layout/PageShell";
-import Image from "next/image";
-import { ProjectCoverImage } from "@/components/work/ProjectCoverImage";
+import { MagneticButton } from "@/components/motion/MagneticButton";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { FaqAccordion } from "@/components/faq/FaqAccordion";
 import { ImagePlaceholder } from "@/components/media/ImagePlaceholder";
-import {
-  EditorialImageCard,
-  type EditorialImageAsset,
-} from "@/components/media/EditorialImageCard";
-import { MagneticButton } from "@/components/motion/MagneticButton";
-import { buildPageMetadata, localizedSitePath } from "@/lib/seo";
+import { SlaBadges } from "@/components/trust/SlaBadges";
+import { TrustRow } from "@/components/trust/TrustRow";
 import { ThemeGallery } from "@/components/themes/ThemeGallery";
+import { AIVAR_CREDIT, AIVAR_QUOTE } from "@/lib/copy";
+import { formatEur, PACKAGES } from "@/lib/pricing";
 import {
-  getProject,
-  testimonialSeeds,
-  text,
-  type SiteLocale,
-} from "@/lib/site-content";
+  breadcrumbSchema,
+  buildPageMetadata,
+  faqSchema,
+  localizedSitePath,
+  serviceSchema,
+  SITE_URL,
+} from "@/lib/seo";
+import { type SiteLocale, text } from "@/lib/site-content";
 
 /**
- * Fun events path: /peod (ET) and /events (EN alias).
+ * /peod (ET) and /events (EN) — the fun-experience door.
  *
- * Position: PortrAI as the most fun, fastest, most theme-rich photo
- * experience for company parties and private events. Live gallery,
- * interactive themes, on-site assistant.
+ * Three audience strips: Corporate / Wedding / Private. Each is its own
+ * sub-section with photo + copy + path forward.
  *
- * NOTE: Estonian copy is DRAFT and needs Reijo's native pass.
- * EN is canonical reference.
+ * Voice: Linear restraint + Snapbar peer-positioning. MSCHF moment is the
+ * H1 itself — "The booth your team is still talking about on Monday."
  */
-
-const FEATURED_SLUGS = ["melt"];
 
 export async function generateMetadata({
   params,
@@ -42,12 +41,12 @@ export async function generateMetadata({
   return buildPageMetadata({
     title:
       locale === "en"
-        ? "AI photo booth for company parties and weddings | PortrAI"
-        : "AI fotoboks firmapeole ja pulma | PortrAI",
+        ? "AI photo booth for company parties, weddings and private events | PortrAI"
+        : "AI fotoboks firmapidudele, pulmadele ja eraüritustele | PortrAI",
     description:
       locale === "en"
-        ? "AI photo booth, fotoboks, and themed guest experiences for company parties, weddings, and private events in Estonia. Fast setup, live gallery, on-site host, and custom themes."
-        : "AI fotoboks, photobooth ja teemastatud külaliskogemus firmapidudele, pulmadele ja eraüritustele Eestis. Kiire setup, live-galerii, kohapealne host ja kohandatud teemad.",
+        ? "PortrAI runs the booth all night while you celebrate. AI portraits of every guest, on-site host, up to 200 portraits per hour. Boks from €490, Branded from €890."
+        : "PortrAI hoiab boksi käigus terve öö, samal ajal kui sina pidu pead. AI portreed igast külalisest, kohapealne host, kuni 200 portreed tunnis. Boks alates 490 €, Branded alates 890 €.",
     locale,
     ogImage: "/images/site/event-action.jpg",
     path: localizedSitePath(locale, "/peod"),
@@ -56,349 +55,238 @@ export async function generateMetadata({
 
 const COPY = {
   en: {
-    eyebrow: "(03) For company parties & private events",
-    headline: "The photo booth your guests will talk about for weeks.",
-    subhead:
-      "Estonia's largest theme library. A live gallery on the screen so everyone sees everyone's photos. Interactive themes where your guests shape the result. And an on-site host who keeps the energy up.",
-    primaryCta: "Book PortrAI for your event",
-    secondaryCta: "See themes",
+    eyebrow: "(01) PortrAI · Events",
+    headline: "The booth your team is still talking about on Monday.",
+    sub: "An AI photo experience for company parties, private events and weddings. On-site host, up to 200 portraits per hour, every photo delivered by dawn.",
+    primaryCta: "Get a quote",
+    secondaryCta: "See pricing",
 
-    diffEyebrow: "(04) Why guests remember it",
-    diffTitle: "Built for fun, speed, and shareability.",
-    diffLead:
-      "We made every part of the experience for the guest, not the operator. More themes, faster photos, more reasons to stick around.",
-    differentiators: [
+    audienceEyebrow: "(02) Three rooms, one booth",
+    audienceTitle: "Pick the one that fits.",
+    audiences: [
       {
-        emoji: "◆",
-        title: "Largest theme catalog in Estonia",
-        body: "Whatever your event vibe is — retro, sci-fi, fairytale, painted, neon — there's already a theme for it. Or we'll build a custom one.",
+        anchor: "firmapidu",
+        eyebrow: "Company parties",
+        title: "The 200-guest hit of the night.",
+        body: "Annual parties, summer days, team kick-offs, anniversaries. We host the booth, brand the UI to your company, and feed the live gallery on a wall so everyone watches the room turn into portraits.",
+        bullets: [
+          "Up to 200 portraits per hour at peak",
+          "Branded UI from logo to email",
+          "On-site host for the whole event",
+          "Photo + phone in 15 seconds per guest",
+        ],
+        cta: "Get a corporate quote",
       },
       {
-        emoji: "▶",
-        title: "Live gallery on the screen",
-        body: "Everyone sees everyone's photos as they appear. Guests come back. Photos get re-shared in the moment.",
+        anchor: "pulm",
+        eyebrow: "Weddings",
+        title: "Spring 2026 — with the Everybooth ICON 2.",
+        body: "PortrAI's wedding line launches Spring 2026 with the handcrafted, light-wood Everybooth ICON 2 — a warmer booth than our usual neon-and-metal events kit. The first five couples to confirm get a custom AI theme included.",
+        bullets: [
+          "Handcrafted light-wood booth",
+          "Watercolour, acrylic and editorial AI styles",
+          "On-site host all night",
+          "First 5 couples · custom theme included",
+        ],
+        cta: "Join the waitlist",
       },
       {
-        emoji: "◉",
-        title: "Interactive themes",
-        body: "Some themes let guests change the outcome — pick a story, answer a prompt, choose a character. The booth becomes part of the event narrative.",
+        anchor: "era",
+        eyebrow: "Private events",
+        title: "Birthdays, jubilees, dinners — without the queue.",
+        body: "Smaller groups, tighter venues, no logistics on you. We arrive 90 minutes early, set up in 40, and the night flows around the booth instead of stopping for it.",
+        bullets: [
+          "Up to 100 guests in the Boks tier",
+          "Five ready-made AI styles",
+          "Unlimited prints + digital gallery",
+          "Boks tier · from €490",
+        ],
+        cta: "Plan a private event",
+      },
+    ],
+
+    whyEyebrow: "(03) Why it's the hit",
+    why: [
+      {
+        title: "Live gallery wall",
+        body: "Every portrait lands on a screen in the room. Guests come back to see themselves and everyone else.",
       },
       {
-        emoji: "♦",
+        title: "12 named AI styles",
+        body: "From watercolour to neon to renaissance. We tune the catalog to the event mood.",
+      },
+      {
         title: "On-site host",
-        body: "Our assistant keeps the queue smooth and the energy up. People stay longer, take more photos, share more.",
+        body: "We run the queue, the energy and the after-pack. You don't manage the booth — you enjoy it.",
       },
       {
-        emoji: "✦",
-        title: "Themed events become a single piece",
-        body: "If your event has a concept, we build the booth around it — the booth isn't an extra, it's part of the show.",
-      },
-      {
-        emoji: "◇",
-        title: "Fast, even at peak",
-        body: "Throughput tuned for big crowds. A guest doesn't wait, gets a great photo, and walks away with something to share.",
+        title: "Throughput tuned for crowds",
+        body: "Even at 200 guests/hour the queue stays under five minutes. Nobody waits, nobody bails.",
       },
     ],
 
-    quoteEyebrow: "(05) What organisers say",
-
-    themesEyebrow: "(06) Theme catalog",
-    themesTitle: "A glimpse of the largest theme library in Estonia.",
+    themesEyebrow: "(04) Theme catalog",
+    themesTitle: "12 AI styles. Pick a starting point.",
     themesBody:
-      "Each style is a starting point — we tune the prompts, frames, and on-screen flow to match your event. Custom themes available in 2-3 weeks.",
+      "Each style is a starting point. We tune prompts, frames and the on-screen flow to your event. Custom themes ship in 2 weeks.",
+    themesCta: "See the full style catalog",
 
-    workEyebrow: "(07) Recent events",
-    workTitle: "A few events we've made memorable.",
-    moreWork:
-      "More events join this page as we publish them. In the meantime, see all our work →",
+    pricingEyebrow: "(05) Pricing snapshot",
+    pricingTitle: "Booth tiers, transparent prices.",
+    pricingCta: "See the full pricing page",
 
-    processEyebrow: "(07) How it goes",
-    processSteps: [
-      {
-        n: "01",
-        title: "Tell us about the event",
-        body: "Date, venue, theme, guest count, vibe.",
-      },
-      {
-        n: "02",
-        title: "Pick a theme (or design one)",
-        body: "Choose from the library, or we'll build a custom one to match your concept.",
-      },
-      {
-        n: "03",
-        title: "We arrive, you celebrate",
-        body: "Setup is fast. Our host runs the booth so you can enjoy the night.",
-      },
-      {
-        n: "04",
-        title: "All photos, instantly",
-        body: "Everyone leaves with their photos. Plus a shared gallery link for the next morning.",
-      },
-    ],
+    quoteEyebrow: "(06) What organisers say",
 
-    faqEyebrow: "(08) Frequently asked",
-    faqTitle: "Things organisers ask us first.",
+    faqEyebrow: "(07) FAQ",
+    faqTitle: "What planners ask first.",
     faq: [
       {
-        q: "What themes are available?",
-        a: "Estonia's largest catalog — 30+ pre-made themes covering retro, sci-fi, painted portraits, neon, fairytale, and many more. We can also build a fully custom theme for your event in 2-3 weeks.",
+        q: "How much space and power do you need?",
+        a: "About 2×2 metres and one standard 230 V outlet. We can work tighter — describe the venue and we'll confirm.",
       },
       {
-        q: "How much space and setup time do you need?",
-        a: "About 2x2 metres and one regular power outlet. Setup takes ~45 minutes; we arrive 90 minutes before the event starts so the venue is calm before guests arrive.",
+        q: "How early should we book?",
+        a: "Weekend dates in May, June, August, December book out 2–3 months ahead. Mid-week dates are usually open at 3–4 weeks. Talk to us early either way.",
       },
       {
-        q: "Do guests get both prints and digital photos?",
-        a: "Yes — both. Every photo prints on-site within seconds, and every guest also gets a QR code that delivers their photos straight to their phone.",
+        q: "Do guests get prints and digital photos?",
+        a: "Both. Every photo prints on-site within seconds, and every guest gets a QR code that delivers the digital copies straight to their phone.",
       },
       {
-        q: "My event has a specific concept — can you build the booth around it?",
-        a: "Yes. We come from a marketing and concept background, so we approach the booth as part of the show, not an add-on. Tell us the theme and we'll design the visuals, prompts, and on-screen flow to match.",
+        q: "Can the booth match our event theme?",
+        a: "Yes — the Branded tier takes over the full UI (logo, colours, prompts, email). Fully custom AI themes are a €290 add-on and ship in two weeks.",
       },
       {
-        q: "Is there always someone on-site running it?",
-        a: "Always. Our host welcomes guests, keeps the queue smooth, helps people pose, and keeps the energy up. The booth feels staffed and intentional, not like an unattended kiosk.",
+        q: "What if our venue is far from Tallinn?",
+        a: "Flat distance fees — €90 within 100 km, €180 within 200 km. Beyond that we quote per event. Setup is the same anywhere.",
+      },
+      {
+        q: "Is there always a host on-site?",
+        a: "Always. Our host welcomes guests, keeps the queue moving, helps shy guests pose, and packs everything down at the end. The booth feels staffed, not abandoned.",
       },
     ],
 
-    ctaTitle: "Let's make your event the one people talk about.",
-    ctaBody: "Tell us the date and the vibe. We'll send a quote within 24 hours.",
-    ctaButton: "Book PortrAI",
+    ctaTitle: "Tell us about your event.",
+    ctaBody: "We reply within 3 business hours.",
+    ctaButton: "Get a quote",
   },
   et: {
-    // [ET DRAFT — needs your pass]
-    eyebrow: "(03) Firmapidudele ja eraüritustele",
-    headline: "Fotoboks, millest räägitakse veel kuid hiljem.",
-    subhead:
-      "Eesti suurim teemakogum. Live-galerii ekraanil, et kõik näeksid kõikide pilte. Interaktiivsed teemad, kus külaline kujundab tulemust. Ja meie kohapealne host, kes hoiab energia üleval.",
-    primaryCta: "Broneeri PortrAI oma üritusele",
-    secondaryCta: "Vaata teemasid",
+    eyebrow: "(01) PortrAI · Peod",
+    headline: "Boks, millest räägitakse esmaspäeval kontoris.",
+    sub: "AI fotokogemus firma-, era- ja pulmaüritustele. Kohapealne host, kuni 200 portreed tunnis, kõik pildid valmis öö lõpuks.",
+    primaryCta: "Küsi pakkumist",
+    secondaryCta: "Vaata hindu",
 
-    diffEyebrow: "(04) Miks külalised seda mäletavad",
-    diffTitle: "Tehtud lõbu, kiiruse ja jagatavuse jaoks.",
-    diffLead:
-      "Tegime iga osa kogemusest külalise jaoks, mitte operaatori jaoks. Rohkem teemasid, kiiremad pildid, rohkem põhjusi kohale jääda.",
-    differentiators: [
+    audienceEyebrow: "(02) Kolm saali, üks boks",
+    audienceTitle: "Vali see, mis sobib.",
+    audiences: [
       {
-        emoji: "◆",
-        title: "Eesti suurim teemakogum",
-        body: "Mis iganes peo vibe — retro, sci-fi, muinasjutuline, maalitud, neoon — meil on selleks juba teema. Või teeme kohandatud uue.",
+        anchor: "firmapidu",
+        eyebrow: "Firmapeod",
+        title: "200 külalise õhtu hitt.",
+        body: "Aastapeod, suvepäevad, meeskonna käivitused, juubelid. Me hostime boksi, brändime UI sinu ettevõttele ja toidame live-galeriid seina peal — kõik vaatavad, kuidas saal muutub portreedeks.",
+        bullets: [
+          "Kuni 200 portreed tunnis tipphetkel",
+          "Bränditud UI logost e-postini",
+          "Kohapealne host kogu õhtuks",
+          "Foto + telefon 15 sekundiga külalise kohta",
+        ],
+        cta: "Küsi firma pakkumist",
       },
       {
-        emoji: "▶",
-        title: "Live-galerii ekraanil",
-        body: "Kõik näevad kõikide pilte kohe, kui need valmivad. Külalised tulevad tagasi. Pilte jagatakse kohe edasi.",
+        anchor: "pulm",
+        eyebrow: "Pulmad",
+        title: "Kevad 2026 — Everybooth ICON 2-ga.",
+        body: "PortrAI pulmaformaat tuleb kevadel 2026 koos käsitsi valmistatud heleda puiduga Everybooth ICON 2 boksiga — soojem boks kui meie tavaline neoonist-metallist üritus-komplekt. Esimesed viis paari, kes kinnitavad, saavad kohandatud AI teema hinnas sees.",
+        bullets: [
+          "Käsitsi valmistatud heleda puiduga boks",
+          "Akvarell, akrüül, ajakirjalik AI stiil",
+          "Kohapealne host terve öö",
+          "Esimesed 5 paari · kohandatud teema hinnas",
+        ],
+        cta: "Liitu ootejärjekorraga",
       },
       {
-        emoji: "◉",
-        title: "Interaktiivsed teemad",
-        body: "Mõned teemad lasevad külalisel tulemust mõjutada — vali lugu, vasta promptile, vali karakter. Boks saab osaks ürituse loost.",
+        anchor: "era",
+        eyebrow: "Eraüritused",
+        title: "Sünnipäevad, juubelid, õhtusöögid — ilma järjekorrata.",
+        body: "Väiksemad grupid, kitsamad ruumid, logistika meie poolt. Saabume 90 minutit varem, paneme üles 40 minutiga — õhtu voolab ümber boksi, mitte ei seisa selle taga.",
+        bullets: [
+          "Kuni 100 külalist Boks paketis",
+          "Viis valmis AI stiili",
+          "Piiramatult printe + digi-galerii",
+          "Boks pakett · alates 490 €",
+        ],
+        cta: "Planeeri eraüritus",
+      },
+    ],
+
+    whyEyebrow: "(03) Miks see on hitt",
+    why: [
+      {
+        title: "Live-galerii sein",
+        body: "Iga portree jõuab ekraanile ruumis. Külalised tulevad tagasi, et näha ennast ja teisi.",
       },
       {
-        emoji: "♦",
+        title: "12 nimega AI stiili",
+        body: "Akvarellist neoonini ja renessanssini. Häälestame kataloogi ürituse meeleolule.",
+      },
+      {
         title: "Kohapealne host",
-        body: "Meie assistent hoiab järjekorra sujuva ja energia üleval. Inimesed jäävad kauemaks, teevad rohkem pilte, jagavad rohkem.",
+        body: "Me hoiame järjekorda, energiat ja peale-pakkimist. Sa ei halda boksi — sa naudid seda.",
       },
       {
-        emoji: "✦",
-        title: "Temaatilised üritused saavad ühtseks",
-        body: "Kui sinu üritusel on kontseptsioon, ehitame boksi selle ümber — boks pole lisa, vaid osa etendusest.",
-      },
-      {
-        emoji: "◇",
-        title: "Kiire ka tipptunnil",
-        body: "Läbilask häälestatud suurte rahvahulkade jaoks. Külaline ei oota, saab hea pildi ja midagi jagada.",
+        title: "Läbilask, mis sobib rahvale",
+        body: "Ka 200 külalise tunnis tipphetkel jääb järjekord alla viie minuti. Keegi ei oota, keegi ei lahku.",
       },
     ],
 
-    quoteEyebrow: "(05) Mida korraldajad ütlevad",
-
-    themesEyebrow: "(06) Teemakogum",
-    themesTitle: "Pilguheit Eesti suurimasse teemakogumusse.",
+    themesEyebrow: "(04) Teemakataloog",
+    themesTitle: "12 AI stiili. Vali lähtepunkt.",
     themesBody:
-      "Iga stiil on lähtepunkt — kohandame promptid, raamid ja ekraanivoo teie ürituse järgi. Kohandatud teema valmib 2–3 nädalaga.",
+      "Iga stiil on lähtepunkt. Häälestame promptid, raamid ja ekraani-voo sinu ürituse järgi. Kohandatud teemad valmivad 2 nädalaga.",
+    themesCta: "Vaata terve stiilikataloog",
 
-    workEyebrow: "(07) Hiljutised üritused",
-    workTitle: "Mõned üritused, mida oleme meeldejäävaks teinud.",
-    moreWork:
-      "Lisame siia üritusi sedamööda kuidas avaldame. Vahepeal vaata kõiki töid →",
+    pricingEyebrow: "(05) Hinna-ülevaade",
+    pricingTitle: "Boksi-tasemed, läbipaistvad hinnad.",
+    pricingCta: "Vaata terve hinnaleht",
 
-    processEyebrow: "(07) Kuidas see käib",
-    processSteps: [
-      {
-        n: "01",
-        title: "Räägi meile üritusest",
-        body: "Kuupäev, asukoht, teema, külaliste arv, meeleolu.",
-      },
-      {
-        n: "02",
-        title: "Vali teema (või tee uus)",
-        body: "Vali olemasolevast kogust või teeme kohandatud teema sinu kontseptsiooni järgi.",
-      },
-      {
-        n: "03",
-        title: "Meie tuleme, sina tähistad",
-        body: "Setup on kiire. Meie host hoiab boksi käigus, sa saad õhtust nautida.",
-      },
-      {
-        n: "04",
-        title: "Kõik pildid, kohe",
-        body: "Igaüks lahkub oma piltidega. Lisaks jagatud galerii-link järgmiseks hommikuks.",
-      },
-    ],
+    quoteEyebrow: "(06) Mida korraldajad ütlevad",
 
-    faqEyebrow: "(08) Korduvad küsimused",
+    faqEyebrow: "(07) KKK",
     faqTitle: "Mida korraldajad kõige sagedamini küsivad.",
     faq: [
       {
-        q: "Millised teemad on saadaval?",
-        a: "Eesti suurim kataloog — üle 30 valmis teema, alates retrost ja sci-fi'st kuni maalitud portreede, neoonini ja muinasjutuni. Saame ka 2–3 nädalaga ehitada teie üritusele kohandatud teema.",
+        q: "Kui palju ruumi ja voolu vajate?",
+        a: "Umbes 2×2 meetrit ja üks standardne 230 V pistik. Saame töötada ka kitsamates ruumides — kirjelda venuet ja kinnitame.",
       },
       {
-        q: "Kui palju ruumi ja setupiks aega vajate?",
-        a: "Umbes 2x2 meetrit ja üks tavaline pistik. Setup võtab ~45 minutit; saabume 90 minutit enne ürituse algust, et venue oleks rahulik enne külaliste saabumist.",
+        q: "Kui vara peaks broneerima?",
+        a: "Mai, juuni, augusti, detsembri nädalavahetuse kuupäevad lähevad täis 2–3 kuud ette. Nädala-sees kuupäevad on tavaliselt avatud 3–4 nädala peale. Räägi meiega varakult kummalgi juhul.",
       },
       {
-        q: "Kas külalised saavad nii printe kui ka digitaalseid pilte?",
-        a: "Jah — mõlemat. Iga pilt prinditakse kohapeal sekunditega, lisaks saab iga külaline QR-koodi, mis annab pildid otse tema telefoni.",
+        q: "Kas külalised saavad nii printe kui digifotosid?",
+        a: "Mõlemat. Iga pilt prinditakse kohapeal sekunditega, ja iga külaline saab QR-koodi, mis tarnib digitaalsed koopiad otse tema telefoni.",
       },
       {
-        q: "Meie üritusel on kindel kontseptsioon — kas saate boksi sellele kujundada?",
-        a: "Jah. Tuleme turundus- ja kontseptsiooni-taustast, seega lähenemine on, et boks on osa etendusest, mitte lisategevus. Räägi meile teema ja kujundame visuaalid, promptid ja ekraanivoo selle järgi.",
+        q: "Kas boks saab sobituda meie ürituse teemaga?",
+        a: "Jah — Branded tase võtab üle terve UI (logo, värvid, promptid, e-kiri). Täiesti kohandatud AI teemad on 290 € lisa ja valmivad kahe nädalaga.",
       },
       {
-        q: "Kas alati on keegi kohapeal, kes boksi haldab?",
-        a: "Alati. Meie host tervitab külalisi, hoiab järjekorra sujuva, aitab inimestel poseerida ja hoiab energia üleval. Boks on mehitatud, mitte tühi kiosk.",
+        q: "Mis siis, kui meie venue on Tallinnast kaugel?",
+        a: "Fikseeritud transporditasud — 90 € kuni 100 km, 180 € kuni 200 km. Kaugemale teeme eraldi pakkumise. Setup on igal pool sama.",
+      },
+      {
+        q: "Kas alati on host kohapeal?",
+        a: "Alati. Meie host tervitab külalisi, hoiab järjekorra liikuvana, aitab häbelikel poseerida ja pakib lõpus kõik kokku. Boks tundub mehitatud, mitte hüljatud.",
       },
     ],
 
-    ctaTitle: "Teeme sinu üritusest selle, millest räägitakse.",
-    ctaBody: "Räägi meile kuupäev ja meeleolu. Saadame pakkumise 24 tunni jooksul.",
-    ctaButton: "Broneeri PortrAI",
+    ctaTitle: "Räägi meile oma üritusest.",
+    ctaBody: "Vastame 3 töötunni jooksul.",
+    ctaButton: "Küsi pakkumist",
   },
 } as const;
-
-const DIFFERENTIATOR_MEDIA: EditorialImageAsset[] = [
-  {
-    alt: {
-      en: "A spread of themed portrait outputs showing the range of PortrAI styles",
-      et: "Valik erinevaid PortrAI portreestiile ja teemade väljundeid",
-    },
-    badge: {
-      en: "30+ themes",
-      et: "30+ teemat",
-    },
-    src: "/images/site/portrait-detail.png",
-  },
-  {
-    alt: {
-      en: "PortrAI outputs and conference visuals displayed together at a live event",
-      et: "PortrAI väljundid ja konverentsivisuaalid koos live-üritusel",
-    },
-    badge: {
-      en: "Live gallery",
-      et: "Live-galerii",
-    },
-    objectPosition: "50% 50%",
-    src: "/images/site/event-action.jpg",
-  },
-  {
-    alt: {
-      en: "The PortrAI interface showing an interactive prompt-and-result flow",
-      et: "PortrAI liides interaktiivse prompti ja tulemuse vooga",
-    },
-    badge: {
-      en: "Interactive flow",
-      et: "Interaktiivne voog",
-    },
-    objectPosition: "55% 44%",
-    src: "/images/site/interactive-booth.png",
-  },
-  {
-    alt: {
-      en: "Guests using the PortrAI booth during a busy live event",
-      et: "Külalised PortrAI boksi kasutamas elavas ürituse hetkes",
-    },
-    badge: {
-      en: "Hosted on-site",
-      et: "Kohapeal juhitud",
-    },
-    objectPosition: "35% 55%",
-    src: "/images/site/event-action.jpg",
-  },
-  {
-    alt: {
-      en: "A themed portrait cover showing how one event concept can carry through the output",
-      et: "Teemaportree, mis näitab, kuidas ühe ürituse kontseptsioon jõuab väljundisse",
-    },
-    badge: {
-      en: "Theme matched",
-      et: "Teemaga seotud",
-    },
-    objectPosition: "50% 42%",
-    src: "/images/work/melt-cover.png",
-  },
-  {
-    alt: {
-      en: "A selection of outputs prepared for large-guest throughput",
-      et: "Väljundite valik, mis on sobitatud suure külastajamahu jaoks",
-    },
-    badge: {
-      en: "Fast at peak",
-      et: "Kiire tipul",
-    },
-    src: "/images/site/portrait-base.png",
-  },
-];
-
-const PROCESS_MEDIA: EditorialImageAsset[] = [
-  {
-    alt: {
-      en: "Output previews used while shaping the event direction",
-      et: "Väljundite eelvaated, mida kasutatakse ürituse suuna paika sättimiseks",
-    },
-    badge: {
-      en: "Brief",
-      et: "Brief",
-    },
-    src: "/images/site/portrait-base.png",
-  },
-  {
-    alt: {
-      en: "A broad set of style directions presented for choosing the event theme",
-      et: "Lai valik stiilisuundi, mille seast valida ürituse teema",
-    },
-    badge: {
-      en: "Theme pick",
-      et: "Teema valik",
-    },
-    src: "/images/site/portrait-detail.png",
-  },
-  {
-    alt: {
-      en: "PortrAI running live during an event setup and guest rush",
-      et: "PortrAI töötamas nii setupi ajal kui ka külaliste tipptunni hetkes",
-    },
-    badge: {
-      en: "Setup + host",
-      et: "Setup + host",
-    },
-    objectPosition: "50% 52%",
-    src: "/images/site/event-action.jpg",
-  },
-  {
-    alt: {
-      en: "Branded prompt and output flow ready for instant guest delivery",
-      et: "Bränditud prompti- ja väljundivoog, mis on valmis koheseks jagamiseks",
-    },
-    badge: {
-      en: "Instant delivery",
-      et: "Kohene jagamine",
-    },
-    objectPosition: "55% 44%",
-    src: "/images/site/interactive-booth.png",
-  },
-];
 
 export default async function EventsPage({
   params,
@@ -407,35 +295,42 @@ export default async function EventsPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-
   const copy = COPY[locale];
-  const aivar = testimonialSeeds.find((t) => t.id === "aivar-kuusk")!;
-  const projects = FEATURED_SLUGS.map((slug) => getProject(slug)).filter(
-    (p): p is NonNullable<ReturnType<typeof getProject>> => p !== null,
-  );
+  const pageUrl = `${SITE_URL}${localizedSitePath(locale, "/peod")}`;
 
-  // Image specs — locale-independent. Each differentiator + process step
-  // gets a description of what visual eventually goes there.
-  const diffImages = [
-    "Theme catalog grid: thumbnails of all 30+ pre-made styles",
-    "Live gallery on a TV at an event — guests gathered watching photos appear",
-    "Guest interacting with a touch-screen prompt — choosing a story or character",
-    "PortrAI on-site host helping a couple at the booth, smiling, energy up",
-    "Themed event scene where the booth is integrated into the decor — everything matches",
-    "Wide shot of a packed event with no queue — booth flowing fast",
-  ];
+  const service = serviceSchema({
+    name:
+      locale === "en"
+        ? "AI photo booth for events"
+        : "AI fotoboks üritustele",
+    description:
+      locale === "en"
+        ? "AI photo booth rental for company parties, weddings, and private events in Estonia."
+        : "AI fotoboksi rent firmapidudele, pulmadele ja eraüritustele Eestis.",
+    serviceType: "Event photo booth rental",
+    url: pageUrl,
+    priceRange: "490+ €",
+    image: `${SITE_URL}/images/site/event-action.jpg`,
+  });
+  const faqLd = faqSchema(copy.faq);
+  const breadcrumbs = breadcrumbSchema([
+    {
+      name: locale === "en" ? "Home" : "Avaleht",
+      url: `${SITE_URL}${localizedSitePath(locale, "/")}`,
+    },
+    { name: locale === "en" ? "Events" : "Peod", url: pageUrl },
+  ]);
 
-  const processImages = [
-    "Phone-call sketch — organiser describing event vibe to PortrAI",
-    "Theme catalog screen — picking a style for the event",
-    "Setup arrival shot — boxes being unpacked at the venue",
-    "Phone-screen with the gallery link being shared the morning after",
-  ];
+  const publicPackages = PACKAGES.filter((p) => !p.customPricing);
 
   return (
     <PageShell>
-      {/* Hero — two-column with hero image */}
-      <section className="px-6 pb-12 pt-20 md:px-12 md:pt-32">
+      <JsonLd data={service} />
+      <JsonLd data={faqLd} />
+      <JsonLd data={breadcrumbs} />
+
+      {/* Hero */}
+      <section className="relative isolate overflow-hidden border-b border-[color:var(--color-stroke-subtle)] px-6 pb-12 pt-24 md:px-12 md:pt-32">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-end">
           <div>
             <p className="mb-6 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
@@ -448,12 +343,12 @@ export default async function EventsPage({
               {copy.headline}
             </h1>
             <p
-              className="mb-10 max-w-2xl text-[color:var(--color-text-secondary)]"
+              className="mb-8 max-w-2xl text-[color:var(--color-text-secondary)]"
               style={{ fontSize: "var(--text-body-lg)" }}
             >
-              {copy.subhead}
+              {copy.sub}
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="mb-8 flex flex-wrap gap-4">
               <MagneticButton>
                 <Link
                   href="/kontakt"
@@ -463,15 +358,15 @@ export default async function EventsPage({
                 </Link>
               </MagneticButton>
               <Link
-                href="/tood"
+                href={"/hinnad" as "/hinnad" | "/pricing"}
                 className="inline-block rounded-full border border-[color:var(--color-stroke-medium)] bg-transparent px-6 py-3 font-medium text-white transition-colors duration-200 hover:bg-[color:var(--color-surface-raised)]"
               >
                 {copy.secondaryCta} →
               </Link>
             </div>
+            <TrustRow locale={locale} />
           </div>
 
-          {/* Hero image — booth in event action */}
           <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-[color:var(--color-stroke-subtle)]">
             <Image
               src="/images/site/event-action.jpg"
@@ -493,90 +388,111 @@ export default async function EventsPage({
         </div>
       </section>
 
-      {/* Differentiators */}
-      <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
-        <div className="mb-12 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
-          <div>
-            <p className="mb-4 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
-              {copy.diffEyebrow}
-            </p>
-            <h2
-              className="font-medium leading-tight tracking-tight"
-              style={{ fontSize: "var(--text-display-md)" }}
-            >
-              {copy.diffTitle}
-            </h2>
-          </div>
-          <p
-            className="self-end max-w-2xl text-[color:var(--color-text-secondary)]"
-            style={{ fontSize: "var(--text-body-lg)" }}
-          >
-            {copy.diffLead}
+      {/* (02) Three audience strips */}
+      <section className="border-b border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+        <div className="mb-12 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
+          <p className="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
+            {copy.audienceEyebrow}
           </p>
+          <h2
+            className="font-medium leading-tight tracking-tight"
+            style={{ fontSize: "var(--text-display-md)" }}
+          >
+            {copy.audienceTitle}
+          </h2>
         </div>
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {copy.differentiators.map((d, i) => (
+
+        <div className="flex flex-col gap-12">
+          {copy.audiences.map((aud, i) => (
             <article
-              key={i}
-              className="flex flex-col overflow-hidden rounded-2xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)]"
+              key={aud.anchor}
+              id={aud.anchor}
+              className="grid gap-8 lg:grid-cols-2 lg:items-center"
             >
-              <EditorialImageCard
-                asset={DIFFERENTIATOR_MEDIA[i] ?? DIFFERENTIATOR_MEDIA[0]}
-                className="aspect-[16/10]"
-                locale={locale}
-                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+              {/* Alternate image side on odd indexes */}
+              <ImagePlaceholder
+                description={
+                  aud.anchor === "firmapidu"
+                    ? "Corporate party photo — guests at the PortrAI booth, energetic crowd, brand-purple uplighting"
+                    : aud.anchor === "pulm"
+                      ? "Wedding photo with the Everybooth ICON 2 — light wood booth in a warm reception room (placeholder until Spring 2026 shoot)"
+                      : "Private birthday or jubilee at a smaller venue with the PortrAI booth in the corner"
+                }
+                className={`aspect-[5/4] rounded-3xl ${i % 2 === 1 ? "lg:order-2" : ""}`}
               />
-              <div className="flex flex-col gap-3 p-6">
-                <p className="text-2xl text-[color:var(--color-brand-accent)]">
-                  {d.emoji}
+              <div>
+                <p className="mb-4 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-brand-accent)]">
+                  {aud.eyebrow}
                 </p>
                 <h3
-                  className="font-medium leading-tight"
-                  style={{ fontSize: "var(--text-title)" }}
+                  className="mb-4 font-medium leading-tight"
+                  style={{ fontSize: "var(--text-display-md)" }}
                 >
-                  {d.title}
+                  {aud.title}
                 </h3>
-                <p className="text-[color:var(--color-text-secondary)]">
-                  {d.body}
+                <p
+                  className="mb-6 text-[color:var(--color-text-secondary)]"
+                  style={{ fontSize: "var(--text-body-lg)" }}
+                >
+                  {aud.body}
                 </p>
+                <ul className="mb-8 flex flex-col gap-2">
+                  {aud.bullets.map((b) => (
+                    <li
+                      key={b}
+                      className="flex items-baseline gap-3 font-mono text-xs uppercase tracking-[0.18em] text-[color:var(--color-text-secondary)]"
+                    >
+                      <span className="text-[color:var(--color-brand-accent)]">·</span>
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href={aud.anchor === "pulm" ? "/pulma-fotoboks" : "/kontakt"}
+                  className="inline-block rounded-full border border-[color:var(--color-stroke-medium)] bg-transparent px-5 py-2.5 font-mono text-xs uppercase tracking-wider text-white transition-colors hover:bg-[color:var(--color-surface-raised)]"
+                >
+                  {aud.cta} →
+                </Link>
               </div>
             </article>
           ))}
         </div>
       </section>
 
-      {/* Aivar Kuusk pull quote — full bleed with headshot */}
-      <section className="border-t border-[color:var(--color-stroke-subtle)] bg-gradient-to-b from-[color:var(--color-surface-raised)] to-transparent px-6 py-32 md:px-12">
-        <p className="mb-8 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
-          {copy.quoteEyebrow}
+      {/* (03) Why it's the hit */}
+      <section className="border-b border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+        <p className="mb-10 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
+          {copy.whyEyebrow}
         </p>
-        <figure className="mx-auto grid max-w-5xl gap-10 md:grid-cols-[160px_minmax(0,1fr)] md:items-start">
-          <ImagePlaceholder
-            description="Headshot of Aivar Kuusk, founder of Kuusk Events — friendly, professional, against neutral background"
-            className="aspect-square w-40 rounded-full"
-            showTag={false}
-          />
-          <div>
-            <blockquote
-              className="font-medium leading-[1.1] tracking-tight text-white"
-              style={{ fontSize: "var(--text-display-lg)" }}
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {copy.why.map((w, i) => (
+            <article
+              key={w.title}
+              className="flex flex-col gap-3 border-l border-[color:var(--color-brand-primary)] pl-5"
             >
-              <span className="text-[color:var(--color-brand-accent)]">"</span>
-              {text(locale, aivar.quote)}
-              <span className="text-[color:var(--color-brand-accent)]">"</span>
-            </blockquote>
-            <figcaption className="mt-8 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
-              — {aivar.name}
-              {aivar.company ? ` · ${aivar.company}` : ""} ·{" "}
-              {text(locale, aivar.role)}
-            </figcaption>
-          </div>
-        </figure>
+              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--color-brand-accent)]">
+                {String(i + 1).padStart(2, "0")}
+              </p>
+              <h3
+                className="font-medium leading-tight"
+                style={{ fontSize: "var(--text-title)" }}
+              >
+                {w.title}
+              </h3>
+              <p className="text-sm text-[color:var(--color-text-secondary)]">
+                {w.body}
+              </p>
+            </article>
+          ))}
+        </div>
+        <div className="mt-12">
+          <SlaBadges locale={locale} />
+        </div>
       </section>
 
-      {/* Theme gallery */}
-      <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
-        <div className="mb-12 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
+      {/* (04) Theme catalog teaser */}
+      <section className="border-b border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+        <div className="mb-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
           <div>
             <p className="mb-4 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
               {copy.themesEyebrow}
@@ -596,93 +512,106 @@ export default async function EventsPage({
           </p>
         </div>
         <ThemeGallery />
+        <div className="mt-10">
+          <Link
+            href="/stiilid"
+            className="inline-block rounded-full border border-[color:var(--color-stroke-medium)] bg-transparent px-5 py-2.5 font-mono text-xs uppercase tracking-wider text-white transition-colors hover:bg-[color:var(--color-surface-raised)]"
+          >
+            {copy.themesCta} →
+          </Link>
+        </div>
       </section>
 
-      {/* Selected events */}
-      <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
-        <div className="mb-10 flex items-end justify-between gap-6">
-          <div>
-            <p className="mb-4 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
-              {copy.workEyebrow}
+      {/* (05) Pricing snapshot */}
+      <section className="border-b border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+        <p className="mb-4 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
+          {copy.pricingEyebrow}
+        </p>
+        <h2
+          className="mb-10 max-w-3xl font-medium leading-tight tracking-tight"
+          style={{ fontSize: "var(--text-display-md)" }}
+        >
+          {copy.pricingTitle}
+        </h2>
+        <div className="mb-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {publicPackages.map((pkg) => (
+            <article
+              key={pkg.id}
+              className={`flex flex-col gap-3 rounded-2xl border p-6 ${
+                pkg.highlight
+                  ? "border-[color:var(--color-brand-primary)]/60 bg-[color:var(--color-brand-primary)]/8"
+                  : "border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)]"
+              }`}
+            >
+              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
+                {text(locale, pkg.name)} · {pkg.hours}h
+              </p>
+              <p
+                className="font-medium tabular-nums leading-none"
+                style={{ fontSize: "var(--text-display-md)" }}
+              >
+                {locale === "en" ? "from" : "alates"}{" "}
+                {formatEur(pkg.basePrice, locale)}
+              </p>
+              <p className="text-sm text-[color:var(--color-text-secondary)]">
+                {text(locale, pkg.tagline)}
+              </p>
+            </article>
+          ))}
+          <article className="flex flex-col gap-3 rounded-2xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] p-6">
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
+              {locale === "en" ? "Custom Activation" : "Custom Activation"}
             </p>
-            <h2
-              className="font-medium leading-tight tracking-tight"
+            <p
+              className="font-medium leading-none text-[color:var(--color-brand-accent)]"
               style={{ fontSize: "var(--text-display-md)" }}
             >
-              {copy.workTitle}
-            </h2>
-          </div>
+              {locale === "en" ? "By quote" : "Pakkumise alusel"}
+            </p>
+            <p className="text-sm text-[color:var(--color-text-secondary)]">
+              {locale === "en"
+                ? "Campaign concepts and virtual widgets. The Swedbank / Synlab / Von Fock tier."
+                : "Kampaania-kontseptsioonid ja virtuaalsed widgetid. Swedbanki / Synlabi / Von Focki tase."}
+            </p>
+          </article>
         </div>
-        <div className="grid gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project) => (
-            <Link
-              key={project.slug}
-              href={`/tood/${project.slug}`}
-              className="group flex flex-col gap-3"
+        <Link
+          href={"/hinnad" as "/hinnad" | "/pricing"}
+          className="inline-block rounded-full border border-[color:var(--color-stroke-medium)] bg-transparent px-5 py-2.5 font-mono text-xs uppercase tracking-wider text-white transition-colors hover:bg-[color:var(--color-surface-raised)]"
+        >
+          {copy.pricingCta} →
+        </Link>
+      </section>
+
+      {/* (06) Aivar quote */}
+      <section className="border-b border-[color:var(--color-stroke-subtle)] bg-gradient-to-b from-[color:var(--color-surface-raised)] to-transparent px-6 py-24 md:px-12">
+        <p className="mb-8 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
+          {copy.quoteEyebrow}
+        </p>
+        <figure className="mx-auto grid max-w-5xl gap-10 md:grid-cols-[160px_minmax(0,1fr)] md:items-start">
+          <ImagePlaceholder
+            description="Headshot of Aivar Kuusk, founder of Kuusk Events — friendly, professional, against neutral background"
+            className="aspect-square w-40 rounded-full"
+            showTag={false}
+          />
+          <div>
+            <blockquote
+              className="font-medium leading-[1.1] tracking-tight text-white"
+              style={{ fontSize: "var(--text-display-lg)" }}
             >
-              <ProjectCoverImage
-                className="aspect-[4/5] rounded-2xl"
-                imageClassName="group-hover:scale-[1.03]"
-                locale={locale}
-                overlayClassName="bg-gradient-to-t from-[rgba(2,9,30,0.78)] via-transparent to-transparent"
-                project={project}
-                sizes="(max-width: 768px) 100vw, 33vw"
-              />
-              <div className="flex items-baseline justify-between">
-                <p className="font-medium">{project.client}</p>
-                <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-tertiary)]">
-                  {project.year}
-                </p>
-              </div>
-              <p className="text-sm text-[color:var(--color-text-secondary)]">
-                {text(locale, project.event)}
-              </p>
-            </Link>
-          ))}
-        </div>
-        <p className="mt-10 max-w-2xl text-sm text-[color:var(--color-text-secondary)]">
-          <Link
-            href="/tood"
-            className="text-[color:var(--color-brand-accent)] underline-offset-4 hover:underline"
-          >
-            {copy.moreWork}
-          </Link>
-        </p>
+              <span className="text-[color:var(--color-brand-accent)]">"</span>
+              {text(locale, AIVAR_QUOTE)}
+              <span className="text-[color:var(--color-brand-accent)]">"</span>
+            </blockquote>
+            <figcaption className="mt-8 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
+              — {text(locale, AIVAR_CREDIT)}
+            </figcaption>
+          </div>
+        </figure>
       </section>
 
-      {/* Process */}
-      <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
-        <p className="mb-12 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
-          {copy.processEyebrow}
-        </p>
-        <div className="grid gap-6 md:grid-cols-4">
-          {copy.processSteps.map((s, i) => (
-            <div key={s.n} className="flex flex-col gap-4">
-              <EditorialImageCard
-                asset={PROCESS_MEDIA[i] ?? PROCESS_MEDIA[0]}
-                className="aspect-square rounded-2xl"
-                locale={locale}
-                sizes="(max-width: 768px) 100vw, 25vw"
-              />
-              <p className="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-brand-accent)]">
-                {s.n}
-              </p>
-              <h3
-                className="font-medium leading-tight"
-                style={{ fontSize: "var(--text-title)" }}
-              >
-                {s.title}
-              </h3>
-              <p className="text-sm text-[color:var(--color-text-secondary)]">
-                {s.body}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+      {/* (07) FAQ */}
+      <section className="border-b border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
         <div className="grid gap-12 md:grid-cols-[300px_1fr]">
           <div>
             <p className="mb-4 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
@@ -700,7 +629,7 @@ export default async function EventsPage({
       </section>
 
       {/* CTA */}
-      <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-32 md:px-12">
+      <section className="px-6 py-32 md:px-12">
         <h2
           className="mb-6 max-w-3xl font-medium leading-tight tracking-tight"
           style={{ fontSize: "var(--text-display-lg)" }}

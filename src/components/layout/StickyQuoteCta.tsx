@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useLocale } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 
-const HIDE_ON_PATHS = ["/kontakt", "/broneeri"];
+const HIDE_ON_PATHS = ["/kontakt"];
 
 const COPY = {
   en: { label: "Get a quote" },
@@ -34,7 +34,7 @@ export function StickyQuoteCta() {
 
   return (
     <Link
-      href="/broneeri"
+      href="/kontakt"
       aria-hidden={!show}
       className={[
         "fixed bottom-6 right-6 z-40 hidden items-center gap-2 rounded-full bg-[color:var(--color-brand-primary)] px-5 py-3 font-mono text-xs uppercase tracking-wider text-white shadow-[var(--glow-medium)] transition-all duration-300 hover:bg-[color:var(--color-brand-secondary)] md:inline-flex",

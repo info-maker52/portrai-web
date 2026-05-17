@@ -41,28 +41,28 @@ export async function generateMetadata({
 
 const COPY = {
   en: {
-    eyebrow: "(01) Style catalog",
-    headline: "Twelve AI styles. One catalog. Hundreds of vibes.",
+    eyebrow: "(01) AI styles",
+    headline: "12 AI styles. One studio.",
     subhead:
-      "Each style is a starting point. We tune the prompts, frames, and on-screen flow to match your event. Custom themes ship in 2–3 weeks.",
+      "Every style is a starting point — we tune the prompts, frames and on-screen flow to your event. Custom themes ship in 2 weeks; they are built around your brand, not picked from a catalog.",
     bestFor: "Best for",
     categoriesAll: "All",
-    customCta: "Need a fully custom style?",
+    customCta: "Want one built around your brand?",
     customBody:
-      "We design themes from scratch — your brand language, your concept, your guest journey. Delivered in 2–3 weeks.",
-    customLink: "Talk to us about a custom theme",
+      "Custom AI themes are a Custom Activation deliverable — designed from your brief, your visual language, your guest journey. Delivered inside 2 weeks.",
+    customLink: "Open the studio",
   },
   et: {
-    eyebrow: "(01) Stiilikataloog",
-    headline: "Kaksteist AI stiili. Üks kataloog. Sadu meeleolusid.",
+    eyebrow: "(01) AI stiilid",
+    headline: "12 AI stiili. Üks stuudio.",
     subhead:
-      "Iga stiil on lähtepunkt. Kohandame promptid, raamid ja ekraanivoo sinu ürituse järgi. Kohandatud teemad valmivad 2–3 nädalaga.",
+      "Iga stiil on lähtepunkt — häälestame promptid, raamid ja ekraani-voo sinu ürituse järgi. Kohandatud teemad valmivad 2 nädalaga; need on ehitatud sinu brändi ümber, mitte kataloogist valitud.",
     bestFor: "Sobib",
     categoriesAll: "Kõik",
-    customCta: "Vajad täiesti kohandatud stiili?",
+    customCta: "Tahad sellise, mis on sinu brändi ümber ehitatud?",
     customBody:
-      "Loome teemasid nullist — sinu brändi keeles, kontseptsiooniga, külalise teekonnale vastavalt. Valmib 2–3 nädalaga.",
-    customLink: "Räägi meiega kohandatud teemast",
+      "Kohandatud AI teemad on Custom Activation väljund — disainitud sinu briifist, sinu visuaalsest keelest, sinu külalise teekonnast. Valmib 2 nädalaga.",
+    customLink: "Ava stuudio",
   },
 } as const;
 
@@ -175,7 +175,7 @@ export default async function StylesPage({
             {copy.customBody}
           </h2>
           <Link
-            href="/broneeri"
+            href={"/studio" as "/studio"}
             className="inline-block rounded-full bg-[color:var(--color-brand-primary)] px-6 py-3 font-medium text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-medium)]"
           >
             {copy.customLink} →

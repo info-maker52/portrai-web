@@ -7,179 +7,136 @@ import { CursorRevealHero } from "@/components/hero/CursorRevealHero";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import { ShowcaseMarquee } from "@/components/showcase/ShowcaseMarquee";
 import { WorldMap } from "@/components/world/WorldMap";
+import {
+  AIVAR_CREDIT,
+  AIVAR_QUOTE,
+  AWARD_BADGES,
+  CTA,
+  PRODUCT_LINES,
+} from "@/lib/copy";
 import { buildPageMetadata, localizedSitePath } from "@/lib/seo";
 import { INTERNATIONAL_REACH, PARTNERSHIPS } from "@/lib/contact";
 import { type SiteLocale, text } from "@/lib/site-content";
 
 /**
- * Home is a hub. It does ONE thing: route the visitor to the path that
- * matches their job — marketing/brand activation OR fun events.
+ * Home page — the hub.
  *
- * Sections (top to bottom):
- *   1. Hero with cursor-reveal portrait + two-path CTAs (equal weight)
- *   2. Two-paths picker (the decision moment, big visual cards)
- *   3. Showcase marquee
- *   4. Awards strip
- *   5. Reach + metrics + world map
- *   6. Booking CTA
+ * Job in 8 seconds: tell the visitor what PortrAI is, hand them the
+ * vocabulary, route them to the right path (Studio for marketing buyers,
+ * Events for HR / planners / couples).
  *
- * Process, FAQ, partner wall, case-study structure live on the path
- * subpages — they're contextual to which job-to-be-done you're on.
- *
- * NOTE: Estonian copy is DRAFT — needs Reijo's native pass.
+ * Voice: Linear restraint in the H1, Snapbar peer-positioning in the sub,
+ * one MSCHF moment in the (00) product primer.
  */
 
 const COPY = {
   en: {
-    heroEyebrow: "(01) PortrAI · AI photo experiences",
-    heroHeadline: "The hit of every event. Hands down.",
+    heroEyebrow: "(01) PortrAI · AI photo studio",
+    heroHeadline: "An AI photo studio for brands, agencies and events.",
     heroSub:
-      "PortrAI builds AI photo experiences that brands, agencies, and HR teams across Estonia book again and again. From quick branded booths to award-winning campaign concepts. Used by Swedbank, Telia, ERR, Postimees, Synlab — and at the European Innovation Council Summit.",
+      "From brief to booth, under one studio roof. Awarded by the Pronksmuna jury, ERR's Innovative Campaign jury, and the Booth Mastermind Las Vegas jury — and by guests at Swedbank, Telia, Synlab, ERR and Postimees.",
     heroPathMarketing: "For brands & marketing",
-    heroPathEvents: "For company parties & events",
+    heroPathEvents: "For events & parties",
 
     primerEyebrow: "(00) What we make",
-    primer: [
-      {
-        title: "Boks",
-        body: "AI photo booth at your event. Branded prints, on-site host, fast setup.",
-      },
-      {
-        title: "Branded",
-        body: "Full brand takeover — not just the start screen, the whole UI in your language.",
-      },
-      {
-        title: "Custom Activation",
-        body: "A campaign concept built around AI photo. The Swedbank / Synlab / Von Fock tier.",
-      },
-      {
-        title: "Virtual Widget",
-        body: "AI photo experience embedded on your site or microsite. Works without an event.",
-      },
-    ],
+    primerTitle: "Four shapes the studio takes.",
 
     pathsEyebrow: "(02) Two ways we work",
-    pathsTitle: "Pick your path.",
+    pathsTitle: "Pick a path.",
 
-    marketingCardEyebrow: "Brands & marketing",
-    marketingCardTitle: "Brand activation that's actually measurable.",
+    marketingCardEyebrow: "Studio · brands & agencies",
+    marketingCardTitle: "Brand activations, not booth rentals.",
     marketingCardBody:
-      "Lead generation, branded UGC, GDPR-clean data — every touch-point in your design language. We come from a marketing background, so the booth solves the campaign problem behind it.",
-    marketingCardStat: "681K images · Von Fock (ERR campaign)",
-    marketingCardCta: "See the marketing path",
+      "Campaign concepts with AI photo as the medium. Briefs from agencies, marketing teams, and brand owners — output ranges from booth to virtual widget to both.",
+    marketingCardStat: "Swedbank · Synlab · Von Fock · Laulupidu",
+    marketingCardCta: "Open the studio",
 
-    eventsCardEyebrow: "Parties & events",
-    eventsCardTitle: "The booth your guests will talk about for weeks.",
+    eventsCardEyebrow: "Events · parties & weddings",
+    eventsCardTitle: "The booth your team is still talking about on Monday.",
     eventsCardBody:
-      "Estonia's largest theme catalog. Live gallery on the screen. Interactive themes that let guests shape the photos. An on-site host who keeps the energy up.",
-    eventsCardStat:
-      '"The most impactful photo booth experience in 20 years." — Aivar Kuusk',
-    eventsCardCta: "See the events path",
+      "AI photo experiences for company parties, private events and weddings. On-site host, up to 200 portraits per hour, every photo delivered by dawn.",
+    eventsCardStat: '"Täielik hitt — ürituse populaarseim osa."',
+    eventsCardCta: "Open events",
 
     showcaseEyebrow: "(03) Recent work",
-    showcaseTitle: "What we've made.",
+    showcaseTitle: "What we have made.",
     showcaseAll: "All work",
 
     awardsEyebrow: "(04) Awards",
-    awardsTitle: "Award-winning, in the categories that matter to your buyer.",
+    awardsTitle: "Graded by the juries your buyer recognises.",
     awardsBody:
-      "Estonian marketing-industry recognition first — then the international photo-booth jury. The work has been graded both ways.",
-    awardsBadges: [
-      "Pronksmuna · Postimees Laulupidu campaign",
-      "Most Innovative Marketing Campaign · Von Fock for ERR",
-      "Booth Mastermind Awards 2025 · Las Vegas · Best AI Photo Solution",
-    ],
+      "Estonian marketing-industry awards first. The international photo-booth jury comes third — useful, but not what your CMO has heard of.",
 
-    reachEyebrow: "(05) Where we've delivered",
+    reachEyebrow: "(05) Reach",
     reachTitle: "Estonia is home. The work has travelled.",
     reachBody:
-      "PortrAI is the official photo-booth partner of the European Innovation Council Summit 2025–2026. Experiences also delivered in Finland, Germany, Latvia, Belgium, Poland and the USA.",
+      "PortrAI is the official photobooth partner of the European Innovation Council Summit 2025–2026. Experiences also delivered in Finland, Germany, Latvia, Belgium, Poland and the USA.",
     reachMetrics: [
-      { value: "780K+", label: "Photos generated across campaigns" },
-      { value: "7", label: "Countries delivered in" },
+      { value: "780K+", label: "Portraits delivered" },
+      { value: "7", label: "Countries shipped to" },
       { value: "200+", label: "Events activated" },
     ],
 
-    ctaEyebrow: "(06) Talk to us",
+    quoteEyebrow: "(06) What organisers say",
+
+    ctaEyebrow: "(07) Talk to us",
     ctaTitle: "Tell us about your event.",
-    ctaBody: "We respond within 24 hours.",
-    ctaButton: "Book PortrAI",
+    ctaBody: "We reply within 3 business hours.",
+    ctaButton: "Get a quote",
   },
   et: {
-    // [ET DRAFT — needs your native pass]
-    heroEyebrow: "(01) PortrAI · AI fotokogemused",
-    heroHeadline: "Täielik hitt. Ürituse populaarseim osa.",
+    heroEyebrow: "(01) PortrAI · AI fotostuudio",
+    heroHeadline: "AI fotostuudio brändidele, agentuuridele ja üritustele.",
     heroSub:
-      "PortrAI loob AI fotokogemusi, mida Eesti brändid, agentuurid ja HR-tiimid broneerivad ikka ja jälle. Kiirelt bränditud fotoboksist auhinnatud kampaania-kontseptsioonideni. Kasutusel Swedbankis, Telias, ERR-is, Postimehes, Synlabis — ning European Innovation Council Summit'il.",
+      "Briifist boksini, ühe stuudio katuse all. Auhinnatud Postimehe Laulupeo Pronksmuna, ERR-i Aasta innovaatilisema turunduskampaania ja Booth Mastermind Las Vegas żürii poolt — ning külaliste poolt Swedbankis, Telias, Synlabis, ERR-is ja Postimehes.",
     heroPathMarketing: "Brändidele ja turundusele",
-    heroPathEvents: "Firmapidudele ja eraüritustele",
+    heroPathEvents: "Üritustele ja pidudele",
 
     primerEyebrow: "(00) Mida me teeme",
-    primer: [
-      {
-        title: "Boks",
-        body: "AI fotoboks sinu üritusel. Bränditud prindid, kohapealne host, kiire setup.",
-      },
-      {
-        title: "Branded",
-        body: "Täielik brändi-ülevõtt — mitte ainult avaekraan, vaid kogu UI sinu keeles.",
-      },
-      {
-        title: "Custom Activation",
-        body: "Kampaania kontseptsioon ehitatud AI foto ümber. Swedbanki / Synlabi / Von Focki tase.",
-      },
-      {
-        title: "Virtual Widget",
-        body: "AI fotokogemus sinu saidil või mikrosaidil. Töötab ilma ürituseta.",
-      },
-    ],
+    primerTitle: "Neli kuju, milleks stuudio saab muutuda.",
 
     pathsEyebrow: "(02) Kahel viisil töötame",
-    pathsTitle: "Vali oma rada.",
+    pathsTitle: "Vali rada.",
 
-    marketingCardEyebrow: "Brändid ja turundus",
-    marketingCardTitle: "Brändi-aktivatsioon, mida saab tegelikult mõõta.",
+    marketingCardEyebrow: "Studio · brändid & agentuurid",
+    marketingCardTitle: "Brändi-aktivatsioonid, mitte boksi rent.",
     marketingCardBody:
-      "Leadid, jagatav UGC, GDPR-iga puhtad andmed — iga puutepunkt sinu disainikeeles. Tuleme turundustaustast, seega boks lahendab kampaania-probleemi, mis on selle taga.",
-    marketingCardStat: "681K pilti · Von Fock (ERR kampaania)",
-    marketingCardCta: "Vaata turundus-rada",
+      "Kampaania-kontseptsioonid AI fotoga meediumina. Briifid agentuuridelt, turundustiimidelt ja brändi-omanikelt — väljund ulatub boksist virtuaalse widgetini ja mõlemast korraga.",
+    marketingCardStat: "Swedbank · Synlab · Von Fock · Laulupidu",
+    marketingCardCta: "Ava stuudio",
 
-    eventsCardEyebrow: "Peod ja üritused",
-    eventsCardTitle: "Boks, millest külalised räägivad veel kuid hiljem.",
+    eventsCardEyebrow: "Peod · firmad, pulmad, eraüritused",
+    eventsCardTitle: "Boks, millest räägitakse esmaspäeval kontoris.",
     eventsCardBody:
-      "Eesti suurim teemakogum. Live-galerii ekraanil. Interaktiivsed teemad, kus külalised piltide tulemust mõjutavad. Kohapealne host, kes hoiab energia üleval.",
-    eventsCardStat:
-      '"Kõige mõjuvam fotoboksi-elamus 20 aasta jooksul." — Aivar Kuusk',
-    eventsCardCta: "Vaata peo-rada",
+      "AI fotokogemus firma-, era- ja pulmaüritustele. Kohapealne host, kuni 200 portreed tunnis, kõik pildid valmis öö lõpuks.",
+    eventsCardStat: '„Täielik hitt — ürituse populaarseim osa."',
+    eventsCardCta: "Ava peod",
 
     showcaseEyebrow: "(03) Hiljutised tööd",
     showcaseTitle: "Mida oleme teinud.",
     showcaseAll: "Kõik tööd",
 
     awardsEyebrow: "(04) Auhinnad",
-    awardsTitle: "Auhinnatud — kategooriates, mis sinu ostjale midagi ütlevad.",
+    awardsTitle: "Hinnatud žüriide poolt, keda sinu ostja tunneb.",
     awardsBody:
-      "Esmalt Eesti turunduselt, seejärel rahvusvaheliselt fotoboksi žüriilt. Töö on hinnatud mõlemast suunast.",
-    awardsBadges: [
-      "Pronksmuna · Postimehe Laulupeo kampaania",
-      "Aasta innovaatilisem turunduskampaania · Von Fock ERR-ile",
-      "Booth Mastermind Awards 2025 · Las Vegas · Parim AI fotolahendus",
-    ],
+      "Eesti turunduselt esimesena. Rahvusvaheline fotoboksi żürii kolmandana — kasulik, aga mitte see, millest sinu turundusjuht on kuulnud.",
 
     reachEyebrow: "(05) Kus oleme töötanud",
     reachTitle: "Eesti on kodu. Töö on rännanud.",
     reachBody:
       "PortrAI on European Innovation Council Summit 2025–2026 ametlik fotoboksi partner. Kogemusi oleme pakkunud ka Soomes, Saksamaal, Lätis, Belgias, Poolas ja USAs.",
     reachMetrics: [
-      { value: "780K+", label: "Pilti loodud kampaaniates" },
-      { value: "7", label: "Riiki, kus oleme töötanud" },
+      { value: "780K+", label: "Portreed tarnitud" },
+      { value: "7", label: "Riiki, kuhu tarnisime" },
       { value: "200+", label: "Üritust" },
     ],
 
-    ctaEyebrow: "(06) Räägi meiega",
+    quoteEyebrow: "(06) Mida korraldajad ütlevad",
+
+    ctaEyebrow: "(07) Räägi meiega",
     ctaTitle: "Räägi meile oma üritusest.",
-    ctaBody: "Vastame 24 tunni jooksul.",
-    ctaButton: "Broneeri PortrAI",
+    ctaBody: "Vastame 3 töötunni jooksul.",
+    ctaButton: "Küsi pakkumist",
   },
 } as const;
 
@@ -192,12 +149,12 @@ export async function generateMetadata({
   return buildPageMetadata({
     title:
       locale === "en"
-        ? "AI photo booth Estonia | PortrAI"
-        : "AI fotoboks ja fotopeegel Eestis | PortrAI",
+        ? "PortrAI — AI photo studio for brands and events"
+        : "PortrAI — AI fotostuudio brändidele ja üritustele",
     description:
       locale === "en"
-        ? "Award-winning AI photo booth, photobooth rental, fotoboks, and fotopeegel for events in Tallinn and across Estonia. Built for brand activations, company parties, weddings, and trade shows."
-        : "Auhinnatud AI fotoboks, photobooth, klassikaline fotoboks ja fotopeegel üritustele Tallinnas ja üle Eesti. Sobib brändiaktivatsioonidele, firmapidudele, pulmadele ja messidele.",
+        ? "An AI photo studio for Estonian brands, agencies and events. From booth to virtual widget, from brief to award-winning campaign."
+        : "AI fotostuudio Eesti brändidele, agentuuridele ja üritustele. Briifist boksini, boksist auhinnatud kampaaniani.",
     locale,
     ogImage: "/images/site/interactive-booth.png",
     path: localizedSitePath(locale, "/"),
@@ -213,7 +170,7 @@ export default async function HomePage({
   setRequestLocale(locale);
   const copy = COPY[locale];
 
-  const marketingHref = locale === "en" ? "/marketing" : "/turundus";
+  const marketingHref = "/studio";
   const eventsHref = locale === "en" ? "/events" : "/peod";
 
   return (
@@ -255,7 +212,7 @@ export default async function HomePage({
             <div className="flex flex-wrap gap-4">
               <MagneticButton>
                 <Link
-                  href={marketingHref}
+                  href={marketingHref as "/studio"}
                   className="inline-block rounded-full bg-[color:var(--color-brand-primary)] px-6 py-3 font-medium text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-medium)]"
                 >
                   {copy.heroPathMarketing} →
@@ -263,7 +220,7 @@ export default async function HomePage({
               </MagneticButton>
               <MagneticButton strength={8}>
                 <Link
-                  href={eventsHref}
+                  href={eventsHref as "/peod" | "/events"}
                   className="inline-block rounded-full bg-[color:var(--color-brand-primary)] px-6 py-3 font-medium text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-medium)]"
                 >
                   {copy.heroPathEvents} →
@@ -272,7 +229,7 @@ export default async function HomePage({
             </div>
           </div>
 
-          {/* Cursor-reveal portrait — Direction B centerpiece */}
+          {/* Cursor-reveal portrait — kept as the signature centerpiece */}
           <div className="relative h-[60vh] min-h-[420px] self-center overflow-hidden rounded-2xl lg:h-[78vh]">
             <CursorRevealHero
               baseTexture="/images/hero/portrait-base.png"
@@ -282,27 +239,39 @@ export default async function HomePage({
         </div>
       </section>
 
-      {/* (00) Product primer — vocabulary buyers can use to ask for the right thing */}
+      {/* (00) Product primer */}
       <section className="border-b border-[color:var(--color-stroke-subtle)] px-6 py-16 md:px-12">
-        <p className="mb-10 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
-          {copy.primerEyebrow}
-        </p>
+        <div className="mb-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
+          <p className="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
+            {copy.primerEyebrow}
+          </p>
+          <h2
+            className="font-medium leading-tight tracking-tight"
+            style={{ fontSize: "var(--text-display-md)" }}
+          >
+            {copy.primerTitle}
+          </h2>
+        </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {copy.primer.map((p) => (
-            <div
-              key={p.title}
-              className="flex flex-col gap-3 border-l border-[color:var(--color-brand-primary)] pl-5"
+          {PRODUCT_LINES.map((p) => (
+            <Link
+              key={p.id}
+              href={"/studio" as "/studio"}
+              className="group flex flex-col gap-3 border-l border-[color:var(--color-brand-primary)] pl-5 transition-colors hover:border-[color:var(--color-brand-accent)]"
             >
+              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--color-brand-accent)]">
+                {text(locale, p.priceLabel)}
+              </p>
               <p
-                className="font-medium leading-tight"
+                className="font-medium leading-tight transition-colors group-hover:text-[color:var(--color-brand-accent)]"
                 style={{ fontSize: "var(--text-title)" }}
               >
-                {p.title}
+                {text(locale, p.name)}
               </p>
               <p className="text-sm text-[color:var(--color-text-secondary)]">
-                {p.body}
+                {text(locale, p.body)}
               </p>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
@@ -323,7 +292,7 @@ export default async function HomePage({
 
         <div className="grid gap-6 lg:grid-cols-2">
           <PathCard
-            href={marketingHref}
+            href={marketingHref as "/studio"}
             eyebrow={copy.marketingCardEyebrow}
             title={copy.marketingCardTitle}
             body={copy.marketingCardBody}
@@ -332,12 +301,12 @@ export default async function HomePage({
             image="/images/work/von-fock-cover.jpg"
             imageAlt={
               locale === "en"
-                ? "Von Fock AI portrait — campaign for ERR"
-                : "Von Focki AI portree — kampaania ERR-ile"
+                ? "Von Fock AI campaign for ERR"
+                : "Von Focki AI kampaania ERR-ile"
             }
           />
           <PathCard
-            href={eventsHref}
+            href={eventsHref as "/peod" | "/events"}
             eyebrow={copy.eventsCardEyebrow}
             title={copy.eventsCardTitle}
             body={copy.eventsCardBody}
@@ -346,7 +315,7 @@ export default async function HomePage({
             image="/images/work/melt-cover.png"
             imageAlt={
               locale === "en"
-                ? "PortrAI booth at MELT innovation forum"
+                ? "PortrAI booth at the MELT innovation forum"
                 : "PortrAI boks MELT innovatsioonifoorumil"
             }
           />
@@ -360,7 +329,7 @@ export default async function HomePage({
             {copy.showcaseEyebrow}
           </p>
           <Link
-            href="/tood"
+            href={"/tood" as "/tood" | "/work"}
             className="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)] underline-offset-4 transition-colors hover:text-white hover:underline"
           >
             {copy.showcaseAll} →
@@ -375,7 +344,7 @@ export default async function HomePage({
         <ShowcaseMarquee locale={locale} />
       </section>
 
-      {/* 4 — Awards strip with real Las Vegas photo */}
+      {/* 4 — Awards (reordered: marketing-industry first, vendor third) */}
       <section className="border-b border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-center">
           <div>
@@ -395,16 +364,16 @@ export default async function HomePage({
               {copy.awardsBody}
             </p>
             <div className="grid gap-4">
-              {copy.awardsBadges.map((badge, i) => (
+              {AWARD_BADGES.map((badge) => (
                 <div
-                  key={i}
+                  key={badge.id}
                   className="flex items-center gap-4 rounded-2xl border border-[color:var(--color-brand-primary)]/30 bg-[color:var(--color-brand-primary)]/5 p-6"
                 >
                   <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[color:var(--color-brand-primary)]/15 font-mono text-lg text-[color:var(--color-brand-accent)]">
                     ★
                   </span>
                   <p className="font-mono text-xs uppercase tracking-[0.18em] text-white">
-                    {badge}
+                    {text(locale, badge.label)}
                   </p>
                 </div>
               ))}
@@ -433,7 +402,7 @@ export default async function HomePage({
         </div>
       </section>
 
-      {/* 5 — Reach + metrics */}
+      {/* 5 — Reach + EUIC */}
       <section className="border-b border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
         <div className="mb-12 grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
           <div>
@@ -502,7 +471,27 @@ export default async function HomePage({
         </div>
       </section>
 
-      {/* 6 — Booking CTA */}
+      {/* 6 — Aivar Kuusk quote */}
+      <section className="border-b border-[color:var(--color-stroke-subtle)] bg-gradient-to-b from-[color:var(--color-surface-raised)] to-transparent px-6 py-24 md:px-12">
+        <p className="mb-8 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
+          {copy.quoteEyebrow}
+        </p>
+        <figure className="mx-auto max-w-4xl">
+          <blockquote
+            className="font-medium leading-[1.1] tracking-tight text-white"
+            style={{ fontSize: "var(--text-display-lg)" }}
+          >
+            <span className="text-[color:var(--color-brand-accent)]">"</span>
+            {text(locale, AIVAR_QUOTE)}
+            <span className="text-[color:var(--color-brand-accent)]">"</span>
+          </blockquote>
+          <figcaption className="mt-8 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
+            — {text(locale, AIVAR_CREDIT)}
+          </figcaption>
+        </figure>
+      </section>
+
+      {/* 7 — Booking CTA */}
       <section className="px-6 py-32 md:px-12">
         <p className="mb-4 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
           {copy.ctaEyebrow}
@@ -543,7 +532,7 @@ function PathCard({
   image,
   imageAlt,
 }: {
-  href: "/turundus" | "/peod" | "/marketing" | "/events";
+  href: "/studio" | "/peod" | "/events";
   eyebrow: string;
   title: string;
   body: string;
@@ -557,7 +546,6 @@ function PathCard({
       href={href}
       className="group relative flex flex-col gap-6 overflow-hidden rounded-3xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] p-8 transition-all duration-300 hover:border-[color:var(--color-brand-primary)]/40 hover:shadow-[var(--glow-medium)] md:p-10"
     >
-      {/* Background image with strong dark gradient so text stays legible */}
       <div className="absolute inset-0 -z-10">
         <Image
           src={image}

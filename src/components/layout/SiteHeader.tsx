@@ -1,22 +1,25 @@
 "use client";
 
 import { useState } from "react";
-import { useLocale, useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 
 type NavHref =
   | "/"
-  | "/tood"
-  | "/turundus"
+  | "/studio"
   | "/peod"
-  | "/marketing"
   | "/events"
-  | "/teenused"
+  | "/boksid"
+  | "/booths"
+  | "/tood"
+  | "/work"
+  | "/hinnad"
+  | "/pricing"
   | "/blog"
-  | "/kontakt";
+  | "/kontakt"
+  | "/contact";
 
 export function SiteHeader() {
-  const t = useTranslations("nav");
   const locale = (useLocale() as "et" | "en") ?? "et";
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -24,15 +27,31 @@ export function SiteHeader() {
   const nextLocale = locale === "et" ? "en" : "et";
   const menuLabel = menuOpen ? (locale === "en" ? "Close" : "Sulge") : "Menu";
 
-  // Path labels are locale-aware: /turundus + /peod in ET, /marketing + /events in EN.
-  const marketingHref: NavHref = locale === "en" ? "/marketing" : "/turundus";
+  // Locale-aware route labels. Five primary nav items: Studio / Events /
+  // Booths / Work / Pricing. Each labelled in mono-numbered editorial style.
+  const studioHref: NavHref = "/studio";
   const eventsHref: NavHref = locale === "en" ? "/events" : "/peod";
+  const boothsHref: NavHref = locale === "en" ? "/booths" : "/boksid";
+  const workHref: NavHref = locale === "en" ? "/work" : "/tood";
+  const pricingHref: NavHref = locale === "en" ? "/pricing" : "/hinnad";
+
+  const labels = {
+    studio: locale === "en" ? "Studio" : "Studio",
+    events: locale === "en" ? "Events" : "Peod",
+    booths: locale === "en" ? "Booths" : "Boksid",
+    work: locale === "en" ? "Work" : "Tööd",
+    pricing: locale === "en" ? "Pricing" : "Hinnad",
+    contact: locale === "en" ? "Contact" : "Kontakt",
+    quote: locale === "en" ? "Get a quote" : "Küsi pakkumist",
+    switchLanguage: locale === "en" ? "ET" : "EN",
+  };
 
   const navItems: Array<{ href: NavHref; number: string; label: string }> = [
-    { href: "/tood", number: "01", label: t("work") },
-    { href: marketingHref, number: "02", label: t("marketing") },
-    { href: eventsHref, number: "03", label: t("events") },
-    { href: "/kontakt", number: "04", label: t("contact") },
+    { href: studioHref, number: "01", label: labels.studio },
+    { href: eventsHref, number: "02", label: labels.events },
+    { href: boothsHref, number: "03", label: labels.booths },
+    { href: workHref, number: "04", label: labels.work },
+    { href: pricingHref, number: "05", label: labels.pricing },
   ];
 
   return (
@@ -63,13 +82,13 @@ export function SiteHeader() {
             locale={nextLocale}
             className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)] transition-colors hover:text-white"
           >
-            {t("switchLanguage")}
+            {labels.switchLanguage}
           </Link>
           <Link
             href="/kontakt"
             className="rounded-md bg-[color:var(--color-brand-primary)] px-4 py-2 font-mono text-xs uppercase tracking-wider text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-soft)]"
           >
-            {t("primary")}
+            {labels.quote}
           </Link>
         </div>
 
@@ -80,7 +99,7 @@ export function SiteHeader() {
             className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)] transition-colors hover:text-white"
             onClick={() => setMenuOpen(false)}
           >
-            {t("switchLanguage")}
+            {labels.switchLanguage}
           </Link>
           <button
             type="button"
@@ -113,7 +132,7 @@ export function SiteHeader() {
             onClick={() => setMenuOpen(false)}
             className="mt-6 inline-flex rounded-md bg-[color:var(--color-brand-primary)] px-5 py-3 font-mono text-xs uppercase tracking-wider text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-soft)]"
           >
-            {t("primary")} {"->"}
+            {labels.quote} {"->"}
           </Link>
         </div>
       )}

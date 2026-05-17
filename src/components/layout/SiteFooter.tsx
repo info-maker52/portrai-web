@@ -12,8 +12,8 @@ import { Link } from "@/i18n/navigation";
  *   4. Social
  *
  * Sitemap column uses locale-aware hrefs:
- *   - ET: /turundus, /peod
- *   - EN: /marketing, /events
+ *   - ET: /studio, /peod
+ *   - EN: /studio, /events
  */
 export function SiteFooter() {
   const tFooter = useTranslations("footer");
@@ -21,13 +21,16 @@ export function SiteFooter() {
   const tNav = useTranslations("nav");
   const locale = (useLocale() as "et" | "en") ?? "et";
 
-  const marketingHref = locale === "en" ? "/marketing" : "/turundus";
   const eventsHref = locale === "en" ? "/events" : "/peod";
+  const boothsHref = locale === "en" ? "/booths" : "/boksid";
+  const workHref = locale === "en" ? "/work" : "/tood";
+  const pricingHref = locale === "en" ? "/pricing" : "/hinnad";
   const sitemapLabel = locale === "en" ? "Site" : "Leht";
+  const moreLabel = locale === "en" ? "More" : "Veel";
 
   return (
     <footer className="mt-32 border-t border-[color:var(--color-stroke-subtle)] px-6 pb-8 pt-16 md:px-12">
-      <div className="grid gap-12 md:grid-cols-4">
+      <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
         <div className="flex flex-col gap-2">
           <Link
             href="/"
@@ -64,52 +67,48 @@ export function SiteFooter() {
           </p>
         </div>
 
+        {/* Primary sitemap — 5 main nav routes */}
         <div className="flex flex-col gap-3">
           <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)]">
             {sitemapLabel}
           </p>
           <Link
-            href="/tood"
+            href={"/studio" as "/studio"}
             className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
           >
-            {tNav("work")}
+            {locale === "en" ? "Studio" : "Studio"}
           </Link>
           <Link
-            href={marketingHref}
+            href={eventsHref as "/peod" | "/events"}
             className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
           >
-            {tNav("marketing")}
+            {locale === "en" ? "Events" : "Peod"}
           </Link>
           <Link
-            href={eventsHref}
+            href={boothsHref as "/boksid" | "/booths"}
             className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
           >
-            {tNav("events")}
+            {locale === "en" ? "Booths" : "Boksid"}
           </Link>
           <Link
-            href="/fotopeegel"
+            href={workHref as "/tood" | "/work"}
             className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
           >
-            Fotopeegel
+            {locale === "en" ? "Work" : "Tööd"}
           </Link>
           <Link
-            href="/stiilid"
-            className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
-          >
-            {locale === "en" ? "Styles" : "Stiilid"}
-          </Link>
-          <Link
-            href="/hinnad"
+            href={pricingHref as "/hinnad" | "/pricing"}
             className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
           >
             {locale === "en" ? "Pricing" : "Hinnad"}
           </Link>
-          <Link
-            href="/kalkulaator"
-            className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
-          >
-            {locale === "en" ? "Calculator" : "Kalkulaator"}
-          </Link>
+        </div>
+
+        {/* Secondary + SEO landing pages — discoverable but not in top nav */}
+        <div className="flex flex-col gap-3">
+          <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)]">
+            {moreLabel}
+          </p>
           <Link
             href="/blog"
             className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
@@ -121,6 +120,36 @@ export function SiteFooter() {
             className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
           >
             {tNav("contact")}
+          </Link>
+          <Link
+            href="/stiilid"
+            className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
+          >
+            {locale === "en" ? "AI styles" : "AI stiilid"}
+          </Link>
+          <Link
+            href="/fotopeegel"
+            className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
+          >
+            Fotopeegel
+          </Link>
+          <Link
+            href="/pulma-fotoboks"
+            className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
+          >
+            {locale === "en" ? "Wedding booth · Spring 2026" : "Pulma boks · kevad 2026"}
+          </Link>
+          <Link
+            href="/photobooth-tallinn"
+            className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
+          >
+            Photobooth Tallinn
+          </Link>
+          <Link
+            href="/messilahendused"
+            className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
+          >
+            {locale === "en" ? "Trade-show booth" : "Messilahendused"}
           </Link>
         </div>
 

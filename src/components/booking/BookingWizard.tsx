@@ -387,7 +387,7 @@ export function BookingWizard({
             ))}
             {/* Custom Activation off-ramp — quote-by-conversation */}
             <Link
-              href="/turundus"
+              href={"/studio" as "/studio"}
               className="flex flex-col items-start gap-2 rounded-2xl border border-[color:var(--color-brand-primary)]/40 bg-[color:var(--color-brand-primary)]/8 p-4 text-left transition-colors hover:border-[color:var(--color-brand-primary)] md:col-span-2"
             >
               <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--color-brand-accent)]">

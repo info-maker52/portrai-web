@@ -88,7 +88,7 @@ export function PriceCalculator() {
       lateNight: inputs.lateNight ? "1" : "0",
       total: String(Math.round(result.total)),
     });
-    return `/broneeri?${params.toString()}`;
+    return `/kontakt?${params.toString()}`;
   }, [inputs, result.total]);
 
   return (
@@ -123,7 +123,7 @@ export function PriceCalculator() {
 
           {/* Custom-tier off-ramp */}
           <Link
-            href="/turundus"
+            href={"/studio" as "/studio"}
             className="mt-3 flex flex-col gap-1 rounded-xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-base)] px-4 py-3 text-left transition-colors hover:border-[color:var(--color-brand-primary)]/50"
           >
             <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--color-brand-accent)]">
@@ -271,7 +271,7 @@ export function PriceCalculator() {
           </div>
         </div>
         <Link
-          href={quoteHref as `/broneeri?${string}`}
+          href={quoteHref as `/kontakt?${string}`}
           className="inline-flex items-center justify-center gap-2 rounded-full bg-[color:var(--color-brand-primary)] px-5 py-3 text-center font-mono text-xs uppercase tracking-wider text-white transition-colors hover:bg-[color:var(--color-brand-secondary)]"
         >
           {copy.ctaQuote} →

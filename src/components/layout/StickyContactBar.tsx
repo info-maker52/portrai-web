@@ -5,7 +5,7 @@ import { useLocale } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { CONTACT } from "@/lib/contact";
 
-const HIDE_ON_PATHS = ["/kontakt", "/broneeri"];
+const HIDE_ON_PATHS = ["/kontakt"];
 
 const COPY = {
   en: {
@@ -62,7 +62,7 @@ export function StickyContactBar() {
       ].join(" ")}
     >
       <Link
-        href="/broneeri"
+        href="/kontakt"
         className="flex-1 rounded-full bg-[color:var(--color-brand-primary)] px-4 py-3 text-center font-mono text-xs uppercase tracking-wider text-white transition-colors hover:bg-[color:var(--color-brand-secondary)]"
       >
         {copy.quote} →

@@ -12,22 +12,23 @@ import { projects } from "@/lib/site-content";
  */
 
 // Top-level static pages (relative paths, locale prefix added below).
+// The five primary nav routes lead, then secondary + SEO landings.
 const STATIC_PATHS = [
   "",
-  "/turundus",
+  "/studio",
   "/peod",
+  "/boksid",
+  "/tood",
+  "/hinnad",
+  "/kontakt",
+  "/blog",
+  // SEO landing pages targeting real KP volume
   "/fotopeegel",
   "/photobooth-tallinn",
   "/messilahendused",
-  "/hinnad",
-  "/kalkulaator",
-  "/stiilid",
-  "/broneeri",
   "/pulma-fotoboks",
-  "/firmapidu-fotoboks",
-  "/tood",
-  "/blog",
-  "/kontakt",
+  "/stiilid",
+  "/kalkulaator",
 ];
 
 // Standalone Russian-language pages (outside the next-intl routing).
