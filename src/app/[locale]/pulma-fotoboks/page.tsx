@@ -5,7 +5,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { FaqAccordion } from "@/components/faq/FaqAccordion";
-import { TrustRow } from "@/components/trust/TrustRow";
+import { ProofMicrocopy } from "@/components/trust/ProofMicrocopy";
 import { SlaBadges } from "@/components/trust/SlaBadges";
 import { ImagePlaceholder } from "@/components/media/ImagePlaceholder";
 import {
@@ -263,6 +263,7 @@ export default async function WeddingPage({
             >
               {copy.sub}
             </p>
+            <ProofMicrocopy locale={locale} variant="awards" className="mb-4" />
             <div className="mb-8 flex flex-wrap gap-4">
               <MagneticButton>
                 <Link
@@ -279,7 +280,6 @@ export default async function WeddingPage({
                 {copy.secondaryCta} →
               </Link>
             </div>
-            <TrustRow locale={locale} />
           </div>
 
           <ImagePlaceholder

@@ -4,7 +4,6 @@ import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { PageShell } from "@/components/layout/PageShell";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { TrustRow } from "@/components/trust/TrustRow";
 import {
   buildPageMetadata,
   localizedSitePath,
@@ -107,7 +106,6 @@ export default async function StylesPage({
         >
           {copy.subhead}
         </p>
-        <TrustRow locale={locale} />
       </section>
 
       {categories.map((category) => {

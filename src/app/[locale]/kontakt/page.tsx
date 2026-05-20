@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { PageShell } from "@/components/layout/PageShell";
 import { BookingWizard } from "@/components/booking/BookingWizard";
+import { MiniQuoteForm } from "@/components/booking/MiniQuoteForm";
 import { TrustRow } from "@/components/trust/TrustRow";
 import { SlaBadges } from "@/components/trust/SlaBadges";
 import { CONTACT } from "@/lib/contact";
@@ -168,12 +169,14 @@ export default async function ContactPage({
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
           <BookingWizard />
 
-          {/* Direct contact column */}
-          <aside className="flex h-fit flex-col gap-6 rounded-3xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] p-6 md:p-8">
-            <p className="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
-              {copy.directLabel}
-            </p>
-            <div className="flex flex-col gap-3">
+          {/* Right column — low-friction mini-form first, then direct contact */}
+          <aside className="flex h-fit flex-col gap-6">
+            <MiniQuoteForm />
+
+            <div className="flex flex-col gap-3 rounded-3xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] p-6 md:p-8">
+              <p className="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
+                {copy.directLabel}
+              </p>
               <a
                 href={`mailto:${CONTACT.email}`}
                 className="text-lg text-white underline-offset-4 hover:underline"

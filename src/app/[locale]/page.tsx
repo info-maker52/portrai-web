@@ -14,6 +14,7 @@ import {
   CTA,
   PRODUCT_LINES,
 } from "@/lib/copy";
+import { ProofMicrocopy } from "@/components/trust/ProofMicrocopy";
 import { buildPageMetadata, localizedSitePath } from "@/lib/seo";
 import { INTERNATIONAL_REACH, PARTNERSHIPS } from "@/lib/contact";
 import { type SiteLocale, text } from "@/lib/site-content";
@@ -28,6 +29,18 @@ import { type SiteLocale, text } from "@/lib/site-content";
  * Voice: Linear restraint in the H1, Snapbar peer-positioning in the sub,
  * one MSCHF moment in the (00) product primer.
  */
+
+/**
+ * Representative thumbnail per product line — surfaces on hover of the
+ * primer card so the visitor learns what each tier *looks like* without
+ * leaving the page. Keys must match `PRODUCT_LINES[*].id` from lib/copy.ts.
+ */
+const PRIMER_THUMBNAILS: Record<string, string> = {
+  boks: "/images/site/portrait-base.png",
+  branded: "/images/work/telia-rohekusimustik-cover.jpg",
+  custom: "/images/work/swedbank-unistused-cover.jpg",
+  widget: "/images/work/von-fock-cover.jpg",
+};
 
 const COPY = {
   en: {
@@ -209,6 +222,7 @@ export default async function HomePage({
             >
               {copy.heroSub}
             </p>
+            <ProofMicrocopy locale={locale} variant="clients" />
             <div className="flex flex-wrap gap-4">
               <MagneticButton>
                 <Link
@@ -239,8 +253,10 @@ export default async function HomePage({
         </div>
       </section>
 
-      {/* (00) Product primer */}
-      <section className="border-b border-[color:var(--color-stroke-subtle)] px-6 py-16 md:px-12">
+      {/* (00) Product primer — each card carries a hidden representative
+          thumbnail that fades in on hover so the buyer learns what the
+          tier looks like visually, not just verbally. */}
+      <section className="border-b border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] px-6 py-16 md:px-12">
         <div className="mb-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
           <p className="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
             {copy.primerEyebrow}
@@ -253,26 +269,40 @@ export default async function HomePage({
           </h2>
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {PRODUCT_LINES.map((p) => (
-            <Link
-              key={p.id}
-              href={"/studio" as "/studio"}
-              className="group flex flex-col gap-3 border-l border-[color:var(--color-brand-primary)] pl-5 transition-colors hover:border-[color:var(--color-brand-accent)]"
-            >
-              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--color-brand-accent)]">
-                {text(locale, p.priceLabel)}
-              </p>
-              <p
-                className="font-medium leading-tight transition-colors group-hover:text-[color:var(--color-brand-accent)]"
-                style={{ fontSize: "var(--text-title)" }}
+          {PRODUCT_LINES.map((p) => {
+            const thumb = PRIMER_THUMBNAILS[p.id];
+            return (
+              <Link
+                key={p.id}
+                href={"/studio" as "/studio"}
+                className="group relative flex flex-col gap-3 border-l border-[color:var(--color-brand-primary)] pl-5 pr-20 transition-colors hover:border-[color:var(--color-brand-accent)] md:pr-24"
               >
-                {text(locale, p.name)}
-              </p>
-              <p className="text-sm text-[color:var(--color-text-secondary)]">
-                {text(locale, p.body)}
-              </p>
-            </Link>
-          ))}
+                <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--color-brand-accent)]">
+                  {text(locale, p.priceLabel)}
+                </p>
+                <p
+                  className="font-medium leading-tight transition-colors group-hover:text-[color:var(--color-brand-accent)]"
+                  style={{ fontSize: "var(--text-title)" }}
+                >
+                  {text(locale, p.name)}
+                </p>
+                <p className="text-sm text-[color:var(--color-text-secondary)]">
+                  {text(locale, p.body)}
+                </p>
+                {thumb && (
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute right-0 top-0 h-16 w-16 overflow-hidden rounded-xl border border-[color:var(--color-stroke-subtle)] opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 translate-x-2 md:h-20 md:w-20"
+                    style={{
+                      backgroundImage: `url(${thumb})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                    }}
+                  />
+                )}
+              </Link>
+            );
+          })}
         </div>
       </section>
 
@@ -323,7 +353,7 @@ export default async function HomePage({
       </section>
 
       {/* 3 — Showcase marquee */}
-      <section className="border-b border-[color:var(--color-stroke-subtle)] py-20">
+      <section className="border-b border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] py-20">
         <div className="mb-8 flex items-center justify-between px-6 md:px-12">
           <p className="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
             {copy.showcaseEyebrow}
@@ -403,7 +433,7 @@ export default async function HomePage({
       </section>
 
       {/* 5 — Reach + EUIC */}
-      <section className="border-b border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+      <section className="border-b border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] px-6 py-20 md:px-12">
         <div className="mb-12 grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
           <div>
             <p className="mb-4 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">

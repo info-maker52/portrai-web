@@ -7,12 +7,12 @@ import { MagneticButton } from "@/components/motion/MagneticButton";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { FaqAccordion } from "@/components/faq/FaqAccordion";
 import { OutcomeMetrics } from "@/components/trust/OutcomeMetrics";
-import { TrustRow } from "@/components/trust/TrustRow";
-import { ImagePlaceholder } from "@/components/media/ImagePlaceholder";
+import { ProofMicrocopy } from "@/components/trust/ProofMicrocopy";
+import { ProcessFlow } from "@/components/studio/ProcessFlow";
+import { StudioHeroCycle } from "@/components/studio/StudioHeroCycle";
 import {
   AIVAR_CREDIT,
   AIVAR_QUOTE,
-  AWARD_BADGES,
   CTA,
   PRODUCT_LINES,
 } from "@/lib/copy";
@@ -77,7 +77,7 @@ const COPY = {
         body: "AI Photobooth campaign positioning Swedbank as the bank that helps dreams come true. Guests typed a dream — AI visualised them inside it.",
         href: "/tood/swedbank-unistused",
         metric: "15-second renders",
-        image: "/images/work/swedbank-unistused-cover.png",
+        image: "/images/work/swedbank-unistused-cover.jpg",
       },
       {
         client: "Synlab",
@@ -101,7 +101,7 @@ const COPY = {
         body: "Laulupidu engagement device for Postimees. Lived on a Postimees microsite for the duration of the campaign.",
         href: "/tood/laulupidu-postimees",
         metric: "103K portraits · 23K opt-ins",
-        image: "/images/work/laulupidu-postimees-cover.png",
+        image: "/images/work/laulupidu-postimees-cover.jpg",
       },
     ],
 
@@ -181,7 +181,7 @@ const COPY = {
         body: "AI Photobooth kampaania, mis positsioneerib Swedbanki pangana, kes aitab unistused täita. Külalised kirjutasid unistuse — AI visualiseeris neid selles.",
         href: "/tood/swedbank-unistused",
         metric: "15-sekundilised renderdused",
-        image: "/images/work/swedbank-unistused-cover.png",
+        image: "/images/work/swedbank-unistused-cover.jpg",
       },
       {
         client: "Synlab",
@@ -205,7 +205,7 @@ const COPY = {
         body: "Laulupeo-kaasamise lahendus Postimehele. Elas Postimehe mikrosaidil kampaania ajal.",
         href: "/tood/laulupidu-postimees",
         metric: "103K portreed · 23K opt-ini",
-        image: "/images/work/laulupidu-postimees-cover.png",
+        image: "/images/work/laulupidu-postimees-cover.jpg",
       },
     ],
 
@@ -330,6 +330,7 @@ export default async function StudioPage({
             >
               {copy.sub}
             </p>
+            <ProofMicrocopy locale={locale} variant="awards" className="mb-4" />
             <div className="mb-8 flex flex-wrap gap-4">
               <MagneticButton>
                 <Link
@@ -346,26 +347,16 @@ export default async function StudioPage({
                 {copy.secondaryCta} →
               </Link>
             </div>
-            <TrustRow locale={locale} />
           </div>
 
-          {/* Studio hero loop — placeholder until we have the morphing MP4 */}
-          <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-[color:var(--color-stroke-subtle)]">
-            <ImagePlaceholder
-              description="Studio hero loop — one source photo morphing through acrylic → watercolour → cartoon → neon → renaissance, 4s loop"
-              className="h-full w-full"
-              showTag={false}
-            />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[rgba(2,9,30,0.55)] via-transparent to-transparent" />
-            <p className="absolute bottom-4 left-4 rounded-full border border-white/25 bg-black/40 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.3em] text-white/85 backdrop-blur-sm">
-              ◆ Studio reel
-            </p>
-          </div>
+          {/* Studio hero reel — 5 styles cross-fade via CSS keyframe.
+              See StudioHeroCycle for layer + timing detail. */}
+          <StudioHeroCycle />
         </div>
       </section>
 
       {/* (02) Four product lines */}
-      <section className="border-b border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+      <section className="border-b border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] px-6 py-20 md:px-12">
         <div className="mb-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
           <p className="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
             {copy.productLinesEyebrow}
@@ -419,17 +410,19 @@ export default async function StudioPage({
             <Link
               key={item.client}
               href={item.href as `/tood/${string}`}
-              className="group relative flex aspect-[5/4] flex-col justify-between overflow-hidden rounded-3xl border border-[color:var(--color-stroke-subtle)] p-6 transition-all duration-300 hover:border-[color:var(--color-brand-primary)]/50 md:p-8"
+              className="group relative flex aspect-[5/4] flex-col justify-between overflow-hidden rounded-3xl border border-[color:var(--color-stroke-subtle)] p-6 transition-all duration-300 hover:border-[color:var(--color-brand-primary)]/60 hover:shadow-[var(--glow-medium)] md:p-8"
             >
               <Image
                 src={item.image}
                 alt={`${item.client} — ${item.title}`}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover opacity-40 transition-all duration-500 group-hover:scale-[1.04] group-hover:opacity-60"
+                className="object-cover opacity-40 transition-all duration-500 group-hover:scale-[1.04] group-hover:opacity-65"
               />
               <div className="pointer-events-none absolute inset-0 -z-0 bg-gradient-to-br from-[rgba(2,9,30,0.85)] via-[rgba(2,9,30,0.78)] to-[rgba(2,9,30,0.6)]" />
-              <div className="relative">
+
+              {/* Static layer — idle state */}
+              <div className="relative transition-opacity duration-300 group-hover:opacity-40">
                 <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--color-brand-accent)]">
                   {item.client}
                 </p>
@@ -439,18 +432,28 @@ export default async function StudioPage({
                 >
                   {item.title}
                 </h3>
-                <p
-                  className="mt-3 max-w-md text-[color:var(--color-text-secondary)]"
-                >
+                <p className="mt-3 max-w-md text-[color:var(--color-text-secondary)]">
                   {item.body}
                 </p>
               </div>
-              <div className="relative flex items-end justify-between gap-3">
-                <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/80">
+
+              {/* Hover-reveal — the metric pops to centre */}
+              <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-2 px-8 text-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-[color:var(--color-brand-accent)]">
+                  {item.client}
+                </p>
+                <p
+                  className="font-medium tabular-nums leading-tight text-white"
+                  style={{ fontSize: "var(--text-display-md)" }}
+                >
                   {item.metric}
                 </p>
+              </div>
+
+              {/* Footer link cue — always visible */}
+              <div className="relative flex items-end justify-end gap-3">
                 <span className="font-mono text-xs uppercase tracking-wider text-white transition-colors group-hover:text-[color:var(--color-brand-accent)]">
-                  {locale === "en" ? "Read →" : "Loe →"}
+                  {locale === "en" ? "Read the case →" : "Loe juhtumit →"}
                 </span>
               </div>
             </Link>
@@ -459,7 +462,7 @@ export default async function StudioPage({
       </section>
 
       {/* (04) Process */}
-      <section className="border-b border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+      <section className="border-b border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] px-6 py-20 md:px-12">
         <div className="mb-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
           <p className="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
             {copy.processEyebrow}
@@ -471,32 +474,10 @@ export default async function StudioPage({
             {copy.processTitle}
           </h2>
         </div>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
-          {copy.process.map((step, i) => (
-            <div
-              key={step.n}
-              className="flex flex-col gap-3 border-l border-[color:var(--color-brand-primary)] pl-5"
-            >
-              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--color-brand-accent)]">
-                {step.n}
-              </p>
-              <h3
-                className="font-medium leading-tight"
-                style={{ fontSize: "var(--text-title)" }}
-              >
-                {step.title}
-              </h3>
-              <p className="text-sm text-[color:var(--color-text-secondary)]">
-                {step.body}
-              </p>
-              {i === 0 && (
-                <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--color-text-tertiary)]">
-                  ←  Begins here
-                </p>
-              )}
-            </div>
-          ))}
-        </div>
+        <ProcessFlow
+          steps={copy.process}
+          beginsHereLabel={locale === "en" ? "Begins here" : "Algab siit"}
+        />
       </section>
 
       {/* (05) Outcomes */}
@@ -536,7 +517,7 @@ export default async function StudioPage({
       </section>
 
       {/* (07) FAQ */}
-      <section className="border-b border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+      <section className="border-b border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] px-6 py-20 md:px-12">
         <div className="grid gap-12 md:grid-cols-[300px_1fr]">
           <div>
             <p className="mb-4 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
@@ -576,25 +557,6 @@ export default async function StudioPage({
           >
             {copy.messibox.cta} →
           </Link>
-        </div>
-      </section>
-
-      {/* (09) Awards (compact second appearance) */}
-      <section className="border-b border-[color:var(--color-stroke-subtle)] px-6 py-16 md:px-12">
-        <div className="grid gap-4">
-          {AWARD_BADGES.map((badge) => (
-            <div
-              key={badge.id}
-              className="flex items-center gap-4 rounded-2xl border border-[color:var(--color-brand-primary)]/30 bg-[color:var(--color-brand-primary)]/5 p-5"
-            >
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[color:var(--color-brand-primary)]/15 font-mono text-[color:var(--color-brand-accent)]">
-                ★
-              </span>
-              <p className="font-mono text-xs uppercase tracking-[0.18em] text-white">
-                {text(locale, badge.label)}
-              </p>
-            </div>
-          ))}
         </div>
       </section>
 

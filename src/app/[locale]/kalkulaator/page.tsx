@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { PageShell } from "@/components/layout/PageShell";
 import { PriceCalculator } from "@/components/pricing/PriceCalculator";
-import { TrustRow } from "@/components/trust/TrustRow";
 import { buildPageMetadata, localizedSitePath } from "@/lib/seo";
 import { type SiteLocale } from "@/lib/site-content";
 
@@ -69,7 +68,6 @@ export default async function CalculatorPage({
         >
           {copy.subhead}
         </p>
-        <TrustRow locale={locale} />
       </section>
 
       <section className="px-6 pb-32 md:px-12">

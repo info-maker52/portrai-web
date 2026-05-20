@@ -5,7 +5,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SlaBadges } from "@/components/trust/SlaBadges";
-import { TrustRow } from "@/components/trust/TrustRow";
+import { ProofMicrocopy } from "@/components/trust/ProofMicrocopy";
 import { FaqAccordion } from "@/components/faq/FaqAccordion";
 import { PriceCalculator } from "@/components/pricing/PriceCalculator";
 import {
@@ -268,7 +268,7 @@ export default async function PricingPage({
             {copy.calcCta} →
           </Link>
         </div>
-        <TrustRow locale={locale} />
+        <ProofMicrocopy locale={locale} variant="throughput" />
       </section>
 
       {/* (02) Packages */}
@@ -313,8 +313,18 @@ export default async function PricingPage({
                   </p>
                 </div>
                 {pkg.highlight && (
-                  <span className="rounded-full border border-[color:var(--color-brand-primary)]/40 bg-[color:var(--color-brand-primary)]/15 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-white">
-                    ★
+                  <span className="flex flex-col items-end gap-1.5">
+                    <span
+                      aria-hidden
+                      className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-[color:var(--color-brand-accent)]/50 bg-[color:var(--color-brand-accent)]/15 font-mono text-[color:var(--color-brand-accent)] [animation:portrai-most-booked-pulse_2.4s_ease-in-out_infinite]"
+                    >
+                      ★
+                    </span>
+                    <span className="whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-brand-accent)]">
+                      {locale === "en"
+                        ? "Most booked · 100–300 guests"
+                        : "Enim broneeritud · 100–300 külalist"}
+                    </span>
                   </span>
                 )}
               </div>

@@ -7,8 +7,8 @@ import { MagneticButton } from "@/components/motion/MagneticButton";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { FaqAccordion } from "@/components/faq/FaqAccordion";
 import { ImagePlaceholder } from "@/components/media/ImagePlaceholder";
+import { ProofMicrocopy } from "@/components/trust/ProofMicrocopy";
 import { SlaBadges } from "@/components/trust/SlaBadges";
-import { TrustRow } from "@/components/trust/TrustRow";
 import { ThemeGallery } from "@/components/themes/ThemeGallery";
 import { AIVAR_CREDIT, AIVAR_QUOTE } from "@/lib/copy";
 import { formatEur, PACKAGES } from "@/lib/pricing";
@@ -58,7 +58,7 @@ const COPY = {
     eyebrow: "(01) PortrAI · Events",
     headline: "The booth your team is still talking about on Monday.",
     sub: "An AI photo experience for company parties, private events and weddings. On-site host, up to 200 portraits per hour, every photo delivered by dawn.",
-    primaryCta: "Get a quote",
+    primaryCta: "Plan the night",
     secondaryCta: "See pricing",
 
     audienceEyebrow: "(02) Three rooms, one booth",
@@ -174,7 +174,7 @@ const COPY = {
     eyebrow: "(01) PortrAI · Peod",
     headline: "Boks, millest räägitakse esmaspäeval kontoris.",
     sub: "AI fotokogemus firma-, era- ja pulmaüritustele. Kohapealne host, kuni 200 portreed tunnis, kõik pildid valmis öö lõpuks.",
-    primaryCta: "Küsi pakkumist",
+    primaryCta: "Planeeri õhtu",
     secondaryCta: "Vaata hindu",
 
     audienceEyebrow: "(02) Kolm saali, üks boks",
@@ -348,6 +348,7 @@ export default async function EventsPage({
             >
               {copy.sub}
             </p>
+            <ProofMicrocopy locale={locale} variant="throughput" className="mb-4" />
             <div className="mb-8 flex flex-wrap gap-4">
               <MagneticButton>
                 <Link
@@ -364,7 +365,6 @@ export default async function EventsPage({
                 {copy.secondaryCta} →
               </Link>
             </div>
-            <TrustRow locale={locale} />
           </div>
 
           <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-[color:var(--color-stroke-subtle)]">
@@ -460,7 +460,7 @@ export default async function EventsPage({
       </section>
 
       {/* (03) Why it's the hit */}
-      <section className="border-b border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+      <section className="border-b border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] px-6 py-20 md:px-12">
         <p className="mb-10 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
           {copy.whyEyebrow}
         </p>
@@ -523,7 +523,7 @@ export default async function EventsPage({
       </section>
 
       {/* (05) Pricing snapshot */}
-      <section className="border-b border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
+      <section className="border-b border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] px-6 py-20 md:px-12">
         <p className="mb-4 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
           {copy.pricingEyebrow}
         </p>

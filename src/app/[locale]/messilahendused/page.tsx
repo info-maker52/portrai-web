@@ -63,7 +63,7 @@ const COPY = {
     ctaBody:
       "Dates, stand size, the audience profile. We come back with a concept inside 3 business hours.",
     primaryCta: "Open the studio",
-    secondaryCta: "Talk to us",
+    secondaryCta: "Send the show brief",
   },
   et: {
     eyebrow: "(01) Messiboks ja konverentsi-boks",
@@ -83,7 +83,7 @@ const COPY = {
     ctaBody:
       "Kuupäevad, standi suurus, publiku profiil. Tuleme tagasi kontseptsiooniga 3 töötunni jooksul.",
     primaryCta: "Ava stuudio",
-    secondaryCta: "Räägi meiega",
+    secondaryCta: "Saada messi-brief",
   },
 } as const;
 

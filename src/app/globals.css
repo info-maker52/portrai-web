@@ -167,3 +167,63 @@
   text-transform: uppercase;
   color: var(--color-text-secondary);
 }
+
+/* ==========================================================================
+   Motion keyframes — referenced by [animation:portrai-*] utility classes
+   in components. The global prefers-reduced-motion rule above already
+   collapses animation-duration to ~0ms, so no per-keyframe guard needed.
+   ========================================================================== */
+
+/* Studio hero cross-fade across N stacked image layers.
+   Each layer animates this keyframe with a staggered animation-delay,
+   so only one layer is fully visible at a time. With 5 layers at
+   17.5s total duration, that's a 3.5s slot per style + ~0.7s cross-fade
+   on either edge. */
+@keyframes portrai-style-cycle {
+  0%,
+  18% {
+    opacity: 1;
+  }
+  22%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* International-reach flag stagger — fade each flag in left-to-right
+   with a tiny upward float. Applied on the home reach section's flag row. */
+@keyframes portrai-flag-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Most-booked pulse — gentle scale + glow on the Branded tier ★ badge
+   on /hinnad. Communicates "this is the popular pick" without shouting. */
+@keyframes portrai-most-booked-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 162, 255, 0.35);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 0 0 6px rgba(255, 162, 255, 0);
+  }
+}
+
+/* Process-flow connecting line — draws horizontally on scroll-into-view.
+   Triggered by toggling `data-in-view` from IntersectionObserver client-side. */
+@keyframes portrai-process-line-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}

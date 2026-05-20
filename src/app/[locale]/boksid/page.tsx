@@ -5,8 +5,8 @@ import { PageShell } from "@/components/layout/PageShell";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ImagePlaceholder } from "@/components/media/ImagePlaceholder";
+import { ProofMicrocopy } from "@/components/trust/ProofMicrocopy";
 import { SlaBadges } from "@/components/trust/SlaBadges";
-import { TrustRow } from "@/components/trust/TrustRow";
 import { CTA } from "@/lib/copy";
 import {
   breadcrumbSchema,
@@ -251,7 +251,7 @@ export default async function BoothsPage({
         </div>
 
         <div className="mt-8">
-          <TrustRow locale={locale} />
+          <ProofMicrocopy locale={locale} variant="clients" />
         </div>
       </section>
 
