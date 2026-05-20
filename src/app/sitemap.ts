@@ -22,11 +22,14 @@ const STATIC_PATHS = [
   "/hinnad",
   "/kontakt",
   "/blog",
-  // SEO landing pages targeting real KP volume
+  // Use-case landing pages (Kasutuskohad)
+  "/pulma-fotoboks",
+  "/firmapidu-fotoboks",
+  "/sunnipaev-fotoboks",
+  // Other SEO landing pages
   "/fotopeegel",
   "/photobooth-tallinn",
   "/messilahendused",
-  "/pulma-fotoboks",
   "/stiilid",
   "/kalkulaator",
 ];

@@ -63,10 +63,14 @@ type AudienceCard = {
     | "tradeshow"
     | "private"
     | "browse";
-  href: "/studio" | "/peod" | "/pulma-fotoboks" | "/messilahendused";
+  href:
+    | "/studio"
+    | "/peod"
+    | "/pulma-fotoboks"
+    | "/firmapidu-fotoboks"
+    | "/sunnipaev-fotoboks"
+    | "/messilahendused";
   image: string;
-  // priceLabel intentionally allows "By quote" / "Waitlist" / "from €X" /
-  // "Browse" — keep flexible per card.
 };
 
 const AUDIENCE_CARDS: AudienceCard[] = [
@@ -77,7 +81,7 @@ const AUDIENCE_CARDS: AudienceCard[] = [
   },
   {
     id: "corporate",
-    href: "/peod",
+    href: "/firmapidu-fotoboks",
     image: "/images/work/melt-cover.png",
   },
   {
@@ -92,7 +96,7 @@ const AUDIENCE_CARDS: AudienceCard[] = [
   },
   {
     id: "private",
-    href: "/peod",
+    href: "/sunnipaev-fotoboks",
     image: "/images/site/portrait-base.png",
   },
   {

@@ -136,22 +136,34 @@ export function SiteFooter() {
             Fotopeegel
           </Link>
           <Link
+            href="/firmapidu-fotoboks"
+            className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
+          >
+            {locale === "en" ? "Company party" : "Firmapidu"}
+          </Link>
+          <Link
             href="/pulma-fotoboks"
             className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
           >
-            {locale === "en" ? "Wedding booth · Spring 2026" : "Pulma boks · kevad 2026"}
+            {locale === "en" ? "Wedding · Spring 2026" : "Pulm · kevad 2026"}
           </Link>
           <Link
-            href="/photobooth-tallinn"
+            href="/sunnipaev-fotoboks"
             className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
           >
-            Photobooth Tallinn
+            {locale === "en" ? "Birthday & private" : "Sünnipäev & eraüritus"}
           </Link>
           <Link
             href="/messilahendused"
             className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
           >
             {locale === "en" ? "Trade-show booth" : "Messilahendused"}
+          </Link>
+          <Link
+            href="/photobooth-tallinn"
+            className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
+          >
+            Photobooth Tallinn
           </Link>
         </div>
 
