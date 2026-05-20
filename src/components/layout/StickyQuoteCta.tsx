@@ -13,7 +13,7 @@ const HIDE_ON_PATHS = ["/kontakt"];
  * read as the same generic ask on every page.
  */
 type StickyCta = {
-  href: "/kontakt" | "/studio" | "/hinnad" | "/hinnad#calculator";
+  href: "/kontakt" | "/studio" | "/hinnad" | `/hinnad#${string}`;
   label: { en: string; et: string };
 };
 
@@ -24,7 +24,7 @@ function ctaForPath(pathname: string): StickyCta {
       label: { en: "Bring us a brief", et: "Too meile brief" },
     };
   }
-  if (pathname === "/hinnad" || pathname === "/pricing") {
+  if (pathname === "/hinnad") {
     return {
       href: "/hinnad#calculator",
       label: { en: "Open calculator", et: "Ava kalkulaator" },
@@ -36,7 +36,7 @@ function ctaForPath(pathname: string): StickyCta {
       label: { en: "See pricing", et: "Vaata hindu" },
     };
   }
-  if (pathname === "/boksid" || pathname === "/booths") {
+  if (pathname === "/boksid") {
     return {
       href: "/kontakt",
       label: { en: "Pick a booth", et: "Vali boks" },

@@ -44,10 +44,10 @@ const PRIMER_THUMBNAILS: Record<string, string> = {
 
 const COPY = {
   en: {
-    heroEyebrow: "(01) PortrAI · AI photo studio",
-    heroHeadline: "An AI photo studio for brands, agencies and events.",
+    heroEyebrow: "(01) PortrAI · AI photo booth",
+    heroHeadline: "AI photo booth for brands, agencies and events.",
     heroSub:
-      "From brief to booth, under one studio roof. Awarded by the Pronksmuna jury, ERR's Innovative Campaign jury, and the Booth Mastermind Las Vegas jury — and by guests at Swedbank, Telia, Synlab, ERR and Postimees.",
+      "One studio, four shapes. From a quick branded booth to award-winning campaign concepts. Awarded by the Pronksmuna jury, ERR's Innovative Campaign jury and the Booth Mastermind Las Vegas jury — and by guests at Swedbank, Telia, Synlab, ERR and Postimees.",
     heroPathMarketing: "For brands & marketing",
     heroPathEvents: "For events & parties",
 
@@ -98,10 +98,10 @@ const COPY = {
     ctaButton: "Get a quote",
   },
   et: {
-    heroEyebrow: "(01) PortrAI · AI fotostuudio",
-    heroHeadline: "AI fotostuudio brändidele, agentuuridele ja üritustele.",
+    heroEyebrow: "(01) PortrAI · AI fotoboks",
+    heroHeadline: "AI fotoboks brändidele, agentuuridele ja üritustele.",
     heroSub:
-      "Briifist boksini, ühe stuudio katuse all. Auhinnatud Postimehe Laulupeo Pronksmuna, ERR-i Aasta innovaatilisema turunduskampaania ja Booth Mastermind Las Vegas żürii poolt — ning külaliste poolt Swedbankis, Telias, Synlabis, ERR-is ja Postimehes.",
+      "Üks stuudio, neli kuju. Kiirelt bränditud fotoboksist auhinnatud kampaania-kontseptsioonideni. Auhinnatud Postimehe Laulupeo Pronksmuna, ERR-i Aasta innovaatilisema turunduskampaania ja Booth Mastermind Las Vegas żürii poolt — ning külaliste poolt Swedbankis, Telias, Synlabis, ERR-is ja Postimehes.",
     heroPathMarketing: "Brändidele ja turundusele",
     heroPathEvents: "Üritustele ja pidudele",
 
@@ -162,12 +162,12 @@ export async function generateMetadata({
   return buildPageMetadata({
     title:
       locale === "en"
-        ? "PortrAI — AI photo studio for brands and events"
-        : "PortrAI — AI fotostuudio brändidele ja üritustele",
+        ? "PortrAI — AI photo booth and fotopeegel in Estonia"
+        : "PortrAI — AI fotoboks ja fotopeegel Eestis",
     description:
       locale === "en"
-        ? "An AI photo studio for Estonian brands, agencies and events. From booth to virtual widget, from brief to award-winning campaign."
-        : "AI fotostuudio Eesti brändidele, agentuuridele ja üritustele. Briifist boksini, boksist auhinnatud kampaaniani.",
+        ? "Award-winning AI photo booth, classic fotoboks and fotopeegel for events in Tallinn and across Estonia. Brand activations, company parties, weddings, and trade shows."
+        : "Auhinnatud AI fotoboks, klassikaline fotoboks ja fotopeegel üritustele Tallinnas ja üle Eesti. Brändi-aktivatsioonid, firmapeod, pulmad ja messid.",
     locale,
     ogImage: "/images/site/interactive-booth.png",
     path: localizedSitePath(locale, "/"),

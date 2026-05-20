@@ -10,14 +10,10 @@ type NavHref =
   | "/peod"
   | "/events"
   | "/boksid"
-  | "/booths"
   | "/tood"
-  | "/work"
   | "/hinnad"
-  | "/pricing"
   | "/blog"
-  | "/kontakt"
-  | "/contact";
+  | "/kontakt";
 
 export function SiteHeader() {
   const locale = (useLocale() as "et" | "en") ?? "et";
@@ -27,16 +23,18 @@ export function SiteHeader() {
   const nextLocale = locale === "et" ? "en" : "et";
   const menuLabel = menuOpen ? (locale === "en" ? "Close" : "Sulge") : "Menu";
 
-  // Locale-aware route labels. Five primary nav items: Studio / Events /
-  // Booths / Work / Pricing. Each labelled in mono-numbered editorial style.
+  // Routes use ET path segments in both locales — the next-intl `/en` prefix
+  // handles the language switch. /peod has a historical /events alias re-export
+  // (kept for inbound EN links); /tood, /hinnad, /boksid use the same path in
+  // both locales (no alias re-exports, so don't link to /work, /pricing, /booths).
   const studioHref: NavHref = "/studio";
   const eventsHref: NavHref = locale === "en" ? "/events" : "/peod";
-  const boothsHref: NavHref = locale === "en" ? "/booths" : "/boksid";
-  const workHref: NavHref = locale === "en" ? "/work" : "/tood";
-  const pricingHref: NavHref = locale === "en" ? "/pricing" : "/hinnad";
+  const boothsHref: NavHref = "/boksid";
+  const workHref: NavHref = "/tood";
+  const pricingHref: NavHref = "/hinnad";
 
   const labels = {
-    studio: locale === "en" ? "Studio" : "Studio",
+    studio: "Studio",
     events: locale === "en" ? "Events" : "Peod",
     booths: locale === "en" ? "Booths" : "Boksid",
     work: locale === "en" ? "Work" : "Tööd",

@@ -21,10 +21,12 @@ export function SiteFooter() {
   const tNav = useTranslations("nav");
   const locale = (useLocale() as "et" | "en") ?? "et";
 
+  // /tood, /hinnad, /boksid have no EN URL alias — same path in both locales.
+  // /peod has a /events alias re-export kept for historical inbound links.
   const eventsHref = locale === "en" ? "/events" : "/peod";
-  const boothsHref = locale === "en" ? "/booths" : "/boksid";
-  const workHref = locale === "en" ? "/work" : "/tood";
-  const pricingHref = locale === "en" ? "/pricing" : "/hinnad";
+  const boothsHref = "/boksid";
+  const workHref = "/tood";
+  const pricingHref = "/hinnad";
   const sitemapLabel = locale === "en" ? "Site" : "Leht";
   const moreLabel = locale === "en" ? "More" : "Veel";
 
@@ -85,19 +87,19 @@ export function SiteFooter() {
             {locale === "en" ? "Events" : "Peod"}
           </Link>
           <Link
-            href={boothsHref as "/boksid" | "/booths"}
+            href={boothsHref as "/boksid"}
             className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
           >
             {locale === "en" ? "Booths" : "Boksid"}
           </Link>
           <Link
-            href={workHref as "/tood" | "/work"}
+            href={workHref as "/tood"}
             className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
           >
             {locale === "en" ? "Work" : "Tööd"}
           </Link>
           <Link
-            href={pricingHref as "/hinnad" | "/pricing"}
+            href={pricingHref as "/hinnad"}
             className="text-sm transition-colors hover:text-[color:var(--color-brand-accent)]"
           >
             {locale === "en" ? "Pricing" : "Hinnad"}
