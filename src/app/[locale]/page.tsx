@@ -42,6 +42,66 @@ const PRIMER_THUMBNAILS: Record<string, string> = {
   widget: "/images/work/von-fock-cover.jpg",
 };
 
+/**
+ * Audience picker — 6 cards under the hero that route the visitor to the
+ * deep page written for *their* buyer. Replaces the previous two-paths
+ * picker which only forked Studio vs Events.
+ *
+ * Per-card image deliberately matches the destination page's hero so the
+ * card preview reads as continuous with the landing.
+ *
+ * `href` is the canonical ET path; the next-intl `/en` prefix kicks in
+ * automatically for EN visitors. /peod has a real /events re-export alias
+ * for inbound EN links; /tood, /hinnad, /boksid use the same path in
+ * both locales.
+ */
+type AudienceCard = {
+  id:
+    | "brand"
+    | "corporate"
+    | "wedding"
+    | "tradeshow"
+    | "private"
+    | "browse";
+  href: "/studio" | "/peod" | "/pulma-fotoboks" | "/messilahendused";
+  image: string;
+  // priceLabel intentionally allows "By quote" / "Waitlist" / "from €X" /
+  // "Browse" — keep flexible per card.
+};
+
+const AUDIENCE_CARDS: AudienceCard[] = [
+  {
+    id: "brand",
+    href: "/studio",
+    image: "/images/work/von-fock-cover.jpg",
+  },
+  {
+    id: "corporate",
+    href: "/peod",
+    image: "/images/work/melt-cover.png",
+  },
+  {
+    id: "wedding",
+    href: "/pulma-fotoboks",
+    image: "/images/site/portrait-detail.png",
+  },
+  {
+    id: "tradeshow",
+    href: "/messilahendused",
+    image: "/images/site/event-action.jpg",
+  },
+  {
+    id: "private",
+    href: "/peod",
+    image: "/images/site/portrait-base.png",
+  },
+  {
+    id: "browse",
+    href: "/peod",
+    image: "/images/work/laulupidu-postimees-cover.jpg",
+  },
+];
+
 const COPY = {
   en: {
     heroEyebrow: "(01) PortrAI · AI photo booth",
@@ -54,22 +114,54 @@ const COPY = {
     primerEyebrow: "(00) What we make",
     primerTitle: "Four shapes the studio takes.",
 
-    pathsEyebrow: "(02) Two ways we work",
-    pathsTitle: "Pick a path.",
-
-    marketingCardEyebrow: "Studio · brands & agencies",
-    marketingCardTitle: "Brand activations, not booth rentals.",
-    marketingCardBody:
-      "Campaign concepts with AI photo as the medium. Briefs from agencies, marketing teams, and brand owners — output ranges from booth to virtual widget to both.",
-    marketingCardStat: "Swedbank · Synlab · Von Fock · Laulupidu",
-    marketingCardCta: "Open the studio",
-
-    eventsCardEyebrow: "Events · parties & weddings",
-    eventsCardTitle: "The booth your team is still talking about on Monday.",
-    eventsCardBody:
-      "AI photo experiences for company parties, private events and weddings. On-site host, up to 200 portraits per hour, every photo delivered by dawn.",
-    eventsCardStat: '"Täielik hitt — ürituse populaarseim osa."',
-    eventsCardCta: "Open events",
+    pickerEyebrow: "(02) Find your fit",
+    pickerTitle: "What kind of event?",
+    pickerSub:
+      "Pick the one that matches yours — we route you to the page that's written for that buyer.",
+    pickerCards: {
+      brand: {
+        eyebrow: "Brand activation",
+        title: "A campaign with AI photo as the medium.",
+        body: "Briefs from marketing teams and agencies. Lead capture, branded UGC, GDPR-clean data — every screen in your design language.",
+        price: "By quote",
+        cta: "Open the studio",
+      },
+      corporate: {
+        eyebrow: "Corporate party",
+        title: "The hit of every team night.",
+        body: "Branded UI, 12+ AI styles, on-site host, live gallery wall. Up to 200 portraits per hour at peak.",
+        price: "from €490",
+        cta: "Open corporate",
+      },
+      wedding: {
+        eyebrow: "Wedding · Spring 2026",
+        title: "Handcrafted wood booth, all-night gallery.",
+        body: "Everybooth ICON 2 joins the lineup in Spring 2026. First 5 couples to confirm get a custom AI theme included.",
+        price: "Waitlist open",
+        cta: "Join the waitlist",
+      },
+      tradeshow: {
+        eyebrow: "Trade show / conference",
+        title: "Visitors stop. Leads land in your CRM by morning.",
+        body: "Custom AI flow on your stand, GDPR opt-in per guest, CSV export. Official partner of EUIC Summit 2025–2026.",
+        price: "By quote",
+        cta: "See messibox",
+      },
+      private: {
+        eyebrow: "Private event · birthday · jubilee",
+        title: "Smaller groups, fast setup, no fuss.",
+        body: "Boks tier covers casual evenings up to ~100 guests. 5 ready-made styles, on-site host, all photos to phones by morning.",
+        price: "from €490",
+        cta: "Plan the night",
+      },
+      browse: {
+        eyebrow: "Not sure yet",
+        title: "Browse everything we make.",
+        body: "Take a quick look at the work, the booths and the prices. Then come back when you know the brief.",
+        price: "Browse",
+        cta: "See the work",
+      },
+    },
 
     showcaseEyebrow: "(03) Recent work",
     showcaseTitle: "What we have made.",
@@ -108,22 +200,54 @@ const COPY = {
     primerEyebrow: "(00) Mida me teeme",
     primerTitle: "Neli kuju, milleks stuudio saab muutuda.",
 
-    pathsEyebrow: "(02) Kahel viisil töötame",
-    pathsTitle: "Vali rada.",
-
-    marketingCardEyebrow: "Studio · brändid & agentuurid",
-    marketingCardTitle: "Brändi-aktivatsioonid, mitte boksi rent.",
-    marketingCardBody:
-      "Kampaania-kontseptsioonid AI fotoga meediumina. Briifid agentuuridelt, turundustiimidelt ja brändi-omanikelt — väljund ulatub boksist virtuaalse widgetini ja mõlemast korraga.",
-    marketingCardStat: "Swedbank · Synlab · Von Fock · Laulupidu",
-    marketingCardCta: "Ava stuudio",
-
-    eventsCardEyebrow: "Peod · firmad, pulmad, eraüritused",
-    eventsCardTitle: "Boks, millest räägitakse esmaspäeval kontoris.",
-    eventsCardBody:
-      "AI fotokogemus firma-, era- ja pulmaüritustele. Kohapealne host, kuni 200 portreed tunnis, kõik pildid valmis öö lõpuks.",
-    eventsCardStat: '„Täielik hitt — ürituse populaarseim osa."',
-    eventsCardCta: "Ava peod",
+    pickerEyebrow: "(02) Vali sobiv kogemus",
+    pickerTitle: "Mis tüüpi üritus?",
+    pickerSub:
+      "Vali see, mis sobib sinu omaga — suuname sind lehele, mis on selle ostja jaoks kirjutatud.",
+    pickerCards: {
+      brand: {
+        eyebrow: "Brändi-aktivatsioon",
+        title: "Kampaania, mille meedium on AI foto.",
+        body: "Briifid turundusmeeskondadelt ja agentuuridelt. Leadide kogumine, jagatav UGC, GDPR-puhas data — iga ekraan sinu disainikeeles.",
+        price: "Pakkumise alusel",
+        cta: "Ava stuudio",
+      },
+      corporate: {
+        eyebrow: "Firmapidu",
+        title: "Õhtu hitt, mille üle räägitakse esmaspäeval.",
+        body: "Bränditud UI, 12+ AI stiili, kohapealne host, live-galerii sein. Kuni 200 portreed tunnis tipphetkel.",
+        price: "alates 490 €",
+        cta: "Ava firmapidu",
+      },
+      wedding: {
+        eyebrow: "Pulm · kevad 2026",
+        title: "Käsitsi valmistatud puidust boks, terve öö galerii.",
+        body: "Everybooth ICON 2 liitub valikuga kevadel 2026. Esimesed 5 paari saavad kohandatud AI teema hinnas sees.",
+        price: "Ootejärjekord avatud",
+        cta: "Liitu ootejärjekorraga",
+      },
+      tradeshow: {
+        eyebrow: "Mess / konverents",
+        title: "Külastajad peatuvad. Leadid jõuavad CRM-i hommikuks.",
+        body: "Kohandatud AI voog sinu standil, GDPR opt-in iga külalise jaoks, CSV eksport. EUIC Summit 2025–2026 ametlik partner.",
+        price: "Pakkumise alusel",
+        cta: "Vaata messi",
+      },
+      private: {
+        eyebrow: "Eraüritus · sünnipäev · juubel",
+        title: "Väiksem grupp, kiire setup, ilma kärata.",
+        body: "Boks pakett katab vabamad õhtud kuni ~100 külalist. 5 valmis stiili, kohapealne host, kõik pildid hommikuks telefonidesse.",
+        price: "alates 490 €",
+        cta: "Planeeri õhtu",
+      },
+      browse: {
+        eyebrow: "Pole veel kindel",
+        title: "Sirvi kõike, mida me teeme.",
+        body: "Vaata töid, bokse ja hindu. Tule tagasi, kui briifi tunned.",
+        price: "Sirvi",
+        cta: "Vaata töid",
+      },
+    },
 
     showcaseEyebrow: "(03) Hiljutised tööd",
     showcaseTitle: "Mida oleme teinud.",
@@ -306,49 +430,74 @@ export default async function HomePage({
         </div>
       </section>
 
-      {/* 2 — Two-paths picker */}
+      {/* 2 — Audience picker. Six cards, one per buyer type. Each routes
+          directly to the page written for that buyer. Beats the previous
+          two-path Studio/Events fork because most visitors self-segment
+          tighter than that within the first scroll. */}
       <section className="border-b border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
-        <div className="mb-12">
-          <p className="mb-4 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
-            {copy.pathsEyebrow}
-          </p>
-          <h2
-            className="max-w-3xl font-medium leading-tight tracking-tight"
-            style={{ fontSize: "var(--text-display-lg)" }}
+        <div className="mb-12 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:items-end">
+          <div>
+            <p className="mb-4 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
+              {copy.pickerEyebrow}
+            </p>
+            <h2
+              className="font-medium leading-tight tracking-tight"
+              style={{ fontSize: "var(--text-display-lg)" }}
+            >
+              {copy.pickerTitle}
+            </h2>
+          </div>
+          <p
+            className="self-end max-w-xl text-[color:var(--color-text-secondary)]"
+            style={{ fontSize: "var(--text-body-lg)" }}
           >
-            {copy.pathsTitle}
-          </h2>
+            {copy.pickerSub}
+          </p>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-2">
-          <PathCard
-            href={marketingHref as "/studio"}
-            eyebrow={copy.marketingCardEyebrow}
-            title={copy.marketingCardTitle}
-            body={copy.marketingCardBody}
-            stat={copy.marketingCardStat}
-            cta={copy.marketingCardCta}
-            image="/images/work/von-fock-cover.jpg"
-            imageAlt={
-              locale === "en"
-                ? "Von Fock AI campaign for ERR"
-                : "Von Focki AI kampaania ERR-ile"
-            }
-          />
-          <PathCard
-            href={eventsHref as "/peod" | "/events"}
-            eyebrow={copy.eventsCardEyebrow}
-            title={copy.eventsCardTitle}
-            body={copy.eventsCardBody}
-            stat={copy.eventsCardStat}
-            cta={copy.eventsCardCta}
-            image="/images/work/melt-cover.png"
-            imageAlt={
-              locale === "en"
-                ? "PortrAI booth at the MELT innovation forum"
-                : "PortrAI boks MELT innovatsioonifoorumil"
-            }
-          />
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {AUDIENCE_CARDS.map((card) => {
+            const cardCopy = copy.pickerCards[card.id];
+            return (
+              <Link
+                key={card.id}
+                href={card.href}
+                className="group relative flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-3xl border border-[color:var(--color-stroke-subtle)] p-6 transition-all duration-300 hover:border-[color:var(--color-brand-primary)]/50 hover:shadow-[var(--glow-medium)]"
+              >
+                <Image
+                  src={card.image}
+                  alt={cardCopy.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover opacity-30 transition-all duration-500 group-hover:scale-[1.05] group-hover:opacity-50"
+                />
+                <div className="pointer-events-none absolute inset-0 -z-0 bg-gradient-to-t from-[rgba(2,9,30,0.95)] via-[rgba(2,9,30,0.75)] to-[rgba(2,9,30,0.45)]" />
+
+                {/* Price band — sits in the top-right corner */}
+                <span className="absolute right-4 top-4 z-10 rounded-full border border-[color:var(--color-brand-primary)]/40 bg-[color:var(--color-brand-primary)]/15 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.22em] text-white backdrop-blur-sm">
+                  {cardCopy.price}
+                </span>
+
+                <div className="relative flex flex-col gap-3">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--color-brand-accent)]">
+                    {cardCopy.eyebrow}
+                  </p>
+                  <h3
+                    className="font-medium leading-tight"
+                    style={{ fontSize: "var(--text-title)" }}
+                  >
+                    {cardCopy.title}
+                  </h3>
+                  <p className="text-sm text-[color:var(--color-text-secondary)]">
+                    {cardCopy.body}
+                  </p>
+                  <span className="mt-2 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-white transition-colors group-hover:text-[color:var(--color-brand-accent)]">
+                    {cardCopy.cta} →
+                  </span>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
@@ -552,62 +701,3 @@ export default async function HomePage({
   );
 }
 
-function PathCard({
-  href,
-  eyebrow,
-  title,
-  body,
-  stat,
-  cta,
-  image,
-  imageAlt,
-}: {
-  href: "/studio" | "/peod" | "/events";
-  eyebrow: string;
-  title: string;
-  body: string;
-  stat: string;
-  cta: string;
-  image: string;
-  imageAlt: string;
-}) {
-  return (
-    <Link
-      href={href}
-      className="group relative flex flex-col gap-6 overflow-hidden rounded-3xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] p-8 transition-all duration-300 hover:border-[color:var(--color-brand-primary)]/40 hover:shadow-[var(--glow-medium)] md:p-10"
-    >
-      <div className="absolute inset-0 -z-10">
-        <Image
-          src={image}
-          alt={imageAlt}
-          fill
-          sizes="(max-width: 1024px) 100vw, 50vw"
-          className="object-cover opacity-40 transition-all duration-500 group-hover:scale-[1.04] group-hover:opacity-55"
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-[rgba(2,9,30,0.85)] via-[rgba(2,9,30,0.78)] to-[rgba(2,9,30,0.65)]" />
-      </div>
-
-      <p className="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-brand-accent)]">
-        {eyebrow}
-      </p>
-      <h3
-        className="font-medium leading-[1.1] tracking-tight"
-        style={{ fontSize: "var(--text-display-md)" }}
-      >
-        {title}
-      </h3>
-      <p
-        className="text-[color:var(--color-text-secondary)]"
-        style={{ fontSize: "var(--text-body-lg)" }}
-      >
-        {body}
-      </p>
-      <p className="rounded-xl border border-[color:var(--color-brand-primary)]/30 bg-[color:var(--color-brand-primary)]/15 p-4 font-mono text-xs uppercase tracking-[0.18em] text-white backdrop-blur-sm">
-        {stat}
-      </p>
-      <span className="mt-auto inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.22em] text-white transition-colors group-hover:text-[color:var(--color-brand-accent)]">
-        {cta} →
-      </span>
-    </Link>
-  );
-}
