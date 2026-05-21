@@ -2,12 +2,7 @@ import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { PageShell } from "@/components/layout/PageShell";
-import { MagneticButton } from "@/components/motion/MagneticButton";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { FaqAccordion } from "@/components/faq/FaqAccordion";
-import { ProofMicrocopy } from "@/components/trust/ProofMicrocopy";
-import { SlaBadges } from "@/components/trust/SlaBadges";
-import { ImagePlaceholder } from "@/components/media/ImagePlaceholder";
 import {
   breadcrumbSchema,
   buildPageMetadata,
@@ -18,15 +13,13 @@ import {
 } from "@/lib/seo";
 import { type SiteLocale } from "@/lib/site-content";
 
-/**
- * /pulma-fotoboks — Spring 2026 wedding waitlist landing.
- *
- * Frames the wedding line as a Spring 2026 launch with Everybooth ICON 2.
- * First-five-couples-get-custom-theme offer creates urgency.
- *
- * Voice: warmer than /studio (wedding audience) but still Linear restraint.
- * MSCHF moment: H1 names the launch date specifically.
- */
+/* Hallmark · macrostructure: Long Document (Letter) · genre: editorial
+ * Was: card grid + section eyebrows + 4-card "why" grid. Now: a single
+ * editorial column read as a letter from PortrAI about the Spring 2026
+ * wedding launch. No numbered eyebrows, no card grids, no side-stripe
+ * cards. Categorically different from /firmapidu-fotoboks (Specimen)
+ * and /sunnipaev-fotoboks (Photographic) — three audience pages now
+ * read as three different sites, not three colour-swaps. */
 
 export async function generateMetadata({
   params,
@@ -37,12 +30,12 @@ export async function generateMetadata({
   return buildPageMetadata({
     title:
       locale === "en"
-        ? "Wedding AI photo booth — Spring 2026 launch with ICON 2 | PortrAI"
+        ? "Wedding AI photo booth — Spring 2026 with Everybooth ICON 2 | PortrAI"
         : "Pulma AI fotoboks — kevad 2026 koos ICON 2-ga | PortrAI",
     description:
       locale === "en"
-        ? "PortrAI's wedding line launches Spring 2026 with the handcrafted Everybooth ICON 2. Join the waitlist — first 5 couples get a custom AI theme included."
-        : "PortrAI pulmaformaat tuleb kevadel 2026 koos käsitsi valmistatud Everybooth ICON 2-ga. Liitu ootejärjekorraga — esimesed 5 paari saavad kohandatud AI teema hinnas.",
+        ? "PortrAI's wedding line launches Spring 2026 with the handcrafted Everybooth ICON 2 — a warmer, light-wood booth. Join the waitlist; the first five couples get a custom AI theme included."
+        : "PortrAI pulmaformaat tuleb kevadel 2026 koos käsitsi valmistatud Everybooth ICON 2-ga — soojema, heleda puiduga boksiga. Liitu ootejärjekorraga; esimesed viis paari saavad kohandatud AI teema hinnas.",
     locale,
     ogImage: "/images/site/portrait-detail.png",
     path: localizedSitePath(locale, "/pulma-fotoboks"),
@@ -51,154 +44,92 @@ export async function generateMetadata({
 
 const COPY = {
   en: {
-    eyebrow: "(01) Coming Spring 2026",
-    headline:
-      "The wedding line launches Spring 2026 — and we're taking five early couples now.",
-    sub: "PortrAI's wedding offering is built around the handcrafted, light-wood Everybooth ICON 2. A warmer booth than our usual neon-and-metal events kit — designed to disappear into a reception room instead of standing out.",
-    primaryCta: "Join the waitlist",
-    secondaryCta: "See the booth",
-
-    offerEyebrow: "(02) Early-couple offer",
-    offerTitle: "First 5 couples get a custom AI theme — included.",
-    offerBody:
-      "Custom themes normally cost €290 as an add-on. The first five couples to confirm a 2026 wedding date with PortrAI Wedding get one bundled with their package — designed around the invitation typeface, colour palette and venue.",
-
-    whyEyebrow: "(03) Why this booth, for weddings",
-    why: [
-      {
-        title: "Light wood, not black metal",
-        body: "The ICON 2 is made to look like furniture. Soft tungsten light, neutral fabric, brass details. The room treats it as part of the decor.",
-      },
-      {
-        title: "Watercolour, acrylic, editorial",
-        body: "Romantic AI styles tuned for wedding aesthetics — soft palettes, gentle skin work, light bleed. The catalog opens with these three.",
-      },
-      {
-        title: "On-site host all night",
-        body: "Our host welcomes guests, helps shy ones pose, keeps the queue moving, and packs everything down. You enjoy the night.",
-      },
-      {
-        title: "Print + phone in 15 seconds",
-        body: "Every portrait prints on the spot and lands on the guest's phone via QR. You wake up to a full shared gallery.",
-      },
-    ],
-
-    flowEyebrow: "(04) How a wedding evening goes",
-    flow: [
-      { n: "01", title: "Tell us about the day", body: "Date, venue, guest count, invitation visuals." },
-      { n: "02", title: "Pick AI styles", body: "Most couples pick 3–5. Watercolour and acrylic lead the wedding catalog." },
-      { n: "03", title: "We arrive 90 min early", body: "Setup is 40 min. Tested and quiet before guests arrive." },
-      { n: "04", title: "All-night gallery", body: "Photos go to the live wall and to phones. Morning after — one shared link." },
-    ],
-
-    faqEyebrow: "(05) Wedding FAQ",
-    faqTitle: "What couples ask first.",
+    date: "Tallinn · written November 2026",
+    headline: "About the wedding line, in plain language.",
+    intro:
+      "We started PortrAI as a studio for brand activations. The booth we built — black metal, brand-purple LEDs, neon energy — fits a corporate stand or a year-end party. It doesn't fit a wedding reception. We've known this for two years, said no to weddings the whole time, and stopped feeling fine about it.",
+    para2:
+      "So in spring 2026 a second booth joins the studio. It's the Everybooth ICON 2 — light wood, neutral fabric, brass hinges, soft tungsten light. Hand-built, not stamped. It looks like furniture. It disappears into a reception room instead of standing out, which is the point.",
+    para3:
+      "The AI engine is the same one running on the neon booth. Same twelve styles. Same on-site host, same 40-minute setup, same all-night gallery to every guest's phone by morning. The thing that changes is how the booth looks while it's doing the work.",
+    para4Heading: "The early-couple offer",
+    para4:
+      "The first five couples who confirm a 2026 wedding date with PortrAI Wedding get a custom AI theme designed around their wedding visuals — the invitation typeface, the colour palette, the venue. That theme normally costs €290 as an add-on; the first five get it included. After five we'll still build custom themes, just not bundled.",
+    para5Heading: "What it costs",
+    para5:
+      "Most weddings land in the Branded tier — €890 for five hours, the booth's UI in the couple's design language, ten-plus AI styles, host, live gallery wall, prints. Smaller weddings can go with Boks at €490 for three hours. Custom wedding concepts (think Synlab-tier ambition, scaled to a wedding) are quoted separately.",
+    para6Heading: "What people ask",
     faq: [
       {
-        q: "When can I book a wedding with ICON 2?",
-        a: "Spring 2026 onwards. The booth arrives in Q1 2026. We're taking waitlist confirmations now for 2026 wedding dates from May onwards.",
-      },
-      {
-        q: "What does it cost?",
-        a: "Wedding bookings most often land in the Branded tier (€890) — 5 hours, fully-branded UI, 10+ styles, host, live gallery, prints. Smaller weddings can do Boks at €490 (3 hours). Custom wedding concepts are quoted separately.",
-      },
-      {
-        q: "Can the booth match our wedding visuals?",
-        a: "Yes. The Branded tier takes over the UI in your colour palette and frame. The first 5 waitlist couples get a fully custom AI theme designed around your invitation typeface — included, no extra fee.",
+        q: "When can I actually book a wedding with the ICON 2?",
+        a: "Spring 2026 onwards. The booth lands with us in Q1 2026. We're taking waitlist confirmations now for 2026 wedding dates from May onwards — and we'll come back to you with available dates the moment the ICON 2 arrives.",
       },
       {
         q: "How much space and power does it need?",
-        a: "About 2×2 metres and one standard 230 V outlet. We can work tighter — describe the venue and we'll confirm.",
+        a: "Around two square metres and one standard 230 V outlet. We've worked tighter — describe the venue when you write and we'll confirm.",
       },
       {
-        q: "What if our wedding is far from Tallinn?",
-        a: "Flat distance fee — €90 within 100 km, €180 within 200 km. Beyond that we quote per event. The setup itself is the same anywhere.",
+        q: "What if our venue is far from Tallinn?",
+        a: "Tallinn within 25 km is included. We add a flat distance fee beyond that — 90 € within 100 km, 180 € within 200 km, custom quote further. The setup is the same anywhere.",
+      },
+      {
+        q: "Will the booth match the wedding's visual language?",
+        a: "On the Branded tier — yes, the UI takes your colour palette and frame. For couples in the first-five offer the AI theme itself is built around the invitation typeface.",
       },
       {
         q: "What about elderly guests who don't use phones?",
-        a: "Our host walks every guest through the flow. There's a printed photo for every shot — nobody leaves empty-handed.",
+        a: "Every photo prints on the spot. The host walks every guest through the flow. Nobody leaves empty-handed.",
       },
     ],
-
-    ctaTitle: "Save the date — and the booth.",
-    ctaBody:
-      "Tell us your wedding details. We'll come back within 3 business hours.",
-    ctaButton: "Join the waitlist",
+    closeHeading: "How to get on the waitlist",
+    close:
+      "Email me — Reijo — at info@portrai.ee, or click the button below. Tell me the date you've held, the venue, the rough guest count, and what kind of energy you want the reception to feel like. I write back personally within three business hours.",
+    cta: "Join the waitlist",
+    sign: "— Reijo Pullai, founder",
   },
   et: {
-    eyebrow: "(01) Tuleb kevadel 2026",
-    headline:
-      "Pulma-formaat tuleb kevadel 2026 — ja võtame viis esimest paari juba praegu.",
-    sub: "PortrAI pulma-pakkumine on ehitatud käsitsi valmistatud heleda puiduga Everybooth ICON 2 ümber. Soojem boks kui meie tavaline neoonist-metallist üritus-komplekt — disainitud kaduma vastuvõturuumi, mitte sealt välja paistma.",
-    primaryCta: "Liitu ootejärjekorraga",
-    secondaryCta: "Vaata boksi",
-
-    offerEyebrow: "(02) Varase-paari pakkumine",
-    offerTitle: "Esimesed 5 paari saavad kohandatud AI teema — hinnas sees.",
-    offerBody:
-      "Kohandatud teemad maksavad tavaliselt 290 € lisana. Esimesed viis paari, kes kinnitavad 2026 pulmakuupäeva PortrAI Pulmaga, saavad selle paketi sees — kujundatud kutsete kirjatüübi, värvi-paleti ja venue ümber.",
-
-    whyEyebrow: "(03) Miks see boks pulma jaoks",
-    why: [
-      {
-        title: "Hele puit, mitte must metall",
-        body: "ICON 2 on tehtud nägema välja nagu mööbel. Pehme tungsten-valgus, neutraalne kangas, messing-detailid. Saal kohtleb seda kui osa kaunistustest.",
-      },
-      {
-        title: "Akvarell, akrüül, ajakirjalik",
-        body: "Romantilised AI stiilid, mis on häälestatud pulma esteetikale — pehmed paletid, õrn naha-viimistlus, valgus-ülevoolud. Kataloog avab nendega.",
-      },
-      {
-        title: "Kohapealne host terve öö",
-        body: "Meie host tervitab külalisi, aitab häbelikel poseerida, hoiab järjekorra liikuvana ja pakib kõik kokku. Sina naudid õhtut.",
-      },
-      {
-        title: "Print + telefon 15 sekundiga",
-        body: "Iga portree prinditakse kohapeal ja jõuab QR-i kaudu külalise telefoni. Hommikul ärkad terve jagatud galeriiga.",
-      },
-    ],
-
-    flowEyebrow: "(04) Kuidas pulmaõhtu käib",
-    flow: [
-      { n: "01", title: "Räägi meile päevast", body: "Kuupäev, venue, külaliste arv, kutsete visuaalid." },
-      { n: "02", title: "Vali AI stiilid", body: "Enamik paare valib 3–5. Akvarell ja akrüül juhivad pulma kataloogi." },
-      { n: "03", title: "Saabume 90 min varem", body: "Setup võtab 40 min. Testitud ja vaikselt valmis enne külaliste saabumist." },
-      { n: "04", title: "Terve öö galerii", body: "Pildid jõuavad live-seinale ja telefonidesse. Hommikul — üks jagatud link." },
-    ],
-
-    faqEyebrow: "(05) Pulma KKK",
-    faqTitle: "Mida paarid kõige sagedamini küsivad.",
+    date: "Tallinn · kirjutatud novembris 2026",
+    headline: "Pulmaformaadist, ausa keelega.",
+    intro:
+      "Alustasime PortrAI-d stuudiona brändi-aktivatsioonide jaoks. Boks, mille ehitasime — must metall, brändi-purpuriga LED-id, neoon — sobib firma standile või aastapeole. See ei sobi pulma vastuvõttu. Oleme seda teadnud kaks aastat, oleme kogu selle aja pulmadele ei öelnud, ja oleme lakanud end selle pärast hästi tundmast.",
+    para2:
+      "Seega kevadel 2026 liitub stuudioga teine boks. See on Everybooth ICON 2 — hele puit, neutraalne kangas, messing-hinged, pehme tungsten-valgus. Käsitsi valmistatud, mitte vormitud. See näeb välja kui mööbel. See kaob vastuvõturuumi, mitte ei paista sealt välja, mis ongi mõte.",
+    para3:
+      "AI-mootor on sama, mis neoon-boksil. Samad kaksteist stiili. Sama kohapealne host, sama 40-minutiline setup, sama terve öö galerii igale külalisele hommikuks telefoni. See, mis muutub, on kuidas boks tööd tehes välja näeb.",
+    para4Heading: "Varase-paari pakkumine",
+    para4:
+      "Esimesed viis paari, kes kinnitavad 2026 pulmakuupäeva PortrAI Pulmaga, saavad kohandatud AI teema, mis on disainitud nende pulma visuaalide ümber — kutsete kirjatüüp, värvi-palett, venue. See teema maksab tavaliselt 290 € lisana; esimesed viis saavad selle hinnas sees. Pärast viit ehitame ikka kohandatud teemasid, lihtsalt mitte komplektis.",
+    para5Heading: "Mis see maksab",
+    para5:
+      "Enamik pulmadest läheb Branded tasemesse — 890 € viie tunni eest, boksi UI paari disainikeeles, kümme pluss AI stiili, host, live-galerii sein, printimine. Väiksemad pulmad sobivad Boksiga 490 € eest kolme tunni eest. Kohandatud pulma-kontseptsioonid (mõtle Synlabi-taseme ambitsioonile, pulma mõõtmes) hindame eraldi.",
+    para6Heading: "Mida inimesed küsivad",
     faq: [
       {
-        q: "Millal saan pulma ICON 2-ga broneerida?",
-        a: "Alates kevadest 2026. Boks saabub Q1 2026. Praegu võtame ootejärjekorda 2026 pulmakuupäevi alates maist.",
-      },
-      {
-        q: "Mis see maksab?",
-        a: "Pulmad lähevad kõige sagedamini Branded tasemesse (890 €) — 5 tundi, täielikult bränditud UI, 10+ stiili, host, live-galerii, printimine. Väiksemad pulmad sobivad Boks tasemega 490 € (3 tundi). Kohandatud pulma-kontseptsioone hindame eraldi.",
-      },
-      {
-        q: "Kas boks saab sobituda meie pulma visuaalidega?",
-        a: "Jah. Branded tase võtab UI üle sinu värvi-paletis ja raamis. Esimesed 5 ootejärjekorra paari saavad täiesti kohandatud AI teema kutsete kirjatüübi ümber — hinnas sees, ilma lisatasuta.",
+        q: "Millal saan päriselt pulma ICON 2-ga broneerida?",
+        a: "Alates kevadest 2026. Boks saabub meile Q1 2026. Praegu võtame ootejärjekorda 2026 pulmakuupäevi alates maist — ja tuleme sinu juurde tagasi vabade kuupäevadega kohe, kui ICON 2 kohale jõuab.",
       },
       {
         q: "Kui palju ruumi ja voolu vajab?",
-        a: "Umbes 2×2 meetrit ja üks standardne 230 V pistik. Saame töötada ka kitsamates kohtades — kirjelda venuet ja kinnitame.",
+        a: "Umbes kaks ruutmeetrit ja üks standardne 230 V pistik. Oleme töötanud kitsamates kohtades — kirjelda venuet kirjas ja kinnitame.",
       },
       {
-        q: "Mis siis, kui meie pulm on Tallinnast kaugel?",
-        a: "Fikseeritud transporditasu — 90 € kuni 100 km, 180 € kuni 200 km. Kaugemale teeme eraldi pakkumise. Setup ise on igal pool sama.",
+        q: "Mis siis, kui meie venue on Tallinnast kaugel?",
+        a: "Tallinn kuni 25 km on sees. Lisame fikseeritud transporditasu kaugemale — 90 € kuni 100 km, 180 € kuni 200 km, eraldi pakkumine kaugemale. Setup on igal pool sama.",
+      },
+      {
+        q: "Kas boks sobib pulma visuaalsesse keelde?",
+        a: "Branded tasemes — jah, UI võtab sinu värvi-paleti ja raami. Esimese-viie pakkumises olevatele paaridele on AI teema ise ehitatud kutsete kirjatüübi ümber.",
       },
       {
         q: "Mis saab vanematest külalistest, kes telefoni ei kasuta?",
-        a: "Meie host juhendab iga külalist. Iga pildi jaoks on prinditud koopia — keegi ei lähe tühjade kätega ära.",
+        a: "Iga pilt prinditakse kohapeal. Host juhendab iga külalist. Keegi ei lähe tühjade kätega ära.",
       },
     ],
-
-    ctaTitle: "Pane kuupäev kinni — ja boks.",
-    ctaBody:
-      "Räägi meile pulma detailid. Tuleme tagasi 3 töötunni jooksul.",
-    ctaButton: "Liitu ootejärjekorraga",
+    closeHeading: "Kuidas ootejärjekorda jõuda",
+    close:
+      "Kirjuta mulle — Reijo — aadressil info@portrai.ee, või vajuta allolevat nuppu. Räägi kuupäev, mille oled kinni hoidnud, venue, ligikaudne külaliste arv ja milline energia peaks vastuvõtul olema. Vastan isiklikult kolme töötunni jooksul.",
+    cta: "Liitu ootejärjekorraga",
+    sign: "— Reijo Pullai, asutaja",
   },
 } as const;
 
@@ -244,182 +175,127 @@ export default async function WeddingPage({
       <JsonLd data={faqLd} />
       <JsonLd data={breadcrumbs} />
 
-      {/* Hero */}
-      <section className="px-6 pb-12 pt-24 md:px-12 md:pt-32">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-end">
-          <div>
-            <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#E8B87C]/40 bg-[#E8B87C]/15 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-[#E8B87C]">
-              {copy.eyebrow}
-            </p>
-            <h1
-              className="mb-6 max-w-4xl font-medium leading-[1.05] tracking-tight"
-              style={{ fontSize: "var(--text-display-xl)" }}
-            >
-              {copy.headline}
-            </h1>
-            <p
-              className="mb-8 max-w-2xl text-[color:var(--color-text-secondary)]"
-              style={{ fontSize: "var(--text-body-lg)" }}
-            >
-              {copy.sub}
-            </p>
-            <ProofMicrocopy locale={locale} variant="awards" className="mb-4" />
-            <div className="mb-8 flex flex-wrap gap-4">
-              <MagneticButton>
-                <Link
-                  href="/kontakt"
-                  className="inline-block rounded-full bg-[color:var(--color-brand-primary)] px-6 py-3 font-medium text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-medium)]"
-                >
-                  {copy.primaryCta} →
-                </Link>
-              </MagneticButton>
-              <Link
-                href={"/boksid" as "/boksid" | "/booths"}
-                className="inline-block rounded-full border border-[color:var(--color-stroke-medium)] bg-transparent px-6 py-3 font-medium text-white transition-colors duration-200 hover:bg-[color:var(--color-surface-raised)]"
-              >
-                {copy.secondaryCta} →
-              </Link>
-            </div>
-          </div>
-
-          <ImagePlaceholder
-            description="Everybooth ICON 2 — handcrafted wooden photo booth, light wood with neutral fabric, soft tungsten light, in a wedding reception setting"
-            className="aspect-[4/5] rounded-3xl"
-          />
-        </div>
-      </section>
-
-      {/* (02) Early-couple offer band */}
-      <section className="border-t border-[color:var(--color-stroke-subtle)] bg-[#E8B87C]/8 px-6 py-16 md:px-12">
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:items-center">
-          <div>
-            <p className="mb-3 font-mono text-xs uppercase tracking-[0.22em] text-[#E8B87C]">
-              {copy.offerEyebrow}
-            </p>
-            <h2
-              className="mb-4 font-medium leading-tight tracking-tight"
-              style={{ fontSize: "var(--text-display-md)" }}
-            >
-              {copy.offerTitle}
-            </h2>
-            <p
-              className="text-[color:var(--color-text-secondary)]"
-              style={{ fontSize: "var(--text-body-lg)" }}
-            >
-              {copy.offerBody}
-            </p>
-          </div>
-          <div className="flex flex-col gap-4 lg:items-end">
-            <MagneticButton>
-              <Link
-                href="/kontakt"
-                className="inline-block rounded-full bg-[color:var(--color-brand-primary)] px-6 py-3 font-medium text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-medium)]"
-              >
-                {copy.primaryCta} →
-              </Link>
-            </MagneticButton>
-            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-[color:var(--color-text-tertiary)]">
-              Everybooth ICON 2 · everybooth-icon.com
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* (03) Why this booth */}
-      <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
-        <p className="mb-10 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
-          {copy.whyEyebrow}
+      {/* Letter format — single editorial column, max 720px, no eyebrow,
+          no card grid, no border-left stripes. Heading + signed body. */}
+      <article className="mx-auto max-w-[720px] px-6 py-24 md:py-32">
+        <p className="mb-12 font-mono text-[11px] uppercase tracking-[0.22em] text-[color:var(--color-text-tertiary)]">
+          {copy.date}
         </p>
-        <div className="grid gap-6 md:grid-cols-2">
-          {copy.why.map((item) => (
-            <article
-              key={item.title}
-              className="flex flex-col gap-3 rounded-2xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-raised)] p-6"
-            >
-              <h3
-                className="font-medium leading-tight"
-                style={{ fontSize: "var(--text-title)" }}
-              >
-                {item.title}
-              </h3>
-              <p className="text-[color:var(--color-text-secondary)]">
-                {item.body}
-              </p>
-            </article>
-          ))}
-        </div>
-      </section>
 
-      {/* (04) Flow */}
-      <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
-        <p className="mb-12 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
-          {copy.flowEyebrow}
-        </p>
-        <div className="grid gap-6 md:grid-cols-4">
-          {copy.flow.map((s) => (
-            <div key={s.n} className="flex flex-col gap-3 border-l border-[color:var(--color-brand-primary)] pl-5">
-              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--color-brand-accent)]">
-                {s.n}
-              </p>
-              <h3
-                className="font-medium leading-tight"
-                style={{ fontSize: "var(--text-title)" }}
-              >
-                {s.title}
-              </h3>
-              <p className="text-sm text-[color:var(--color-text-secondary)]">
-                {s.body}
-              </p>
-            </div>
-          ))}
-        </div>
-        <div className="mt-12">
-          <SlaBadges locale={locale} />
-        </div>
-      </section>
-
-      {/* (05) FAQ */}
-      <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-20 md:px-12">
-        <div className="grid gap-12 md:grid-cols-[300px_1fr]">
-          <div>
-            <p className="mb-4 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
-              {copy.faqEyebrow}
-            </p>
-            <h2
-              className="font-medium leading-tight tracking-tight"
-              style={{ fontSize: "var(--text-display-md)" }}
-            >
-              {copy.faqTitle}
-            </h2>
-          </div>
-          <FaqAccordion items={[...copy.faq]} />
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-32 md:px-12">
-        <h2
-          className="mb-6 max-w-3xl font-medium leading-tight tracking-tight"
-          style={{ fontSize: "var(--text-display-lg)" }}
+        <h1
+          className="mb-12 leading-[1.04] tracking-tight"
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(2.5rem, 5.5vw, 4.5rem)",
+            fontWeight: 400,
+          }}
         >
-          {copy.ctaTitle}
+          {copy.headline}
+        </h1>
+
+        <div
+          className="flex flex-col gap-6 text-[color:var(--color-text-secondary)]"
+          style={{ fontSize: "1.125rem", lineHeight: 1.7 }}
+        >
+          <p>{copy.intro}</p>
+          <p>{copy.para2}</p>
+          <p>{copy.para3}</p>
+        </div>
+
+        <h2
+          className="mt-16 mb-6 leading-tight tracking-tight"
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(1.75rem, 3vw, 2.25rem)",
+            fontWeight: 400,
+            fontStyle: "italic",
+          }}
+        >
+          {copy.para4Heading}
         </h2>
         <p
-          className="mb-8 max-w-xl text-[color:var(--color-text-secondary)]"
-          style={{ fontSize: "var(--text-body-lg)" }}
+          className="text-[color:var(--color-text-secondary)]"
+          style={{ fontSize: "1.125rem", lineHeight: 1.7 }}
         >
-          {copy.ctaBody}
+          {copy.para4}
         </p>
-        <MagneticButton>
+
+        <h2
+          className="mt-16 mb-6 leading-tight tracking-tight"
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(1.75rem, 3vw, 2.25rem)",
+            fontWeight: 400,
+            fontStyle: "italic",
+          }}
+        >
+          {copy.para5Heading}
+        </h2>
+        <p
+          className="text-[color:var(--color-text-secondary)]"
+          style={{ fontSize: "1.125rem", lineHeight: 1.7 }}
+        >
+          {copy.para5}
+        </p>
+
+        <h2
+          className="mt-16 mb-6 leading-tight tracking-tight"
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(1.75rem, 3vw, 2.25rem)",
+            fontWeight: 400,
+            fontStyle: "italic",
+          }}
+        >
+          {copy.para6Heading}
+        </h2>
+        <dl className="flex flex-col gap-8">
+          {copy.faq.map((item) => (
+            <div key={item.q}>
+              <dt
+                className="mb-2 leading-snug text-white"
+                style={{ fontSize: "1.125rem", lineHeight: 1.5 }}
+              >
+                {item.q}
+              </dt>
+              <dd className="text-[color:var(--color-text-secondary)]">
+                {item.a}
+              </dd>
+            </div>
+          ))}
+        </dl>
+
+        <h2
+          className="mt-20 mb-6 leading-tight tracking-tight"
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(1.75rem, 3vw, 2.25rem)",
+            fontWeight: 400,
+            fontStyle: "italic",
+          }}
+        >
+          {copy.closeHeading}
+        </h2>
+        <p
+          className="text-[color:var(--color-text-secondary)]"
+          style={{ fontSize: "1.125rem", lineHeight: 1.7 }}
+        >
+          {copy.close}
+        </p>
+
+        <div className="mt-12">
           <Link
             href="/kontakt"
-            className="inline-block rounded-full bg-[color:var(--color-brand-primary)] px-8 py-4 font-medium text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-medium)]"
-            style={{ fontSize: "var(--text-body-lg)" }}
+            className="inline-block rounded-full bg-[color:var(--color-brand-primary)] px-7 py-3.5 font-mono text-xs uppercase tracking-wider text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-medium)]"
           >
-            {copy.ctaButton} →
+            {copy.cta} →
           </Link>
-        </MagneticButton>
-      </section>
+        </div>
+
+        <p className="mt-16 font-mono text-[11px] uppercase tracking-[0.22em] text-[color:var(--color-text-tertiary)]">
+          {copy.sign}
+        </p>
+      </article>
     </PageShell>
   );
 }

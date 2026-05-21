@@ -1,8 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocale } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
+
+/* Hallmark · component: N5 Floating pill · genre: modern-minimal
+ * Was the AI-nav fingerprint (wordmark left + 5 numbered links + filled
+ * CTA right + sticky + backdrop-blur). Now: minimal top row (wordmark
+ * only) + a center-floating capsule of nav links that reveals
+ * post-hero-scroll. Different shape from the SaaS default; reads as a
+ * studio, not a template. */
 
 type NavHref =
   | "/"
@@ -19,19 +26,25 @@ export function SiteHeader() {
   const locale = (useLocale() as "et" | "en") ?? "et";
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [pillVisible, setPillVisible] = useState(false);
+
+  // Floating pill appears after the first viewport scroll — the hero owns
+  // the top of the page on home; on other pages it reveals quickly.
+  useEffect(() => {
+    const threshold = pathname === "/" ? 0.6 : 0.15;
+    function onScroll() {
+      setPillVisible(window.scrollY > window.innerHeight * threshold);
+    }
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [pathname]);
 
   const nextLocale = locale === "et" ? "en" : "et";
-  const menuLabel = menuOpen ? (locale === "en" ? "Close" : "Sulge") : "Menu";
 
-  // Routes use ET path segments in both locales — the next-intl `/en` prefix
-  // handles the language switch. /peod has a historical /events alias re-export
-  // (kept for inbound EN links); /tood, /hinnad, /boksid use the same path in
-  // both locales (no alias re-exports, so don't link to /work, /pricing, /booths).
-  const studioHref: NavHref = "/studio";
+  // Routes use ET path segments in both locales; /events is the only
+  // historical EN re-export alias.
   const eventsHref: NavHref = locale === "en" ? "/events" : "/peod";
-  const boothsHref: NavHref = "/boksid";
-  const workHref: NavHref = "/tood";
-  const pricingHref: NavHref = "/hinnad";
 
   const labels = {
     studio: "Studio",
@@ -41,124 +54,138 @@ export function SiteHeader() {
     pricing: locale === "en" ? "Pricing" : "Hinnad",
     contact: locale === "en" ? "Contact" : "Kontakt",
     quote: locale === "en" ? "Get a quote" : "Küsi pakkumist",
+    menu: locale === "en" ? "Menu" : "Menüü",
+    close: locale === "en" ? "Close" : "Sulge",
     switchLanguage: locale === "en" ? "ET" : "EN",
   };
 
-  const navItems: Array<{ href: NavHref; number: string; label: string }> = [
-    { href: studioHref, number: "01", label: labels.studio },
-    { href: eventsHref, number: "02", label: labels.events },
-    { href: boothsHref, number: "03", label: labels.booths },
-    { href: workHref, number: "04", label: labels.work },
-    { href: pricingHref, number: "05", label: labels.pricing },
+  // Numbered eyebrows + filled CTA buttons removed deliberately — those
+  // were the AI-nav tells. Plain word links inside the pill instead.
+  const navItems: Array<{ href: NavHref; label: string }> = [
+    { href: "/studio", label: labels.studio },
+    { href: eventsHref, label: labels.events },
+    { href: "/boksid", label: labels.booths },
+    { href: "/tood", label: labels.work },
+    { href: "/hinnad", label: labels.pricing },
   ];
 
+  const menuLabel = menuOpen ? labels.close : labels.menu;
+
   return (
-    <header className="sticky top-0 z-30 border-b border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-base)]/85 backdrop-blur-md">
-      <div className="flex items-center justify-between px-6 py-5 md:px-12">
+    <>
+      {/* Top row — quiet. Wordmark left, language switch + contact link right.
+          No fill, no border, no backdrop-blur. */}
+      <header className="absolute inset-x-0 top-0 z-30 flex items-center justify-between px-6 py-6 md:px-12">
         <Link
           href="/"
-          className="font-mono text-sm uppercase tracking-wider transition-opacity hover:opacity-70"
+          className="font-display text-2xl tracking-tight transition-opacity hover:opacity-70 md:text-3xl"
+          style={{ fontFamily: "var(--font-display)" }}
           onClick={() => setMenuOpen(false)}
         >
           PortrAI
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
-          {navItems.map((item) => (
-            <NavLink
-              key={item.href}
-              href={item.href}
-              number={item.number}
-              label={item.label}
-            />
-          ))}
-        </nav>
-
-        <div className="hidden items-center gap-4 md:flex">
+        <div className="flex items-center gap-5 md:gap-6">
           <Link
             href={pathname}
             locale={nextLocale}
-            className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)] transition-colors hover:text-white"
+            className="font-mono text-[11px] uppercase tracking-[0.18em] text-[color:var(--color-text-secondary)] transition-colors hover:text-white"
+            onClick={() => setMenuOpen(false)}
           >
             {labels.switchLanguage}
           </Link>
           <Link
             href="/kontakt"
-            className="rounded-md bg-[color:var(--color-brand-primary)] px-4 py-2 font-mono text-xs uppercase tracking-wider text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-soft)]"
+            className="hidden font-mono text-[11px] uppercase tracking-[0.18em] text-white underline-offset-4 transition-colors hover:underline md:inline"
           >
-            {labels.quote}
-          </Link>
-        </div>
-
-        <div className="flex items-center gap-3 md:hidden">
-          <Link
-            href={pathname}
-            locale={nextLocale}
-            className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)] transition-colors hover:text-white"
-            onClick={() => setMenuOpen(false)}
-          >
-            {labels.switchLanguage}
+            {labels.contact}
           </Link>
           <button
             type="button"
             aria-expanded={menuOpen}
             aria-label={menuLabel}
             onClick={() => setMenuOpen((open) => !open)}
-            className="rounded-full border border-[color:var(--color-stroke-medium)] px-4 py-2 font-mono text-xs uppercase tracking-wider text-white transition-colors hover:border-[color:var(--color-brand-primary)]/40 hover:bg-[color:var(--color-surface-raised)]"
+            className="rounded-full border border-[color:var(--color-stroke-medium)] px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-colors hover:border-[color:var(--color-brand-primary)]/60 hover:bg-[color:var(--color-surface-raised)] md:hidden"
           >
             {menuLabel}
           </button>
         </div>
-      </div>
+      </header>
 
-      {menuOpen && (
-        <div className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-6 md:hidden">
-          <nav className="flex flex-col gap-4">
-            {navItems.map((item) => (
-              <NavLink
+      {/* Floating center pill — desktop only. Appears post-scroll. */}
+      <nav
+        aria-label={locale === "en" ? "Primary navigation" : "Põhinavigatsioon"}
+        className={[
+          "fixed inset-x-0 top-5 z-30 hidden justify-center transition-all duration-500 md:flex",
+          pillVisible
+            ? "translate-y-0 opacity-100"
+            : "pointer-events-none -translate-y-3 opacity-0",
+        ].join(" ")}
+      >
+        <div className="flex items-center gap-1 rounded-full border border-[color:var(--color-stroke-medium)] bg-[color:var(--color-surface-base)]/85 px-2 py-1.5 backdrop-blur-md">
+          {navItems.map((item) => {
+            const active = pathname === item.href;
+            return (
+              <Link
                 key={item.href}
                 href={item.href}
-                number={item.number}
-                label={item.label}
-                onNavigate={() => setMenuOpen(false)}
-              />
-            ))}
-          </nav>
+                className={[
+                  "rounded-full px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] transition-colors",
+                  active
+                    ? "bg-[color:var(--color-brand-primary)]/15 text-white"
+                    : "text-[color:var(--color-text-secondary)] hover:text-white",
+                ].join(" ")}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+        </div>
+      </nav>
 
-          <Link
-            href="/kontakt"
-            onClick={() => setMenuOpen(false)}
-            className="mt-6 inline-flex rounded-md bg-[color:var(--color-brand-primary)] px-5 py-3 font-mono text-xs uppercase tracking-wider text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-soft)]"
-          >
-            {labels.quote} {"->"}
-          </Link>
+      {/* Mobile expanded menu */}
+      {menuOpen && (
+        <div className="fixed inset-0 z-40 flex flex-col bg-[color:var(--color-surface-base)] px-6 py-6 md:hidden">
+          <div className="flex items-center justify-between">
+            <Link
+              href="/"
+              className="font-display text-2xl tracking-tight"
+              style={{ fontFamily: "var(--font-display)" }}
+              onClick={() => setMenuOpen(false)}
+            >
+              PortrAI
+            </Link>
+            <button
+              type="button"
+              onClick={() => setMenuOpen(false)}
+              className="rounded-full border border-[color:var(--color-stroke-medium)] px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white"
+            >
+              {labels.close}
+            </button>
+          </div>
+          <nav className="mt-12 flex flex-col gap-6">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setMenuOpen(false)}
+                className="font-display text-4xl tracking-tight text-white transition-opacity hover:opacity-70"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                {item.label}
+              </Link>
+            ))}
+            <Link
+              href="/kontakt"
+              onClick={() => setMenuOpen(false)}
+              className="font-display text-4xl tracking-tight text-[color:var(--color-brand-accent)] transition-opacity hover:opacity-70"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              {labels.contact}
+            </Link>
+          </nav>
         </div>
       )}
-    </header>
-  );
-}
-
-function NavLink({
-  href,
-  number,
-  label,
-  onNavigate,
-}: {
-  href: NavHref;
-  number: string;
-  label: string;
-  onNavigate?: () => void;
-}) {
-  return (
-    <Link
-      href={href}
-      onClick={onNavigate}
-      className="group flex items-baseline gap-2 font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)] transition-colors hover:text-white"
-    >
-      <span className="text-[color:var(--color-text-tertiary)] transition-colors group-hover:text-[color:var(--color-brand-accent)]">
-        {number}
-      </span>
-      <span>- {label}</span>
-    </Link>
+    </>
   );
 }
