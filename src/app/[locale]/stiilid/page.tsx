@@ -173,7 +173,7 @@ export default async function StylesPage({
             {copy.customBody}
           </h2>
           <Link
-            href={"/studio" as "/studio"}
+            href={"/turundus" as "/turundus"}
             className="inline-block rounded-full bg-[color:var(--color-brand-primary)] px-6 py-3 font-medium text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-medium)]"
           >
             {copy.customLink} →

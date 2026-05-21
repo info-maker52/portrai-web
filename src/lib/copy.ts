@@ -65,7 +65,7 @@ export const SLA_SHORT = {
 } satisfies LocalizedText;
 
 /* -------------------------------------------------------------------------- */
-/* Product lines — the four shapes the studio takes                            */
+/* Product lines — the four shapes the work takes                              */
 /* -------------------------------------------------------------------------- */
 
 export const PRODUCT_LINES = [

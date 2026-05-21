@@ -148,7 +148,7 @@ export default async function WorkPage({
           {copy.nextBody}
         </p>
         <Link
-          href={"/studio" as "/studio"}
+          href={"/turundus" as "/turundus"}
           className="inline-block rounded-full bg-[color:var(--color-brand-primary)] px-8 py-4 font-medium text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-medium)]"
           style={{ fontSize: "var(--text-body-lg)" }}
         >

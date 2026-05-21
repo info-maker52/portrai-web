@@ -73,7 +73,7 @@ const COPY = {
     calcEyebrow: "(04) Calculator",
     calcTitle: "An indicative number in 30 seconds.",
     calcBody:
-      "Pick a tier, choose distance, slide guests, toggle add-ons. The breakdown updates live. Custom activations don't slot in here — talk to the studio for those.",
+      "Pick a tier, choose distance, slide guests, toggle add-ons. The breakdown updates live. Custom activations don't slot in here — talk to us about those.",
 
     inclusionsEyebrow: "(05) On every tier",
     inclusionsTitle: "What's always in the price.",
@@ -142,7 +142,7 @@ const COPY = {
     calcEyebrow: "(04) Kalkulaator",
     calcTitle: "Indikatiivne number 30 sekundiga.",
     calcBody:
-      "Vali tase, vali kaugus, libista külalisi, lülita lisad. Hinnastruktuur uueneb kohe. Kohandatud aktivatsioonid siia ei sobi — räägi stuudioga nende kohta.",
+      "Vali tase, vali kaugus, libista külalisi, lülita lisad. Hinnastruktuur uueneb kohe. Kohandatud aktivatsioonid siia ei sobi — räägi meiega nende kohta.",
 
     inclusionsEyebrow: "(05) Igal tasemel",
     inclusionsTitle: "Mis on alati hinnas sees.",
@@ -366,7 +366,7 @@ export default async function PricingPage({
               </ul>
 
               <Link
-                href={pkg.customPricing ? ("/studio" as "/studio") : "/kontakt"}
+                href={pkg.customPricing ? ("/turundus" as "/turundus") : "/kontakt"}
                 className={[
                   "mt-auto inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 font-mono text-xs uppercase tracking-wider transition-colors",
                   pkg.highlight

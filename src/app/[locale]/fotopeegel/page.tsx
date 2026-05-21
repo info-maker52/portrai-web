@@ -50,7 +50,7 @@ const COPY = {
     body1:
       "We run fotopeegel at events where the booth needs to feel like furniture, not equipment — wedding receptions, gala dinners, anniversary nights, premium brand launches. The mirror's chrome edge and warm light fit a room where the AI booth's neon LEDs would feel out of place.",
     body2:
-      "Often booked alongside our AI booth in different rooms of the same event — fotopeegel for the elegant moment, AI booth for the late-night energy. Same studio, two energies.",
+      "Often booked alongside our AI booth in different rooms of the same event — fotopeegel for the elegant moment, AI booth for the late-night energy. Same team, two energies.",
     cta: "See it on the booths page",
     secondaryCta: "Get a quote",
   },
@@ -61,7 +61,7 @@ const COPY = {
     body1:
       "Me jookseme fotopeeglit üritustel, kus boks peab tunduma mööblina, mitte tehnikana — pulma-õhtusöögid, galad, juubelid, premium brändi-lansseerimised. Peegli kroomi-äär ja soe valgus sobivad ruumi, kus AI boksi neoon-LED-id tunduksid kohatutena.",
     body2:
-      "Tihti broneeritakse koos meie AI boksiga — eri ruumid ühel üritusel. Fotopeegel elegantsele hetkele, AI boks hilisõhtu energiale. Sama stuudio, kaks energiat.",
+      "Tihti broneeritakse koos meie AI boksiga — eri ruumid ühel üritusel. Fotopeegel elegantsele hetkele, AI boks hilisõhtu energiale. Sama meeskond, kaks energiat.",
     cta: "Vaata boksite lehel",
     secondaryCta: "Küsi pakkumist",
   },

@@ -27,13 +27,16 @@ import {
 import { type SiteLocale, text } from "@/lib/site-content";
 
 /**
- * /studio — the creative-studio page. Replaces /turundus + /marketing.
+ * /turundus (ET) / /marketing (EN alias) — brand-activations landing.
  *
- * Identity: PortrAI as an AI photo studio. Booths are the delivery vehicle.
- * The buyer is a marketing director or agency producer, not someone shopping
- * for a rental.
+ * Buyer: marketing director / agency producer. Page sells the
+ * campaign-concept tier (Custom Activation + Virtual Widget product
+ * lines) where the brief is bigger than a rental.
  *
- * MSCHF moment: the H1 itself — "Brand activations, not booth rentals."
+ * Identity: PortrAI builds brand activations. We avoid calling
+ * ourselves a "studio" anywhere visible — it's a coined frame nobody
+ * searches, and it leaked across the rest of the site. The page sells
+ * the work, not the metaphor.
  */
 
 export async function generateMetadata({
@@ -45,28 +48,28 @@ export async function generateMetadata({
   return buildPageMetadata({
     title:
       locale === "en"
-        ? "PortrAI Studio — brand activations with AI photo"
-        : "PortrAI Studio — brändi-aktivatsioonid AI fotoga",
+        ? "Brand activations with AI photo — PortrAI"
+        : "Brändi-aktivatsioonid AI fotoga — PortrAI",
     description:
       locale === "en"
-        ? "We build campaign concepts that use AI photo as the medium — for brands, agencies and trade-show teams. Swedbank, Synlab, Von Fock, Laulupidu."
-        : "Me ehitame kampaania-kontseptsioone, mis kasutavad AI fotot meediumina — brändidele, agentuuridele ja messimeeskondadele. Swedbank, Synlab, Von Fock, Laulupidu.",
+        ? "PortrAI builds campaign concepts that use AI photo as the medium — for brands, agencies and trade-show teams. Swedbank, Synlab, Von Fock, Laulupidu."
+        : "PortrAI ehitab kampaania-kontseptsioone, mis kasutavad AI fotot meediumina — brändidele, agentuuridele ja messimeeskondadele. Swedbank, Synlab, Von Fock, Laulupidu.",
     locale,
     ogImage: "/images/site/interactive-booth.png",
-    path: localizedSitePath(locale, "/studio"),
+    path: localizedSitePath(locale, "/turundus"),
   });
 }
 
 const COPY = {
   en: {
-    eyebrow: "(01) PortrAI Studio",
+    eyebrow: "(01) Brand activations",
     headline: "Brand activations, not booth rentals.",
-    sub: "We build campaign concepts with AI photo as the medium. Every project starts from a brief. Tech comes second. Swedbank, Synlab, Von Fock, Laulupidu — these are campaigns, not bookings.",
+    sub: "PortrAI builds campaign concepts with AI photo as the medium. Every project starts from a brief. Tech comes second. Swedbank, Synlab, Von Fock, Laulupidu — these are campaigns, not bookings.",
     primaryCta: "Bring us a brief",
     secondaryCta: "See the work",
 
     productLinesEyebrow: "(02) What you can choose",
-    productLinesTitle: "Four shapes the same studio takes.",
+    productLinesTitle: "Four shapes the work takes.",
 
     showcaseEyebrow: "(03) Recent campaigns",
     showcaseTitle: "Award territory.",
@@ -153,7 +156,7 @@ const COPY = {
     messibox: {
       eyebrow: "(08) Trade shows",
       title: "Looking for a messibox?",
-      body: "Trade-show booths get their own page — same studio, narrower brief.",
+      body: "Trade-show booths get their own page — same team, narrower brief.",
       cta: "See messibox",
     },
 
@@ -163,14 +166,14 @@ const COPY = {
     ctaButton: "Bring us a brief",
   },
   et: {
-    eyebrow: "(01) PortrAI Studio",
+    eyebrow: "(01) Brändi-aktivatsioonid",
     headline: "Brändi-aktivatsioonid, mitte boksi rent.",
     sub: "Me ehitame kampaania-kontseptsioone, mis kasutavad AI fotot meediumina. Iga projekt algab briifist. Tehnoloogia tuleb pärast. Swedbank, Synlab, Von Fock, Laulupidu — need on kampaaniad, mitte broneeringud.",
     primaryCta: "Too meile brief",
     secondaryCta: "Vaata töid",
 
     productLinesEyebrow: "(02) Mida saad valida",
-    productLinesTitle: "Neli kuju, milleks sama stuudio saab muutuda.",
+    productLinesTitle: "Neli kuju, milleks töö saab muutuda.",
 
     showcaseEyebrow: "(03) Hiljutised kampaaniad",
     showcaseTitle: "Auhinnatud territoorium.",
@@ -257,7 +260,7 @@ const COPY = {
     messibox: {
       eyebrow: "(08) Messid",
       title: "Otsid messiboksi?",
-      body: "Messi-boksid saavad oma lehe — sama stuudio, kitsam brief.",
+      body: "Messi-boksid saavad oma lehe — sama meeskond, kitsam brief.",
       cta: "Vaata messilahendusi",
     },
 
@@ -268,7 +271,7 @@ const COPY = {
   },
 } as const;
 
-export default async function StudioPage({
+export default async function TurundusPage({
   params,
 }: {
   params: Promise<{ locale: SiteLocale }>;
@@ -276,10 +279,10 @@ export default async function StudioPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const copy = COPY[locale];
-  const pageUrl = `${SITE_URL}${localizedSitePath(locale, "/studio")}`;
+  const pageUrl = `${SITE_URL}${localizedSitePath(locale, "/turundus")}`;
 
   const service = serviceSchema({
-    name: locale === "en" ? "PortrAI Studio — brand activations" : "PortrAI Studio — brändi-aktivatsioonid",
+    name: locale === "en" ? "Brand activations with AI photo" : "Brändi-aktivatsioonid AI fotoga",
     description:
       locale === "en"
         ? "Custom AI photo activations for brands, agencies, and trade-show teams in Estonia and across Europe."
@@ -294,7 +297,7 @@ export default async function StudioPage({
       name: locale === "en" ? "Home" : "Avaleht",
       url: `${SITE_URL}${localizedSitePath(locale, "/")}`,
     },
-    { name: "Studio", url: pageUrl },
+    { name: locale === "en" ? "Brand activations" : "Brändi-aktivatsioonid", url: pageUrl },
   ]);
 
   return (

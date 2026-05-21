@@ -39,8 +39,8 @@ export async function generateMetadata({
         : "PortrAI boksid — neoon AI boks, ICON 2, fotopeegel",
     description:
       locale === "en"
-        ? "Two booths and a mirror, run by one studio. Neon LED for corporate energy, handcrafted Everybooth ICON 2 for weddings, fotopeegel for premium moments."
-        : "Kaks boksi ja peegel, ühe stuudio juhtimisel. Neoon LED firma-energiale, käsitsi valmistatud Everybooth ICON 2 pulmadele, fotopeegel premium-hetkedele.",
+        ? "Two booths and a mirror, run by one team. Neon LED for corporate energy, handcrafted Everybooth ICON 2 for weddings, fotopeegel for premium moments."
+        : "Kaks boksi ja peegel, ühe meeskonna juhtimisel. Neoon LED firma-energiale, käsitsi valmistatud Everybooth ICON 2 pulmadele, fotopeegel premium-hetkedele.",
     locale,
     ogImage: "/images/site/interactive-booth.png",
     path: localizedSitePath(locale, "/boksid"),
@@ -50,8 +50,8 @@ export async function generateMetadata({
 const COPY = {
   en: {
     eyebrow: "(01) PortrAI booths",
-    headline: "Two booths. One studio.",
-    sub: "Every booth is a tool. The studio makes the experience. Pick the booth that fits the room — not the other way round.",
+    headline: "Two booths. One team.",
+    sub: "Every booth is a tool. The team makes the experience. Pick the booth that fits the room — not the other way round.",
 
     neonEyebrow: "(02) Neon AI booth",
     neonTagline: "Cold light. Brand purple. The default for corporate energy.",
@@ -104,8 +104,8 @@ const COPY = {
   },
   et: {
     eyebrow: "(01) PortrAI boksid",
-    headline: "Kaks boksi. Üks stuudio.",
-    sub: "Iga boks on tööriist. Stuudio teeb kogemuse. Vali boks, mis sobib saalile — mitte vastupidi.",
+    headline: "Kaks boksi. Üks meeskond.",
+    sub: "Iga boks on tööriist. Meeskond teeb kogemuse. Vali boks, mis sobib saalile — mitte vastupidi.",
 
     neonEyebrow: "(02) Neoon AI boks",
     neonTagline: "Külm valgus. Brändi purpur. Vaikevalik firma-energiale.",

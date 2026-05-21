@@ -64,7 +64,7 @@ type AudienceCard = {
     | "private"
     | "browse";
   href:
-    | "/studio"
+    | "/turundus"
     | "/peod"
     | "/pulma-fotoboks"
     | "/firmapidu-fotoboks"
@@ -76,7 +76,7 @@ type AudienceCard = {
 const AUDIENCE_CARDS: AudienceCard[] = [
   {
     id: "brand",
-    href: "/studio",
+    href: "/turundus",
     image: "/images/work/von-fock-cover.jpg",
   },
   {
@@ -111,12 +111,12 @@ const COPY = {
     heroEyebrow: "(01) PortrAI · AI photo booth",
     heroHeadline: "AI photo booth for brands, agencies and events.",
     heroSub:
-      "One studio, four shapes. From a quick branded booth to award-winning campaign concepts. Awarded by the Pronksmuna jury, ERR's Innovative Campaign jury and the Booth Mastermind Las Vegas jury — and by guests at Swedbank, Telia, Synlab, ERR and Postimees.",
+      "From a quick branded booth to award-winning campaign concepts — one team behind all four. Awarded by the Pronksmuna jury, ERR's Innovative Campaign jury and the Booth Mastermind Las Vegas jury, and by guests at Swedbank, Telia, Synlab, ERR and Postimees.",
     heroPathMarketing: "For brands & marketing",
     heroPathEvents: "For events & parties",
 
     primerEyebrow: "(00) What we make",
-    primerTitle: "Four shapes the studio takes.",
+    primerTitle: "Four shapes the booth takes.",
 
     pickerEyebrow: "(02) Find your fit",
     pickerTitle: "What kind of event?",
@@ -128,7 +128,7 @@ const COPY = {
         title: "A campaign with AI photo as the medium.",
         body: "Briefs from marketing teams and agencies. Lead capture, branded UGC, GDPR-clean data — every screen in your design language.",
         price: "By quote",
-        cta: "Open the studio",
+        cta: "Open brand activations",
       },
       corporate: {
         eyebrow: "Corporate party",
@@ -197,12 +197,12 @@ const COPY = {
     heroEyebrow: "(01) PortrAI · AI fotoboks",
     heroHeadline: "AI fotoboks brändidele, agentuuridele ja üritustele.",
     heroSub:
-      "Üks stuudio, neli kuju. Kiirelt bränditud fotoboksist auhinnatud kampaania-kontseptsioonideni. Auhinnatud Postimehe Laulupeo Pronksmuna, ERR-i Aasta innovaatilisema turunduskampaania ja Booth Mastermind Las Vegas żürii poolt — ning külaliste poolt Swedbankis, Telias, Synlabis, ERR-is ja Postimehes.",
+      "Kiirelt bränditud fotoboksist auhinnatud kampaania-kontseptsioonideni — üks meeskond kõigi nelja taga. Auhinnatud Postimehe Laulupeo Pronksmuna, ERR-i Aasta innovaatilisema turunduskampaania ja Booth Mastermind Las Vegas żürii poolt — ning külaliste poolt Swedbankis, Telias, Synlabis, ERR-is ja Postimehes.",
     heroPathMarketing: "Brändidele ja turundusele",
     heroPathEvents: "Üritustele ja pidudele",
 
     primerEyebrow: "(00) Mida me teeme",
-    primerTitle: "Neli kuju, milleks stuudio saab muutuda.",
+    primerTitle: "Neli kuju, milleks boks saab muutuda.",
 
     pickerEyebrow: "(02) Vali sobiv kogemus",
     pickerTitle: "Mis tüüpi üritus?",
@@ -214,7 +214,7 @@ const COPY = {
         title: "Kampaania, mille meedium on AI foto.",
         body: "Briifid turundusmeeskondadelt ja agentuuridelt. Leadide kogumine, jagatav UGC, GDPR-puhas data — iga ekraan sinu disainikeeles.",
         price: "Pakkumise alusel",
-        cta: "Ava stuudio",
+        cta: "Ava brändi-aktivatsioonid",
       },
       corporate: {
         eyebrow: "Firmapidu",
@@ -311,7 +311,7 @@ export default async function HomePage({
   setRequestLocale(locale);
   const copy = COPY[locale];
 
-  const marketingHref = "/studio";
+  const marketingHref = "/turundus";
   const eventsHref = locale === "en" ? "/events" : "/peod";
 
   return (
@@ -354,7 +354,7 @@ export default async function HomePage({
             <div className="flex flex-wrap gap-4">
               <MagneticButton>
                 <Link
-                  href={marketingHref as "/studio"}
+                  href={marketingHref as "/turundus"}
                   className="inline-block rounded-full bg-[color:var(--color-brand-primary)] px-6 py-3 font-medium text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-medium)]"
                 >
                   {copy.heroPathMarketing} →
@@ -402,7 +402,7 @@ export default async function HomePage({
             return (
               <Link
                 key={p.id}
-                href={"/studio" as "/studio"}
+                href={"/turundus" as "/turundus"}
                 className="group relative flex flex-col gap-3 border-l border-[color:var(--color-brand-primary)] pl-5 pr-20 transition-colors hover:border-[color:var(--color-brand-accent)] md:pr-24"
               >
                 <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--color-brand-accent)]">

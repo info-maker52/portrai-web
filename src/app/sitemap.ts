@@ -15,7 +15,7 @@ import { projects } from "@/lib/site-content";
 // The five primary nav routes lead, then secondary + SEO landings.
 const STATIC_PATHS = [
   "",
-  "/studio",
+  "/turundus",
   "/peod",
   "/boksid",
   "/tood",

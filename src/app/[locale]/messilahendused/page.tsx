@@ -62,7 +62,7 @@ const COPY = {
     ctaTitle: "Tell us about the show.",
     ctaBody:
       "Dates, stand size, the audience profile. We come back with a concept inside 3 business hours.",
-    primaryCta: "Open the studio",
+    primaryCta: "Open brand activations",
     secondaryCta: "Send the show brief",
   },
   et: {
@@ -82,7 +82,7 @@ const COPY = {
     ctaTitle: "Räägi meile messist.",
     ctaBody:
       "Kuupäevad, standi suurus, publiku profiil. Tuleme tagasi kontseptsiooniga 3 töötunni jooksul.",
-    primaryCta: "Ava stuudio",
+    primaryCta: "Ava brändi-aktivatsioonid",
     secondaryCta: "Saada messi-brief",
   },
 } as const;
@@ -150,7 +150,7 @@ export default async function MessilahendusedPage({
             <div className="flex flex-wrap gap-4">
               <MagneticButton>
                 <Link
-                  href={"/studio" as "/studio"}
+                  href={"/turundus" as "/turundus"}
                   className="inline-block rounded-full bg-[color:var(--color-brand-primary)] px-6 py-3 font-medium text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-medium)]"
                 >
                   {copy.primaryCta} →

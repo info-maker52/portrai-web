@@ -12,7 +12,7 @@ import { CONTACT } from "@/lib/contact";
 const COPY = {
   en: {
     letter:
-      "PortrAI is a small studio in Tallinn. We build AI photo experiences — for company parties one weekend, for a campaign brief the next. If your event is the kind people will still talk about on Monday, write to us.",
+      "PortrAI is a small team in Tallinn. We build AI photo experiences — for company parties one weekend, for a campaign brief the next. If your event is the kind people will still talk about on Monday, write to us.",
     sign: "Reijo Pullai · founder",
     indexLabel: "Index",
     moreLabel: "Use cases",
@@ -23,7 +23,7 @@ const COPY = {
   },
   et: {
     letter:
-      "PortrAI on väike stuudio Tallinnas. Ehitame AI fotokogemusi — ühel nädalavahetusel firmapeole, järgmisel kampaania briifi peale. Kui sinu üritus on selline, millest räägitakse veel esmaspäeval, kirjuta meile.",
+      "PortrAI on väike meeskond Tallinnas. Ehitame AI fotokogemusi — ühel nädalavahetusel firmapeole, järgmisel kampaania briifi peale. Kui sinu üritus on selline, millest räägitakse veel esmaspäeval, kirjuta meile.",
     sign: "Reijo Pullai · asutaja",
     indexLabel: "Indeks",
     moreLabel: "Kasutuskohad",
@@ -39,7 +39,10 @@ export function SiteFooter() {
   const copy = COPY[locale];
 
   const indexLinks: Array<{ href: string; label: string }> = [
-    { href: "/studio", label: "Studio" },
+    {
+      href: locale === "en" ? "/marketing" : "/turundus",
+      label: locale === "en" ? "Marketing" : "Turundus",
+    },
     {
       href: locale === "en" ? "/events" : "/peod",
       label: locale === "en" ? "Events" : "Peod",

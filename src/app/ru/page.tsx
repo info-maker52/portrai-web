@@ -138,24 +138,26 @@ export default function RuHomePage() {
             >
               <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--color-text-secondary)]">
                 {pkg.id === "essential"
-                  ? "Essential · 3 ч"
+                  ? "Boks · 3 ч"
                   : pkg.id === "signature"
-                    ? "Signature · 5 ч"
-                    : "Studio · до 8 ч"}
+                    ? "Branded · 5 ч"
+                    : "Custom Activation · по запросу"}
               </p>
               <p
                 className="font-medium tabular-nums leading-none"
                 style={{ fontSize: "var(--text-display-md)" }}
               >
-                от {formatEur(pkg.basePrice, "et")}
+                {pkg.customPricing
+                  ? "По запросу"
+                  : `от ${formatEur(pkg.basePrice, "et")}`}
               </p>
               <p className="text-sm text-[color:var(--color-text-secondary)]">
                 {pkg.id === "essential" &&
-                  "Небольшие свадьбы, дни рождения и камерные корпоративы до ~80 гостей."}
+                  "Небольшие свадьбы, дни рождения и камерные корпоративы до ~100 гостей."}
                 {pkg.id === "signature" &&
-                  "Самый востребованный пакет. Свадьбы и средние корпоративы — 100–250 гостей."}
+                  "Полностью брендированный UI, не только стартовый экран. Корпоративные вечера 100–300 гостей."}
                 {pkg.id === "studio" &&
-                  "Полная брендовая активация: выставки, лончи, премиум-мероприятия 250+."}
+                  "Кампания-концепция вокруг AI-фото. Уровень Swedbank / Synlab / Von Fock."}
               </p>
             </article>
           ))}

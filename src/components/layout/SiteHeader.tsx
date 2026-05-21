@@ -9,11 +9,12 @@ import { Link, usePathname } from "@/i18n/navigation";
  * CTA right + sticky + backdrop-blur). Now: minimal top row (wordmark
  * only) + a center-floating capsule of nav links that reveals
  * post-hero-scroll. Different shape from the SaaS default; reads as a
- * studio, not a template. */
+ * photo studio rather than a SaaS template. */
 
 type NavHref =
   | "/"
-  | "/studio"
+  | "/turundus"
+  | "/marketing"
   | "/peod"
   | "/events"
   | "/boksid"
@@ -46,8 +47,10 @@ export function SiteHeader() {
   // historical EN re-export alias.
   const eventsHref: NavHref = locale === "en" ? "/events" : "/peod";
 
+  const turundusHref: NavHref = locale === "en" ? "/marketing" : "/turundus";
+
   const labels = {
-    studio: "Studio",
+    turundus: locale === "en" ? "Marketing" : "Turundus",
     events: locale === "en" ? "Events" : "Peod",
     booths: locale === "en" ? "Booths" : "Boksid",
     work: locale === "en" ? "Work" : "Tööd",
@@ -62,7 +65,7 @@ export function SiteHeader() {
   // Numbered eyebrows + filled CTA buttons removed deliberately — those
   // were the AI-nav tells. Plain word links inside the pill instead.
   const navItems: Array<{ href: NavHref; label: string }> = [
-    { href: "/studio", label: labels.studio },
+    { href: turundusHref, label: labels.turundus },
     { href: eventsHref, label: labels.events },
     { href: "/boksid", label: labels.booths },
     { href: "/tood", label: labels.work },

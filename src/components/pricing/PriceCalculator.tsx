@@ -123,7 +123,7 @@ export function PriceCalculator() {
 
           {/* Custom-tier off-ramp */}
           <Link
-            href={"/studio" as "/studio"}
+            href={"/turundus" as "/turundus"}
             className="mt-3 flex flex-col gap-1 rounded-xl border border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-base)] px-4 py-3 text-left transition-colors hover:border-[color:var(--color-brand-primary)]/50"
           >
             <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--color-brand-accent)]">

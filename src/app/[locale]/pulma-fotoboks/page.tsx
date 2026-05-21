@@ -47,9 +47,9 @@ const COPY = {
     date: "Tallinn · written November 2026",
     headline: "About the wedding line, in plain language.",
     intro:
-      "We started PortrAI as a studio for brand activations. The booth we built — black metal, brand-purple LEDs, neon energy — fits a corporate stand or a year-end party. It doesn't fit a wedding reception. We've known this for two years, said no to weddings the whole time, and stopped feeling fine about it.",
+      "We started PortrAI for brand activations. The booth we built — black metal, brand-purple LEDs, neon energy — fits a corporate stand or a year-end party. It doesn't fit a wedding reception. We've known this for two years, said no to weddings the whole time, and stopped feeling fine about it.",
     para2:
-      "So in spring 2026 a second booth joins the studio. It's the Everybooth ICON 2 — light wood, neutral fabric, brass hinges, soft tungsten light. Hand-built, not stamped. It looks like furniture. It disappears into a reception room instead of standing out, which is the point.",
+      "So in spring 2026 a second booth joins the lineup. It's the Everybooth ICON 2 — light wood, neutral fabric, brass hinges, soft tungsten light. Hand-built, not stamped. It looks like furniture. It disappears into a reception room instead of standing out, which is the point.",
     para3:
       "The AI engine is the same one running on the neon booth. Same twelve styles. Same on-site host, same 40-minute setup, same all-night gallery to every guest's phone by morning. The thing that changes is how the booth looks while it's doing the work.",
     para4Heading: "The early-couple offer",
@@ -91,9 +91,9 @@ const COPY = {
     date: "Tallinn · kirjutatud novembris 2026",
     headline: "Pulmaformaadist, ausa keelega.",
     intro:
-      "Alustasime PortrAI-d stuudiona brändi-aktivatsioonide jaoks. Boks, mille ehitasime — must metall, brändi-purpuriga LED-id, neoon — sobib firma standile või aastapeole. See ei sobi pulma vastuvõttu. Oleme seda teadnud kaks aastat, oleme kogu selle aja pulmadele ei öelnud, ja oleme lakanud end selle pärast hästi tundmast.",
+      "Alustasime PortrAI-d brändi-aktivatsioonide jaoks. Boks, mille ehitasime — must metall, brändi-purpuriga LED-id, neoon — sobib firma standile või aastapeole. See ei sobi pulma vastuvõttu. Oleme seda teadnud kaks aastat, oleme kogu selle aja pulmadele ei öelnud, ja oleme lakanud end selle pärast hästi tundmast.",
     para2:
-      "Seega kevadel 2026 liitub stuudioga teine boks. See on Everybooth ICON 2 — hele puit, neutraalne kangas, messing-hinged, pehme tungsten-valgus. Käsitsi valmistatud, mitte vormitud. See näeb välja kui mööbel. See kaob vastuvõturuumi, mitte ei paista sealt välja, mis ongi mõte.",
+      "Seega kevadel 2026 liitub valikuga teine boks. See on Everybooth ICON 2 — hele puit, neutraalne kangas, messing-hinged, pehme tungsten-valgus. Käsitsi valmistatud, mitte vormitud. See näeb välja kui mööbel. See kaob vastuvõturuumi, mitte ei paista sealt välja, mis ongi mõte.",
     para3:
       "AI-mootor on sama, mis neoon-boksil. Samad kaksteist stiili. Sama kohapealne host, sama 40-minutiline setup, sama terve öö galerii igale külalisele hommikuks telefoni. See, mis muutub, on kuidas boks tööd tehes välja näeb.",
     para4Heading: "Varase-paari pakkumine",

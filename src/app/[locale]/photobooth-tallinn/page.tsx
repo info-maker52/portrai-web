@@ -50,7 +50,7 @@ const COPY = {
     body1:
       "We have run booths at most of the city's event venues — corporate parties, brand activations, conferences. The local team knows the buildings, the load-ins, the lifts.",
     body2:
-      "Tallinn (within 25 km) is included in every booking. Booking the studio-tier custom activations also starts from Tallinn — most of our agency partners are here.",
+      "Tallinn (within 25 km) is included in every booking. Custom Activation bookings also start from Tallinn — most of our agency partners are here.",
     primaryCta: "Get a Tallinn quote",
     secondaryCta: "See pricing",
   },
@@ -61,7 +61,7 @@ const COPY = {
     body1:
       "Oleme boksi jooksnud enamikus linna ürituste venue'des — firmapeod, brändi-aktivatsioonid, konverentsid. Kohalik meeskond tunneb hooneid, sissepääse, lifte.",
     body2:
-      "Tallinn (kuni 25 km) on igas broneeringus sees. Studio-taseme kohandatud aktivatsioonid algavad samuti Tallinnast — enamik meie agentuuripartnereid asuvad siin.",
+      "Tallinn (kuni 25 km) on igas broneeringus sees. Custom Activation broneeringud algavad samuti Tallinnast — enamik meie agentuuripartnereid asuvad siin.",
     primaryCta: "Küsi Tallinna pakkumist",
     secondaryCta: "Vaata hindu",
   },

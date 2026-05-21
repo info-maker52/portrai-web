@@ -124,7 +124,7 @@ const COPY = {
       },
       {
         q: "Do you handle 400+ guest parties?",
-        a: "Yes. We add a second on-site host and tune throughput so the queue stays under 5 minutes at peak. Studio package is built for this scale.",
+        a: "Yes. We add a second on-site host and tune throughput so the queue stays under 5 minutes at peak. The Custom Activation tier is built for this scale.",
       },
       {
         q: "What if our office is far from Tallinn?",
@@ -213,7 +213,7 @@ const COPY = {
       },
       {
         q: "Kas saate hakkama 400+ külalisega?",
-        a: "Jah. Lisame teise kohapealse hosti ja häälestame läbilaskvuse nii, et järjekord jääb tipus alla 5 minuti. Studio pakett on selleks skaalaks tehtud.",
+        a: "Jah. Lisame teise kohapealse hosti ja häälestame läbilaskvuse nii, et järjekord jääb tipus alla 5 minuti. Custom Activation tase on selleks skaalaks tehtud.",
       },
       {
         q: "Mis siis, kui meie kontor on Tallinnast kaugel?",
