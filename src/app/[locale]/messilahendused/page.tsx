@@ -4,6 +4,7 @@ import { Link } from "@/i18n/navigation";
 import { PageShell } from "@/components/layout/PageShell";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import { ImagePlaceholder } from "@/components/media/ImagePlaceholder";
+import { BookingTrigger } from "@/components/booking/BookingTrigger";
 import { OutcomeMetrics } from "@/components/trust/OutcomeMetrics";
 import { JsonLd } from "@/components/seo/JsonLd";
 import {
@@ -156,12 +157,12 @@ export default async function MessilahendusedPage({
                   {copy.primaryCta} →
                 </Link>
               </MagneticButton>
-              <Link
-                href="/kontakt"
+              <BookingTrigger
                 className="inline-block rounded-full border border-[color:var(--color-stroke-medium)] bg-transparent px-6 py-3 font-medium text-white transition-colors duration-200 hover:bg-[color:var(--color-surface-raised)]"
+                initialState={{ eventType: "tradeshow" }}
               >
                 {copy.secondaryCta} →
-              </Link>
+              </BookingTrigger>
             </div>
           </div>
           <ImagePlaceholder
@@ -203,13 +204,13 @@ export default async function MessilahendusedPage({
           {copy.ctaBody}
         </p>
         <MagneticButton>
-          <Link
-            href="/kontakt"
+          <BookingTrigger
             className="inline-block rounded-full bg-[color:var(--color-brand-primary)] px-8 py-4 font-medium text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-medium)]"
             style={{ fontSize: "var(--text-body-lg)" }}
+            initialState={{ eventType: "tradeshow" }}
           >
             {copy.secondaryCta} →
-          </Link>
+          </BookingTrigger>
         </MagneticButton>
       </section>
     </PageShell>

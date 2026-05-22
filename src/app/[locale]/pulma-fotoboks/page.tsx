@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { PageShell } from "@/components/layout/PageShell";
+import { BookingTrigger } from "@/components/booking/BookingTrigger";
 import { JsonLd } from "@/components/seo/JsonLd";
 import {
   breadcrumbSchema,
@@ -284,12 +285,12 @@ export default async function WeddingPage({
         </p>
 
         <div className="mt-12">
-          <Link
-            href="/kontakt"
+          <BookingTrigger
             className="inline-block rounded-full bg-[color:var(--color-brand-primary)] px-7 py-3.5 font-mono text-xs uppercase tracking-wider text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-medium)]"
+            initialState={{ eventType: "wedding" }}
           >
             {copy.cta} →
-          </Link>
+          </BookingTrigger>
         </div>
 
         <p className="mt-16 font-mono text-[11px] uppercase tracking-[0.22em] text-[color:var(--color-text-tertiary)]">

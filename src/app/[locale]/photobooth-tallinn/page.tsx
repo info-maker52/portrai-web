@@ -3,6 +3,7 @@ import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { PageShell } from "@/components/layout/PageShell";
 import { MagneticButton } from "@/components/motion/MagneticButton";
+import { BookingTrigger } from "@/components/booking/BookingTrigger";
 import { ImagePlaceholder } from "@/components/media/ImagePlaceholder";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SlaBadges } from "@/components/trust/SlaBadges";
@@ -131,12 +132,12 @@ export default async function PhotoboothTallinnPage({
             </p>
             <div className="flex flex-wrap gap-4">
               <MagneticButton>
-                <Link
-                  href="/kontakt"
+                <BookingTrigger
                   className="inline-block rounded-full bg-[color:var(--color-brand-primary)] px-6 py-3 font-medium text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-medium)]"
+                  initialState={{ eventLocation: "Tallinn" }}
                 >
                   {copy.primaryCta} →
-                </Link>
+                </BookingTrigger>
               </MagneticButton>
               <Link
                 href={"/hinnad" as "/hinnad" | "/pricing"}

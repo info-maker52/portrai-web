@@ -4,6 +4,7 @@ import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Link } from "@/i18n/navigation";
 import { PageShell } from "@/components/layout/PageShell";
+import { BookingTrigger } from "@/components/booking/BookingTrigger";
 import { getAllBlogSlugs, getBlogPost } from "@/lib/blog";
 import type { Metadata } from "next";
 import { buildPageMetadata, localizedSitePath } from "@/lib/seo";
@@ -190,12 +191,9 @@ export default async function BlogPostPage({
           >
             {"<-"} {t("back")}
           </Link>
-          <Link
-            href="/kontakt"
-            className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)] transition-colors hover:text-white"
-          >
+          <BookingTrigger className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-text-secondary)] transition-colors hover:text-white">
             {locale === "en" ? "Start a project" : "Alusta projekti"} {"->"}
-          </Link>
+          </BookingTrigger>
         </div>
       </section>
     </PageShell>

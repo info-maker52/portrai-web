@@ -14,6 +14,7 @@ import {
   CTA,
   PRODUCT_LINES,
 } from "@/lib/copy";
+import { BookingTrigger } from "@/components/booking/BookingTrigger";
 import { ProofMicrocopy } from "@/components/trust/ProofMicrocopy";
 import { buildPageMetadata, localizedSitePath } from "@/lib/seo";
 import { INTERNATIONAL_REACH, PARTNERSHIPS } from "@/lib/contact";
@@ -692,13 +693,12 @@ export default async function HomePage({
           {copy.ctaBody}
         </p>
         <MagneticButton>
-          <Link
-            href="/kontakt"
+          <BookingTrigger
             className="inline-block rounded-full bg-[color:var(--color-brand-primary)] px-8 py-4 font-medium text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-strong)]"
             style={{ fontSize: "var(--text-body-lg)" }}
           >
             {copy.ctaButton} →
-          </Link>
+          </BookingTrigger>
         </MagneticButton>
       </section>
     </PageShell>

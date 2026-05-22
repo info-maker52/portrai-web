@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { BookingTrigger } from "@/components/booking/BookingTrigger";
 import {
   ADD_ONS,
   calculatePrice,
@@ -78,18 +79,44 @@ export function PriceCalculator() {
     );
   }
 
-  const quoteHref = useMemo(() => {
-    const params = new URLSearchParams({
-      package: inputs.packageId,
-      distance: inputs.distanceTierId,
-      guests: String(inputs.guestCount),
-      addOns: inputs.addOnIds.join(","),
-      weekend: inputs.weekend ? "1" : "0",
-      lateNight: inputs.lateNight ? "1" : "0",
-      total: String(Math.round(result.total)),
-    });
-    return `/kontakt?${params.toString()}`;
-  }, [inputs, result.total]);
+  /**
+   * Compose a message summary from the calculator state so the booking
+   * sheet opens with the configured tier / distance / guests / add-ons
+   * pre-filled into the message field. Visitor doesn't re-enter what
+   * they already configured.
+   */
+  const calculatorSummary = useMemo(() => {
+    const pkg = PACKAGES.find((p) => p.id === inputs.packageId);
+    const distance = DISTANCE_TIERS.find((d) => d.id === inputs.distanceTierId);
+    const addOnNames = inputs.addOnIds
+      .map((id) => ADD_ONS.find((a) => a.id === id))
+      .filter((a): a is (typeof ADD_ONS)[number] => Boolean(a))
+      .map((a) => text(locale, a.name));
+
+    const lines = [
+      locale === "en"
+        ? "Configured in the calculator:"
+        : "Kalkulaatoris konfigureeritud:",
+      pkg ? `${text(locale, pkg.name)} · ${pkg.hours}h` : "",
+      distance ? text(locale, distance.label) : "",
+      `${inputs.guestCount} ${locale === "en" ? "guests" : "külalist"}`,
+      addOnNames.length
+        ? `${locale === "en" ? "Add-ons" : "Lisad"}: ${addOnNames.join(", ")}`
+        : "",
+      inputs.weekend
+        ? locale === "en"
+          ? "Weekend"
+          : "Nädalavahetus"
+        : "",
+      inputs.lateNight
+        ? locale === "en"
+          ? "Late-night (past 00:00)"
+          : "Hiline õhtu (üle 00:00)"
+        : "",
+      `${locale === "en" ? "Indicative total" : "Indikatiivne kokku"}: ${formatEur(result.total, locale)}`,
+    ];
+    return lines.filter(Boolean).join("\n");
+  }, [inputs, result.total, locale]);
 
   return (
     <div className="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
@@ -270,12 +297,12 @@ export function PriceCalculator() {
             </p>
           </div>
         </div>
-        <Link
-          href={quoteHref as `/kontakt?${string}`}
+        <BookingTrigger
           className="inline-flex items-center justify-center gap-2 rounded-full bg-[color:var(--color-brand-primary)] px-5 py-3 text-center font-mono text-xs uppercase tracking-wider text-white transition-colors hover:bg-[color:var(--color-brand-secondary)]"
+          initialState={{ message: calculatorSummary }}
         >
           {copy.ctaQuote} →
-        </Link>
+        </BookingTrigger>
         <p className="text-xs text-[color:var(--color-text-tertiary)]">
           {copy.note}
         </p>

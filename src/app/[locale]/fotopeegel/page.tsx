@@ -3,6 +3,7 @@ import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { PageShell } from "@/components/layout/PageShell";
 import { MagneticButton } from "@/components/motion/MagneticButton";
+import { BookingTrigger } from "@/components/booking/BookingTrigger";
 import { ImagePlaceholder } from "@/components/media/ImagePlaceholder";
 import { JsonLd } from "@/components/seo/JsonLd";
 import {
@@ -133,12 +134,11 @@ export default async function FotopeegelPage({
                   {copy.cta} →
                 </Link>
               </MagneticButton>
-              <Link
-                href="/kontakt"
+              <BookingTrigger
                 className="inline-block rounded-full border border-[color:var(--color-stroke-medium)] bg-transparent px-6 py-3 font-medium text-white transition-colors duration-200 hover:bg-[color:var(--color-surface-raised)]"
               >
                 {copy.secondaryCta} →
-              </Link>
+              </BookingTrigger>
             </div>
           </div>
           <ImagePlaceholder

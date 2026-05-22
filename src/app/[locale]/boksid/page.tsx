@@ -5,6 +5,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ImagePlaceholder } from "@/components/media/ImagePlaceholder";
+import { BookingTrigger } from "@/components/booking/BookingTrigger";
 import { ProofMicrocopy } from "@/components/trust/ProofMicrocopy";
 import { SlaBadges } from "@/components/trust/SlaBadges";
 import { CTA } from "@/lib/copy";
@@ -432,13 +433,12 @@ export default async function BoothsPage({
         </p>
         <div className="flex flex-wrap gap-4">
           <MagneticButton>
-            <Link
-              href="/kontakt"
+            <BookingTrigger
               className="inline-block rounded-full bg-[color:var(--color-brand-primary)] px-8 py-4 font-medium text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-strong)]"
               style={{ fontSize: "var(--text-body-lg)" }}
             >
               {copy.primaryCta} →
-            </Link>
+            </BookingTrigger>
           </MagneticButton>
           <Link
             href={"/hinnad" as "/hinnad" | "/pricing"}

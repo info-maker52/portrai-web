@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useLocale } from "next-intl";
-import { Link, usePathname } from "@/i18n/navigation";
+import { usePathname } from "@/i18n/navigation";
+import { BookingTrigger } from "@/components/booking/BookingTrigger";
 import { CONTACT } from "@/lib/contact";
 
 const HIDE_ON_PATHS = ["/kontakt"];
@@ -61,12 +62,9 @@ export function StickyContactBar() {
           : "pointer-events-none translate-y-3 opacity-0",
       ].join(" ")}
     >
-      <Link
-        href="/kontakt"
-        className="flex-1 rounded-full bg-[color:var(--color-brand-primary)] px-4 py-3 text-center font-mono text-xs uppercase tracking-wider text-white transition-colors hover:bg-[color:var(--color-brand-secondary)]"
-      >
+      <BookingTrigger className="flex-1 rounded-full bg-[color:var(--color-brand-primary)] px-4 py-3 text-center font-mono text-xs uppercase tracking-wider text-white transition-colors hover:bg-[color:var(--color-brand-secondary)]">
         {copy.quote} →
-      </Link>
+      </BookingTrigger>
       <a
         href={`tel:${CONTACT.phoneTel}`}
         className="flex flex-1 items-center justify-center gap-1 rounded-full border border-[color:var(--color-stroke-medium)] px-3 py-3 font-mono text-xs uppercase tracking-wider text-white transition-colors hover:bg-[color:var(--color-surface-raised)]"

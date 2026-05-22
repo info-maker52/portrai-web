@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { routing } from "@/i18n/routing";
 import { MotionProviders } from "@/components/motion/MotionProviders";
+import { BookingFlow } from "@/components/booking/BookingFlow";
+import { BookingFlowProvider } from "@/components/booking/BookingFlowProvider";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { localBusinessSchema, organizationSchema } from "@/lib/seo";
 
@@ -62,7 +64,13 @@ export default async function LocaleLayout({
       <JsonLd data={organizationSchema} />
       <JsonLd data={localBusinessSchema} />
       <MotionProviders />
-      {children}
+      <BookingFlowProvider>
+        {children}
+        {/* The booking sheet is mounted at the layout level so any
+            BookingTrigger across the app can open it. Renders only when
+            the provider's isOpen flag is true. */}
+        <BookingFlow />
+      </BookingFlowProvider>
     </NextIntlClientProvider>
   );
 }

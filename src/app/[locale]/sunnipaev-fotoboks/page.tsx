@@ -4,6 +4,7 @@ import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { PageShell } from "@/components/layout/PageShell";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { BookingTrigger } from "@/components/booking/BookingTrigger";
 import { FaqAccordion } from "@/components/faq/FaqAccordion";
 import {
   breadcrumbSchema,
@@ -247,12 +248,12 @@ export default async function SunnipaevPage({
             {copy.sub}
           </p>
           <div className="flex flex-wrap gap-4">
-            <Link
-              href="/kontakt"
+            <BookingTrigger
               className="inline-block rounded-full bg-[color:var(--color-brand-primary)] px-6 py-3 font-mono text-xs uppercase tracking-wider text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-medium)]"
+              initialState={{ eventType: "private" }}
             >
               {copy.primaryCta} →
-            </Link>
+            </BookingTrigger>
             <Link
               href={"/hinnad" as "/hinnad"}
               className="inline-block rounded-full border border-white/40 bg-transparent px-6 py-3 font-mono text-xs uppercase tracking-wider text-white transition-colors duration-200 hover:bg-white/10"
@@ -374,12 +375,12 @@ export default async function SunnipaevPage({
           >
             {copy.closingBody}
           </p>
-          <Link
-            href="/kontakt"
+          <BookingTrigger
             className="inline-block rounded-full bg-[color:var(--color-brand-primary)] px-8 py-4 font-mono text-xs uppercase tracking-wider text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-medium)]"
+            initialState={{ eventType: "private" }}
           >
             {copy.closingCta} →
-          </Link>
+          </BookingTrigger>
         </div>
       </section>
     </PageShell>

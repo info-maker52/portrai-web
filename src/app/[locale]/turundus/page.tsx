@@ -7,6 +7,7 @@ import { MagneticButton } from "@/components/motion/MagneticButton";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { FaqAccordion } from "@/components/faq/FaqAccordion";
 import { OutcomeMetrics } from "@/components/trust/OutcomeMetrics";
+import { BookingTrigger } from "@/components/booking/BookingTrigger";
 import { ProofMicrocopy } from "@/components/trust/ProofMicrocopy";
 import { ProcessFlow } from "@/components/studio/ProcessFlow";
 import { StudioHeroCycle } from "@/components/studio/StudioHeroCycle";
@@ -336,12 +337,12 @@ export default async function TurundusPage({
             <ProofMicrocopy locale={locale} variant="awards" className="mb-4" />
             <div className="mb-8 flex flex-wrap gap-4">
               <MagneticButton>
-                <Link
-                  href="/kontakt"
+                <BookingTrigger
                   className="inline-block rounded-full bg-[color:var(--color-brand-primary)] px-6 py-3 font-medium text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-medium)]"
+                  initialState={{ eventType: "brand" }}
                 >
                   {copy.primaryCta} →
-                </Link>
+                </BookingTrigger>
               </MagneticButton>
               <Link
                 href={"/tood" as "/tood" | "/work"}
@@ -581,13 +582,13 @@ export default async function TurundusPage({
           {copy.ctaBody}
         </p>
         <MagneticButton>
-          <Link
-            href="/kontakt"
+          <BookingTrigger
             className="inline-block rounded-full bg-[color:var(--color-brand-primary)] px-8 py-4 font-medium text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-strong)]"
             style={{ fontSize: "var(--text-body-lg)" }}
+            initialState={{ eventType: "brand" }}
           >
             {copy.ctaButton} →
-          </Link>
+          </BookingTrigger>
         </MagneticButton>
       </section>
     </PageShell>
