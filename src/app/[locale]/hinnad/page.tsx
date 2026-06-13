@@ -6,6 +6,7 @@ import { MagneticButton } from "@/components/motion/MagneticButton";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SlaBadges } from "@/components/trust/SlaBadges";
 import { BookingTrigger } from "@/components/booking/BookingTrigger";
+import { TestimonialStrip } from "@/components/trust/TestimonialStrip";
 import { ProofMicrocopy } from "@/components/trust/ProofMicrocopy";
 import { FaqAccordion } from "@/components/faq/FaqAccordion";
 import { PriceCalculator } from "@/components/pricing/PriceCalculator";
@@ -491,6 +492,8 @@ export default async function PricingPage({
           <FaqAccordion items={[...copy.faq]} />
         </div>
       </section>
+
+      <TestimonialStrip locale={locale} index={0} />
 
       {/* CTA */}
       <section className="border-t border-[color:var(--color-stroke-subtle)] px-6 py-32 md:px-12">

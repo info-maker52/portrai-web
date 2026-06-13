@@ -8,6 +8,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { FaqAccordion } from "@/components/faq/FaqAccordion";
 import { ImagePlaceholder } from "@/components/media/ImagePlaceholder";
 import { BookingTrigger } from "@/components/booking/BookingTrigger";
+import { TestimonialStrip } from "@/components/trust/TestimonialStrip";
 import { ProofMicrocopy } from "@/components/trust/ProofMicrocopy";
 import { SlaBadges } from "@/components/trust/SlaBadges";
 import { ThemeGallery } from "@/components/themes/ThemeGallery";
@@ -627,6 +628,8 @@ export default async function EventsPage({
           <FaqAccordion items={[...copy.faq]} />
         </div>
       </section>
+
+      <TestimonialStrip locale={locale} index={1} />
 
       {/* CTA */}
       <section className="px-6 py-32 md:px-12">

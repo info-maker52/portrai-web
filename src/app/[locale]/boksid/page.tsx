@@ -6,6 +6,7 @@ import { MagneticButton } from "@/components/motion/MagneticButton";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ImagePlaceholder } from "@/components/media/ImagePlaceholder";
 import { BookingTrigger } from "@/components/booking/BookingTrigger";
+import { TestimonialStrip } from "@/components/trust/TestimonialStrip";
 import { ProofMicrocopy } from "@/components/trust/ProofMicrocopy";
 import { SlaBadges } from "@/components/trust/SlaBadges";
 import { CTA } from "@/lib/copy";
@@ -416,6 +417,8 @@ export default async function BoothsPage({
         </div>
         <SlaBadges locale={locale} />
       </section>
+
+      <TestimonialStrip locale={locale} index={2} />
 
       {/* CTA */}
       <section className="px-6 py-32 md:px-12">
