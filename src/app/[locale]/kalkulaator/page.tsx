@@ -21,7 +21,7 @@ export async function generateMetadata({
         ? "Get an indicative AI photobooth price for your event in 30 seconds. Pick a package, distance, guest count, and add-ons — see the total live."
         : "Saa indikatiivne AI fotoboksi hind oma üritusele 30 sekundiga. Vali pakett, kaugus, külaliste arv ja lisad — näe kokkuhinda kohe.",
     locale,
-    ogImage: "/images/site/interactive-booth.png",
+    ogImage: "/images/site/portrait-detail.png",
     path: localizedSitePath(locale, "/kalkulaator"),
   });
 }

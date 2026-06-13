@@ -2,17 +2,17 @@
 
 import { Cursor } from "./Cursor";
 import { SmoothScroll } from "./SmoothScroll";
-import { IntroOverlay } from "@/components/intro/IntroOverlay";
 
 /**
- * Single client component that mounts page-level motion primitives
- * plus the intro overlay (shown on first visit / once per 12h).
+ * Single client component that mounts page-level motion primitives.
  * Use once in `app/[locale]/layout.tsx`.
+ *
+ * The Three.js intro overlay was removed — it blocked mobile LCP and
+ * pulled a WebGL dependency into first paint for no conversion benefit.
  */
 export function MotionProviders() {
   return (
     <>
-      <IntroOverlay />
       <SmoothScroll />
       <Cursor />
     </>

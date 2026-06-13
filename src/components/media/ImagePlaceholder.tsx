@@ -40,8 +40,7 @@ function resolvePlaceholderImage(
   if (description.includes("Detail shot illustrating: Animated screen prompts")) {
     return {
       badge: "Animated prompts",
-      objectPosition: "55% 44%",
-      src: "/images/site/interactive-booth.png",
+      src: "/images/site/portrait-detail.png",
     };
   }
 
@@ -56,7 +55,7 @@ function resolvePlaceholderImage(
   if (description.includes("Detail shot illustrating: Custom branding")) {
     return {
       badge: "Custom branding",
-      src: "/images/site/portrait-base.png",
+      src: "/images/site/portrait-detail.png",
     };
   }
 

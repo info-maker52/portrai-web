@@ -46,7 +46,7 @@ export async function generateMetadata({
         ? "Boks from €490, Branded from €890, Custom Activation by quote. Calculator gives an indicative price in 30 seconds."
         : "Boks alates 490 €, Branded alates 890 €, Custom Activation pakkumise alusel. Kalkulaator annab indikatiivse hinna 30 sekundiga.",
     locale,
-    ogImage: "/images/site/interactive-booth.png",
+    ogImage: "/images/site/portrait-detail.png",
     path: localizedSitePath(locale, "/hinnad"),
   });
 }
@@ -219,7 +219,7 @@ export default async function PricingPage({
     serviceType: "AI photobooth rental",
     url: pageUrl,
     priceRange: `${minPrice}+ €`,
-    image: `${SITE_URL}/images/site/interactive-booth.png`,
+    image: `${SITE_URL}/images/site/portrait-detail.png`,
   });
   const faqLd = faqSchema(copy.faq);
   const breadcrumbs = breadcrumbSchema([

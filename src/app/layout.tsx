@@ -3,7 +3,7 @@ import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://portrai-web.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://portrai.ee";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

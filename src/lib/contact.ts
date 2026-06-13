@@ -124,10 +124,10 @@ export const SLAS = [
   },
   {
     id: "response",
-    value: "24 h",
+    value: "3 h",
     label: {
-      en: "Quote response time",
-      et: "Pakkumise vastusaeg",
+      en: "Quote response (business hours)",
+      et: "Pakkumise vastus (töötundi)",
     } satisfies LocalizedText,
   },
   {
@@ -142,7 +142,7 @@ export const SLAS = [
 
 /**
  * Liability/insurance disclosure used in trust badges.
- * Reijo: replace with your real policy figure.
+ * Confirmed real: €100,000 liability cover.
  */
 export const INSURANCE = {
   amount: 100_000,

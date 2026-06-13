@@ -5,7 +5,8 @@ import { CONTACT } from "@/lib/contact";
 export const metadata: Metadata = {
   title: "Контакты — PortrAI AI-фотобудка",
   description:
-    "Свяжитесь с PortrAI: запрос предложения по AI-фотобудке для свадьбы, корпоратива или выставки в Эстонии. Ответ в течение 24 часов.",
+    "Свяжитесь с PortrAI: запрос предложения по AI-фотобудке для свадьбы, корпоратива или выставки в Эстонии. Ответ в течение 3 рабочих часов.",
+  robots: { index: false, follow: true },
   alternates: {
     canonical: "/ru/kontakty",
     languages: {

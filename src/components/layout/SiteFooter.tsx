@@ -40,11 +40,11 @@ export function SiteFooter() {
 
   const indexLinks: Array<{ href: string; label: string }> = [
     {
-      href: locale === "en" ? "/marketing" : "/turundus",
+      href: "/turundus",
       label: locale === "en" ? "Marketing" : "Turundus",
     },
     {
-      href: locale === "en" ? "/events" : "/peod",
+      href: "/peod",
       label: locale === "en" ? "Events" : "Peod",
     },
     { href: "/boksid", label: locale === "en" ? "Booths" : "Boksid" },

@@ -76,7 +76,7 @@ const FALLBACK_COVER_MEDIA: ProjectCoverMedia = {
     en: "PortrAI campaign artwork",
     et: "PortrAI kampaaniavisuaal",
   },
-  src: "/images/hero/portrait-reveal.png",
+  src: "/images/site/portrait-detail.png",
 };
 
 const PROJECT_GALLERY_MEDIA: Record<string, ProjectGalleryMedia> = {

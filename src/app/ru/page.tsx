@@ -6,7 +6,10 @@ import { formatEur, PACKAGES } from "@/lib/pricing";
 export const metadata: Metadata = {
   title: "PortrAI — AI-фотобудка для мероприятий в Эстонии",
   description:
-    "AI-фотобудка с премией Booth Mastermind 2025. Свадьбы, корпоративы, выставки в Таллинне и по всей Эстонии. Пакеты от 690 €.",
+    "AI-фотобудка с премией Booth Mastermind 2025. Свадьбы, корпоративы, выставки в Таллинне и по всей Эстонии. Пакеты от 490 €.",
+  // Russian pages are a minimal stub — keep out of the index until the
+  // RU buyer journey is real.
+  robots: { index: false, follow: true },
   alternates: {
     canonical: "/ru",
     languages: {

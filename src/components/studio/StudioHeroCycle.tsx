@@ -32,12 +32,12 @@ type Layer = {
 
 const LAYERS: Layer[] = [
   {
-    src: "/images/site/portrait-base.png",
-    alt: "Base portrait",
-    label: "Base",
+    src: "/images/themes/naidised-14-67ebac8728.png",
+    alt: "Neon AI portrait sample",
+    label: "Neon",
   },
   {
-    src: "/images/site/portrait-reveal.png",
+    src: "/images/themes/naidised-18-fdee8019b7.png",
     alt: "Acrylic AI portrait sample",
     label: "Acrylic",
   },

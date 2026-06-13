@@ -45,7 +45,7 @@ export async function generateMetadata({
     title: `${project.client} | ${text(locale, project.event)} | PortrAI`,
     description: text(locale, project.summary),
     locale,
-    ogImage: galleryImage ?? coverImage ?? "/images/site/interactive-booth.png",
+    ogImage: galleryImage ?? coverImage ?? "/images/site/portrait-detail.png",
     path: localizedSitePath(locale, `/tood/${slug}`),
   });
 }

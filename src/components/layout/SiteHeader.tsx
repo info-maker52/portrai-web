@@ -14,9 +14,7 @@ import { Link, usePathname } from "@/i18n/navigation";
 type NavHref =
   | "/"
   | "/turundus"
-  | "/marketing"
   | "/peod"
-  | "/events"
   | "/boksid"
   | "/tood"
   | "/hinnad"
@@ -43,11 +41,13 @@ export function SiteHeader() {
 
   const nextLocale = locale === "et" ? "en" : "et";
 
-  // Routes use ET path segments in both locales; /events is the only
-  // historical EN re-export alias.
-  const eventsHref: NavHref = locale === "en" ? "/events" : "/peod";
+  // Routes use ET path segments in both locales (the canonical URLs). The
+  // old /marketing + /events EN aliases were removed — they caused a
+  // duplicate-content + canonical conflict (the page canonical pointed at
+  // /en/turundus while the nav linked /en/marketing).
+  const eventsHref: NavHref = "/peod";
 
-  const turundusHref: NavHref = locale === "en" ? "/marketing" : "/turundus";
+  const turundusHref: NavHref = "/turundus";
 
   const labels = {
     turundus: locale === "en" ? "Marketing" : "Turundus",

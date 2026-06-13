@@ -43,7 +43,7 @@ export async function generateMetadata({
         ? "Two booths and a mirror, run by one team. Neon LED for corporate energy, handcrafted Everybooth ICON 2 for weddings, fotopeegel for premium moments."
         : "Kaks boksi ja peegel, ühe meeskonna juhtimisel. Neoon LED firma-energiale, käsitsi valmistatud Everybooth ICON 2 pulmadele, fotopeegel premium-hetkedele.",
     locale,
-    ogImage: "/images/site/interactive-booth.png",
+    ogImage: "/images/site/portrait-detail.png",
     path: localizedSitePath(locale, "/boksid"),
   });
 }

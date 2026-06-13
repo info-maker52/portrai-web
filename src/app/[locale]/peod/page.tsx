@@ -24,7 +24,7 @@ import {
 import { type SiteLocale, text } from "@/lib/site-content";
 
 /**
- * /peod (ET) and /events (EN) — the fun-experience door.
+ * /peod — the fun-experience door.
  *
  * Three audience strips: Corporate / Wedding / Private. Each is its own
  * sub-section with photo + copy + path forward.

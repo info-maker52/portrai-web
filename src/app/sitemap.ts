@@ -34,9 +34,6 @@ const STATIC_PATHS = [
   "/kalkulaator",
 ];
 
-// Standalone Russian-language pages (outside the next-intl routing).
-const RU_PATHS = ["/ru", "/ru/kontakty"];
-
 const CASE_STUDY_PATHS = projects.map((project) => `/tood/${project.slug}`);
 
 function localizedHref(locale: string, path: string) {
@@ -95,14 +92,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  for (const path of RU_PATHS) {
-    entries.push({
-      url: `${SITE_URL}${path}`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.6,
-    });
-  }
+  // Russian pages are an intentional noindex stub — excluded from the
+  // sitemap until the RU buyer journey is real.
 
   return entries;
 }

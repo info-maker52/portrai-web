@@ -28,7 +28,7 @@ import {
 import { type SiteLocale, text } from "@/lib/site-content";
 
 /**
- * /turundus (ET) / /marketing (EN alias) — brand-activations landing.
+ * /turundus — brand-activations landing.
  *
  * Buyer: marketing director / agency producer. Page sells the
  * campaign-concept tier (Custom Activation + Virtual Widget product
@@ -56,7 +56,7 @@ export async function generateMetadata({
         ? "PortrAI builds campaign concepts that use AI photo as the medium — for brands, agencies and trade-show teams. Swedbank, Synlab, Von Fock, Laulupidu."
         : "PortrAI ehitab kampaania-kontseptsioone, mis kasutavad AI fotot meediumina — brändidele, agentuuridele ja messimeeskondadele. Swedbank, Synlab, Von Fock, Laulupidu.",
     locale,
-    ogImage: "/images/site/interactive-booth.png",
+    ogImage: "/images/site/portrait-detail.png",
     path: localizedSitePath(locale, "/turundus"),
   });
 }
@@ -290,7 +290,7 @@ export default async function TurundusPage({
         : "Kohandatud AI foto-aktivatsioonid brändidele, agentuuridele ja messimeeskondadele Eestis ja üle Euroopa.",
     serviceType: "Brand activation",
     url: pageUrl,
-    image: `${SITE_URL}/images/site/interactive-booth.png`,
+    image: `${SITE_URL}/images/site/portrait-detail.png`,
   });
   const faqLd = faqSchema(copy.faq);
   const breadcrumbs = breadcrumbSchema([

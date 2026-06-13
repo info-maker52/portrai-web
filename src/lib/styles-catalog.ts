@@ -15,8 +15,9 @@ export type AiStyle = {
 /**
  * AI style catalog. Used on /stiilid and as schema.org Product list.
  *
- * Sample images currently reuse hero/portrait assets — Reijo to drop in
- * representative outputs per style under /public/images/styles/.
+ * Sample images reuse real theme/näidis + case-cover assets as stand-ins.
+ * TODO (Phase 1): Reijo to drop in one representative output per style
+ * under /public/images/styles/ (same-subject set preferred).
  */
 export const AI_STYLES: AiStyle[] = [
   {
@@ -31,7 +32,7 @@ export const AI_STYLES: AiStyle[] = [
       en: "Brand activations and events that want a fine-art feel.",
       et: "Brändi-aktivatsioonid ja üritused, mis soovivad kunstigaleriilikku tunnet.",
     },
-    sample: "/images/site/portrait-base.png",
+    sample: "/images/themes/naidised-11-72341c5750.png",
   },
   {
     id: "watercolour",
@@ -59,7 +60,7 @@ export const AI_STYLES: AiStyle[] = [
       en: "Conferences, intimate B2B dinners, editorial campaigns.",
       et: "Konverentsid, intiimsed B2B õhtud, ajakirjanduslikud kampaaniad.",
     },
-    sample: "/images/site/portrait-base.png",
+    sample: "/images/themes/naidised-13-39725fb530.png",
   },
   {
     id: "cartoon",
@@ -87,7 +88,7 @@ export const AI_STYLES: AiStyle[] = [
       en: "Streetwear drops, music events, urban brand stories.",
       et: "Streetwear lansseerimised, muusikaüritused, linnabrändide lood.",
     },
-    sample: "/images/site/interactive-booth.png",
+    sample: "/images/themes/naidised-15-773787c67c.png",
   },
   {
     id: "renaissance",
@@ -157,7 +158,7 @@ export const AI_STYLES: AiStyle[] = [
       en: "Tech launches, conferences, Web3 / AI events.",
       et: "Tehnoloogialaunchid, konverentsid, Web3 / AI üritused.",
     },
-    sample: "/images/site/interactive-booth.png",
+    sample: "/images/themes/naidised-17-6ca731c7de.png",
   },
   {
     id: "editorial",

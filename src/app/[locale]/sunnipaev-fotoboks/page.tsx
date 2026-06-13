@@ -67,7 +67,7 @@ const COPY = {
       {
         tag: "Christenings and family",
         body: "Multi-generation guests. Cartoon and editorial styles work especially well — grandparents and toddlers get photos that look intentional.",
-        image: "/images/site/portrait-base.png",
+        image: "/images/themes/naidised-22-5f7217a492.png",
       },
       {
         tag: "30–60 guest evenings",
@@ -128,7 +128,7 @@ const COPY = {
       {
         tag: "Ristsed ja pere-üritused",
         body: "Mitme põlvkonna külalised. Koomiks ja ajakirjalik stiil töötavad eriti hästi — vanavanemad ja väikelapsed saavad tahtlike-näo piltidega.",
-        image: "/images/site/portrait-base.png",
+        image: "/images/themes/naidised-22-5f7217a492.png",
       },
       {
         tag: "30–60 külalise õhtud",

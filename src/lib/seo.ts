@@ -9,7 +9,14 @@ import type { Metadata } from "next";
  */
 
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://portrai-web.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://portrai.ee";
+
+/**
+ * Default Open Graph / Twitter card image when a page passes none.
+ * A clean same-subject AI-transformation montage (no baked-in text).
+ * TODO (Phase 1): replace with the real same-subject 12-style hero asset.
+ */
+export const DEFAULT_OG_IMAGE = "/images/site/portrait-detail.png";
 
 export function localizedSitePath(
   locale: "et" | "en",
@@ -51,11 +58,10 @@ export function buildPageMetadata(input: {
   const url = `${SITE_URL}${normalizedPath}`;
   const enPath = path.startsWith("/en") ? path : `/en${path}`;
   const etPath = path.replace(/^\/en/, "") || "/";
-  const resolvedOgImage = ogImage
-    ? ogImage.startsWith("http")
-      ? ogImage
-      : `${SITE_URL}${ogImage}`
-    : undefined;
+  const ogImagePath = ogImage ?? DEFAULT_OG_IMAGE;
+  const resolvedOgImage = ogImagePath.startsWith("http")
+    ? ogImagePath
+    : `${SITE_URL}${ogImagePath}`;
 
   return {
     title,

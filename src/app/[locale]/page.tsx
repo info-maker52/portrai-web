@@ -37,7 +37,7 @@ import { type SiteLocale, text } from "@/lib/site-content";
  * leaving the page. Keys must match `PRODUCT_LINES[*].id` from lib/copy.ts.
  */
 const PRIMER_THUMBNAILS: Record<string, string> = {
-  boks: "/images/site/portrait-base.png",
+  boks: "/images/themes/naidised-09-896456d601.jpg",
   branded: "/images/work/telia-rohekusimustik-cover.jpg",
   custom: "/images/work/swedbank-unistused-cover.jpg",
   widget: "/images/work/von-fock-cover.jpg",
@@ -52,9 +52,8 @@ const PRIMER_THUMBNAILS: Record<string, string> = {
  * card preview reads as continuous with the landing.
  *
  * `href` is the canonical ET path; the next-intl `/en` prefix kicks in
- * automatically for EN visitors. /peod has a real /events re-export alias
- * for inbound EN links; /tood, /hinnad, /boksid use the same path in
- * both locales.
+ * automatically for EN visitors. All routes use the same ET path segment
+ * in both locales (canonical URLs — no per-locale aliases).
  */
 type AudienceCard = {
   id:
@@ -98,7 +97,7 @@ const AUDIENCE_CARDS: AudienceCard[] = [
   {
     id: "private",
     href: "/sunnipaev-fotoboks",
-    image: "/images/site/portrait-base.png",
+    image: "/images/themes/naidised-20-8caf0ec0a6.png",
   },
   {
     id: "browse",
@@ -298,7 +297,7 @@ export async function generateMetadata({
         ? "Award-winning AI photo booth, classic fotoboks and fotopeegel for events in Tallinn and across Estonia. Brand activations, company parties, weddings, and trade shows."
         : "Auhinnatud AI fotoboks, klassikaline fotoboks ja fotopeegel üritustele Tallinnas ja üle Eesti. Brändi-aktivatsioonid, firmapeod, pulmad ja messid.",
     locale,
-    ogImage: "/images/site/interactive-booth.png",
+    ogImage: "/images/site/portrait-detail.png",
     path: localizedSitePath(locale, "/"),
   });
 }
@@ -313,7 +312,7 @@ export default async function HomePage({
   const copy = COPY[locale];
 
   const marketingHref = "/turundus";
-  const eventsHref = locale === "en" ? "/events" : "/peod";
+  const eventsHref = "/peod";
 
   return (
     <PageShell>
@@ -363,7 +362,7 @@ export default async function HomePage({
               </MagneticButton>
               <MagneticButton strength={8}>
                 <Link
-                  href={eventsHref as "/peod" | "/events"}
+                  href={eventsHref as "/peod"}
                   className="inline-block rounded-full bg-[color:var(--color-brand-primary)] px-6 py-3 font-medium text-white transition-all duration-200 hover:bg-[color:var(--color-brand-secondary)] hover:shadow-[var(--glow-medium)]"
                 >
                   {copy.heroPathEvents} →

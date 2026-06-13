@@ -21,7 +21,7 @@ type StickyCta = {
 };
 
 function ctaForPath(pathname: string): StickyCta {
-  if (pathname === "/turundus" || pathname === "/marketing") {
+  if (pathname === "/turundus") {
     return {
       kind: "trigger",
       eventType: "brand",
@@ -35,7 +35,7 @@ function ctaForPath(pathname: string): StickyCta {
       label: { en: "Open calculator", et: "Ava kalkulaator" },
     };
   }
-  if (pathname === "/peod" || pathname === "/events") {
+  if (pathname === "/peod") {
     return {
       kind: "link",
       href: "/hinnad",
