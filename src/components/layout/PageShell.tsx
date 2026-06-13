@@ -11,7 +11,9 @@ export function PageShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-[100dvh] flex-col">
       <SiteHeader />
-      <main className="flex-1 pb-20 md:pb-0">{children}</main>
+      <main id="main" tabIndex={-1} className="flex-1 pb-20 outline-none md:pb-0">
+        {children}
+      </main>
       <SiteFooter />
       <StickyContactBar />
       <StickyQuoteCta />

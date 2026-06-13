@@ -18,6 +18,7 @@ import { StepReview } from "./steps/StepReview";
 import { RESPONSE_PROMISE } from "@/lib/copy";
 import type { SiteLocale } from "@/lib/site-content";
 import { text } from "@/lib/site-content";
+import { useFocusTrap } from "@/lib/useFocusTrap";
 
 /**
  * The booking sheet UI. Mounted once at the locale layout level.
@@ -57,26 +58,46 @@ function isStepValid(step: BookingStep, state: {
   eventType: string;
   name: string;
   email: string;
+  consent: boolean;
 }): boolean {
+  const contactComplete =
+    state.name.trim().length > 0 &&
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(state.email) &&
+    state.consent;
   switch (step) {
     case "event-type":
       return state.eventType.length > 0;
     case "contact":
-      return (
-        state.name.trim().length > 0 &&
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(state.email)
-      );
+      return contactComplete;
     case "review":
-      // Review re-validates everything required.
-      return (
-        state.eventType.length > 0 &&
-        state.name.trim().length > 0 &&
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(state.email)
-      );
+      // Review re-validates everything required (incl. GDPR consent).
+      return state.eventType.length > 0 && contactComplete;
     default:
       return true;
   }
 }
+
+/** Localized step labels for the screen-reader progress announcement. */
+const STEP_LABELS: Record<SiteLocale, Record<BookingStep, string>> = {
+  en: {
+    "event-type": "Event type",
+    date: "Date",
+    location: "Location",
+    guests: "Guests",
+    message: "Details",
+    contact: "Contact",
+    review: "Review",
+  },
+  et: {
+    "event-type": "Ürituse tüüp",
+    date: "Kuupäev",
+    location: "Asukoht",
+    guests: "Külalised",
+    message: "Detailid",
+    contact: "Kontakt",
+    review: "Ülevaade",
+  },
+};
 
 /** Optional steps where Skip is shown. */
 const SKIPPABLE: ReadonlySet<BookingStep> = new Set([
@@ -124,6 +145,9 @@ export function BookingFlow() {
       panelRef.current.focus();
     }
   }, [isOpen]);
+
+  // Trap Tab focus inside the sheet while open; restore to trigger on close.
+  useFocusTrap(panelRef, isOpen);
 
   const handleClose = useCallback(() => {
     close();
@@ -204,6 +228,15 @@ export function BookingFlow() {
           >
             {copy.close}
           </button>
+
+          {/* Screen-reader-only progress announcement. */}
+          {state.status !== "success" && currentIdx >= 0 && (
+            <p className="sr-only" aria-live="polite">
+              {locale === "en"
+                ? `Step ${currentIdx + 1} of ${steps.length}: ${STEP_LABELS[locale][state.step]}`
+                : `Samm ${currentIdx + 1} / ${steps.length}: ${STEP_LABELS[locale][state.step]}`}
+            </p>
+          )}
         </div>
 
         {/* Step content — scrollable */}
@@ -223,7 +256,7 @@ export function BookingFlow() {
 
         {/* Footer — back / skip / next. Hidden on success state. */}
         {state.status !== "success" && (
-          <div className="flex shrink-0 items-center justify-between gap-3 border-t border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-base)] px-6 py-4 md:px-8">
+          <div className="flex shrink-0 items-center justify-between gap-3 border-t border-[color:var(--color-stroke-subtle)] bg-[color:var(--color-surface-base)] px-6 pt-4 pb-[max(1rem,env(safe-area-inset-bottom))] md:px-8">
             <button
               type="button"
               onClick={goBack}

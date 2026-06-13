@@ -53,6 +53,13 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider locale={locale}>
+      {/* Skip link — first focusable element, visible only on keyboard focus. */}
+      <a
+        href="#main"
+        className="sr-only z-[100] rounded-full bg-[color:var(--color-brand-primary)] px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+      >
+        {locale === "en" ? "Skip to content" : "Liigu sisu juurde"}
+      </a>
       {/* Sets <html lang> client-side without forcing dynamic rendering on
           every route. Static SSG wins — and a11y tools see the right lang
           immediately after hydration. */}

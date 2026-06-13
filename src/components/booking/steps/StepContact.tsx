@@ -1,6 +1,7 @@
 "use client";
 
 import { useLocale } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { useBookingFlow } from "../BookingFlowProvider";
 import type { SiteLocale } from "@/lib/site-content";
 
@@ -16,6 +17,9 @@ const COPY = {
     phonePlaceholder: "+372 5555 5555",
     companyLabel: "Company / brand",
     companyPlaceholder: "Swedbank, Telia, your agency…",
+    consentBefore: "I agree that PortrAI may process my data to reply to this request. See the ",
+    consentLink: "privacy policy",
+    consentAfter: ".",
   },
   et: {
     question: "Kuidas sinuga ühendust saame?",
@@ -28,6 +32,9 @@ const COPY = {
     phonePlaceholder: "+372 5555 5555",
     companyLabel: "Ettevõte / bränd",
     companyPlaceholder: "Swedbank, Telia, sinu agentuur…",
+    consentBefore: "Nõustun, et PortrAI võib töödelda mu andmeid sellele päringule vastamiseks. Vaata ",
+    consentLink: "privaatsuspoliitikat",
+    consentAfter: ".",
   },
 } as const;
 
@@ -95,6 +102,27 @@ export function StepContact() {
           placeholder={copy.phonePlaceholder}
           autoComplete="tel"
         />
+
+        <label className="flex cursor-pointer items-start gap-3 text-sm text-[color:var(--color-text-secondary)]">
+          <input
+            type="checkbox"
+            checked={state.consent}
+            onChange={(e) => setField("consent", e.target.checked)}
+            required
+            className="mt-1 h-4 w-4 shrink-0 accent-[color:var(--color-brand-primary)]"
+          />
+          <span className="leading-relaxed">
+            {copy.consentBefore}
+            <Link
+              href="/privaatsus"
+              target="_blank"
+              className="text-[color:var(--color-brand-accent)] underline underline-offset-4"
+            >
+              {copy.consentLink}
+            </Link>
+            {copy.consentAfter}
+          </span>
+        </label>
       </div>
     </div>
   );

@@ -32,6 +32,7 @@ const STATIC_PATHS = [
   "/messilahendused",
   "/stiilid",
   "/kalkulaator",
+  "/privaatsus",
 ];
 
 const CASE_STUDY_PATHS = projects.map((project) => `/tood/${project.slug}`);

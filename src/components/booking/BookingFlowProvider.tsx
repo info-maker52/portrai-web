@@ -61,6 +61,8 @@ export type BookingState = {
   email: string;
   phone: string;
   company: string;
+  /** GDPR consent given on the contact step. Required before submit. */
+  consent: boolean;
   status: "idle" | "submitting" | "success" | "error";
   errorMessage: string | null;
 };
@@ -76,6 +78,7 @@ const INITIAL_STATE: BookingState = {
   email: "",
   phone: "",
   company: "",
+  consent: false,
   status: "idle",
   errorMessage: null,
 };
