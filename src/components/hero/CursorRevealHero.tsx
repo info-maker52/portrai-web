@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import {
@@ -301,19 +302,24 @@ function MobileHeroFallback({
   return (
     <div className="absolute inset-0">
       {baseSrc && (
-        <img
+        <Image
           src={baseSrc}
           alt=""
           aria-hidden
-          className="absolute inset-0 h-full w-full object-cover"
+          fill
+          priority
+          sizes="(max-width: 1024px) 100vw, 40vw"
+          className="object-cover"
         />
       )}
       {revealSrc && (
-        <img
+        <Image
           src={revealSrc}
           alt=""
           aria-hidden
-          className="absolute inset-0 h-full w-full object-cover [animation:portrai-hero-cycle_7s_ease-in-out_infinite]"
+          fill
+          sizes="(max-width: 1024px) 100vw, 40vw"
+          className="object-cover [animation:portrai-hero-cycle_7s_ease-in-out_infinite]"
         />
       )}
       <style>{`
